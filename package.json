@@ -1,0 +1,11 @@
+{
+  "name": "footballgame-tools",
+  "private": true,
+  "devDependencies": {
+    "@vibecodetown/mcp-server": "^3.4.2"
+  },
+  "scripts": {
+    "mcp:vibe-pm": "npx @vibecodetown/mcp-server"
+  }
+}
+

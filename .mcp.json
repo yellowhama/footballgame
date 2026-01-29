@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "vibe-pm": {
+      "command": "npx",
+      "args": ["@vibecodetown/mcp-server"],
+      "env": {
+        "VIBE_PROFILE": "coding"
+      }
+    }
+  }
+}
+

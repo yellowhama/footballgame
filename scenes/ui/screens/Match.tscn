@@ -1,0 +1,198 @@
+[gd_scene load_steps=2 format=3 uid="uid://match_screen_v1"]
+
+[ext_resource type="Script" path="res://scripts/ui/screens/Match.gd" id="1_match_script"]
+
+[node name="Match" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_match_script")
+
+[node name="SetupPanel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="SetupPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="PanelContainer" parent="SetupPanel/VBox"]
+layout_mode = 2
+theme_type_variation = &"HeaderPanel"
+
+[node name="Label" type="Label" parent="SetupPanel/VBox/Header"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Match Setup"
+horizontal_alignment = 1
+
+[node name="Content" type="HBoxContainer" parent="SetupPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="Left" type="VBoxContainer" parent="SetupPanel/VBox/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Formation" type="VBoxContainer" parent="SetupPanel/VBox/Content/Left"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SetupPanel/VBox/Content/Left/Formation"]
+layout_mode = 2
+text = "Formation"
+
+[node name="OptionButton" type="OptionButton" parent="SetupPanel/VBox/Content/Left/Formation"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="PitchView" type="ColorRect" parent="SetupPanel/VBox/Content/Left"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.1, 0.3, 0.1, 1)
+
+[node name="Label" type="Label" parent="SetupPanel/VBox/Content/Left/PitchView"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pitch / Lineup Visualization"
+
+[node name="Right" type="PanelContainer" parent="SetupPanel/VBox/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Sliders" type="VBoxContainer" parent="SetupPanel/VBox/Content/Right"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="SetupPanel/VBox/Content/Right/Sliders"]
+layout_mode = 2
+text = "Team Instructions"
+horizontal_alignment = 1
+
+[node name="TempoParam" type="HBoxContainer" parent="SetupPanel/VBox/Content/Right/Sliders"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SetupPanel/VBox/Content/Right/Sliders/TempoParam"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Tempo"
+
+[node name="HSlider" type="HSlider" parent="SetupPanel/VBox/Content/Right/Sliders/TempoParam"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+
+[node name="WidthParam" type="HBoxContainer" parent="SetupPanel/VBox/Content/Right/Sliders"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SetupPanel/VBox/Content/Right/Sliders/WidthParam"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Width"
+
+[node name="HSlider" type="HSlider" parent="SetupPanel/VBox/Content/Right/Sliders/WidthParam"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+
+[node name="ActionArea" type="CenterContainer" parent="SetupPanel/VBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="StartBtn" type="Button" parent="SetupPanel/VBox/ActionArea"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+theme_type_variation = &"ButtonPrimary"
+text = "PLAY MATCH"
+
+[node name="ViewPanel" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameViewArea" type="Control" parent="ViewPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlaceholderRect" type="ColorRect" parent="ViewPanel/GameViewArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Header" type="HBoxContainer" parent="ViewPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 80.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="ViewPanel/Header"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "0 - 0"
+
+[node name="VSeparator" type="VSeparator" parent="ViewPanel/Header"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="TimeLabel" type="Label" parent="ViewPanel/Header"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "00:00"
+
+[node name="Footer" type="HBoxContainer" parent="ViewPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="StatusLabel" type="Label" parent="ViewPanel/Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " LIVE MATCH"
+horizontal_alignment = 1
+
+[node name="ExitBtn" type="Button" parent="ViewPanel/Footer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Exit"

@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8n6m5k9p3q8r"]
+
+[ext_resource type="Script" path="res://scripts/ui/ActivityVisualFeedback.gd" id="1_activity"]
+
+[node name="ActivityVisualFeedback" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_activity")
+
+[node name="BackgroundOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="VisualPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -450.0
+offset_right = 400.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="VisualPanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ActivityTitle" type="Label" parent="VisualPanel/VBox"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 36
+text = "활동 제목"
+horizontal_alignment = 1
+
+[node name="IllustrationContainer" type="PanelContainer" parent="VisualPanel/VBox"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="IllustrationPlaceholder" type="ColorRect" parent="VisualPanel/VBox/IllustrationContainer"]
+layout_mode = 2
+color = Color(0.3, 0.6, 1, 1)
+
+[node name="IllustrationLabel" type="Label" parent="VisualPanel/VBox/IllustrationContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "📷 일러스트 플레이스홀더
+(res://assets/illustrations/)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogueText" type="RichTextLabel" parent="VisualPanel/VBox"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+bbcode_enabled = true
+text = "활동 관련 대사가 여기에 표시됩니다."
+fit_content = true
+scroll_active = false
+
+[node name="ContinueButton" type="Button" parent="VisualPanel/VBox"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "▶ 계속"

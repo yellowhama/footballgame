@@ -1,0 +1,825 @@
+//! Test module for MatchEngine
+//!
+//! Extracted from match_sim.rs for better organization.
+//! Contains unit tests for ball physics, player decisions, offside logic, and A13 skills.
+
+use super::*;
+use crate::models::trait_system::TraitSlots;
+
+fn build_offside_test_positions() -> Vec<(f32, f32)> {
+    // Realistic offside test situation
+    // Home team attacking - attackers in offside positions
+    let mut positions = vec![(0.5, 0.5); 22];
+
+    // Home (0-10)
+    positions[0] = (0.05, 0.5); // GK - near own goal
+    positions[1] = (0.25, 0.2); // LB
+    positions[2] = (0.25, 0.4); // CB
+    positions[3] = (0.25, 0.6); // CB
+    positions[4] = (0.25, 0.8); // RB
+    positions[5] = (0.45, 0.3); // CM
+    positions[6] = (0.45, 0.7); // CM - passer
+    positions[7] = (0.55, 0.2); // LW
+    positions[8] = (0.8, 0.5); // ST - offside
+    positions[9] = (0.82, 0.4); // ST - offside
+    positions[10] = (0.55, 0.8); // RW
+
+    // Away (11-21) - defensive line at around 0.75
+    positions[11] = (0.95, 0.5); // GK
+    positions[12] = (0.75, 0.2); // LB - offside line
+    positions[13] = (0.75, 0.4); // CB
+    positions[14] = (0.77, 0.6); // CB - second to last (offside line reference)
+    positions[15] = (0.75, 0.8); // RB
+    positions[16] = (0.6, 0.3); // CM
+    positions[17] = (0.6, 0.5); // CM
+    positions[18] = (0.6, 0.7); // CM
+    positions[19] = (0.4, 0.3); // LW
+    positions[20] = (0.35, 0.5); // ST
+    positions[21] = (0.4, 0.7); // RW
+
+    positions
+}
+
+fn create_test_team(name: &str) -> Team {
+    use crate::models::team::Formation;
+    use crate::models::{Player, Position};
+
+    let mut players = Vec::new();
+    // 11 starting positions for 4-4-2
+    let starting_positions = [
+        Position::GK,
+        Position::LB,
+        Position::CB,
+        Position::CB,
+        Position::RB,
+        Position::LM,
+        Position::CM,
+        Position::CM,
+        Position::RM,
+        Position::ST,
+        Position::ST,
+    ];
+
+    // Create starting 11
+    for (i, pos) in starting_positions.iter().enumerate() {
+        players.push(Player {
+            name: format!("{} Player {}", name, i + 1),
+            position: pos.clone(),
+            overall: 70,
+            attributes: None,
+            equipped_skills: Vec::new(),
+            traits: TraitSlots::new(),
+            personality: Default::default(),
+        });
+    }
+
+    // Create 7 subs
+    let sub_positions = [
+        Position::GK,
+        Position::CB,
+        Position::CM,
+        Position::CM,
+        Position::ST,
+        Position::LW,
+        Position::RW,
+    ];
+    for (i, pos) in sub_positions.iter().enumerate() {
+        players.push(Player {
+            name: format!("{} Sub {}", name, i + 1),
+            position: pos.clone(),
+            overall: 65,
+            attributes: None,
+            equipped_skills: Vec::new(),
+            traits: TraitSlots::new(),
+            personality: Default::default(),
+        });
+    }
+
+    Team { name: name.to_string(), formation: Formation::F442, players }
+}
+
+#[test]
+fn test_ball_default_position() {
+    let ball = Ball::default();
+    assert_eq!(ball.position, (0.5, 0.5));
+    assert_eq!(ball.velocity, (0.0, 0.0));
+    assert!(ball.current_owner.is_none());
+}
+
+#[test]
+fn test_ball_physics_drag() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+
+    // Give ball velocity
+    engine.ball.velocity = (0.1, 0.1);
+    engine.ball.current_owner = None;
+
+    let initial_speed =
+        (engine.ball.velocity.0.powi(2) + engine.ball.velocity.1.powi(2)).sqrt();
+
+    // Physics update
+    engine.apply_ball_physics();
+
+    let final_speed = (engine.ball.velocity.0.powi(2) + engine.ball.velocity.1.powi(2)).sqrt();
+
+    // Speed should decrease due to drag
+    assert!(final_speed < initial_speed, "Ball should slow down due to drag");
+}
+
+#[test]
+fn test_ball_ownership_follows_player() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+
+    // Assign to player 9 (attacker)
+    engine.ball.current_owner = Some(9);
+
+    // Update
+    engine.update_ball();
+
+    // Ball should move to player position
+    let player_pos = engine.get_player_position_by_index(9);
+    assert_eq!(engine.ball.position, player_pos);
+}
+
+#[test]
+fn test_waypoint_position_calculation() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: Some("4-4-2".to_string()),
+        away_formation: Some("4-3-3".to_string()),
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let engine = MatchEngine::new(plan);
+
+    // GK should be near goal line
+    let gk_pos = engine.get_player_position_by_index(0);
+    assert!(gk_pos.1 < 0.1, "GK should be near goal line");
+
+    // ST should be in attacking third
+    let st_pos = engine.get_player_position_by_index(9);
+    assert!(st_pos.1 > 0.7, "ST should be in attacking third");
+
+    // Away GK should be at opposite end
+    let away_gk_pos = engine.get_player_position_by_index(11);
+    assert!(away_gk_pos.1 > 0.9, "Away GK should be near opposite goal");
+}
+
+#[test]
+fn test_shooting_probability_by_distance() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let engine = MatchEngine::new(plan);
+
+    // Attacker (close to goal) vs defender (far from goal)
+    let st_prob = engine.calculate_shooting_probability(9);
+    let cb_prob = engine.calculate_shooting_probability(2);
+
+    assert!(st_prob > cb_prob, "ST should have higher shooting probability than CB");
+}
+
+#[test]
+fn test_pass_success_by_distance() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let engine = MatchEngine::new(plan);
+
+    // Short pass vs long pass
+    let short_pass = engine.calculate_pass_success(6, 7); // CM to CM
+    let long_pass = engine.calculate_pass_success(2, 9); // CB to ST
+
+    assert!(short_pass > long_pass, "Short pass should have higher success rate");
+}
+
+#[test]
+fn test_select_pass_target_none_when_all_offside() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 42,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+    let positions = build_offside_test_positions();
+    engine.set_test_player_positions(positions.clone());
+    engine.ball.current_owner = Some(6);
+    engine.ball.position = positions[6];
+
+    // ST (8, 9) are in offside position (x=0.8, 0.82)
+    // Offside line is at second-to-last defender (14: x=0.77)
+
+    // Check if ST (8) is offside
+    let st_offside = engine.is_offside_position(8, true);
+    assert!(st_offside, "ST at x=0.8 should be offside (line at ~0.77)");
+
+    // Check if ST (9) is offside
+    let st2_offside = engine.is_offside_position(9, true);
+    assert!(st2_offside, "ST2 at x=0.82 should be offside (line at ~0.77)");
+
+    // When selecting through ball target, STs should be filtered out
+    let valid_targets = engine.find_valid_pass_targets(6, true);
+
+    // ST (8, 9) should not be valid targets (through ball + offside)
+    let has_st8 = valid_targets.contains(&8);
+    let has_st9 = valid_targets.contains(&9);
+
+    // Check if pass from CM(6) to ST(8,9) is through ball
+    let is_through_8 = engine.is_through_ball_pass(6, 8, true);
+    let is_through_9 = engine.is_through_ball_pass(6, 9, true);
+
+    if is_through_8 {
+        assert!(!has_st8, "ST8 should be filtered out (through ball + offside)");
+    }
+    if is_through_9 {
+        assert!(!has_st9, "ST9 should be filtered out (through ball + offside)");
+    }
+}
+
+#[test]
+fn test_through_ball_without_target_goes_to_defender() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 77,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+
+    // Set extreme situation where all attackers are offside
+    let mut positions = build_offside_test_positions();
+    // Move all attacking players to offside position
+    positions[7] = (0.85, 0.2); // LW - offside
+    positions[8] = (0.85, 0.5); // ST - offside
+    positions[9] = (0.85, 0.4); // ST - offside
+    positions[10] = (0.85, 0.8); // RW - offside
+    engine.set_test_player_positions(positions.clone());
+    engine.ball.current_owner = Some(6);
+    engine.ball.position = positions[6];
+
+    engine.execute_through_ball_action(6, true);
+
+    let owner = engine.ball.current_owner.expect("defender owner");
+    // execute_through_ball_action calls assign_possession_to_nearest_defender
+    // when no valid forward target exists, giving possession to away team (11-21)
+    assert!(
+        owner >= 11 && owner < 22,
+        "Defender should gain possession when no valid forward target exists, got {}",
+        owner
+    );
+}
+
+#[test]
+fn test_game_state_updates() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+
+    // Home possession
+    engine.ball.current_owner = Some(5);
+    engine.update_game_state_from_ball();
+
+    assert!(engine.game_state.is_home_possession);
+
+    // Away possession
+    engine.ball.current_owner = Some(15);
+    engine.update_game_state_from_ball();
+
+    assert!(!engine.game_state.is_home_possession);
+}
+
+#[test]
+fn test_player_decision_action_selection() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+
+    // Test action selection multiple times
+    let mut actions = std::collections::HashMap::new();
+    for _ in 0..100 {
+        let action = engine.select_action_by_decision(9); // ST
+        *actions.entry(format!("{:?}", action)).or_insert(0) += 1;
+    }
+
+    // Attackers should select shooting frequently
+    assert!(actions.len() > 1, "Should have variety of actions");
+}
+
+// ===========================================
+// Offside related test cases
+// ===========================================
+
+#[test]
+fn test_line_battle_result_types() {
+    // Test LineBattleResult enum is correctly defined
+    let trap = LineBattleResult::OffsideTrapSuccess;
+    let broken = LineBattleResult::LineBroken { advantage: 1.5 };
+    let contested = LineBattleResult::Contested;
+
+    assert_eq!(trap, LineBattleResult::OffsideTrapSuccess);
+    assert!(matches!(broken, LineBattleResult::LineBroken { .. }));
+    assert_eq!(contested, LineBattleResult::Contested);
+}
+
+#[test]
+fn test_through_ball_result_types() {
+    // Test ThroughBallResult enum is correctly defined
+    let success = ThroughBallResult::Success;
+    let offside = ThroughBallResult::Offside;
+    let trap = ThroughBallResult::OffsideTrap;
+
+    assert_eq!(success, ThroughBallResult::Success);
+    assert_eq!(offside, ThroughBallResult::Offside);
+    assert_eq!(trap, ThroughBallResult::OffsideTrap);
+}
+
+#[test]
+fn test_calculate_break_chance() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let engine = MatchEngine::new(plan);
+
+    // Attacker (9) vs defender (13) break chance calculation
+    let break_chance = engine.calculate_break_chance(9, 13);
+
+    // Probability should be in [0.1, 0.95] range
+    assert!(
+        break_chance >= 0.1 && break_chance <= 0.95,
+        "Break chance should be in range [0.1, 0.95]: {}",
+        break_chance
+    );
+}
+
+#[test]
+fn test_find_marking_defender() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+
+    // Set test positions
+    engine.set_test_player_positions(build_offside_test_positions());
+
+    // Find defender marking home attacker (8)
+    let defender_idx = engine.find_marking_defender(8, true);
+
+    // Should be in away team range (11-21)
+    assert!(
+        defender_idx >= 11 && defender_idx < 22,
+        "Defender should be from away team: {}",
+        defender_idx
+    );
+}
+
+#[test]
+fn test_resolve_line_battle() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+
+    // Execute multiple line battles
+    let mut trap_count = 0;
+    let mut broken_count = 0;
+    let mut contested_count = 0;
+
+    for _ in 0..100 {
+        let result = engine.resolve_line_battle(9, 13);
+        match result {
+            LineBattleResult::OffsideTrapSuccess => trap_count += 1,
+            LineBattleResult::LineBroken { .. } => broken_count += 1,
+            LineBattleResult::Contested => contested_count += 1,
+        }
+    }
+
+    // All three results should be possible (same ability levels)
+    let total = trap_count + broken_count + contested_count;
+    assert_eq!(total, 100);
+
+    // Contested should be most common with same ability levels
+    assert!(contested_count > 0, "Should have contested results");
+}
+
+#[test]
+fn test_attempt_through_ball_with_abilities() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+
+    // Multiple through ball attempts
+    let mut results = std::collections::HashMap::new();
+
+    for _ in 0..100 {
+        let result = engine.attempt_through_ball_with_abilities(6, 9, true);
+        *results.entry(format!("{:?}", result)).or_insert(0) += 1;
+    }
+
+    // Should have variety of results
+    assert!(results.len() > 1, "Should have variety of through ball results");
+}
+
+#[test]
+fn test_perceived_offside_line_varies_by_ability() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+
+    let actual_line = 0.75;
+
+    // Calculate perceived line multiple times
+    let mut perceived_lines = Vec::new();
+    for _ in 0..10 {
+        let perceived = engine.get_perceived_offside_line(9, actual_line, true);
+        perceived_lines.push(perceived);
+    }
+
+    // Perceived line should be close to actual line
+    for &line in &perceived_lines {
+        assert!(
+            (line - actual_line).abs() < 0.15,
+            "Perceived line should be close to actual: {} vs {}",
+            line,
+            actual_line
+        );
+    }
+}
+
+#[test]
+fn test_offside_trap_tactic_increases_trap_success() {
+    use crate::tactics::team_instructions::{TacticalPreset, TeamInstructions};
+
+    // Trap tactic ON (HighPressing)
+    let trap_instructions = TeamInstructions::for_style(TacticalPreset::HighPressing);
+    assert!(trap_instructions.use_offside_trap, "HighPressing should use offside trap");
+
+    // Trap tactic OFF (Counterattack)
+    let no_trap_instructions = TeamInstructions::for_style(TacticalPreset::Counterattack);
+    assert!(
+        !no_trap_instructions.use_offside_trap,
+        "Counterattack should not use offside trap"
+    );
+
+    // Test that trap ON results in more trap successes
+    let plan_with_trap = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: Some(trap_instructions),
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan_with_trap);
+
+    // Home defender (3) against away attacker (20)
+    let mut trap_count = 0;
+    for _ in 0..100 {
+        let result = engine.resolve_line_battle(20, 3);
+        if matches!(result, LineBattleResult::OffsideTrapSuccess) {
+            trap_count += 1;
+        }
+    }
+
+    // With trap tactic ON, trap success should be significant
+    assert!(
+        trap_count > 20,
+        "With trap tactic ON, trap success should be significant: {}",
+        trap_count
+    );
+}
+
+// ===========================================
+// A13: Skill system tests
+// ===========================================
+
+#[test]
+fn test_a13_reaction_state_updates() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+
+    // Initial state should be Normal
+    assert_eq!(engine.get_reaction_state(0), ReactionState::Normal);
+
+    // Apply OffBalance state (30 ticks)
+    engine.apply_reaction_state(0, ReactionState::OffBalance, 30);
+    assert_eq!(engine.get_reaction_state(0), ReactionState::OffBalance);
+
+    // After 30 updates, should return to Normal
+    for _ in 0..30 {
+        engine.update_reaction_states();
+    }
+    assert_eq!(engine.get_reaction_state(0), ReactionState::Normal);
+}
+
+#[test]
+fn test_a13_frozen_state_duration() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+
+    // Apply Frozen state (60 ticks)
+    engine.apply_reaction_state(5, ReactionState::Frozen, 60);
+    assert_eq!(engine.get_reaction_state(5), ReactionState::Frozen);
+
+    // After 30 updates, still Frozen
+    for _ in 0..30 {
+        engine.update_reaction_states();
+    }
+    assert_eq!(engine.get_reaction_state(5), ReactionState::Frozen);
+
+    // After another 30 updates, should be Normal
+    for _ in 0..30 {
+        engine.update_reaction_states();
+    }
+    assert_eq!(engine.get_reaction_state(5), ReactionState::Normal);
+}
+
+#[test]
+fn test_a13_deception_action_with_high_stats() {
+    use crate::models::player::PlayerAttributes;
+
+    let mut home_team = create_test_team("Home");
+    let mut away_team = create_test_team("Away");
+
+    // Initialize attributes for attacker (player 9) with high stats
+    home_team.players[9].attributes = Some(PlayerAttributes {
+        flair: 18,
+        technique: 18,
+        dribbling: 18,
+        ..Default::default()
+    });
+
+    // Initialize attributes for defender (player 3) with low reaction stats
+    away_team.players[3].attributes = Some(PlayerAttributes {
+        anticipation: 10,
+        concentration: 10,
+        balance: 10,
+        ..Default::default()
+    });
+
+    let plan = MatchPlan {
+        home_team,
+        away_team,
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+
+    // High stats should result in higher success rate
+    let mut success_count = 0;
+    for _ in 0..100 {
+        if engine.resolve_deception_action(9, 14, ActionType::DribblingSkill) {
+            success_count += 1;
+        }
+    }
+
+    // With stat difference, success should be > 50%
+    assert!(
+        success_count > 50,
+        "High stat player should succeed more often: {} / 100",
+        success_count
+    );
+}
+
+#[test]
+fn test_a13_multiple_players_reaction_states() {
+    let plan = MatchPlan {
+        home_team: create_test_team("Home"),
+        away_team: create_test_team("Away"),
+        seed: 12345,
+        user_player: None,
+        home_instructions: None,
+        away_instructions: None,
+        home_formation: None,
+        away_formation: None,
+        home_player_instructions: None,
+        away_player_instructions: None,
+    };
+
+    let mut engine = MatchEngine::new(plan);
+
+    // Apply different states to multiple players
+    engine.apply_reaction_state(0, ReactionState::OffBalance, 30);
+    engine.apply_reaction_state(1, ReactionState::Frozen, 60);
+    engine.apply_reaction_state(2, ReactionState::Normal, 0);
+
+    assert_eq!(engine.get_reaction_state(0), ReactionState::OffBalance);
+    assert_eq!(engine.get_reaction_state(1), ReactionState::Frozen);
+    assert_eq!(engine.get_reaction_state(2), ReactionState::Normal);
+
+    // After 30 updates
+    for _ in 0..30 {
+        engine.update_reaction_states();
+    }
+
+    // Player 0: Back to Normal
+    // Player 1: Still Frozen
+    // Player 2: Still Normal
+    assert_eq!(engine.get_reaction_state(0), ReactionState::Normal);
+    assert_eq!(engine.get_reaction_state(1), ReactionState::Frozen);
+    assert_eq!(engine.get_reaction_state(2), ReactionState::Normal);
+}
+
+#[test]
+fn test_curve_factor_range() {
+    // D5-2: Test curve_factor range validation
+    let mut ball = Ball::default();
+
+    // Test upper bound clamping
+    ball.set_curve_factor(0.5);
+    assert_eq!(ball.curve_factor, 0.35);
+
+    // Test lower bound clamping
+    ball.set_curve_factor(-0.5);
+    assert_eq!(ball.curve_factor, -0.35);
+
+    // Test within range
+    ball.set_curve_factor(0.2);
+    assert_eq!(ball.curve_factor, 0.2);
+
+    ball.set_curve_factor(-0.15);
+    assert_eq!(ball.curve_factor, -0.15);
+
+    // Test edge cases
+    ball.set_curve_factor(0.35);
+    assert_eq!(ball.curve_factor, 0.35);
+
+    ball.set_curve_factor(-0.35);
+    assert_eq!(ball.curve_factor, -0.35);
+}

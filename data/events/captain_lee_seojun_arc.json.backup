@@ -1,0 +1,442 @@
+{
+  "route_id": "captain",
+  "character_id": "lee_seojun",
+  "arc_title": "이서준 Fall-Rise 아크",
+  "events": [
+    {
+      "event_id": "captain_week45_vice_captain_election",
+      "week": 45,
+      "title": "부주장 선출",
+      "type": "setup",
+      "description": "팀 부주장 선출 투표가 진행된다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "팀 회의. 이서준 주장이 부주장 선출을 발표한다."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "다음 주장을 준비하기 위해 부주장을 선출하겠습니다."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "팀원 투표로 결정하겠습니다. 후보는... 강태양, 박민준, 그리고 [주인공]입니다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "투표 결과, 주인공이 부주장으로 선출되었다."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "[주인공], 축하한다. 앞으로 잘 부탁해."
+        },
+        {
+          "speaker": "player",
+          "text": "최선을 다하겠습니다, 주장님!"
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "(미소) 리더십을 배우고 싶으면 언제든 물어봐."
+        }
+      ],
+      "effects": {
+        "affection_change": 20,
+        "flags": ["captain_vice_captain_elected", "captain_teaching_start"],
+        "stats": {
+          "mental.Leadership": 5
+        }
+      },
+      "choices": []
+    },
+    {
+      "event_id": "captain_week55_father_accident",
+      "week": 55,
+      "title": "아버지 사고",
+      "type": "fall_start",
+      "condition": {
+        "flags": ["captain_vice_captain_elected"]
+      },
+      "description": "이서준 주장의 아버지가 교통사고를 당한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "훈련 중 이서준 주장에게 긴급 전화가 걸려온다."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "네? 아버지가? ...지금 바로 가겠습니다!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "이서준이 급하게 훈련장을 떠난다."
+        },
+        {
+          "speaker": "teammate_1",
+          "text": "무슨 일이래?"
+        },
+        {
+          "speaker": "coach_kim",
+          "text": "서준이 아버지가 교통사고를 당하셨대. 중상이라고 하더군."
+        },
+        {
+          "speaker": "player",
+          "text": "(속으로) 주장님..."
+        },
+        {
+          "speaker": "narrator",
+          "text": "이서준은 2주간 학교에 나오지 못했다."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": ["captain_father_accident", "captain_absence_2weeks"],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "captain_week65_return_distracted",
+      "week": 65,
+      "title": "복귀 후 변화",
+      "type": "fall_middle",
+      "condition": {
+        "flags": ["captain_father_accident"]
+      },
+      "description": "이서준이 복귀했지만 집중력이 저하되어 있다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "2주 만에 이서준이 훈련장에 돌아왔다."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "다들... 미안. 오래 비웠어."
+        },
+        {
+          "speaker": "teammate_1",
+          "text": "괜찮아, 주장! 아버지는 어떠세요?"
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "...아직 중환자실이야. 상태가 심각해서."
+        },
+        {
+          "speaker": "narrator",
+          "text": "주말 경기. 이서준의 움직임이 평소와 다르다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "집중력 부족으로 마킹을 놓친 이서준. 상대 팀 골!"
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "........."
+        },
+        {
+          "speaker": "narrator",
+          "text": "경기 후, 이서준이 홀로 벤치에 앉아 있다."
+        }
+      ],
+      "effects": {
+        "affection_change": -5,
+        "flags": ["captain_distracted", "captain_performance_decline"],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "captain_week75_resignation_consideration",
+      "week": 75,
+      "title": "주장직 사퇴 고민",
+      "type": "fall_deep",
+      "condition": {
+        "flags": ["captain_distracted"]
+      },
+      "description": "이서준이 주장직 사퇴를 고민한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "부주장인 주인공이 이서준과 단둘이 남았다."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "[주인공]... 솔직히 말할게."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "...주장을 그만둬야 할 것 같아."
+        },
+        {
+          "speaker": "player",
+          "text": "네? 주장님이요?"
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "아버지 생각에... 축구에 집중할 수가 없어."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "팀에 피해를 주고 싶지 않아."
+        },
+        {
+          "speaker": "player",
+          "text": "주장님..."
+        },
+        {
+          "speaker": "narrator",
+          "text": "팀원들도 이서준의 고민을 눈치챘다. 팀 분위기가 불안하다."
+        }
+      ],
+      "effects": {
+        "affection_change": -10,
+        "flags": ["captain_resignation_consideration", "team_anxiety"],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "captain_week85_team_conflict",
+      "week": 85,
+      "title": "LOW POINT - 팀 내부 갈등",
+      "type": "low_point",
+      "condition": {
+        "flags": ["captain_resignation_consideration"]
+      },
+      "description": "팀 내부에서 갈등이 발생하고 이서준이 중재에 실패한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "훈련 후 탈의실. 선수들 사이에 언쟁이 벌어진다."
+        },
+        {
+          "speaker": "teammate_1",
+          "text": "야, 오늘 수비 뭐했어? 완전 구멍 뚫렸잖아!"
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "너나 잘해! 공격도 제대로 못하면서!"
+        },
+        {
+          "speaker": "teammate_1",
+          "text": "뭐? 너 지금 싸우자는 거야?"
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "그만! 다들 진정해!"
+        },
+        {
+          "speaker": "teammate_2",
+          "text": "(작은 목소리로) 주장이 제 역할을 못 하니까 이렇게 되는 거 아냐..."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "......"
+        },
+        {
+          "speaker": "narrator",
+          "text": "이서준이 중재를 시도했지만 실패했다. 선수들은 각자 흩어졌다."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "(혼자) 미안... 내가 부족해서..."
+        }
+      ],
+      "effects": {
+        "affection_change": -15,
+        "flags": ["captain_mediation_failed", "captain_low_point_week85"],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "captain_week90_delegation_choice",
+      "week": 90,
+      "title": "대리 리더 역할",
+      "type": "turning_point",
+      "condition": {
+        "flags": ["captain_mediation_failed"]
+      },
+      "description": "이서준이 부주장인 주인공에게 팀 중재를 맡긴다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "이서준이 주인공을 코치실로 불렀다."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "부주장인 [주인공], 부탁이 있어."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "팀 갈등... 네가 해결해줄 수 있겠어?"
+        },
+        {
+          "speaker": "player",
+          "text": "저요? 하지만 주장님이..."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "난 지금... 팀을 이끌 자신이 없어."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "네가 대신 해줬으면 해."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": ["captain_delegation_moment"],
+        "stats": {}
+      },
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "주장님을 대신할 수 없습니다",
+          "description": "거부한다. 이서준이 직접 해야 한다고 생각한다.",
+          "effects": {
+            "affection_change": -5,
+            "flags": ["captain_delegation_refused"],
+            "next_event": "captain_week95_resolution"
+          }
+        },
+        {
+          "choice_id": "B",
+          "text": "알겠습니다. 하지만 임시로만요",
+          "description": "수락하고 팀 중재를 시도한다.",
+          "effects": {
+            "affection_change": 30,
+            "flags": ["captain_delegation_accepted", "captain_mediation_minigame"],
+            "next_event": "captain_week95_resolution"
+          }
+        },
+        {
+          "choice_id": "C",
+          "text": "주장님이 직접 하셔야 합니다",
+          "description": "격려하며 이서준이 스스로 해결하도록 돕는다.",
+          "effects": {
+            "affection_change": 20,
+            "flags": ["captain_self_resolve_path"],
+            "next_event": "captain_week95_resolution"
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "captain_week95_resolution",
+      "week": 95,
+      "title": "갈등 해결",
+      "type": "rise_start",
+      "condition": {
+        "flags": ["captain_delegation_moment"]
+      },
+      "description": "팀 갈등이 해결되고 이서준이 안정을 되찾는다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "주인공의 노력으로 팀 갈등이 해결되었다."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "고마워, [주인공]. 네가 있어서 팀이 유지됐어."
+        },
+        {
+          "speaker": "player",
+          "text": "주장님도 힘내세요. 우린 주장님이 필요합니다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "며칠 후, 이서준에게 좋은 소식이 왔다."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "...아버지가 깨어나셨어!"
+        },
+        {
+          "speaker": "player",
+          "text": "정말요? 축하드립니다!"
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "아직 회복해야 하지만... 이제 위험은 넘겼대."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "다시... 축구에 집중할 수 있을 것 같아."
+        }
+      ],
+      "effects": {
+        "affection_change": 10,
+        "flags": ["captain_father_recovered", "captain_stability_restored"],
+        "stats": {
+          "mental.Leadership": 10
+        }
+      },
+      "choices": []
+    },
+    {
+      "event_id": "captain_week135_succession",
+      "week": 135,
+      "title": "주장 계승식",
+      "type": "resolution",
+      "condition": {
+        "flags": ["captain_stability_restored"]
+      },
+      "description": "이서준이 졸업하며 주인공에게 주장 완장을 넘긴다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "시즌 종료. 이서준의 졸업식이 다가왔다."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "다들 잘 들어. 오늘이 내가 주장으로서 마지막 날이야."
+        },
+        {
+          "speaker": "narrator",
+          "text": "팀원들이 이서준 주위에 모였다."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "3년간... 정말 고마웠어. 다들 덕분에 여기까지 왔어."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "특히... [주인공]. 네가 없었으면 난 무너졌을 거야."
+        },
+        {
+          "speaker": "player",
+          "text": "주장님..."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "다음 주장은... [주인공]이다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "이서준이 완장을 벗어 주인공에게 건넨다."
+        },
+        {
+          "speaker": "lee_seojun",
+          "text": "팀을 부탁해. 넌 할 수 있어."
+        },
+        {
+          "speaker": "player",
+          "text": "주장님의 뜻을 이어가겠습니다!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "팀원들의 박수 소리가 훈련장에 울려 퍼진다."
+        }
+      ],
+      "effects": {
+        "affection_change": 20,
+        "flags": ["captain_succession_complete", "captain_arc_resolved"],
+        "stats": {
+          "mental.Leadership": 20
+        },
+        "unlocks": ["team_captain_role", "special_captain_training"]
+      },
+      "choices": []
+    }
+  ]
+}

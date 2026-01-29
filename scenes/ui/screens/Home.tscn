@@ -1,0 +1,89 @@
+[gd_scene load_steps=2 format=3 uid="uid://home_screen_v1"]
+
+[ext_resource type="Script" path="res://scripts/ui/screens/Home.gd" id="1_home_script"]
+
+[node name="Home" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_home_script")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+theme_type_variation = &"HeaderPanel"
+
+[node name="Label" type="Label" parent="VBox/Header"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Dashboard"
+horizontal_alignment = 1
+
+[node name="Content" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="NextActionCard" type="PanelContainer" parent="VBox/Content"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+theme_type_variation = &"CardPanel"
+
+[node name="VBox" type="VBoxContainer" parent="VBox/Content/NextActionCard"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Title" type="Label" parent="VBox/Content/NextActionCard/VBox"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Next Action"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="VBox/Content/NextActionCard/VBox"]
+layout_mode = 2
+text = "Description of what to do next"
+horizontal_alignment = 1
+
+[node name="ActionBtn" type="Button" parent="VBox/Content/NextActionCard/VBox"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"ButtonPrimary"
+text = "Go"
+
+[node name="StatusSummary" type="HBoxContainer" parent="VBox/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="RecentMatch" type="PanelContainer" parent="VBox/Content/StatusSummary"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBox/Content/StatusSummary/RecentMatch"]
+layout_mode = 2
+text = "Recent Results (Placeholder)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TeamNews" type="PanelContainer" parent="VBox/Content/StatusSummary"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBox/Content/StatusSummary/TeamNews"]
+layout_mode = 2
+text = "Team News (Placeholder)"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,199 @@
+[gd_scene load_steps=2 format=3 uid="uid://tactics_screen"]
+
+[ext_resource type="Script" path="res://scripts/screens/TacticsScreen.gd" id="1_script"]
+
+[node name="TacticsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.051, 0.067, 0.09, 1)
+
+[node name="Header" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 64.0
+theme_override_constants/separation = 16
+
+[node name="BackButton" type="Button" parent="Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "< 뒤로"
+
+[node name="TitleLabel" type="Label" parent="Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.902, 0.929, 0.953, 1)
+theme_override_font_sizes/font_size = 24
+text = "전술 설정"
+vertical_alignment = 1
+
+[node name="SaveButton" type="Button" parent="Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "저장"
+
+[node name="Content" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 80.0
+offset_right = -16.0
+offset_bottom = -16.0
+split_offset = 350
+
+[node name="LeftPanel" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="FormationContainer" type="PanelContainer" parent="Content/LeftPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FormationBG" type="ColorRect" parent="Content/LeftPanel/FormationContainer"]
+layout_mode = 2
+color = Color(0.086, 0.106, 0.133, 1)
+
+[node name="FormationContent" type="VBoxContainer" parent="Content/LeftPanel/FormationContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Margin" type="Control" parent="Content/LeftPanel/FormationContainer/FormationContent"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="FormationTitle" type="Label" parent="Content/LeftPanel/FormationContainer/FormationContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.902, 0.929, 0.953, 1)
+theme_override_font_sizes/font_size = 18
+text = "포메이션"
+horizontal_alignment = 1
+
+[node name="FormationDropdown" type="OptionButton" parent="Content/LeftPanel/FormationContainer/FormationContent"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 40)
+
+[node name="MarginBottom" type="Control" parent="Content/LeftPanel/FormationContainer/FormationContent"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="FormationVisualizer" type="Control" parent="Content/LeftPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FieldBG" type="ColorRect" parent="Content/LeftPanel/FormationVisualizer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.133, 0.357, 0.161, 1)
+
+[node name="FieldLine" type="ColorRect" parent="Content/LeftPanel/FormationVisualizer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -1.0
+offset_right = 100.0
+offset_bottom = 1.0
+color = Color(1, 1, 1, 0.3)
+
+[node name="FormationLabel" type="Label" parent="Content/LeftPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.902, 0.929, 0.953, 1)
+theme_override_font_sizes/font_size = 20
+text = "4-4-2"
+horizontal_alignment = 1
+
+[node name="RightPanel" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="TacticsPanel" type="PanelContainer" parent="Content/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TacticsBG" type="ColorRect" parent="Content/RightPanel/TacticsPanel"]
+layout_mode = 2
+color = Color(0.086, 0.106, 0.133, 1)
+
+[node name="TacticsContent" type="VBoxContainer" parent="Content/RightPanel/TacticsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Margin" type="Control" parent="Content/RightPanel/TacticsPanel/TacticsContent"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="StyleTitle" type="Label" parent="Content/RightPanel/TacticsPanel/TacticsContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.902, 0.929, 0.953, 1)
+theme_override_font_sizes/font_size = 18
+text = "플레이 스타일"
+horizontal_alignment = 1
+
+[node name="StyleContainer" type="HBoxContainer" parent="Content/RightPanel/TacticsPanel/TacticsContent"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+
+[node name="MarginBottom" type="Control" parent="Content/RightPanel/TacticsPanel/TacticsContent"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="InstructionsPanel" type="PanelContainer" parent="Content/RightPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InstructionsBG" type="ColorRect" parent="Content/RightPanel/InstructionsPanel"]
+layout_mode = 2
+color = Color(0.086, 0.106, 0.133, 1)
+
+[node name="InstructionsContent" type="VBoxContainer" parent="Content/RightPanel/InstructionsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Margin" type="Control" parent="Content/RightPanel/InstructionsPanel/InstructionsContent"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="InstructionsTitle" type="Label" parent="Content/RightPanel/InstructionsPanel/InstructionsContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.902, 0.929, 0.953, 1)
+theme_override_font_sizes/font_size = 18
+text = "팀 인스트럭션"
+horizontal_alignment = 1
+
+[node name="InstructionsContainer" type="VBoxContainer" parent="Content/RightPanel/InstructionsPanel/InstructionsContent"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16

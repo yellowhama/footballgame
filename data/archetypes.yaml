@@ -1,0 +1,282 @@
+meta:
+  file: "archetypes.yaml"
+  version: "0.1"
+  note: "플레이스타일 슬롯 시스템 - 스토리/감성 중심 네이밍"
+
+slots:
+  year1: 1  # 1학년: 1개 슬롯
+  year2: 1  # 2학년: 1개 슬롯
+  year3: 2  # 3학년: 2개 슬롯
+
+archetypes:
+  # ============== 공격수 계열 ==============
+  - id: shadow_striker
+    name: "그림자 골잡이"
+    name_en: "Shadow Striker"
+    desc: "박스 안에서 기다리다 찬스를 마무리하는 본능형 골잡이."
+    desc_en: "Instinctive finisher who waits in the box for chances."
+    stat_weights:
+      Finishing: 1.2
+      OffBall: 1.15
+      Composure: 1.1
+      LongShots: 0.8
+      Dribbling: 0.9
+    behavior_mods:
+      box_shot_freq: "+20%"
+      longshot_freq: "-15%"
+      hold_ball_freq: "-10%"
+    event_unlocks: ["poacher_praise", "box_specialist"]
+    event_risks: ["chance_wasted", "offside_trap"]
+
+  - id: phantom_runner
+    name: "빈 공간의 유령"
+    name_en: "Phantom Runner"
+    desc: "수비 뒤 공간을 파고드는 스텔스형 침투자."
+    desc_en: "Stealth runner who exploits space behind defense."
+    stat_weights:
+      OffBall: 1.25
+      Acceleration: 1.15
+      Pace: 1.1
+      Decisions: 1.05
+      Strength: 0.85
+    behavior_mods:
+      run_behind_freq: "+25%"
+      linkup_freq: "-15%"
+      dribble_attempts: "-10%"
+    event_unlocks: ["offside_master", "space_finder"]
+    event_risks: ["offside_frustration"]
+
+  - id: complete_forward
+    name: "만능 공격수"
+    name_en: "Complete Forward"
+    desc: "득점, 연계, 압박까지 모든 것을 해내는 완전체 공격수."
+    desc_en: "Complete striker who can score, link-up, and press."
+    stat_weights:
+      Finishing: 1.1
+      Passing: 1.1
+      WorkRate: 1.15
+      Strength: 1.1
+      Stamina: 1.05
+    behavior_mods:
+      balanced_play: "+15%"
+      pressing_freq: "+10%"
+    event_unlocks: ["team_player", "captain_material"]
+    event_risks: ["burnout"]
+
+  # ============== 미드필더 계열 ==============
+  - id: field_conductor
+    name: "필드의 지휘자"
+    name_en: "Field Conductor"
+    desc: "롱패스와 템포 조절로 경기를 지휘하는 중원의 두뇌."
+    desc_en: "Midfield brain who controls the game with long passes and tempo."
+    stat_weights:
+      Vision: 1.2
+      Passing: 1.2
+      Decisions: 1.15
+      Composure: 1.1
+      Tackling: 0.85
+      Pace: 0.9
+    behavior_mods:
+      long_pass_freq: "+20%"
+      tempo: "slower"
+      through_ball_freq: "+15%"
+    event_unlocks: ["playmaker_recognition", "tempo_master"]
+    event_risks: ["marked_out", "predictable"]
+
+  - id: engine_room
+    name: "끝까지 뛰는 심장"
+    name_en: "Engine Room"
+    desc: "수비에서 공격까지, 90분 내내 그라운드를 커버하는 엔진."
+    desc_en: "Box-to-box engine who covers the entire pitch for 90 minutes."
+    stat_weights:
+      Stamina: 1.25
+      WorkRate: 1.2
+      Passing: 1.05
+      Tackling: 1.05
+      Acceleration: 1.05
+    behavior_mods:
+      sprint_freq: "+15%"
+      defensive_contribution: "+10%"
+      late_runs: "+20%"
+    event_unlocks: ["iron_lungs", "everywhere_man"]
+    event_risks: ["fatigue_injury", "overextension"]
+
+  - id: destroyer
+    name: "파괴자"
+    name_en: "Destroyer"
+    desc: "상대의 공격을 차단하고 부수는 수비형 미드필더."
+    desc_en: "Defensive midfielder who breaks up opposition attacks."
+    stat_weights:
+      Tackling: 1.25
+      Positioning: 1.15
+      Strength: 1.15
+      Aggression: 1.1
+      Passing: 0.9
+      Dribbling: 0.8
+    behavior_mods:
+      tackle_freq: "+20%"
+      interception_freq: "+15%"
+      forward_pass_freq: "-10%"
+    event_unlocks: ["midfield_wall", "intimidator"]
+    event_risks: ["yellow_card", "suspension"]
+
+  # ============== 플레이메이커/특수 ==============
+  - id: magician
+    name: "마법사"
+    name_en: "Magician"
+    desc: "화려한 드리블과 창의적 패스로 관중을 매혹하는 플레이메이커."
+    desc_en: "Playmaker who mesmerizes with dribbles and creative passes."
+    stat_weights:
+      Flair: 1.3
+      Dribbling: 1.25
+      FirstTouch: 1.15
+      Vision: 1.15
+      Strength: 0.85
+      Tackling: 0.7
+    behavior_mods:
+      risky_pass_freq: "+20%"
+      dribble_attempts: "+15%"
+      showboat_freq: "+10%"
+    event_unlocks: ["crowd_favorite", "highlight_reel"]
+    event_risks: ["turnover_king", "inconsistent"]
+
+  - id: last_ten
+    name: "마지막 10번"
+    name_en: "The Last No.10"
+    desc: "경기의 흐름을 늦추며 천천히 경기를 풀어가는 고전적 10번."
+    desc_en: "Classic no.10 who slows down and controls the game tempo."
+    stat_weights:
+      Decisions: 1.2
+      Vision: 1.15
+      Passing: 1.15
+      Composure: 1.15
+      Acceleration: 0.85
+      WorkRate: 0.8
+    behavior_mods:
+      tempo: "slower"
+      hold_ball_freq: "+20%"
+      killer_pass_freq: "+15%"
+    event_unlocks: ["legacy_player", "mentor_role"]
+    event_risks: ["too_slow", "luxury_player"]
+
+  # ============== 윙어/측면 ==============
+  - id: speed_demon
+    name: "광속 윙어"
+    name_en: "Speed Demon"
+    desc: "압도적인 속도로 측면을 찢는 스피드스터."
+    desc_en: "Speedster who tears apart flanks with overwhelming pace."
+    stat_weights:
+      Pace: 1.3
+      Acceleration: 1.25
+      Dribbling: 1.1
+      Stamina: 1.05
+      Strength: 0.8
+      Positioning: 0.85
+    behavior_mods:
+      sprint_freq: "+25%"
+      take_on_freq: "+20%"
+      cut_inside_freq: "-10%"
+    event_unlocks: ["speed_merchant", "counter_specialist"]
+    event_risks: ["one_dimensional", "stamina_issues"]
+
+  - id: inside_cutter
+    name: "안으로 파고드는 칼날"
+    name_en: "Inside Cutter"
+    desc: "측면에서 중앙으로 파고들어 직접 마무리하는 인사이드 포워드."
+    desc_en: "Inside forward who cuts in from the wing to shoot."
+    stat_weights:
+      Finishing: 1.15
+      Dribbling: 1.15
+      Acceleration: 1.1
+      LongShots: 1.1
+      Crossing: 0.7
+    behavior_mods:
+      cut_inside_freq: "+25%"
+      shoot_freq: "+15%"
+      cross_freq: "-20%"
+    event_unlocks: ["goal_threat", "unpredictable"]
+    event_risks: ["selfish_play"]
+
+  # ============== 수비 계열 ==============
+  - id: modern_defender
+    name: "후방의 개척자"
+    name_en: "Modern Defender"
+    desc: "수비수지만 패스와 빌드업에 적극 관여하는 현대적 센터백."
+    desc_en: "Ball-playing defender who actively participates in build-up."
+    stat_weights:
+      Passing: 1.15
+      Composure: 1.15
+      Positioning: 1.1
+      Vision: 1.05
+      Tackling: 0.95
+    behavior_mods:
+      forward_pass_freq: "+15%"
+      dribble_out_freq: "+10%"
+      long_ball_freq: "+10%"
+    event_unlocks: ["build_up_master", "sweeper"]
+    event_risks: ["caught_upfield", "risky_pass"]
+
+  - id: wall
+    name: "철벽"
+    name_en: "The Wall"
+    desc: "단순하지만 확실한 클리어링으로 상대를 막아내는 철벽 수비수."
+    desc_en: "No-nonsense defender who blocks opponents with solid clearances."
+    stat_weights:
+      Strength: 1.2
+      Positioning: 1.2
+      Tackling: 1.15
+      Heading: 1.15
+      Passing: 0.8
+      Dribbling: 0.7
+    behavior_mods:
+      clear_freq: "+20%"
+      tackle_freq: "+15%"
+      forward_pass_freq: "-15%"
+    event_unlocks: ["defensive_rock", "clean_sheet_specialist"]
+    event_risks: ["limited_options", "predictable"]
+
+  - id: overlapper
+    name: "끝없는 달리기꾼"
+    name_en: "Endless Runner"
+    desc: "수비와 공격을 오가며 측면 전체를 커버하는 체력괴물."
+    desc_en: "Stamina monster who covers the entire flank."
+    stat_weights:
+      Stamina: 1.25
+      Pace: 1.15
+      WorkRate: 1.2
+      Crossing: 1.1
+      Tackling: 1.05
+    behavior_mods:
+      overlap_freq: "+25%"
+      cross_freq: "+15%"
+      recovery_runs: "+20%"
+    event_unlocks: ["flank_dominator", "assist_machine"]
+    event_risks: ["caught_forward", "exhaustion"]
+
+# 이벤트 해금 설명
+# poacher_praise: "코치가 골 감각을 칭찬"
+# box_specialist: "박스 안 위치 선정 특별 훈련"
+# offside_master: "오프사이드 트랩 돌파 훈련"
+# space_finder: "공간 찾기 특별 분석"
+# team_player: "팀 동료들의 신뢰"
+# captain_material: "주장 후보로 거론"
+# playmaker_recognition: "리그 최고의 플레이메이커 후보"
+# tempo_master: "템포 조절 마스터 칭호"
+# iron_lungs: "철폐 체력 인정"
+# everywhere_man: "경기장 어디든 나타나는 선수"
+# midfield_wall: "중원의 벽"
+# intimidator: "상대를 위축시키는 존재감"
+# crowd_favorite: "관중이 사랑하는 선수"
+# highlight_reel: "하이라이트 단골 출연"
+# legacy_player: "전설의 10번 계보"
+# mentor_role: "후배들의 멘토"
+# speed_merchant: "스피드 킹"
+# counter_specialist: "역습 전문가"
+# goal_threat: "골 위협 요소"
+# unpredictable: "예측 불가능한 움직임"
+# build_up_master: "빌드업 마스터"
+# sweeper: "스위퍼 역할"
+# defensive_rock: "수비의 바위"
+# clean_sheet_specialist: "무실점 전문가"
+# flank_dominator: "측면 지배자"
+# assist_machine: "어시스트 제조기"

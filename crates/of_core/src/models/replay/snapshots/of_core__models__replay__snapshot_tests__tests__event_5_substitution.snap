@@ -1,0 +1,17 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: event
+---
+{
+  "etype": "substitution",
+  "t": 2700.0,
+  "minute": 45,
+  "team": "AWAY",
+  "player_id": "COACH_A",
+  "pos": {
+    "x": -5.0,
+    "y": 34.0
+  },
+  "out_id": "A11",
+  "in_id": "A12"
+}

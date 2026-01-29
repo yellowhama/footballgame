@@ -1,0 +1,109 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/timeline/MatchTimelineControls.gd" id="1_t9l7n"]
+[ext_resource type="Script" path="res://scripts/ui/timeline/TimelineMarkers.gd" id="2_marker"]
+
+[node name="MatchTimelineControls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t9l7n")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="ActionRow" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 48)
+
+[node name="PlayPauseButton" type="Button" parent="VBox/ActionRow"]
+layout_mode = 2
+text = "Play"
+
+[node name="StopButton" type="Button" parent="VBox/ActionRow"]
+layout_mode = 2
+text = "Stop"
+
+[node name="Spacer" type="Control" parent="VBox/ActionRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpeedLabel" type="Label" parent="VBox/ActionRow"]
+layout_mode = 2
+text = "Speed"
+
+[node name="SpeedSelector" type="OptionButton" parent="VBox/ActionRow"]
+layout_mode = 2
+size_flags_horizontal = 1
+text = "1x"
+
+[node name="VSeparator" type="VSeparator" parent="VBox/ActionRow"]
+layout_mode = 2
+
+[node name="HighlightLabel" type="Label" parent="VBox/ActionRow"]
+layout_mode = 2
+text = "Filter"
+
+[node name="HighlightSelector" type="OptionButton" parent="VBox/ActionRow"]
+layout_mode = 2
+size_flags_horizontal = 1
+text = "Full"
+
+[node name="VSeparator2" type="VSeparator" parent="VBox/ActionRow"]
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="VBox/ActionRow"]
+layout_mode = 2
+text = "Exit"
+
+[node name="TimeRow" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 28)
+
+[node name="CurrentLabel" type="Label" parent="VBox/TimeRow"]
+layout_mode = 2
+text = "Current"
+
+[node name="CurrentTimeLabel" type="Label" parent="VBox/TimeRow"]
+layout_mode = 2
+size_flags_horizontal = 1
+text = "00:00"
+
+[node name="DurationLabel" type="Label" parent="VBox/TimeRow"]
+layout_mode = 2
+horizontal_alignment = 2
+size_flags_horizontal = 3
+text = "00:00"
+
+[node name="TimelineBox" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 48)
+
+[node name="TimelineMarkers" type="Control" parent="VBox/TimelineBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 18)
+mouse_filter = 1
+script = ExtResource("2_marker")
+
+[node name="TimeSlider" type="HSlider" parent="VBox/TimelineBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 32)
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+value = 0.0

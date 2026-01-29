@@ -1,0 +1,66 @@
+{
+  "COACH001": {
+    "name": "Carlo Ancelotti",
+    "rarity": 4,
+    "category": 3,
+    "training_effect_bonus": 0.40,
+    "specialty_ability": "균형잡힌 전술 운용과 팀 조율",
+    "specialty_ability_type": "TacticalGenius"
+  },
+  "COACH002": {
+    "name": "Pep Guardiola",
+    "rarity": 4,
+    "category": 3,
+    "training_effect_bonus": 0.40,
+    "specialty_ability": "점유율 극대화와 패스 네트워크 구축",
+    "specialty_ability_type": "PassingGenius"
+  },
+  "COACH003": {
+    "name": "Diego Simeone",
+    "rarity": 3,
+    "category": 1,
+    "training_effect_bonus": 0.30,
+    "specialty_ability": "강인한 수비 조직력과 투지",
+    "specialty_ability_type": "IronLungs"
+  },
+  "COACH004": {
+    "name": "Jürgen Klopp",
+    "rarity": 4,
+    "category": 1,
+    "training_effect_bonus": 0.40,
+    "specialty_ability": "압박 축구와 폭발적인 역습",
+    "specialty_ability_type": "SpeedDemon"
+  },
+  "COACH005": {
+    "name": "Antonio Conte",
+    "rarity": 3,
+    "category": 3,
+    "training_effect_bonus": 0.30,
+    "specialty_ability": "역습 전술과 전술적 변화",
+    "specialty_ability_type": "TacticalGenius"
+  },
+  "COACH006": {
+    "name": "박지성",
+    "rarity": 4,
+    "category": 0,
+    "training_effect_bonus": 0.40,
+    "specialty_ability": "창의적인 드리블과 패스 능력을 극대화",
+    "specialty_ability_type": "DribblingMaster"
+  },
+  "COACH007": {
+    "name": "차범근",
+    "rarity": 4,
+    "category": 1,
+    "training_effect_bonus": 0.40,
+    "specialty_ability": "폭발적인 스피드와 파워 훈련",
+    "specialty_ability_type": "SpeedDemon"
+  },
+  "COACH008": {
+    "name": "히딩크",
+    "rarity": 4,
+    "category": 2,
+    "training_effect_bonus": 0.40,
+    "specialty_ability": "절대 포기하지 않는 정신력 각인",
+    "specialty_ability_type": "ClutchPlayer"
+  }
+}

@@ -1,0 +1,1922 @@
+[gd_scene load_steps=4 format=3 uid="uid://responsive_home_001"]
+
+[ext_resource type="Script" path="res://scripts/screens/HomeImproved_Responsive.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/components/HexagonChart.gd" id="2"]
+[ext_resource type="Theme" path="res://themes/MobileTheme.tres" id="3"]
+
+[node name="HomeImprovedResponsive" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3")
+script = ExtResource("1")
+
+[node name="MobilePortraitLayout" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="MobilePortraitLayout"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="MobilePortraitLayout/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.07, 0.1, 1)
+
+[node name="WeeklyBar" type="Panel" parent="MobilePortraitLayout/Control"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 120.0
+grow_horizontal = 2
+
+[node name="Content" type="HBoxContainer" parent="MobilePortraitLayout/Control/WeeklyBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="WeekInfo" type="VBoxContainer" parent="MobilePortraitLayout/Control/WeeklyBar/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WeekLabel" type="Label" parent="MobilePortraitLayout/Control/WeeklyBar/Content/WeekInfo"]
+layout_mode = 2
+text = "1학년 봄학기"
+theme_override_font_sizes/font_size = 28
+
+[node name="WeekProgress" type="HBoxContainer" parent="MobilePortraitLayout/Control/WeeklyBar/Content/WeekInfo"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MobilePortraitLayout/Control/WeeklyBar/Content/WeekInfo/WeekProgress"]
+layout_mode = 2
+text = "Week "
+theme_override_font_sizes/font_size = 20
+
+[node name="Current" type="Label" parent="MobilePortraitLayout/Control/WeeklyBar/Content/WeekInfo/WeekProgress"]
+layout_mode = 2
+text = "1"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Separator" type="Label" parent="MobilePortraitLayout/Control/WeeklyBar/Content/WeekInfo/WeekProgress"]
+layout_mode = 2
+text = " / "
+theme_override_font_sizes/font_size = 20
+
+[node name="Total" type="Label" parent="MobilePortraitLayout/Control/WeeklyBar/Content/WeekInfo/WeekProgress"]
+layout_mode = 2
+text = "156"
+theme_override_font_sizes/font_size = 20
+
+[node name="TermIndicator" type="VBoxContainer" parent="MobilePortraitLayout/Control/WeeklyBar/Content"]
+layout_mode = 2
+
+[node name="TermLabel" type="Label" parent="MobilePortraitLayout/Control/WeeklyBar/Content/TermIndicator"]
+layout_mode = 2
+text = "📚 학기중"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="NextMatch" type="Label" parent="MobilePortraitLayout/Control/WeeklyBar/Content/TermIndicator"]
+layout_mode = 2
+text = "다음 경기: 3일 후"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MobilePortraitLayout/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 120.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainContent" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="TopSection" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PlayerCard" type="Panel" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection"]
+custom_minimum_size = Vector2(0, 380)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="PlayerHeader" type="HBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PlayerIcon" type="Panel" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/PlayerHeader"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="PlayerInfo" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/PlayerHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Name" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/PlayerHeader/PlayerInfo"]
+layout_mode = 2
+text = "플레이어 이름"
+theme_override_font_sizes/font_size = 24
+
+[node name="Position" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/PlayerHeader/PlayerInfo"]
+layout_mode = 2
+text = "ST (스트라이커)"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="Academy" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/PlayerHeader/PlayerInfo"]
+layout_mode = 2
+text = "강남 아카데미"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="HSeparator" type="HSeparator" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox"]
+layout_mode = 2
+
+[node name="ConditionSection" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/ConditionSection"]
+layout_mode = 2
+text = "컨디션"
+theme_override_font_sizes/font_size = 18
+
+[node name="ConditionBar" type="HBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/ConditionSection"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Emoji" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/ConditionSection/ConditionBar"]
+layout_mode = 2
+text = "😄"
+theme_override_font_sizes/font_size = 40
+
+[node name="ConditionInfo" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/ConditionSection/ConditionBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConditionText" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/ConditionSection/ConditionBar/ConditionInfo"]
+layout_mode = 2
+text = "최상"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="ConditionValue" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/ConditionSection/ConditionBar/ConditionInfo"]
+layout_mode = 2
+text = "컨디션 5/5"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="HSeparator2" type="HSeparator" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox"]
+layout_mode = 2
+
+[node name="StatsOverview" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/StatsOverview"]
+layout_mode = 2
+text = "능력 요약"
+theme_override_font_sizes/font_size = 18
+
+[node name="OVR" type="HBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/StatsOverview"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/StatsOverview/OVR"]
+layout_mode = 2
+text = "OVR"
+theme_override_font_sizes/font_size = 20
+
+[node name="Value" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/StatsOverview/OVR"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "65"
+theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+horizontal_alignment = 2
+
+[node name="FatigueBar" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/StatsOverview"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/StatsOverview/FatigueBar"]
+layout_mode = 2
+text = "피로도"
+theme_override_font_sizes/font_size = 16
+
+[node name="ProgressBar" type="ProgressBar" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection/PlayerCard/VBox/StatsOverview/FatigueBar"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+value = 30.0
+show_percentage = false
+
+[node name="HexagonChart" type="Control" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/TopSection"]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2")
+chart_size = 160.0
+
+[node name="WeeklySchedule" type="Panel" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox"]
+layout_mode = 2
+text = "주간 일정"
+theme_override_font_sizes/font_size = 20
+
+[node name="DaysContainer" type="GridContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 4
+
+[node name="Monday" type="Panel" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Monday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Monday/VBox"]
+layout_mode = 2
+text = "월"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Monday/VBox"]
+layout_mode = 2
+text = "🏃"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Monday/VBox"]
+layout_mode = 2
+text = "훈련"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="Tuesday" type="Panel" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Tuesday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Tuesday/VBox"]
+layout_mode = 2
+text = "화"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Tuesday/VBox"]
+layout_mode = 2
+text = "🏃"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Tuesday/VBox"]
+layout_mode = 2
+text = "훈련"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="Wednesday" type="Panel" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Wednesday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Wednesday/VBox"]
+layout_mode = 2
+text = "수"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Wednesday/VBox"]
+layout_mode = 2
+text = "⚽"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Wednesday/VBox"]
+layout_mode = 2
+text = "경기"
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+horizontal_alignment = 1
+
+[node name="Thursday" type="Panel" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Thursday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Thursday/VBox"]
+layout_mode = 2
+text = "목"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Thursday/VBox"]
+layout_mode = 2
+text = "🏃"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Thursday/VBox"]
+layout_mode = 2
+text = "훈련"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="Friday" type="Panel" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Friday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Friday/VBox"]
+layout_mode = 2
+text = "금"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Friday/VBox"]
+layout_mode = 2
+text = "🏃"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Friday/VBox"]
+layout_mode = 2
+text = "훈련"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="Saturday" type="Panel" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Saturday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Saturday/VBox"]
+layout_mode = 2
+text = "토"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Saturday/VBox"]
+layout_mode = 2
+text = "😴"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Saturday/VBox"]
+layout_mode = 2
+text = "휴식"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="Sunday" type="Panel" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Sunday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Sunday/VBox"]
+layout_mode = 2
+text = "일"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Sunday/VBox"]
+layout_mode = 2
+text = "🎮"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/WeeklySchedule/VBox/DaysContainer/Sunday/VBox"]
+layout_mode = 2
+text = "자유"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="QuickActions" type="Panel" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent"]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/QuickActions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/QuickActions/VBox"]
+layout_mode = 2
+text = "활동 선택"
+theme_override_font_sizes/font_size = 20
+
+[node name="Buttons" type="HBoxContainer" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/QuickActions/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="TrainingButton" type="Button" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/QuickActions/VBox/Buttons"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🏋️ 훈련"
+theme_override_font_sizes/font_size = 18
+
+[node name="RestButton" type="Button" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/QuickActions/VBox/Buttons"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "😴 휴식"
+theme_override_font_sizes/font_size = 18
+
+[node name="GoOutButton" type="Button" parent="MobilePortraitLayout/Control/ScrollContainer/MainContent/QuickActions/VBox/Buttons"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🎮 외출"
+theme_override_font_sizes/font_size = 18
+
+[node name="BottomBar" type="Panel" parent="MobilePortraitLayout/Control"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ButtonContainer" type="HBoxContainer" parent="MobilePortraitLayout/Control/BottomBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="StatusButton" type="Button" parent="MobilePortraitLayout/Control/BottomBar/ButtonContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "📊 상태"
+theme_override_font_sizes/font_size = 18
+
+[node name="AdvanceButton" type="Button" parent="MobilePortraitLayout/Control/BottomBar/ButtonContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "▶️ 진행"
+theme_override_font_sizes/font_size = 18
+
+[node name="SaveButton" type="Button" parent="MobilePortraitLayout/Control/BottomBar/ButtonContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+text = "💾"
+theme_override_font_sizes/font_size = 20
+
+[node name="TabletHybridLayout" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="TabletHybridLayout"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="TabletHybridLayout/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.07, 0.1, 1)
+
+[node name="WeeklyBar" type="Panel" parent="TabletHybridLayout/Control"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="Content" type="HBoxContainer" parent="TabletHybridLayout/Control/WeeklyBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="WeekInfo" type="VBoxContainer" parent="TabletHybridLayout/Control/WeeklyBar/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WeekLabel" type="Label" parent="TabletHybridLayout/Control/WeeklyBar/Content/WeekInfo"]
+layout_mode = 2
+text = "1학년 봄학기"
+theme_override_font_sizes/font_size = 24
+
+[node name="WeekProgress" type="HBoxContainer" parent="TabletHybridLayout/Control/WeeklyBar/Content/WeekInfo"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabletHybridLayout/Control/WeeklyBar/Content/WeekInfo/WeekProgress"]
+layout_mode = 2
+text = "Week "
+theme_override_font_sizes/font_size = 18
+
+[node name="Current" type="Label" parent="TabletHybridLayout/Control/WeeklyBar/Content/WeekInfo/WeekProgress"]
+layout_mode = 2
+text = "1"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Separator" type="Label" parent="TabletHybridLayout/Control/WeeklyBar/Content/WeekInfo/WeekProgress"]
+layout_mode = 2
+text = " / "
+theme_override_font_sizes/font_size = 18
+
+[node name="Total" type="Label" parent="TabletHybridLayout/Control/WeeklyBar/Content/WeekInfo/WeekProgress"]
+layout_mode = 2
+text = "156"
+theme_override_font_sizes/font_size = 18
+
+[node name="Spacer" type="Control" parent="TabletHybridLayout/Control/WeeklyBar/Content"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="TermInfo" type="HBoxContainer" parent="TabletHybridLayout/Control/WeeklyBar/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="TermIndicator" type="Label" parent="TabletHybridLayout/Control/WeeklyBar/Content/TermInfo"]
+layout_mode = 2
+text = "📚 학기중"
+theme_override_font_sizes/font_size = 18
+
+[node name="NextMatch" type="Label" parent="TabletHybridLayout/Control/WeeklyBar/Content/TermInfo"]
+layout_mode = 2
+text = "다음 경기: 3일 후"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="MainContainer" type="HBoxContainer" parent="TabletHybridLayout/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 100.0
+offset_right = -20.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="LeftColumn" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="PlayerCard" type="Panel" parent="TabletHybridLayout/Control/MainContainer/LeftColumn"]
+custom_minimum_size = Vector2(0, 320)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="PlayerHeader" type="HBoxContainer" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PlayerIcon" type="Panel" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/PlayerHeader"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="PlayerInfo" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/PlayerHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Name" type="Label" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/PlayerHeader/PlayerInfo"]
+layout_mode = 2
+text = "플레이어 이름"
+theme_override_font_sizes/font_size = 22
+
+[node name="Position" type="Label" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/PlayerHeader/PlayerInfo"]
+layout_mode = 2
+text = "ST (스트라이커)"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="Academy" type="Label" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/PlayerHeader/PlayerInfo"]
+layout_mode = 2
+text = "강남 아카데미"
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="HSeparator" type="HSeparator" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox"]
+layout_mode = 2
+
+[node name="StatsGrid" type="HBoxContainer" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="ConditionSection" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/ConditionSection"]
+layout_mode = 2
+text = "컨디션"
+theme_override_font_sizes/font_size = 16
+
+[node name="ConditionBar" type="HBoxContainer" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/ConditionSection"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Emoji" type="Label" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/ConditionSection/ConditionBar"]
+layout_mode = 2
+text = "😄"
+theme_override_font_sizes/font_size = 32
+
+[node name="ConditionInfo" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/ConditionSection/ConditionBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConditionText" type="Label" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/ConditionSection/ConditionBar/ConditionInfo"]
+layout_mode = 2
+text = "최상"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="ConditionValue" type="Label" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/ConditionSection/ConditionBar/ConditionInfo"]
+layout_mode = 2
+text = "컨디션 5/5"
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="OVRSection" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection"]
+layout_mode = 2
+text = "능력 요약"
+theme_override_font_sizes/font_size = 16
+
+[node name="OVR" type="HBoxContainer" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection/OVR"]
+layout_mode = 2
+text = "OVR"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection/OVR"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "65"
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+horizontal_alignment = 2
+
+[node name="FatigueBar" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection/FatigueBar"]
+layout_mode = 2
+text = "피로도"
+theme_override_font_sizes/font_size = 14
+
+[node name="ProgressBar" type="ProgressBar" parent="TabletHybridLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection/FatigueBar"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+value = 30.0
+show_percentage = false
+
+[node name="HexagonChart" type="Control" parent="TabletHybridLayout/Control/MainContainer/LeftColumn"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2")
+chart_size = 140.0
+
+[node name="RightColumn" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="WeeklySchedule" type="Panel" parent="TabletHybridLayout/Control/MainContainer/RightColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox"]
+layout_mode = 2
+text = "주간 일정"
+theme_override_font_sizes/font_size = 18
+
+[node name="DaysContainer" type="GridContainer" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 4
+
+[node name="Monday" type="Panel" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Monday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Monday/VBox"]
+layout_mode = 2
+text = "월"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Monday/VBox"]
+layout_mode = 2
+text = "🏃"
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Monday/VBox"]
+layout_mode = 2
+text = "훈련"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="Tuesday" type="Panel" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Tuesday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Tuesday/VBox"]
+layout_mode = 2
+text = "화"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Tuesday/VBox"]
+layout_mode = 2
+text = "🏃"
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Tuesday/VBox"]
+layout_mode = 2
+text = "훈련"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="Wednesday" type="Panel" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Wednesday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Wednesday/VBox"]
+layout_mode = 2
+text = "수"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Wednesday/VBox"]
+layout_mode = 2
+text = "⚽"
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Wednesday/VBox"]
+layout_mode = 2
+text = "경기"
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+horizontal_alignment = 1
+
+[node name="Thursday" type="Panel" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Thursday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Thursday/VBox"]
+layout_mode = 2
+text = "목"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Thursday/VBox"]
+layout_mode = 2
+text = "🏃"
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Thursday/VBox"]
+layout_mode = 2
+text = "훈련"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="Friday" type="Panel" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Friday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Friday/VBox"]
+layout_mode = 2
+text = "금"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Friday/VBox"]
+layout_mode = 2
+text = "🏃"
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Friday/VBox"]
+layout_mode = 2
+text = "훈련"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="Saturday" type="Panel" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Saturday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Saturday/VBox"]
+layout_mode = 2
+text = "토"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Saturday/VBox"]
+layout_mode = 2
+text = "😴"
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Saturday/VBox"]
+layout_mode = 2
+text = "휴식"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="Sunday" type="Panel" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Sunday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Sunday/VBox"]
+layout_mode = 2
+text = "일"
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Sunday/VBox"]
+layout_mode = 2
+text = "🎮"
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Sunday/VBox"]
+layout_mode = 2
+text = "자유"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="QuickActions" type="Panel" parent="TabletHybridLayout/Control/MainContainer/RightColumn"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/Control/MainContainer/RightColumn/QuickActions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="TabletHybridLayout/Control/MainContainer/RightColumn/QuickActions/VBox"]
+layout_mode = 2
+text = "활동 선택"
+theme_override_font_sizes/font_size = 18
+
+[node name="Buttons" type="HBoxContainer" parent="TabletHybridLayout/Control/MainContainer/RightColumn/QuickActions/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="TrainingButton" type="Button" parent="TabletHybridLayout/Control/MainContainer/RightColumn/QuickActions/VBox/Buttons"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🏋️ 훈련"
+theme_override_font_sizes/font_size = 16
+
+[node name="RestButton" type="Button" parent="TabletHybridLayout/Control/MainContainer/RightColumn/QuickActions/VBox/Buttons"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "😴 휴식"
+theme_override_font_sizes/font_size = 16
+
+[node name="GoOutButton" type="Button" parent="TabletHybridLayout/Control/MainContainer/RightColumn/QuickActions/VBox/Buttons"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🎮 외출"
+theme_override_font_sizes/font_size = 16
+
+[node name="BottomBar" type="Panel" parent="TabletHybridLayout/Control"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -90.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ButtonContainer" type="HBoxContainer" parent="TabletHybridLayout/Control/BottomBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="StatusButton" type="Button" parent="TabletHybridLayout/Control/BottomBar/ButtonContainer"]
+custom_minimum_size = Vector2(140, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "📊 상태"
+theme_override_font_sizes/font_size = 16
+
+[node name="AdvanceButton" type="Button" parent="TabletHybridLayout/Control/BottomBar/ButtonContainer"]
+custom_minimum_size = Vector2(140, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "▶️ 진행"
+theme_override_font_sizes/font_size = 16
+
+[node name="SaveButton" type="Button" parent="TabletHybridLayout/Control/BottomBar/ButtonContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+text = "💾"
+theme_override_font_sizes/font_size = 18
+
+[node name="DesktopLandscapeLayout" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="DesktopLandscapeLayout"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="DesktopLandscapeLayout/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.07, 0.1, 1)
+
+[node name="WeeklyBar" type="Panel" parent="DesktopLandscapeLayout/Control"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 80.0
+grow_horizontal = 2
+
+[node name="Content" type="HBoxContainer" parent="DesktopLandscapeLayout/Control/WeeklyBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_right = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="WeekInfo" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/WeeklyBar/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WeekLabel" type="Label" parent="DesktopLandscapeLayout/Control/WeeklyBar/Content/WeekInfo"]
+layout_mode = 2
+text = "1학년 봄학기"
+theme_override_font_sizes/font_size = 26
+
+[node name="WeekProgress" type="HBoxContainer" parent="DesktopLandscapeLayout/Control/WeeklyBar/Content/WeekInfo"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DesktopLandscapeLayout/Control/WeeklyBar/Content/WeekInfo/WeekProgress"]
+layout_mode = 2
+text = "Week "
+theme_override_font_sizes/font_size = 20
+
+[node name="Current" type="Label" parent="DesktopLandscapeLayout/Control/WeeklyBar/Content/WeekInfo/WeekProgress"]
+layout_mode = 2
+text = "1"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Separator" type="Label" parent="DesktopLandscapeLayout/Control/WeeklyBar/Content/WeekInfo/WeekProgress"]
+layout_mode = 2
+text = " / "
+theme_override_font_sizes/font_size = 20
+
+[node name="Total" type="Label" parent="DesktopLandscapeLayout/Control/WeeklyBar/Content/WeekInfo/WeekProgress"]
+layout_mode = 2
+text = "156"
+theme_override_font_sizes/font_size = 20
+
+[node name="Spacer" type="Control" parent="DesktopLandscapeLayout/Control/WeeklyBar/Content"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="TermInfo" type="HBoxContainer" parent="DesktopLandscapeLayout/Control/WeeklyBar/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="TermIndicator" type="Label" parent="DesktopLandscapeLayout/Control/WeeklyBar/Content/TermInfo"]
+layout_mode = 2
+text = "📚 학기중"
+theme_override_font_sizes/font_size = 20
+
+[node name="NextMatch" type="Label" parent="DesktopLandscapeLayout/Control/WeeklyBar/Content/TermInfo"]
+layout_mode = 2
+text = "다음 경기: 3일 후"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="MainContainer" type="HBoxContainer" parent="DesktopLandscapeLayout/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 80.0
+offset_right = -24.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="LeftColumn" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+theme_override_constants/separation = 20
+
+[node name="PlayerCard" type="Panel" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="PlayerHeader" type="HBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="PlayerIcon" type="Panel" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/PlayerHeader"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="PlayerInfo" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/PlayerHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="Name" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/PlayerHeader/PlayerInfo"]
+layout_mode = 2
+text = "플레이어 이름"
+theme_override_font_sizes/font_size = 24
+
+[node name="Position" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/PlayerHeader/PlayerInfo"]
+layout_mode = 2
+text = "ST (스트라이커)"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="Academy" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/PlayerHeader/PlayerInfo"]
+layout_mode = 2
+text = "강남 아카데미"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="HSeparator" type="HSeparator" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox"]
+layout_mode = 2
+
+[node name="StatsGrid" type="HBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="ConditionSection" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/ConditionSection"]
+layout_mode = 2
+text = "컨디션"
+theme_override_font_sizes/font_size = 18
+
+[node name="ConditionBar" type="HBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/ConditionSection"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Emoji" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/ConditionSection/ConditionBar"]
+layout_mode = 2
+text = "😄"
+theme_override_font_sizes/font_size = 36
+
+[node name="ConditionInfo" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/ConditionSection/ConditionBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConditionText" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/ConditionSection/ConditionBar/ConditionInfo"]
+layout_mode = 2
+text = "최상"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="ConditionValue" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/ConditionSection/ConditionBar/ConditionInfo"]
+layout_mode = 2
+text = "컨디션 5/5"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="OVRSection" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection"]
+layout_mode = 2
+text = "능력 요약"
+theme_override_font_sizes/font_size = 18
+
+[node name="OVR" type="HBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection/OVR"]
+layout_mode = 2
+text = "OVR"
+theme_override_font_sizes/font_size = 20
+
+[node name="Value" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection/OVR"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "65"
+theme_override_font_sizes/font_size = 42
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+horizontal_alignment = 2
+
+[node name="FatigueBar" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection/FatigueBar"]
+layout_mode = 2
+text = "피로도"
+theme_override_font_sizes/font_size = 16
+
+[node name="ProgressBar" type="ProgressBar" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/PlayerCard/VBox/StatsGrid/OVRSection/FatigueBar"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+value = 30.0
+show_percentage = false
+
+[node name="QuickActions" type="Panel" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/QuickActions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/QuickActions/VBox"]
+layout_mode = 2
+text = "활동 선택"
+theme_override_font_sizes/font_size = 20
+
+[node name="Buttons" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/QuickActions/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="TrainingButton" type="Button" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/QuickActions/VBox/Buttons"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "🏋️ 훈련"
+theme_override_font_sizes/font_size = 18
+
+[node name="RestButton" type="Button" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/QuickActions/VBox/Buttons"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "😴 휴식"
+theme_override_font_sizes/font_size = 18
+
+[node name="GoOutButton" type="Button" parent="DesktopLandscapeLayout/Control/MainContainer/LeftColumn/QuickActions/VBox/Buttons"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "🎮 외출"
+theme_override_font_sizes/font_size = 18
+
+[node name="CenterColumn" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.6
+
+[node name="HexagonChart" type="Control" parent="DesktopLandscapeLayout/Control/MainContainer/CenterColumn"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+script = ExtResource("2")
+chart_size = 200.0
+
+[node name="RightColumn" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+theme_override_constants/separation = 20
+
+[node name="WeeklySchedule" type="Panel" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox"]
+layout_mode = 2
+text = "주간 일정"
+theme_override_font_sizes/font_size = 20
+
+[node name="DaysContainer" type="GridContainer" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="Monday" type="Panel" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Monday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Monday/VBox"]
+layout_mode = 2
+text = "월"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Monday/VBox"]
+layout_mode = 2
+text = "🏃"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Monday/VBox"]
+layout_mode = 2
+text = "훈련"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="Tuesday" type="Panel" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Tuesday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Tuesday/VBox"]
+layout_mode = 2
+text = "화"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Tuesday/VBox"]
+layout_mode = 2
+text = "🏃"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Tuesday/VBox"]
+layout_mode = 2
+text = "훈련"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="Wednesday" type="Panel" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Wednesday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Wednesday/VBox"]
+layout_mode = 2
+text = "수"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Wednesday/VBox"]
+layout_mode = 2
+text = "⚽"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Wednesday/VBox"]
+layout_mode = 2
+text = "경기"
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+horizontal_alignment = 1
+
+[node name="Thursday" type="Panel" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Thursday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Thursday/VBox"]
+layout_mode = 2
+text = "목"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Thursday/VBox"]
+layout_mode = 2
+text = "🏃"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Thursday/VBox"]
+layout_mode = 2
+text = "훈련"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="Friday" type="Panel" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Friday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Friday/VBox"]
+layout_mode = 2
+text = "금"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Friday/VBox"]
+layout_mode = 2
+text = "🏃"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Friday/VBox"]
+layout_mode = 2
+text = "훈련"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="Saturday" type="Panel" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Saturday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Saturday/VBox"]
+layout_mode = 2
+text = "토"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Saturday/VBox"]
+layout_mode = 2
+text = "😴"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Saturday/VBox"]
+layout_mode = 2
+text = "휴식"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="Sunday" type="Panel" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer"]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Sunday"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Sunday/VBox"]
+layout_mode = 2
+text = "일"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+horizontal_alignment = 1
+
+[node name="Activity" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Sunday/VBox"]
+layout_mode = 2
+text = "🎮"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/WeeklySchedule/VBox/DaysContainer/Sunday/VBox"]
+layout_mode = 2
+text = "자유"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+
+[node name="StatsPanel" type="Panel" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/StatsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/StatsPanel/VBox"]
+layout_mode = 2
+text = "추가 정보"
+theme_override_font_sizes/font_size = 20
+
+[node name="Info" type="VBoxContainer" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/StatsPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="TeamInfo" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/StatsPanel/VBox/Info"]
+layout_mode = 2
+text = "소속팀: 미정"
+theme_override_font_sizes/font_size = 16
+
+[node name="FormInfo" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/StatsPanel/VBox/Info"]
+layout_mode = 2
+text = "최근 폼: 상승세"
+theme_override_font_sizes/font_size = 16
+
+[node name="GoalInfo" type="Label" parent="DesktopLandscapeLayout/Control/MainContainer/RightColumn/StatsPanel/VBox/Info"]
+layout_mode = 2
+text = "목표: 프로 데뷔"
+theme_override_font_sizes/font_size = 16
+
+[node name="BottomBar" type="Panel" parent="DesktopLandscapeLayout/Control"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ButtonContainer" type="HBoxContainer" parent="DesktopLandscapeLayout/Control/BottomBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_right = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="StatusButton" type="Button" parent="DesktopLandscapeLayout/Control/BottomBar/ButtonContainer"]
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "📊 상태"
+theme_override_font_sizes/font_size = 18
+
+[node name="AdvanceButton" type="Button" parent="DesktopLandscapeLayout/Control/BottomBar/ButtonContainer"]
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "▶️ 진행"
+theme_override_font_sizes/font_size = 18
+
+[node name="SaveButton" type="Button" parent="DesktopLandscapeLayout/Control/BottomBar/ButtonContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+text = "💾"
+theme_override_font_sizes/font_size = 20

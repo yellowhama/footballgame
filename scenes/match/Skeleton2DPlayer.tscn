@@ -1,0 +1,117 @@
+[gd_scene load_steps=2 format=3 uid="uid://skeleton2d_player"]
+
+[ext_resource type="Script" path="res://scripts/match/Skeleton2DPlayer.gd" id="1_script"]
+
+[node name="Skeleton2DPlayer" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+position = Vector2(0, 0)
+
+[node name="Hip" type="Bone2D" parent="Skeleton2D"]
+position = Vector2(658, 2130)
+rest = Transform2D(1, 0, 0, 1, 658, 2130)
+
+[node name="Torso" type="Bone2D" parent="Skeleton2D/Hip"]
+position = Vector2(0, -527)
+rest = Transform2D(1, 0, 0, 1, 0, -527)
+
+[node name="SpriteTorso" type="Sprite2D" parent="Skeleton2D/Hip/Torso"]
+position = Vector2(0, 0)
+texture_filter = 1
+
+[node name="Head" type="Bone2D" parent="Skeleton2D/Hip/Torso"]
+position = Vector2(0, -544)
+rest = Transform2D(1, 0, 0, 1, 0, -544)
+
+[node name="SpriteHead" type="Sprite2D" parent="Skeleton2D/Hip/Torso/Head"]
+position = Vector2(0, 0)
+texture_filter = 1
+
+[node name="SpriteHair" type="Sprite2D" parent="Skeleton2D/Hip/Torso/Head"]
+position = Vector2(0, 0)
+texture_filter = 1
+
+[node name="ShoulderL" type="Bone2D" parent="Skeleton2D/Hip/Torso"]
+position = Vector2(-328, -443)
+rest = Transform2D(1, 0, 0, 1, -328, -443)
+
+[node name="ArmL" type="Bone2D" parent="Skeleton2D/Hip/Torso/ShoulderL"]
+position = Vector2(-165, 205)
+rest = Transform2D(1, 0, 0, 1, -165, 205)
+
+[node name="SpriteArmL" type="Sprite2D" parent="Skeleton2D/Hip/Torso/ShoulderL/ArmL"]
+position = Vector2(0, 0)
+texture_filter = 1
+
+[node name="ForearmL" type="Bone2D" parent="Skeleton2D/Hip/Torso/ShoulderL/ArmL"]
+position = Vector2(0, 200)
+rest = Transform2D(1, 0, 0, 1, 0, 200)
+
+[node name="SpriteForearmL" type="Sprite2D" parent="Skeleton2D/Hip/Torso/ShoulderL/ArmL/ForearmL"]
+position = Vector2(0, 0)
+texture_filter = 1
+
+[node name="ShoulderR" type="Bone2D" parent="Skeleton2D/Hip/Torso"]
+position = Vector2(330, -443)
+rest = Transform2D(1, 0, 0, 1, 330, -443)
+
+[node name="ArmR" type="Bone2D" parent="Skeleton2D/Hip/Torso/ShoulderR"]
+position = Vector2(162, 205)
+rest = Transform2D(1, 0, 0, 1, 162, 205)
+
+[node name="SpriteArmR" type="Sprite2D" parent="Skeleton2D/Hip/Torso/ShoulderR/ArmR"]
+position = Vector2(0, 0)
+texture_filter = 1
+
+[node name="ForearmR" type="Bone2D" parent="Skeleton2D/Hip/Torso/ShoulderR/ArmR"]
+position = Vector2(0, 200)
+rest = Transform2D(1, 0, 0, 1, 0, 200)
+
+[node name="SpriteForearmR" type="Sprite2D" parent="Skeleton2D/Hip/Torso/ShoulderR/ArmR/ForearmR"]
+position = Vector2(0, 0)
+texture_filter = 1
+
+[node name="LegL" type="Bone2D" parent="Skeleton2D/Hip"]
+position = Vector2(-259, 551)
+rest = Transform2D(1, 0, 0, 1, -259, 551)
+
+[node name="SpriteLegL" type="Sprite2D" parent="Skeleton2D/Hip/LegL"]
+position = Vector2(0, 0)
+texture_filter = 1
+
+[node name="LegR" type="Bone2D" parent="Skeleton2D/Hip"]
+position = Vector2(256, 551)
+rest = Transform2D(1, 0, 0, 1, 256, 551)
+
+[node name="SpriteLegR" type="Sprite2D" parent="Skeleton2D/Hip/LegR"]
+position = Vector2(0, 0)
+texture_filter = 1
+
+[node name="HeroRing" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(-14, 8, -10, 14, 0, 16, 10, 14, 14, 8, 14, 2, 10, -4, 0, -6, -10, -4, -14, 2, -14, 8)
+closed = true
+width = 2.0
+default_color = Color(1, 0.9, 0.3, 0.9)
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -40.0
+offset_top = -80.0
+offset_right = 40.0
+offset_bottom = -60.0
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 12
+
+[node name="NumberLabel" type="Label" parent="."]
+offset_left = -15.0
+offset_top = 30.0
+offset_right = 15.0
+offset_bottom = 50.0
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8vhj2m9x7k3p"]
+
+[ext_resource type="Script" path="res://scripts/ui/ChoiceLogEntry.gd" id="1_choice_log_entry"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_entry_bg"]
+bg_color = Color(0.15, 0.15, 0.2, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.3, 0.4, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="ChoiceLogEntry" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 100)
+theme_override_styles/panel = SubResource("StyleBoxFlat_entry_bg")
+script = ExtResource("1_choice_log_entry")
+
+[node name="MarginContainer" type="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer"]
+layout_mode = 2
+
+[node name="WeekLabel" type="Label"]
+layout_mode = 2
+text = "Week 75"
+theme_type_variation = &"LabelLarge"
+
+[node name="RouteLabel" type="Label"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "라이벌 루트 분기점 2"
+theme_type_variation = &"LabelMedium"
+horizontal_alignment = 2
+
+[node name="ChoiceText" type="Label"]
+layout_mode = 2
+text = "선택: A. \"정정당당하게 경쟁하자\""
+theme_type_variation = &"LabelMedium"
+autowrap_mode = 3
+
+[node name="ImmediateImpacts" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label"]
+layout_mode = 2
+text = "✅ 즉시 효과:"
+theme_type_variation = &"LabelSmall"
+
+[node name="List" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="LongTermImpacts" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label"]
+layout_mode = 2
+text = "🔮 장기 효과:"
+theme_type_variation = &"LabelSmall"
+
+[node name="List" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3

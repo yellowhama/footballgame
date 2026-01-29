@@ -1,0 +1,929 @@
+//! mapper.rs
+//! Open-Football EngineEvent → of_core::replay::ReplayEvent 변환기
+//! PlayerAttributes → Skills36 매핑 기능 추가
+
+use of_core::replay::{CardType, EventBase, MeterPos, ReplayEvent};
+use of_engine::{EngineEvent, Event, MatchResult};
+
+#[cfg(feature = "vendor_skills")]
+use of_engine::StoredEventKind;
+#[cfg(feature = "vendor_skills")]
+use std::collections::HashMap;
+
+// Skills36 매핑을 위한 imports
+use of_core::models::player::PlayerAttributes;
+use of_core::player::types::CorePlayer;
+#[cfg(feature = "vendor_skills")]
+use of_engine::Skills36;
+
+/// Convert engine match result to replay events
+pub fn convert_engine_events_to_replay(engine_result: &MatchResult) -> Vec<ReplayEvent> {
+    let mut events = vec![];
+
+    // 시작 이벤트
+    events.push(ReplayEvent::KickOff {
+        base: EventBase {
+            t: 0.0,
+            player_id: None,
+            team_id: Some(0),
+        },
+    });
+
+    #[cfg(feature = "vendor_skills")]
+    {
+        if !engine_result.engine_events.is_empty() {
+            events.extend(convert_stored_events_to_replay(
+                &engine_result.engine_events,
+            ));
+        } else {
+            for event in engine_result.events.iter() {
+                if event.event_type == "KickOff" {
+                    continue;
+                }
+                let replay_event = convert_single_event(event);
+                events.push(replay_event);
+            }
+        }
+    }
+
+    #[cfg(not(feature = "vendor_skills"))]
+    {
+        for event in engine_result.events.iter() {
+            if event.event_type == "KickOff" {
+                continue;
+            }
+            let replay_event = convert_single_event(event);
+            events.push(replay_event);
+        }
+    }
+
+    if !events
+        .iter()
+        .any(|ev| matches!(ev, ReplayEvent::FullTime { .. }))
+    {
+        #[cfg(feature = "vendor_skills")]
+        let fallback_time = if !engine_result.engine_events.is_empty() {
+            engine_result
+                .engine_events
+                .last()
+                .map(|e| e.timestamp as f64 / 1000.0)
+                .unwrap_or(90.0 * 60.0)
+        } else {
+            engine_result
+                .events
+                .iter()
+                .find(|e| e.event_type == "FullTime")
+                .and_then(|e| e.timestamp_ms)
+                .map(|ms| ms as f64 / 1000.0)
+                .unwrap_or(90.0 * 60.0)
+        };
+
+        #[cfg(not(feature = "vendor_skills"))]
+        let fallback_time = engine_result
+            .events
+            .iter()
+            .find(|e| e.event_type == "FullTime")
+            .and_then(|e| e.timestamp_ms)
+            .map(|ms| ms as f64 / 1000.0)
+            .unwrap_or(90.0 * 60.0);
+
+        events.push(ReplayEvent::FullTime {
+            base: EventBase {
+                t: fallback_time,
+                player_id: None,
+                team_id: None,
+            },
+        });
+    }
+
+    events
+}
+
+#[cfg(feature = "vendor_skills")]
+fn convert_stored_events_to_replay(engine_events: &[EngineEvent]) -> Vec<ReplayEvent> {
+    let mut replay_events = Vec::new();
+    let mut pending_shots: HashMap<u32, usize> = HashMap::new();
+
+    for stored in engine_events {
+        let time_seconds = stored.timestamp as f64 / 1000.0;
+        let minute_scalar = stored.timestamp as f64 / 60_000.0;
+
+        let base_x = 30.0 + (minute_scalar * 0.5) % 60.0;
+        let base_y = 20.0 + (minute_scalar * 0.3) % 28.0;
+        let attack_x = 75.0 + (minute_scalar * 0.2) % 25.0;
+        let attack_y = 24.0 + (minute_scalar * 0.4) % 20.0;
+
+        match &stored.kind {
+            StoredEventKind::Goal {
+                player_id, team_id, ..
+            } => {
+                let team = map_team_identifier(*team_id);
+                let goal_event = ReplayEvent::Goal {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(*player_id),
+                        team_id: team,
+                    },
+                    at: MeterPos {
+                        x: attack_x,
+                        y: attack_y,
+                    },
+                };
+                replay_events.push(goal_event);
+
+                if let Some(idx) = pending_shots.remove(player_id) {
+                    if let Some(event) = replay_events.get_mut(idx) {
+                        if let ReplayEvent::Shot { on_target, .. } = event {
+                            *on_target = true;
+                        }
+                    }
+                }
+            }
+            StoredEventKind::Assist { player_id, team_id } => {
+                replay_events.push(ReplayEvent::Pass {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(*player_id),
+                        team_id: map_team_identifier(*team_id),
+                    },
+                    from: MeterPos {
+                        x: base_x,
+                        y: base_y,
+                    },
+                    to: MeterPos {
+                        x: base_x + 15.0,
+                        y: base_y + 5.0,
+                    },
+                });
+            }
+            StoredEventKind::Pass {
+                from_player_id,
+                team_id,
+                target,
+                ..
+            } => {
+                replay_events.push(ReplayEvent::Pass {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(*from_player_id),
+                        team_id: map_team_identifier(*team_id),
+                    },
+                    from: MeterPos {
+                        x: base_x,
+                        y: base_y,
+                    },
+                    to: MeterPos {
+                        x: target[0] as f64,
+                        y: target[1] as f64,
+                    },
+                });
+            }
+            StoredEventKind::Shot {
+                player_id, team_id, ..
+            } => {
+                let idx = replay_events.len();
+                replay_events.push(ReplayEvent::Shot {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(*player_id),
+                        team_id: map_team_identifier(*team_id),
+                    },
+                    from: MeterPos {
+                        x: attack_x,
+                        y: attack_y,
+                    },
+                    on_target: false,
+                });
+                pending_shots.insert(*player_id, idx);
+            }
+            StoredEventKind::Save { player_id, team_id } => {
+                replay_events.push(ReplayEvent::Save {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(*player_id),
+                        team_id: map_team_identifier(*team_id),
+                    },
+                    at: MeterPos {
+                        x: attack_x,
+                        y: attack_y,
+                    },
+                });
+            }
+            StoredEventKind::Foul { player_id, team_id } => {
+                replay_events.push(ReplayEvent::Foul {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(*player_id),
+                        team_id: map_team_identifier(*team_id),
+                    },
+                    at: MeterPos {
+                        x: base_x,
+                        y: base_y,
+                    },
+                });
+            }
+            StoredEventKind::Tackle { player_id, team_id } => {
+                replay_events.push(ReplayEvent::BallMove {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(*player_id),
+                        team_id: map_team_identifier(*team_id),
+                    },
+                    to: MeterPos {
+                        x: base_x,
+                        y: base_y,
+                    },
+                });
+            }
+            StoredEventKind::Possession {
+                player_id, team_id, ..
+            } => {
+                replay_events.push(ReplayEvent::BallMove {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(*player_id),
+                        team_id: map_team_identifier(*team_id),
+                    },
+                    to: MeterPos {
+                        x: base_x,
+                        y: base_y,
+                    },
+                });
+            }
+            StoredEventKind::Clearance { target, .. } => {
+                replay_events.push(ReplayEvent::BallMove {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: None,
+                        team_id: None,
+                    },
+                    to: MeterPos {
+                        x: target[0] as f64,
+                        y: target[1] as f64,
+                    },
+                });
+            }
+        }
+    }
+
+    replay_events
+}
+
+#[cfg(not(feature = "vendor_skills"))]
+fn convert_stored_events_to_replay(_engine_events: &[EngineEvent]) -> Vec<ReplayEvent> {
+    Vec::new()
+}
+
+fn map_team_identifier(team_id: u32) -> Option<u32> {
+    match team_id {
+        1 => Some(0),
+        2 => Some(1),
+        _ => None,
+    }
+}
+
+/// Convert single engine event to replay event
+fn convert_single_event(event: &Event) -> ReplayEvent {
+    let metadata = parse_event_metadata(event);
+    let time_seconds = event
+        .timestamp_ms
+        .map(|ms| ms as f64 / 1000.0)
+        .unwrap_or((event.minute as f64) * 60.0);
+    let minute_scalar = event
+        .timestamp_ms
+        .map(|ms| ms as f64 / 60_000.0)
+        .unwrap_or(event.minute as f64);
+
+    let base_x = 30.0 + (minute_scalar * 0.5) % 60.0;
+    let base_y = 20.0 + (minute_scalar * 0.3) % 28.0;
+    let attack_x = 75.0 + (minute_scalar * 0.2) % 25.0;
+    let attack_y = 24.0 + (minute_scalar * 0.4) % 20.0;
+
+    let team_id = metadata.team_id;
+    let player_id = metadata
+        .player_id
+        .or_else(|| extract_numeric_id(&metadata.player_name))
+        .unwrap_or(7);
+
+    match &metadata.category {
+        EventCategory::Goal => ReplayEvent::Goal {
+            base: EventBase {
+                t: time_seconds,
+                player_id: Some(player_id),
+                team_id,
+            },
+            at: MeterPos {
+                x: attack_x,
+                y: attack_y,
+            },
+        },
+        EventCategory::Assist => ReplayEvent::Pass {
+            base: EventBase {
+                t: time_seconds,
+                player_id: Some(player_id),
+                team_id,
+            },
+            from: MeterPos {
+                x: base_x,
+                y: base_y,
+            },
+            to: MeterPos {
+                x: base_x + 15.0,
+                y: base_y + 5.0,
+            },
+        },
+        EventCategory::Generic => {
+            let lower = metadata.raw_type_lower.as_str();
+
+            if lower.starts_with("shot|") {
+                ReplayEvent::Shot {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(player_id),
+                        team_id,
+                    },
+                    from: MeterPos {
+                        x: attack_x,
+                        y: attack_y,
+                    },
+                    on_target: lower.contains("target")
+                        || lower.contains("saved")
+                        || lower.contains("goal"),
+                }
+            } else if lower.contains("goal") {
+                ReplayEvent::Goal {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(player_id),
+                        team_id,
+                    },
+                    at: MeterPos {
+                        x: attack_x,
+                        y: attack_y,
+                    },
+                }
+            } else if lower.contains("shot") {
+                ReplayEvent::Shot {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(player_id),
+                        team_id,
+                    },
+                    from: MeterPos {
+                        x: attack_x,
+                        y: attack_y,
+                    },
+                    on_target: lower.contains("target") || lower.contains("saved"),
+                }
+            } else if lower.contains("pass") || lower.contains("dribble") {
+                ReplayEvent::Pass {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(player_id),
+                        team_id,
+                    },
+                    from: MeterPos {
+                        x: base_x,
+                        y: base_y,
+                    },
+                    to: MeterPos {
+                        x: base_x
+                            + if lower.contains("dribble") {
+                                10.0
+                            } else {
+                                15.0
+                            },
+                        y: base_y + if lower.contains("dribble") { 3.0 } else { 5.0 },
+                    },
+                }
+            } else if lower.contains("tackle") || lower.contains("foul") || lower.contains("card") {
+                ReplayEvent::BallMove {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(player_id),
+                        team_id,
+                    },
+                    to: MeterPos {
+                        x: base_x,
+                        y: base_y,
+                    },
+                }
+            } else if lower.contains("corner")
+                || lower.contains("freekick")
+                || lower.contains("penalty")
+            {
+                let setpiece_x = if lower.contains("corner") {
+                    match team_id {
+                        Some(0) => 100.0,
+                        Some(_) => 5.0,
+                        None => base_x,
+                    }
+                } else if lower.contains("penalty") {
+                    match team_id {
+                        Some(0) => 94.0,
+                        Some(_) => 11.0,
+                        None => base_x,
+                    }
+                } else {
+                    base_x
+                };
+
+                ReplayEvent::Shot {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(player_id),
+                        team_id,
+                    },
+                    from: MeterPos {
+                        x: setpiece_x,
+                        y: 34.0,
+                    },
+                    on_target: false,
+                }
+            } else if lower.contains("halftime") {
+                ReplayEvent::HalfTime {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: None,
+                        team_id: None,
+                    },
+                }
+            } else if lower.contains("fulltime") {
+                ReplayEvent::FullTime {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: None,
+                        team_id: None,
+                    },
+                }
+            } else {
+                ReplayEvent::BallMove {
+                    base: EventBase {
+                        t: time_seconds,
+                        player_id: Some(player_id),
+                        team_id,
+                    },
+                    to: MeterPos {
+                        x: base_x,
+                        y: base_y,
+                    },
+                }
+            }
+        }
+    }
+}
+
+#[derive(Debug)]
+enum EventCategory {
+    Goal,
+    Assist,
+    Generic,
+}
+
+#[derive(Debug)]
+struct EventMetadata {
+    category: EventCategory,
+    team_id: Option<u32>,
+    player_id: Option<u32>,
+    player_name: String,
+    raw_type_lower: String,
+}
+
+fn parse_event_metadata(event: &Event) -> EventMetadata {
+    let raw_type_lower = event.event_type.to_lowercase();
+
+    if let Some(payload) = event.event_type.strip_prefix("Goal|") {
+        let parts: Vec<&str> = payload.split('|').collect();
+        let team_id = parts.get(0).and_then(|label| label_to_team_id(*label));
+        let player_name = parts.get(1).unwrap_or(&"Player").to_string();
+        let player_id = parts.get(2).and_then(|id| id.parse::<u32>().ok());
+        return EventMetadata {
+            category: EventCategory::Goal,
+            team_id,
+            player_id,
+            player_name,
+            raw_type_lower,
+        };
+    }
+
+    if let Some(payload) = event.event_type.strip_prefix("Assist|") {
+        let parts: Vec<&str> = payload.split('|').collect();
+        let team_id = parts.get(0).and_then(|label| label_to_team_id(*label));
+        let player_name = parts.get(1).unwrap_or(&"Player").to_string();
+        let player_id = parts.get(2).and_then(|id| id.parse::<u32>().ok());
+
+        return EventMetadata {
+            category: EventCategory::Assist,
+            team_id,
+            player_id,
+            player_name,
+            raw_type_lower,
+        };
+    }
+
+    let tokens: Vec<&str> = event.event_type.split('|').collect();
+    if tokens.len() >= 2 {
+        let team_id = tokens.get(1).and_then(|label| label_to_team_id(*label));
+        if let Some(team_id) = team_id {
+            let (player_id, player_name) = match tokens[0] {
+                "Pass" => (
+                    tokens.get(3).and_then(|token| token.parse::<u32>().ok()),
+                    tokens
+                        .get(5)
+                        .or_else(|| tokens.get(4))
+                        .unwrap_or(&"Player")
+                        .to_string(),
+                ),
+                "Shot" => (
+                    tokens.get(3).and_then(|token| token.parse::<u32>().ok()),
+                    tokens.get(4).unwrap_or(&"Player").to_string(),
+                ),
+                "Dribble" | "Tackle" | "Interception" | "Recovery" | "Corner" => (
+                    tokens.get(2).and_then(|token| token.parse::<u32>().ok()),
+                    tokens.get(3).unwrap_or(&"Player").to_string(),
+                ),
+                "FreeKick" => (
+                    tokens.get(2).and_then(|token| token.parse::<u32>().ok()),
+                    tokens.get(3).unwrap_or(&"Player").to_string(),
+                ),
+                "Foul" => (
+                    tokens.get(3).and_then(|token| token.parse::<u32>().ok()),
+                    tokens.get(4).unwrap_or(&"Player").to_string(),
+                ),
+                _ => (
+                    tokens.get(2).and_then(|token| token.parse::<u32>().ok()),
+                    tokens.get(3).unwrap_or(&"Player").to_string(),
+                ),
+            };
+
+            return EventMetadata {
+                category: EventCategory::Generic,
+                team_id: Some(team_id),
+                player_id,
+                player_name,
+                raw_type_lower,
+            };
+        }
+    }
+
+    let mut team_id = None;
+    let mut player_name = "Player".to_string();
+
+    if let Some(name) = event.event_type.split(":Home:").nth(1) {
+        team_id = Some(0);
+        player_name = name.to_string();
+    } else if let Some(name) = event.event_type.split(":Away:").nth(1) {
+        team_id = Some(1);
+        player_name = name.to_string();
+    }
+
+    EventMetadata {
+        category: EventCategory::Generic,
+        team_id,
+        player_id: None,
+        player_name,
+        raw_type_lower,
+    }
+}
+
+fn extract_numeric_id(name: &str) -> Option<u32> {
+    let digits: String = name.chars().filter(|c| c.is_ascii_digit()).collect();
+    if digits.is_empty() {
+        None
+    } else {
+        digits.parse::<u32>().ok()
+    }
+}
+
+fn label_to_team_id(label: &str) -> Option<u32> {
+    match label {
+        "Home" => Some(0),
+        "Away" => Some(1),
+        _ => None,
+    }
+}
+
+/// Open-Football 엔진 이벤트를 우리 프로젝트의 ReplayEvent로 변환 (레거시)
+pub fn map_engine_events(engine_events: Vec<Event>) -> Vec<ReplayEvent> {
+    let mut replay_events = Vec::new();
+
+    for (i, ev) in engine_events.iter().enumerate() {
+        // For now, we'll create basic events with dummy time and data
+        // TODO: Replace with actual Open-Football event parsing when available
+
+        match ev.event_type.as_str() {
+            "kickoff" => {
+                replay_events.push(ReplayEvent::KickOff {
+                    base: EventBase {
+                        t: i as f64,
+                        player_id: None,
+                        team_id: Some(0),
+                    },
+                });
+            }
+            "goal" => {
+                replay_events.push(ReplayEvent::Goal {
+                    base: EventBase {
+                        t: i as f64,
+                        player_id: Some(9), // Dummy player ID
+                        team_id: Some(0),
+                    },
+                    at: MeterPos { x: 50.0, y: 34.0 }, // Dummy position
+                });
+            }
+            "pass" => {
+                replay_events.push(ReplayEvent::Pass {
+                    base: EventBase {
+                        t: i as f64,
+                        player_id: Some(5), // Dummy player ID
+                        team_id: Some(0),
+                    },
+                    from: MeterPos { x: 30.0, y: 25.0 },
+                    to: MeterPos { x: 40.0, y: 30.0 },
+                });
+            }
+            "shot" => {
+                replay_events.push(ReplayEvent::Shot {
+                    base: EventBase {
+                        t: i as f64,
+                        player_id: Some(10), // Dummy player ID
+                        team_id: Some(0),
+                    },
+                    from: MeterPos { x: 90.0, y: 34.0 },
+                    on_target: true,
+                });
+            }
+            _ => {
+                // Default to BallMove for unknown events
+                replay_events.push(ReplayEvent::BallMove {
+                    base: EventBase {
+                        t: i as f64,
+                        player_id: None,
+                        team_id: None,
+                    },
+                    to: MeterPos { x: 52.5, y: 34.0 }, // Center of field
+                });
+            }
+        }
+    }
+
+    replay_events
+}
+
+/// Create a simple match with basic events (for testing without Open-Football engine)
+pub fn create_simple_match_events() -> Vec<ReplayEvent> {
+    vec![
+        ReplayEvent::KickOff {
+            base: EventBase {
+                t: 0.0,
+                player_id: None,
+                team_id: Some(0),
+            },
+        },
+        ReplayEvent::Pass {
+            base: EventBase {
+                t: 30.0,
+                player_id: Some(5),
+                team_id: Some(0),
+            },
+            from: MeterPos { x: 52.5, y: 34.0 },
+            to: MeterPos { x: 70.0, y: 30.0 },
+        },
+        ReplayEvent::Shot {
+            base: EventBase {
+                t: 35.0,
+                player_id: Some(9),
+                team_id: Some(0),
+            },
+            from: MeterPos { x: 95.0, y: 34.0 },
+            on_target: true,
+        },
+        ReplayEvent::Goal {
+            base: EventBase {
+                t: 36.0,
+                player_id: Some(9),
+                team_id: Some(0),
+            },
+            at: MeterPos { x: 105.0, y: 34.0 },
+        },
+        ReplayEvent::HalfTime {
+            base: EventBase {
+                t: 45.0 * 60.0, // 45 minutes
+                player_id: None,
+                team_id: None,
+            },
+        },
+        ReplayEvent::FullTime {
+            base: EventBase {
+                t: 90.0 * 60.0, // 90 minutes
+                player_id: None,
+                team_id: None,
+            },
+        },
+    ]
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_empty_events() {
+        let mapped = map_engine_events(Vec::new());
+        assert!(mapped.is_empty());
+    }
+
+    #[test]
+    fn test_simple_match_creation() {
+        let events = create_simple_match_events();
+        assert!(!events.is_empty());
+        assert!(matches!(events[0], ReplayEvent::KickOff { .. }));
+        assert!(matches!(
+            events.last().unwrap(),
+            ReplayEvent::FullTime { .. }
+        ));
+    }
+
+    #[cfg(feature = "vendor_skills")]
+    #[test]
+    fn test_skills36_mapping() {
+        use of_core::models::player::PlayerAttributes;
+
+        let mut attrs = PlayerAttributes::default();
+        attrs.passing = 75;
+        attrs.vision = 80;
+        attrs.speed = 85;
+
+        let skills = map_player_attributes_to_skills36(&attrs);
+        assert_eq!(skills.passing, 75);
+        assert_eq!(skills.vision, 80);
+        assert_eq!(skills.pace, attrs.pace); // pace와 speed는 별개
+    }
+}
+
+// ============================================================================
+// Skills36 매핑 함수들 (PlayerAttributes → Skills36)
+// ============================================================================
+
+/// PlayerAttributes를 Skills36으로 정확히 1:1 매핑
+///
+/// 우리의 42개 속성 중 36개를 OpenFootball Skills36으로 변환합니다.
+/// - Technical 14개: 직접 매핑
+/// - Mental 14개: 직접 매핑
+/// - Physical 8개: 직접 매핑
+/// - GK 6개 속성: 무시됨 (Skills36에 없음)
+#[cfg(feature = "vendor_skills")]
+pub fn map_player_attributes_to_skills36(attrs: &PlayerAttributes) -> Skills36 {
+    Skills36 {
+        // Technical (14개) - 직접 1:1 매핑
+        corners: attrs.corners,
+        crossing: attrs.crossing,
+        dribbling: attrs.dribbling,
+        finishing: attrs.finishing,
+        first_touch: attrs.first_touch,
+        free_kicks: attrs.free_kicks,
+        heading: attrs.heading,
+        long_shots: attrs.long_shots,
+        long_throws: attrs.long_throws,
+        marking: attrs.marking,
+        passing: attrs.passing,
+        penalty_taking: attrs.penalty_taking,
+        tackling: attrs.tackling,
+        technique: attrs.technique,
+
+        // Mental (14개) - 직접 1:1 매핑
+        aggression: attrs.aggression,
+        anticipation: attrs.anticipation,
+        bravery: attrs.bravery,
+        composure: attrs.composure,
+        concentration: attrs.concentration,
+        decisions: attrs.decisions,
+        determination: attrs.determination,
+        flair: attrs.flair,
+        leadership: attrs.leadership,
+        off_the_ball: attrs.off_the_ball,
+        positioning: attrs.positioning,
+        teamwork: attrs.teamwork,
+        vision: attrs.vision,
+        work_rate: attrs.work_rate,
+
+        // Physical (8개) - 직접 1:1 매핑
+        acceleration: attrs.acceleration,
+        agility: attrs.agility,
+        balance: attrs.balance,
+        jumping: attrs.jumping,
+        natural_fitness: attrs.natural_fitness,
+        pace: attrs.pace, // pace를 사용 (speed는 별칭)
+        stamina: attrs.stamina,
+        strength: attrs.strength,
+    }
+}
+
+/// CorePlayer에서 Skills36 추출
+///
+/// CorePlayer의 detailed_stats (PlayerAttributes)를 Skills36으로 변환합니다.
+#[cfg(feature = "vendor_skills")]
+pub fn extract_skills36_from_player(player: &CorePlayer) -> Skills36 {
+    map_player_attributes_to_skills36(&player.detailed_stats)
+}
+
+/// Skills36을 PlayerAttributes로 역매핑 (테스트용)
+///
+/// Skills36의 36개 속성을 PlayerAttributes 42개로 변환합니다.
+/// 추가 속성들은 기본값 또는 계산값으로 채웁니다.
+#[cfg(feature = "vendor_skills")]
+pub fn map_skills36_to_player_attributes(skills: &Skills36) -> PlayerAttributes {
+    PlayerAttributes {
+        // Technical - 직접 역매핑
+        corners: skills.corners,
+        crossing: skills.crossing,
+        dribbling: skills.dribbling,
+        finishing: skills.finishing,
+        first_touch: skills.first_touch,
+        free_kicks: skills.free_kicks,
+        heading: skills.heading,
+        long_shots: skills.long_shots,
+        long_throws: skills.long_throws,
+        marking: skills.marking,
+        passing: skills.passing,
+        penalty_taking: skills.penalty_taking,
+        tackling: skills.tackling,
+        technique: skills.technique,
+
+        // 추가 Technical 속성 (계산값)
+        ball_control: skills.technique, // technique과 동일하게 설정
+        shooting: (skills.finishing + skills.long_shots) / 2, // 평균값
+
+        // Mental - 직접 역매핑
+        aggression: skills.aggression,
+        anticipation: skills.anticipation,
+        bravery: skills.bravery,
+        composure: skills.composure,
+        concentration: skills.concentration,
+        decisions: skills.decisions,
+        determination: skills.determination,
+        flair: skills.flair,
+        leadership: skills.leadership,
+        off_the_ball: skills.off_the_ball,
+        positioning: skills.positioning,
+        teamwork: skills.teamwork,
+        vision: skills.vision,
+        work_rate: skills.work_rate,
+
+        // Physical - 직접 역매핑
+        acceleration: skills.acceleration,
+        agility: skills.agility,
+        balance: skills.balance,
+        jumping: skills.jumping,
+        natural_fitness: skills.natural_fitness,
+        pace: skills.pace,
+        stamina: skills.stamina,
+        strength: skills.strength,
+        speed: skills.pace, // pace의 별칭
+
+        // GK 속성 (기본값 50으로 설정)
+        reflexes: 50,
+        handling: 50,
+        aerial_ability: 50,
+        command_of_area: 50,
+        communication: 50,
+        kicking: 50,
+    }
+}
+
+/// 포지션별 Skills36 가중치 적용
+///
+/// 포지션에 따라 중요한 속성에 가중치를 적용합니다.
+#[cfg(feature = "vendor_skills")]
+pub fn apply_position_weights_to_skills36(skills: &mut Skills36, position: &str) {
+    match position {
+        "GK" => {
+            // GK는 Skills36에 전문 속성이 없으므로 수비적 속성 강화
+            skills.positioning = (skills.positioning as f32 * 1.2).min(100.0) as u8;
+            skills.concentration = (skills.concentration as f32 * 1.2).min(100.0) as u8;
+            skills.anticipation = (skills.anticipation as f32 * 1.2).min(100.0) as u8;
+        }
+        "DF" | "CB" | "LB" | "RB" => {
+            // 수비수: 수비 속성 강화
+            skills.marking = (skills.marking as f32 * 1.15).min(100.0) as u8;
+            skills.tackling = (skills.tackling as f32 * 1.15).min(100.0) as u8;
+            skills.positioning = (skills.positioning as f32 * 1.15).min(100.0) as u8;
+            skills.strength = (skills.strength as f32 * 1.1).min(100.0) as u8;
+        }
+        "MF" | "CM" | "CDM" | "CAM" => {
+            // 미드필더: 패스와 비전 강화
+            skills.passing = (skills.passing as f32 * 1.15).min(100.0) as u8;
+            skills.vision = (skills.vision as f32 * 1.15).min(100.0) as u8;
+            skills.technique = (skills.technique as f32 * 1.1).min(100.0) as u8;
+            skills.work_rate = (skills.work_rate as f32 * 1.1).min(100.0) as u8;
+        }
+        "FW" | "ST" | "CF" | "LW" | "RW" => {
+            // 공격수: 공격 속성 강화
+            skills.finishing = (skills.finishing as f32 * 1.2).min(100.0) as u8;
+            skills.dribbling = (skills.dribbling as f32 * 1.15).min(100.0) as u8;
+            skills.pace = (skills.pace as f32 * 1.1).min(100.0) as u8;
+            skills.acceleration = (skills.acceleration as f32 * 1.1).min(100.0) as u8;
+        }
+        _ => {} // 기본 포지션은 변경 없음
+    }
+}

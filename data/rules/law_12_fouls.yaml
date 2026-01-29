@@ -1,0 +1,265 @@
+# IFAB Laws of the Game - Law 12: Fouls and Misconduct
+# Source: https://www.theifab.com/laws/latest/fouls-and-misconduct/
+# Rule-as-Data: Foul severity classification and sanction mapping
+
+rule_id: "LAW_12_FOULS_MISCONDUCT"
+law_number: 12
+name: "파울과 비신사적 행위"
+name_en: "Fouls and Misconduct"
+summary: "파울의 심각도에 따라 경고(옐로카드) 또는 퇴장(레드카드) 처분"
+summary_en: "Fouls are penalized based on severity with cautions (yellow card) or sending-off (red card)"
+
+# 파울 심각도 분류 (Law 12 기준)
+foul_severity:
+  - id: "CARELESS"
+    level: 1
+    name: "부주의"
+    name_en: "Careless"
+    description: "주의나 배려 없이 행동하거나 경솔하게 행동"
+    description_en: "Acting without attention or consideration, or without care"
+    sanction: "DIRECT_FREE_KICK"
+    card: null
+
+  - id: "RECKLESS"
+    level: 2
+    name: "무모함"
+    name_en: "Reckless"
+    description: "상대방 선수에게 위험이 될 수 있음을 무시하고 행동"
+    description_en: "Acting with disregard to the danger to, or consequences for, an opponent"
+    sanction: "DIRECT_FREE_KICK"
+    card: "YELLOW_CARD"
+
+  - id: "EXCESSIVE_FORCE"
+    level: 3
+    name: "과도한 힘"
+    name_en: "Excessive force"
+    description: "필요 이상의 힘을 사용하고 상대방의 안전을 위협"
+    description_en: "Using force which exceeds that necessary and endangers the safety of an opponent"
+    sanction: "DIRECT_FREE_KICK"
+    card: "RED_CARD"
+
+# 직접 프리킥 파울 유형
+direct_free_kick_offences:
+  description: "직접 프리킥을 부여하는 파울"
+  description_en: "Offences that result in a direct free kick"
+  offences:
+    - id: "CHARGING"
+      name: "차징"
+      name_en: "Charging"
+      description: "상대방에게 돌진"
+      description_en: "Charges an opponent"
+
+    - id: "JUMPING"
+      name: "점핑"
+      name_en: "Jumping at"
+      description: "상대방을 향해 뛰어오름"
+      description_en: "Jumps at an opponent"
+
+    - id: "KICKING"
+      name: "킥"
+      name_en: "Kicking"
+      description: "상대방을 차거나 차려고 함"
+      description_en: "Kicks or attempts to kick an opponent"
+
+    - id: "PUSHING"
+      name: "푸싱"
+      name_en: "Pushing"
+      description: "상대방을 밈"
+      description_en: "Pushes an opponent"
+
+    - id: "STRIKING"
+      name: "가격"
+      name_en: "Striking"
+      description: "상대방을 치거나 치려고 함"
+      description_en: "Strikes or attempts to strike an opponent"
+
+    - id: "TACKLING"
+      name: "태클"
+      name_en: "Tackling"
+      description: "상대방에게 먼저 접촉하여 태클 또는 도전"
+      description_en: "Tackles or challenges an opponent, making contact before the ball"
+
+    - id: "TRIPPING"
+      name: "트리핑"
+      name_en: "Tripping"
+      description: "상대방을 넘어뜨리거나 넘어뜨리려고 함"
+      description_en: "Trips or attempts to trip an opponent"
+
+    - id: "HANDBALL"
+      name: "핸드볼"
+      name_en: "Handball"
+      description: "의도적으로 손이나 팔로 볼을 만짐"
+      description_en: "Deliberately handles the ball"
+
+# 옐로카드 (경고) 사유
+yellow_card_offences:
+  description: "옐로카드를 부여하는 비신사적 행위"
+  description_en: "Cautionable offences (yellow card)"
+  offences:
+    - id: "DELAYING_RESTART"
+      name: "재시작 지연"
+      name_en: "Delaying restart"
+      description: "경기 재시작을 지연"
+      description_en: "Delaying the restart of play"
+
+    - id: "DISSENT"
+      name: "이의 제기"
+      name_en: "Dissent"
+      description: "심판의 결정에 언어나 행동으로 이의 제기"
+      description_en: "Dissent by word or action"
+
+    - id: "ENTERING_FIELD"
+      name: "무단 입장"
+      name_en: "Entering field"
+      description: "심판의 허가 없이 경기장에 들어오거나 다시 들어옴"
+      description_en: "Entering or re-entering the field without referee permission"
+
+    - id: "LEAVING_FIELD"
+      name: "무단 퇴장"
+      name_en: "Leaving field"
+      description: "심판의 허가 없이 의도적으로 경기장을 벗어남"
+      description_en: "Deliberately leaving the field without referee permission"
+
+    - id: "SIMULATION"
+      name: "시뮬레이션"
+      name_en: "Simulation"
+      description: "심판을 속이려고 시도"
+      description_en: "Attempting to deceive the referee"
+
+    - id: "PERSISTENT_OFFENCES"
+      name: "반복 위반"
+      name_en: "Persistent offences"
+      description: "경기 규칙을 반복적으로 위반"
+      description_en: "Persistent offences"
+
+    - id: "UNSPORTING_BEHAVIOUR"
+      name: "비신사적 행위"
+      name_en: "Unsporting behaviour"
+      description: "비신사적 행위"
+      description_en: "Unsporting behaviour"
+
+# 레드카드 (퇴장) 사유
+red_card_offences:
+  description: "레드카드를 부여하는 퇴장 사유"
+  description_en: "Sending-off offences (red card)"
+  offences:
+    - id: "DOGSO_FOUL"
+      name: "DOGSO (파울)"
+      name_en: "DOGSO (foul)"
+      description: "파울로 명백한 득점 기회 저지"
+      description_en: "Denying an obvious goal-scoring opportunity by committing a foul"
+
+    - id: "DOGSO_HANDBALL"
+      name: "DOGSO (핸드볼)"
+      name_en: "DOGSO (handball)"
+      description: "핸드볼로 명백한 득점 기회 저지"
+      description_en: "Denying an obvious goal-scoring opportunity by handball"
+
+    - id: "SERIOUS_FOUL_PLAY"
+      name: "심각한 반칙"
+      name_en: "Serious foul play"
+      description: "볼에 도전할 때 과도한 힘이나 잔인함 사용"
+      description_en: "Using excessive force or brutality when challenging for the ball"
+
+    - id: "VIOLENT_CONDUCT"
+      name: "난폭 행위"
+      name_en: "Violent conduct"
+      description: "볼 다툼이 아닐 때 과도한 힘이나 잔인함 사용"
+      description_en: "Using excessive force or brutality when not challenging for the ball"
+
+    - id: "SPITTING"
+      name: "침 뱉기"
+      name_en: "Spitting"
+      description: "상대방이나 다른 사람에게 침을 뱉음"
+      description_en: "Spitting at an opponent or any other person"
+
+    - id: "OFFENSIVE_LANGUAGE"
+      name: "모욕적 언행"
+      name_en: "Offensive language"
+      description: "모욕적이거나 욕설을 사용"
+      description_en: "Using offensive, insulting or abusive language/gestures"
+
+    - id: "SECOND_YELLOW"
+      name: "누적 경고"
+      name_en: "Second yellow"
+      description: "같은 경기에서 두 번째 경고를 받음"
+      description_en: "Receiving a second caution in the same match"
+
+# DOGSO (Denying Obvious Goal-Scoring Opportunity) 판정 기준
+dogso_criteria:
+  name: "명백한 득점 기회 저지"
+  name_en: "Denying Obvious Goal-Scoring Opportunity"
+  factors:
+    - id: "DISTANCE_TO_GOAL"
+      name: "골까지의 거리"
+      name_en: "Distance to goal"
+      description: "골까지의 거리가 가까울수록 DOGSO 가능성 증가"
+      description_en: "Closer distance increases DOGSO likelihood"
+
+    - id: "DIRECTION_OF_PLAY"
+      name: "플레이 방향"
+      name_en: "Direction of play"
+      description: "공격 방향이 골을 향하고 있는지"
+      description_en: "Whether play is moving towards goal"
+
+    - id: "LIKELIHOOD_OF_CONTROL"
+      name: "볼 컨트롤 가능성"
+      name_en: "Likelihood of control"
+      description: "공격수가 볼을 컨트롤할 수 있었는지"
+      description_en: "Whether the attacker could have controlled the ball"
+
+    - id: "LOCATION_OF_DEFENDERS"
+      name: "수비수 위치"
+      name_en: "Location of defenders"
+      description: "수비수들의 위치와 개입 가능성"
+      description_en: "Position of defenders and likelihood of intervention"
+
+# 페널티 에어리어 내 DOGSO 예외 규정
+dogso_in_penalty_area:
+  name: "페널티 에어리어 내 DOGSO"
+  name_en: "DOGSO in penalty area"
+  description: "페널티 에어리어 내에서 볼을 플레이하려고 시도한 파울은 옐로카드로 감경"
+  description_en: "A foul attempting to play the ball in the penalty area is reduced to yellow card"
+  sanction: "YELLOW_CARD_AND_PENALTY"
+  condition: "ATTEMPTING_TO_PLAY_BALL"
+
+# 설명 템플릿
+explanation_templates:
+  foul_basic:
+    template: "{player_name}이(가) {victim_name}에게 {offence_type} 파울"
+    template_en: "{player_name} committed a {offence_type} foul on {victim_name}"
+
+  foul_with_severity:
+    template: "{player_name}이(가) {victim_name}에게 {severity_name} {offence_type} 파울 - {sanction_name}"
+    template_en: "{player_name} committed a {severity_name_en} {offence_type_en} foul on {victim_name} - {sanction_name_en}"
+
+  yellow_card:
+    template: "{player_name}에게 옐로카드 - 사유: {reason_name}"
+    template_en: "Yellow card shown to {player_name} - Reason: {reason_name_en}"
+
+  red_card:
+    template: "{player_name}에게 레드카드 - 사유: {reason_name}"
+    template_en: "Red card shown to {player_name} - Reason: {reason_name_en}"
+
+  dogso:
+    template: "{player_name}이(가) {victim_name}의 명백한 득점 기회 저지 (DOGSO)"
+    template_en: "{player_name} denied an obvious goal-scoring opportunity (DOGSO) to {victim_name}"
+
+# 재시작 정보
+restart:
+  direct_free_kick:
+    type: "DIRECT_FREE_KICK"
+    name: "직접 프리킥"
+    name_en: "Direct free kick"
+
+  indirect_free_kick:
+    type: "INDIRECT_FREE_KICK"
+    name: "간접 프리킥"
+    name_en: "Indirect free kick"
+
+  penalty_kick:
+    type: "PENALTY_KICK"
+    name: "페널티킥"
+    name_en: "Penalty kick"
+    condition: "페널티 에어리어 내 직접 프리킥 파울"
+    condition_en: "Direct free kick foul inside penalty area"

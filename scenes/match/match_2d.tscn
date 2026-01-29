@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://c9h3w6n8p2q7r"]
+
+[ext_resource type="Script" path="res://scenes/match/MatchController2D.gd" id="1_controller"]
+[ext_resource type="Texture2D" path="res://assets/characters/2d_sprites/Male person/PNG/Poses/character_malePerson_idle.png" id="2_player_sprite"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_player_idle"]
+animations = [{
+"frames": [ExtResource("2_player_sprite")],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[node name="Match2D" type="Node2D"]
+script = ExtResource("1_controller")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.0, 1.0)
+
+[node name="Field" type="Node2D" parent="."]
+
+[node name="HomeTeam" type="Node2D" parent="."]
+
+[node name="AwayTeam" type="Node2D" parent="."]
+
+[node name="Ball" type="Node2D" parent="."]
+
+[node name="BallSprite" type="Sprite2D" parent="Ball"]
+modulate = Color(1, 1, 1, 1)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MatchInfo" type="Label" parent="UI"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 400.0
+offset_bottom = 100.0
+text = "2D Match - OpenFootball Integration
+Score: 0 - 0
+Time: 0:00"

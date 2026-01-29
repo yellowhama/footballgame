@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8x7q3hvk4h9"]
+
+[ext_resource type="Script" path="res://scripts/ui/MultiSpectatorView.gd" id="1"]
+
+[node name="MultiSpectatorView" type="Control"]
+script = ExtResource("1")
+layout_mode = 3
+
+[node name="ControlPanel" type="VBoxContainer" parent="."]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1920.0
+offset_bottom = 80.0
+
+[node name="Header" type="HBoxContainer" parent="ControlPanel"]
+offset_top = 0.0
+offset_right = 1920.0
+offset_bottom = 40.0
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="ControlPanel/Header"]
+offset_right = 800.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+text = "멀티 관전 모드"
+theme_override_font_sizes/font_size = 20
+
+[node name="MatchSelector" type="OptionButton" parent="ControlPanel/Header"]
+offset_left = 810.0
+offset_top = 0.0
+offset_right = 1110.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2(300, 40)
+
+[node name="ButtonRow" type="HBoxContainer" parent="ControlPanel"]
+offset_top = 50.0
+offset_right = 1920.0
+offset_bottom = 80.0
+theme_override_constants/separation = 10
+
+[node name="AddViewportButton" type="Button" parent="ControlPanel/ButtonRow"]
+offset_left = 0.0
+offset_top = 50.0
+offset_right = 100.0
+offset_bottom = 80.0
+custom_minimum_size = Vector2(100, 30)
+text = "+ 추가"
+tooltip_text = "새 뷰포트 추가"
+
+[node name="RemoveViewportButton" type="Button" parent="ControlPanel/ButtonRow"]
+offset_left = 110.0
+offset_top = 50.0
+offset_right = 210.0
+offset_bottom = 80.0
+custom_minimum_size = Vector2(100, 30)
+text = "- 제거"
+tooltip_text = "마지막 뷰포트 제거"
+
+[node name="CloseButton" type="Button" parent="ControlPanel/ButtonRow"]
+offset_left = 220.0
+offset_top = 50.0
+offset_right = 320.0
+offset_bottom = 80.0
+custom_minimum_size = Vector2(100, 30)
+text = "닫기"
+
+[node name="ViewportContainer" type="HBoxContainer" parent="."]
+offset_left = 0.0
+offset_top = 90.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/separation = 10

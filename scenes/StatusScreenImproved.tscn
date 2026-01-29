@@ -1,0 +1,1499 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/screens/StatusScreenImproved.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/components/HexagonChart.gd" id="2"]
+[ext_resource type="Theme" path="res://themes/MobileTheme.tres" id="3"]
+
+[node name="StatusScreenImproved" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("3")
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.07, 0.07, 0.1, 1)
+
+[node name="Header" type="Panel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+anchor_right = 1.0
+offset_bottom = 100.0
+
+[node name="HBox" type="HBoxContainer" parent="Header"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_right = -20.0
+
+[node name="BackButton" type="Button" parent="Header/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 60)
+text = "이전"
+theme_override_font_sizes/font_size = 28
+
+[node name="Title" type="Label" parent="Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "선수 능력치"
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoButton" type="Button" parent="Header/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 60)
+text = "ℹ️"
+theme_override_font_sizes/font_size = 28
+
+[node name="TabContainer" type="TabContainer" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 100.0
+current_tab = 0
+
+[node name="Overview" type="ScrollContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="Attributes" type="ScrollContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/Attributes"]
+custom_minimum_size = Vector2(1080, 2000)
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="TabContainer/Attributes/VBox"]
+text = "전체 능력치 (42개 항목)"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="DetailViewButton" type="Button" parent="TabContainer/Attributes/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 80)
+text = "자세히 보기"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+
+[node name="TechnicalSection" type="VBoxContainer" parent="TabContainer/Attributes/VBox"]
+theme_override_constants/separation = 15
+
+[node name="TechnicalTitle" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection"]
+text = "🎯 기술 능력치 (14개)"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+
+[node name="TechnicalGrid" type="GridContainer" parent="TabContainer/Attributes/VBox/TechnicalSection"]
+columns = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+
+[node name="Corners" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Corners"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Corners/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "코너킥"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Corners/HBox"]
+text = "72"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Corners/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 72.0
+
+[node name="Crossing" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Crossing"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Crossing/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "크로스"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Crossing/HBox"]
+text = "68"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Crossing/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 68.0
+
+[node name="Dribbling" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Dribbling"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Dribbling/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "드리블"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Dribbling/HBox"]
+text = "75"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Dribbling/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 75.0
+
+[node name="Finishing" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Finishing"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Finishing/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "결정력"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Finishing/HBox"]
+text = "70"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Finishing/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 70.0
+
+[node name="FirstTouch" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/FirstTouch"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/FirstTouch/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "퍼스트터치"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/FirstTouch/HBox"]
+text = "73"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/FirstTouch/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 73.0
+
+[node name="FreeKicks" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/FreeKicks"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/FreeKicks/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "프리킥"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/FreeKicks/HBox"]
+text = "65"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/FreeKicks/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 65.0
+
+[node name="Heading" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Heading"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Heading/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "헤딩"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Heading/HBox"]
+text = "71"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Heading/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 71.0
+
+[node name="LongShots" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/LongShots"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/LongShots/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "중거리슈팅"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/LongShots/HBox"]
+text = "67"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/LongShots/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 67.0
+
+[node name="LongThrows" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/LongThrows"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/LongThrows/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "롱스로잉"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/LongThrows/HBox"]
+text = "62"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/LongThrows/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 62.0
+
+[node name="Marking" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Marking"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Marking/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "마킹"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Marking/HBox"]
+text = "64"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Marking/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 64.0
+
+[node name="Passing" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Passing"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Passing/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "패스"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Passing/HBox"]
+text = "76"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Passing/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 76.0
+
+[node name="PenaltyTaking" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/PenaltyTaking"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/PenaltyTaking/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "페널티킥"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/PenaltyTaking/HBox"]
+text = "69"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/PenaltyTaking/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 69.0
+
+[node name="Tackling" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Tackling"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Tackling/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "태클"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Tackling/HBox"]
+text = "66"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Tackling/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 66.0
+
+[node name="Technique" type="Panel" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Technique"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Technique/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "기술"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Technique/HBox"]
+text = "74"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/TechnicalSection/TechnicalGrid/Technique/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 74.0
+
+[node name="MentalSection" type="VBoxContainer" parent="TabContainer/Attributes/VBox"]
+theme_override_constants/separation = 15
+
+[node name="MentalTitle" type="Label" parent="TabContainer/Attributes/VBox/MentalSection"]
+text = "🧠 정신 능력치 (14개)"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1, 0.4, 0.7, 1)
+
+[node name="MentalGrid" type="GridContainer" parent="TabContainer/Attributes/VBox/MentalSection"]
+columns = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+
+[node name="Aggression" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Aggression"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Aggression/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "공격성"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Aggression/HBox"]
+text = "72"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Aggression/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 72.0
+
+[node name="Anticipation" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Anticipation"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Anticipation/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "예측력"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Anticipation/HBox"]
+text = "68"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Anticipation/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 68.0
+
+[node name="Bravery" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Bravery"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Bravery/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "용기"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Bravery/HBox"]
+text = "74"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Bravery/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 74.0
+
+[node name="Composure" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Composure"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Composure/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "심적안정"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Composure/HBox"]
+text = "69"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Composure/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 69.0
+
+[node name="Concentration" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Concentration"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Concentration/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "집중력"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Concentration/HBox"]
+text = "65"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Concentration/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 65.0
+
+[node name="Decisions" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Decisions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Decisions/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "판단력"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Decisions/HBox"]
+text = "71"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Decisions/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 71.0
+
+[node name="Determination" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Determination"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Determination/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "결단력"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Determination/HBox"]
+text = "73"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Determination/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 73.0
+
+[node name="Flair" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Flair"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Flair/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "창의력"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Flair/HBox"]
+text = "70"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Flair/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 70.0
+
+[node name="Leadership" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Leadership"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Leadership/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "리더십"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Leadership/HBox"]
+text = "67"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Leadership/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 67.0
+
+[node name="OffTheBall" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/OffTheBall"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/OffTheBall/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "오프더볼"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/OffTheBall/HBox"]
+text = "66"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/OffTheBall/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 66.0
+
+[node name="Positioning" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Positioning"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Positioning/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "포지션"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Positioning/HBox"]
+text = "72"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Positioning/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 72.0
+
+[node name="Teamwork" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Teamwork"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Teamwork/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "팀워크"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Teamwork/HBox"]
+text = "74"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Teamwork/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 74.0
+
+[node name="Vision" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Vision"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Vision/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "시야"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Vision/HBox"]
+text = "71"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/Vision/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 71.0
+
+[node name="WorkRate" type="Panel" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/WorkRate"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/WorkRate/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "활동량"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/WorkRate/HBox"]
+text = "68"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/MentalSection/MentalGrid/WorkRate/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 68.0
+
+[node name="PhysicalSection" type="VBoxContainer" parent="TabContainer/Attributes/VBox"]
+theme_override_constants/separation = 15
+
+[node name="PhysicalTitle" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection"]
+text = "🏃 신체 능력치 (8개)"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="PhysicalGrid" type="GridContainer" parent="TabContainer/Attributes/VBox/PhysicalSection"]
+columns = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+
+[node name="Speed" type="Panel" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Speed"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Speed/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "속도"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Speed/HBox"]
+text = "78"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Speed/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 78.0
+
+[node name="Stamina" type="Panel" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Stamina"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Stamina/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "스태미나"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Stamina/HBox"]
+text = "72"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Stamina/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 72.0
+
+[node name="Strength" type="Panel" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Strength"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Strength/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "근력"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Strength/HBox"]
+text = "69"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Strength/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 69.0
+
+[node name="Agility" type="Panel" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Agility"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Agility/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "민첩성"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Agility/HBox"]
+text = "75"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Agility/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 75.0
+
+[node name="Balance" type="Panel" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Balance"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Balance/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "밸런스"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Balance/HBox"]
+text = "71"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Balance/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 71.0
+
+[node name="Jumping" type="Panel" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Jumping"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Jumping/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "점프"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Jumping/HBox"]
+text = "68"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Jumping/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 68.0
+
+[node name="NaturalFitness" type="Panel" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/NaturalFitness"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/NaturalFitness/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "체력"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/NaturalFitness/HBox"]
+text = "73"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/NaturalFitness/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 73.0
+
+[node name="Acceleration" type="Panel" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Acceleration"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Acceleration/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "가속력"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Acceleration/HBox"]
+text = "76"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/PhysicalSection/PhysicalGrid/Acceleration/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 76.0
+
+[node name="GoalkeeperSection" type="VBoxContainer" parent="TabContainer/Attributes/VBox"]
+theme_override_constants/separation = 15
+
+[node name="GoalkeeperTitle" type="Label" parent="TabContainer/Attributes/VBox/GoalkeeperSection"]
+text = "🥅 골키퍼 능력치 (6개)"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1, 0.7, 0.2, 1)
+
+[node name="GoalkeeperGrid" type="GridContainer" parent="TabContainer/Attributes/VBox/GoalkeeperSection"]
+columns = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+
+[node name="Reflexes" type="Panel" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Reflexes"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Reflexes/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "반사신경"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Reflexes/HBox"]
+text = "82"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Reflexes/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 82.0
+
+[node name="Handling" type="Panel" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Handling"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Handling/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "핸들링"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Handling/HBox"]
+text = "79"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Handling/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 79.0
+
+[node name="AerialAbility" type="Panel" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/AerialAbility"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/AerialAbility/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "공중처리"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/AerialAbility/HBox"]
+text = "75"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/AerialAbility/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 75.0
+
+[node name="CommandOfArea" type="Panel" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/CommandOfArea"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/CommandOfArea/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "영역장악"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/CommandOfArea/HBox"]
+text = "72"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/CommandOfArea/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 72.0
+
+[node name="Communication" type="Panel" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Communication"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Communication/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "소통"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Communication/HBox"]
+text = "68"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Communication/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 68.0
+
+[node name="Kicking" type="Panel" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid"]
+custom_minimum_size = Vector2(500, 60)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Kicking"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_right = -15.0
+
+[node name="Label" type="Label" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Kicking/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "킥스킬"
+theme_override_font_sizes/font_size = 18
+
+[node name="Value" type="Label" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Kicking/HBox"]
+text = "74"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Attributes/VBox/GoalkeeperSection/GoalkeeperGrid/Kicking/HBox"]
+custom_minimum_size = Vector2(180, 25)
+value = 74.0
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/Overview"]
+custom_minimum_size = Vector2(1080, 1000)
+theme_override_constants/separation = 30
+
+[node name="ChartSection" type="VBoxContainer" parent="TabContainer/Overview/VBox"]
+theme_override_constants/separation = 20
+
+[node name="SectionTitle" type="Label" parent="TabContainer/Overview/VBox/ChartSection"]
+text = "능력치 육각형 차트"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="HexagonChart" type="Control" parent="TabContainer/Overview/VBox/ChartSection"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2")
+chart_size = 220.0
+
+[node name="OVRSection" type="Panel" parent="TabContainer/Overview/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/Overview/VBox/OVRSection"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+
+[node name="Label" type="Label" parent="TabContainer/Overview/VBox/OVRSection/VBox"]
+text = "종합 능력치 (OVR)"
+theme_override_font_sizes/font_size = 24
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Overview/VBox/OVRSection/VBox"]
+
+[node name="OVRValue" type="Label" parent="TabContainer/Overview/VBox/OVRSection/VBox/HBox"]
+unique_name_in_owner = true
+text = "65"
+theme_override_font_sizes/font_size = 64
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Overview/VBox/OVRSection/VBox/HBox"]
+custom_minimum_size = Vector2(40, 0)
+
+[node name="Details" type="VBoxContainer" parent="TabContainer/Overview/VBox/OVRSection/VBox/HBox"]
+
+[node name="Potential" type="Label" parent="TabContainer/Overview/VBox/OVRSection/VBox/HBox/Details"]
+unique_name_in_owner = true
+text = "잠재력: 85"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="Growth" type="Label" parent="TabContainer/Overview/VBox/OVRSection/VBox/HBox/Details"]
+unique_name_in_owner = true
+text = "성장률: +12 (이번 학기)"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="ConditionSection" type="Panel" parent="TabContainer/Overview/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/Overview/VBox/ConditionSection"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+
+[node name="Title" type="Label" parent="TabContainer/Overview/VBox/ConditionSection/VBox"]
+text = "컨디션 & 상태"
+theme_override_font_sizes/font_size = 24
+
+[node name="Grid" type="GridContainer" parent="TabContainer/Overview/VBox/ConditionSection/VBox"]
+columns = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 20
+
+[node name="ConditionLabel" type="Label" parent="TabContainer/Overview/VBox/ConditionSection/VBox/Grid"]
+text = "컨디션"
+theme_override_font_sizes/font_size = 20
+
+[node name="ConditionValue" type="HBoxContainer" parent="TabContainer/Overview/VBox/ConditionSection/VBox/Grid"]
+
+[node name="Emoji" type="Label" parent="TabContainer/Overview/VBox/ConditionSection/VBox/Grid/ConditionValue"]
+unique_name_in_owner = true
+text = "😄"
+theme_override_font_sizes/font_size = 32
+
+[node name="ConditionText" type="Label" parent="TabContainer/Overview/VBox/ConditionSection/VBox/Grid/ConditionValue"]
+unique_name_in_owner = true
+text = " 최상 (5/5)"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="FatigueLabel" type="Label" parent="TabContainer/Overview/VBox/ConditionSection/VBox/Grid"]
+text = "피로도"
+theme_override_font_sizes/font_size = 20
+
+[node name="FatigueBar" type="ProgressBar" parent="TabContainer/Overview/VBox/ConditionSection/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 30)
+value = 30.0
+
+[node name="InjuryLabel" type="Label" parent="TabContainer/Overview/VBox/ConditionSection/VBox/Grid"]
+text = "부상"
+theme_override_font_sizes/font_size = 20
+
+[node name="InjuryValue" type="Label" parent="TabContainer/Overview/VBox/ConditionSection/VBox/Grid"]
+unique_name_in_owner = true
+text = "없음"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="Technical" type="ScrollContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/Technical"]
+custom_minimum_size = Vector2(1080, 800)
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="TabContainer/Technical/VBox"]
+text = "기술 능력치"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="StatsContainer" type="VBoxContainer" parent="TabContainer/Technical/VBox"]
+theme_override_constants/separation = 15
+
+[node name="FirstTouch" type="Panel" parent="TabContainer/Technical/VBox/StatsContainer"]
+custom_minimum_size = Vector2(0, 80)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Technical/VBox/StatsContainer/FirstTouch"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_right = -20.0
+
+[node name="Label" type="Label" parent="TabContainer/Technical/VBox/StatsContainer/FirstTouch/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "퍼스트 터치"
+theme_override_font_sizes/font_size = 22
+
+[node name="Value" type="Label" parent="TabContainer/Technical/VBox/StatsContainer/FirstTouch/HBox"]
+text = "72"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Technical/VBox/StatsContainer/FirstTouch/HBox"]
+custom_minimum_size = Vector2(400, 30)
+value = 72.0
+
+[node name="Dribbling" type="Panel" parent="TabContainer/Technical/VBox/StatsContainer"]
+custom_minimum_size = Vector2(0, 80)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Technical/VBox/StatsContainer/Dribbling"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_right = -20.0
+
+[node name="Label" type="Label" parent="TabContainer/Technical/VBox/StatsContainer/Dribbling/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "드리블"
+theme_override_font_sizes/font_size = 22
+
+[node name="Value" type="Label" parent="TabContainer/Technical/VBox/StatsContainer/Dribbling/HBox"]
+text = "68"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Technical/VBox/StatsContainer/Dribbling/HBox"]
+custom_minimum_size = Vector2(400, 30)
+value = 68.0
+
+[node name="Passing" type="Panel" parent="TabContainer/Technical/VBox/StatsContainer"]
+custom_minimum_size = Vector2(0, 80)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Technical/VBox/StatsContainer/Passing"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_right = -20.0
+
+[node name="Label" type="Label" parent="TabContainer/Technical/VBox/StatsContainer/Passing/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "패스"
+theme_override_font_sizes/font_size = 22
+
+[node name="Value" type="Label" parent="TabContainer/Technical/VBox/StatsContainer/Passing/HBox"]
+text = "75"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Technical/VBox/StatsContainer/Passing/HBox"]
+custom_minimum_size = Vector2(400, 30)
+value = 75.0
+
+[node name="Vision" type="Panel" parent="TabContainer/Technical/VBox/StatsContainer"]
+custom_minimum_size = Vector2(0, 80)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Technical/VBox/StatsContainer/Vision"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_right = -20.0
+
+[node name="Label" type="Label" parent="TabContainer/Technical/VBox/StatsContainer/Vision/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "시야"
+theme_override_font_sizes/font_size = 22
+
+[node name="Value" type="Label" parent="TabContainer/Technical/VBox/StatsContainer/Vision/HBox"]
+text = "70"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Technical/VBox/StatsContainer/Vision/HBox"]
+custom_minimum_size = Vector2(400, 30)
+value = 70.0
+
+[node name="Physical" type="ScrollContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/Physical"]
+custom_minimum_size = Vector2(1080, 800)
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="TabContainer/Physical/VBox"]
+text = "신체 능력치"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="StatsContainer" type="VBoxContainer" parent="TabContainer/Physical/VBox"]
+theme_override_constants/separation = 15
+
+[node name="Pace" type="Panel" parent="TabContainer/Physical/VBox/StatsContainer"]
+custom_minimum_size = Vector2(0, 80)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Physical/VBox/StatsContainer/Pace"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_right = -20.0
+
+[node name="Label" type="Label" parent="TabContainer/Physical/VBox/StatsContainer/Pace/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "속도"
+theme_override_font_sizes/font_size = 22
+
+[node name="Value" type="Label" parent="TabContainer/Physical/VBox/StatsContainer/Pace/HBox"]
+text = "78"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Physical/VBox/StatsContainer/Pace/HBox"]
+custom_minimum_size = Vector2(400, 30)
+value = 78.0
+
+[node name="Acceleration" type="Panel" parent="TabContainer/Physical/VBox/StatsContainer"]
+custom_minimum_size = Vector2(0, 80)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Physical/VBox/StatsContainer/Acceleration"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_right = -20.0
+
+[node name="Label" type="Label" parent="TabContainer/Physical/VBox/StatsContainer/Acceleration/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "가속력"
+theme_override_font_sizes/font_size = 22
+
+[node name="Value" type="Label" parent="TabContainer/Physical/VBox/StatsContainer/Acceleration/HBox"]
+text = "75"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Physical/VBox/StatsContainer/Acceleration/HBox"]
+custom_minimum_size = Vector2(400, 30)
+value = 75.0
+
+[node name="Stamina" type="Panel" parent="TabContainer/Physical/VBox/StatsContainer"]
+custom_minimum_size = Vector2(0, 80)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Physical/VBox/StatsContainer/Stamina"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_right = -20.0
+
+[node name="Label" type="Label" parent="TabContainer/Physical/VBox/StatsContainer/Stamina/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "스태미나"
+theme_override_font_sizes/font_size = 22
+
+[node name="Value" type="Label" parent="TabContainer/Physical/VBox/StatsContainer/Stamina/HBox"]
+text = "65"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Physical/VBox/StatsContainer/Stamina/HBox"]
+custom_minimum_size = Vector2(400, 30)
+value = 65.0
+
+[node name="Mental" type="ScrollContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/Mental"]
+custom_minimum_size = Vector2(1080, 800)
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="TabContainer/Mental/VBox"]
+text = "정신 능력치"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="StatsContainer" type="VBoxContainer" parent="TabContainer/Mental/VBox"]
+theme_override_constants/separation = 15
+
+[node name="Composure" type="Panel" parent="TabContainer/Mental/VBox/StatsContainer"]
+custom_minimum_size = Vector2(0, 80)
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Mental/VBox/StatsContainer/Composure"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_right = -20.0
+
+[node name="Label" type="Label" parent="TabContainer/Mental/VBox/StatsContainer/Composure/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "침착성"
+theme_override_font_sizes/font_size = 22
+
+[node name="Value" type="Label" parent="TabContainer/Mental/VBox/StatsContainer/Composure/HBox"]
+text = "62"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+
+[node name="Bar" type="ProgressBar" parent="TabContainer/Mental/VBox/StatsContainer/Composure/HBox"]
+custom_minimum_size = Vector2(400, 30)
+value = 62.0
+
+[node name="Decision" type="Label" parent="TabContainer/Mental/VBox/StatsContainer"]
+custom_minimum_size = Vector2(0, 80)

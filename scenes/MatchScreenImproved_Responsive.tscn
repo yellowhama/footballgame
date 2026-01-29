@@ -1,0 +1,929 @@
+[gd_scene load_steps=4 format=3 uid="uid://responsive_match_001"]
+
+[ext_resource type="Script" path="res://scripts/screens/MatchScreenImproved_Responsive.gd" id="1"]
+[ext_resource type="Theme" path="res://themes/MobileTheme.tres" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/ui/match/TacticalPanel.tscn" id="3"]
+
+[node name="MatchScreenImprovedResponsive" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="MobilePortraitLayout" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="MobilePortraitLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.2, 0.1, 1)
+
+[node name="Header" type="Panel" parent="MobilePortraitLayout"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 120.0
+grow_horizontal = 2
+
+[node name="HBox" type="HBoxContainer" parent="MobilePortraitLayout/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="HomeTeam" type="VBoxContainer" parent="MobilePortraitLayout/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="MobilePortraitLayout/Header/HBox/HomeTeam"]
+layout_mode = 2
+text = "우리 팀"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 0
+
+[node name="Score" type="Label" parent="MobilePortraitLayout/Header/HBox/HomeTeam"]
+layout_mode = 2
+text = "0"
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+horizontal_alignment = 0
+
+[node name="TimeInfo" type="VBoxContainer" parent="MobilePortraitLayout/Header/HBox"]
+layout_mode = 2
+
+[node name="Time" type="Label" parent="MobilePortraitLayout/Header/HBox/TimeInfo"]
+layout_mode = 2
+text = "45'"
+theme_override_font_sizes/font_size = 42
+horizontal_alignment = 1
+
+[node name="Half" type="Label" parent="MobilePortraitLayout/Header/HBox/TimeInfo"]
+layout_mode = 2
+text = "전반"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+horizontal_alignment = 1
+
+[node name="AwayTeam" type="VBoxContainer" parent="MobilePortraitLayout/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="MobilePortraitLayout/Header/HBox/AwayTeam"]
+layout_mode = 2
+text = "상대 팀"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 2
+
+[node name="Score" type="Label" parent="MobilePortraitLayout/Header/HBox/AwayTeam"]
+layout_mode = 2
+text = "0"
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(1, 0.5, 0.5, 1)
+horizontal_alignment = 2
+
+[node name="MainContent" type="VBoxContainer" parent="MobilePortraitLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 120.0
+offset_bottom = -160.0
+offset_left = 16.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="EventsPanel" type="Panel" parent="MobilePortraitLayout/MainContent"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/MainContent/EventsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="MobilePortraitLayout/MainContent/EventsPanel/VBox"]
+layout_mode = 2
+text = "실시간 중계"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MobilePortraitLayout/MainContent/EventsPanel/VBox"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MobilePortraitLayout/MainContent/EventsPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EventsList" type="VBoxContainer" parent="MobilePortraitLayout/MainContent/EventsPanel/VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Event1" type="HBoxContainer" parent="MobilePortraitLayout/MainContent/EventsPanel/VBox/ScrollContainer/EventsList"]
+layout_mode = 2
+
+[node name="Time" type="Label" parent="MobilePortraitLayout/MainContent/EventsPanel/VBox/ScrollContainer/EventsList/Event1"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "45'"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="Icon" type="Label" parent="MobilePortraitLayout/MainContent/EventsPanel/VBox/ScrollContainer/EventsList/Event1"]
+layout_mode = 2
+text = "⚽"
+theme_override_font_sizes/font_size = 28
+
+[node name="Text" type="Label" parent="MobilePortraitLayout/MainContent/EventsPanel/VBox/ScrollContainer/EventsList/Event1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10번 선수 골!"
+theme_override_font_sizes/font_size = 24
+autowrap_mode = 2
+
+[node name="StatsPanel" type="Panel" parent="MobilePortraitLayout/MainContent"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/MainContent/StatsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="MobilePortraitLayout/MainContent/StatsPanel/VBox"]
+layout_mode = 2
+text = "경기 통계"
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MobilePortraitLayout/MainContent/StatsPanel/VBox"]
+layout_mode = 2
+
+[node name="Grid" type="GridContainer" parent="MobilePortraitLayout/MainContent/StatsPanel/VBox"]
+layout_mode = 2
+columns = 2
+theme_override_constants/h_separation = 20
+
+[node name="PossessionLabel" type="Label" parent="MobilePortraitLayout/MainContent/StatsPanel/VBox/Grid"]
+layout_mode = 2
+text = "점유율"
+theme_override_font_sizes/font_size = 20
+
+[node name="PossessionValue" type="Label" parent="MobilePortraitLayout/MainContent/StatsPanel/VBox/Grid"]
+layout_mode = 2
+text = "52% : 48%"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="ShotsLabel" type="Label" parent="MobilePortraitLayout/MainContent/StatsPanel/VBox/Grid"]
+layout_mode = 2
+text = "슈팅"
+theme_override_font_sizes/font_size = 20
+
+[node name="ShotsValue" type="Label" parent="MobilePortraitLayout/MainContent/StatsPanel/VBox/Grid"]
+layout_mode = 2
+text = "8 : 5"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="BottomBar" type="Panel" parent="MobilePortraitLayout"]
+layout_mode = 1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+grow_horizontal = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/BottomBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="TogglesRow" type="GridContainer" parent="MobilePortraitLayout/BottomBar/VBox"]
+layout_mode = 2
+columns = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 4
+
+[node name="TempoGroup" type="VBoxContainer" parent="MobilePortraitLayout/BottomBar/VBox/TogglesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MobilePortraitLayout/BottomBar/VBox/TogglesRow/TempoGroup"]
+layout_mode = 2
+text = "템포"
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="TempoOption" type="OptionButton" parent="MobilePortraitLayout/BottomBar/VBox/TogglesRow/TempoGroup"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 44)
+theme_override_font_sizes/font_size = 18
+
+[node name="PressingGroup" type="VBoxContainer" parent="MobilePortraitLayout/BottomBar/VBox/TogglesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MobilePortraitLayout/BottomBar/VBox/TogglesRow/PressingGroup"]
+layout_mode = 2
+text = "압박"
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="PressingOption" type="OptionButton" parent="MobilePortraitLayout/BottomBar/VBox/TogglesRow/PressingGroup"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 44)
+theme_override_font_sizes/font_size = 18
+
+[node name="BuildUpGroup" type="VBoxContainer" parent="MobilePortraitLayout/BottomBar/VBox/TogglesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MobilePortraitLayout/BottomBar/VBox/TogglesRow/BuildUpGroup"]
+layout_mode = 2
+text = "빌드업"
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="BuildUpOption" type="OptionButton" parent="MobilePortraitLayout/BottomBar/VBox/TogglesRow/BuildUpGroup"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 44)
+theme_override_font_sizes/font_size = 18
+
+[node name="ActionsRow" type="HBoxContainer" parent="MobilePortraitLayout/BottomBar/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="AdvancedButton" type="Button" parent="MobilePortraitLayout/BottomBar/VBox/ActionsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 56)
+text = "고급"
+theme_override_font_sizes/font_size = 22
+
+[node name="SkipButton" type="Button" parent="MobilePortraitLayout/BottomBar/VBox/ActionsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 56)
+text = "⏩ 스킵"
+theme_override_font_sizes/font_size = 22
+
+[node name="TabletHybridLayout" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="TabletHybridLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.2, 0.1, 1)
+
+[node name="Header" type="Panel" parent="TabletHybridLayout"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 120.0
+grow_horizontal = 2
+
+[node name="HBox" type="HBoxContainer" parent="TabletHybridLayout/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="HomeTeam" type="VBoxContainer" parent="TabletHybridLayout/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="TabletHybridLayout/Header/HBox/HomeTeam"]
+layout_mode = 2
+text = "우리 팀"
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 0
+
+[node name="Score" type="Label" parent="TabletHybridLayout/Header/HBox/HomeTeam"]
+layout_mode = 2
+text = "0"
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+horizontal_alignment = 0
+
+[node name="TimeInfo" type="VBoxContainer" parent="TabletHybridLayout/Header/HBox"]
+layout_mode = 2
+
+[node name="Time" type="Label" parent="TabletHybridLayout/Header/HBox/TimeInfo"]
+layout_mode = 2
+text = "45'"
+theme_override_font_sizes/font_size = 46
+horizontal_alignment = 1
+
+[node name="Half" type="Label" parent="TabletHybridLayout/Header/HBox/TimeInfo"]
+layout_mode = 2
+text = "전반"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+horizontal_alignment = 1
+
+[node name="AwayTeam" type="VBoxContainer" parent="TabletHybridLayout/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="TabletHybridLayout/Header/HBox/AwayTeam"]
+layout_mode = 2
+text = "상대 팀"
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 2
+
+[node name="Score" type="Label" parent="TabletHybridLayout/Header/HBox/AwayTeam"]
+layout_mode = 2
+text = "0"
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(1, 0.5, 0.5, 1)
+horizontal_alignment = 2
+
+[node name="MainContent" type="HBoxContainer" parent="TabletHybridLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 120.0
+offset_bottom = -140.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="EventsPanel" type="Panel" parent="TabletHybridLayout/MainContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/MainContent/EventsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="TabletHybridLayout/MainContent/EventsPanel/VBox"]
+layout_mode = 2
+text = "실시간 중계"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="TabletHybridLayout/MainContent/EventsPanel/VBox"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabletHybridLayout/MainContent/EventsPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EventsList" type="VBoxContainer" parent="TabletHybridLayout/MainContent/EventsPanel/VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Event1" type="HBoxContainer" parent="TabletHybridLayout/MainContent/EventsPanel/VBox/ScrollContainer/EventsList"]
+layout_mode = 2
+
+[node name="Time" type="Label" parent="TabletHybridLayout/MainContent/EventsPanel/VBox/ScrollContainer/EventsList/Event1"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "45'"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="Icon" type="Label" parent="TabletHybridLayout/MainContent/EventsPanel/VBox/ScrollContainer/EventsList/Event1"]
+layout_mode = 2
+text = "⚽"
+theme_override_font_sizes/font_size = 24
+
+[node name="Text" type="Label" parent="TabletHybridLayout/MainContent/EventsPanel/VBox/ScrollContainer/EventsList/Event1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10번 선수 골!"
+theme_override_font_sizes/font_size = 22
+autowrap_mode = 2
+
+[node name="StatsPanel" type="Panel" parent="TabletHybridLayout/MainContent"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/MainContent/StatsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="TabletHybridLayout/MainContent/StatsPanel/VBox"]
+layout_mode = 2
+text = "경기 통계"
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="TabletHybridLayout/MainContent/StatsPanel/VBox"]
+layout_mode = 2
+
+[node name="StatsContainer" type="VBoxContainer" parent="TabletHybridLayout/MainContent/StatsPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Possession" type="HBoxContainer" parent="TabletHybridLayout/MainContent/StatsPanel/VBox/StatsContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabletHybridLayout/MainContent/StatsPanel/VBox/StatsContainer/Possession"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "점유율"
+theme_override_font_sizes/font_size = 22
+
+[node name="Value" type="Label" parent="TabletHybridLayout/MainContent/StatsPanel/VBox/StatsContainer/Possession"]
+layout_mode = 2
+text = "52% : 48%"
+theme_override_font_sizes/font_size = 22
+
+[node name="BottomBar" type="Panel" parent="TabletHybridLayout"]
+layout_mode = 1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -180.0
+grow_horizontal = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/BottomBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="TogglesRow" type="HBoxContainer" parent="TabletHybridLayout/BottomBar/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TempoGroup" type="VBoxContainer" parent="TabletHybridLayout/BottomBar/VBox/TogglesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabletHybridLayout/BottomBar/VBox/TogglesRow/TempoGroup"]
+layout_mode = 2
+text = "템포"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="TempoOption" type="OptionButton" parent="TabletHybridLayout/BottomBar/VBox/TogglesRow/TempoGroup"]
+layout_mode = 2
+custom_minimum_size = Vector2(160, 52)
+theme_override_font_sizes/font_size = 20
+
+[node name="PressingGroup" type="VBoxContainer" parent="TabletHybridLayout/BottomBar/VBox/TogglesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabletHybridLayout/BottomBar/VBox/TogglesRow/PressingGroup"]
+layout_mode = 2
+text = "압박"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="PressingOption" type="OptionButton" parent="TabletHybridLayout/BottomBar/VBox/TogglesRow/PressingGroup"]
+layout_mode = 2
+custom_minimum_size = Vector2(160, 52)
+theme_override_font_sizes/font_size = 20
+
+[node name="BuildUpGroup" type="VBoxContainer" parent="TabletHybridLayout/BottomBar/VBox/TogglesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabletHybridLayout/BottomBar/VBox/TogglesRow/BuildUpGroup"]
+layout_mode = 2
+text = "빌드업"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="BuildUpOption" type="OptionButton" parent="TabletHybridLayout/BottomBar/VBox/TogglesRow/BuildUpGroup"]
+layout_mode = 2
+custom_minimum_size = Vector2(160, 52)
+theme_override_font_sizes/font_size = 20
+
+[node name="ActionsRow" type="HBoxContainer" parent="TabletHybridLayout/BottomBar/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="AdvancedButton" type="Button" parent="TabletHybridLayout/BottomBar/VBox/ActionsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 60)
+text = "고급"
+theme_override_font_sizes/font_size = 22
+
+[node name="SkipButton" type="Button" parent="TabletHybridLayout/BottomBar/VBox/ActionsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 60)
+text = "⏩ 스킵"
+theme_override_font_sizes/font_size = 22
+
+[node name="DesktopLandscapeLayout" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="DesktopLandscapeLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.2, 0.1, 1)
+
+[node name="Header" type="Panel" parent="DesktopLandscapeLayout"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="HBox" type="HBoxContainer" parent="DesktopLandscapeLayout/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="HomeTeam" type="VBoxContainer" parent="DesktopLandscapeLayout/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="DesktopLandscapeLayout/Header/HBox/HomeTeam"]
+layout_mode = 2
+text = "우리 팀"
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 0
+
+[node name="Score" type="Label" parent="DesktopLandscapeLayout/Header/HBox/HomeTeam"]
+layout_mode = 2
+text = "0"
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+horizontal_alignment = 0
+
+[node name="TimeInfo" type="VBoxContainer" parent="DesktopLandscapeLayout/Header/HBox"]
+layout_mode = 2
+
+[node name="Time" type="Label" parent="DesktopLandscapeLayout/Header/HBox/TimeInfo"]
+layout_mode = 2
+text = "45'"
+theme_override_font_sizes/font_size = 42
+horizontal_alignment = 1
+
+[node name="Half" type="Label" parent="DesktopLandscapeLayout/Header/HBox/TimeInfo"]
+layout_mode = 2
+text = "전반"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+horizontal_alignment = 1
+
+[node name="AwayTeam" type="VBoxContainer" parent="DesktopLandscapeLayout/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="DesktopLandscapeLayout/Header/HBox/AwayTeam"]
+layout_mode = 2
+text = "상대 팀"
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 2
+
+[node name="Score" type="Label" parent="DesktopLandscapeLayout/Header/HBox/AwayTeam"]
+layout_mode = 2
+text = "0"
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(1, 0.5, 0.5, 1)
+horizontal_alignment = 2
+
+[node name="MainContent" type="HBoxContainer" parent="DesktopLandscapeLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 100.0
+offset_bottom = -140.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="FieldPanel" type="Panel" parent="DesktopLandscapeLayout/MainContent"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="Field" type="Control" parent="DesktopLandscapeLayout/MainContent/FieldPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FieldRect" type="ColorRect" parent="DesktopLandscapeLayout/MainContent/FieldPanel/Field"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.6, 0.2, 1)
+
+[node name="CenterLine" type="ColorRect" parent="DesktopLandscapeLayout/MainContent/FieldPanel/Field"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = 2.0
+grow_vertical = 2
+color = Color(1, 1, 1, 0.8)
+
+[node name="Ball" type="Label" parent="DesktopLandscapeLayout/MainContent/FieldPanel/Field"]
+offset_left = 280.0
+offset_top = 200.0
+text = "⚽"
+theme_override_font_sizes/font_size = 32
+
+[node name="RightPanel" type="VBoxContainer" parent="DesktopLandscapeLayout/MainContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="EventsPanel" type="Panel" parent="DesktopLandscapeLayout/MainContent/RightPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/MainContent/RightPanel/EventsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="DesktopLandscapeLayout/MainContent/RightPanel/EventsPanel/VBox"]
+layout_mode = 2
+text = "실시간 중계"
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="DesktopLandscapeLayout/MainContent/RightPanel/EventsPanel/VBox"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DesktopLandscapeLayout/MainContent/RightPanel/EventsPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EventsList" type="VBoxContainer" parent="DesktopLandscapeLayout/MainContent/RightPanel/EventsPanel/VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Event1" type="HBoxContainer" parent="DesktopLandscapeLayout/MainContent/RightPanel/EventsPanel/VBox/ScrollContainer/EventsList"]
+layout_mode = 2
+
+[node name="Time" type="Label" parent="DesktopLandscapeLayout/MainContent/RightPanel/EventsPanel/VBox/ScrollContainer/EventsList/Event1"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "45'"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="Icon" type="Label" parent="DesktopLandscapeLayout/MainContent/RightPanel/EventsPanel/VBox/ScrollContainer/EventsList/Event1"]
+layout_mode = 2
+text = "⚽"
+theme_override_font_sizes/font_size = 22
+
+[node name="Text" type="Label" parent="DesktopLandscapeLayout/MainContent/RightPanel/EventsPanel/VBox/ScrollContainer/EventsList/Event1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10번 선수 골!"
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 2
+
+[node name="StatsPanel" type="Panel" parent="DesktopLandscapeLayout/MainContent/RightPanel"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/MainContent/RightPanel/StatsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="DesktopLandscapeLayout/MainContent/RightPanel/StatsPanel/VBox"]
+layout_mode = 2
+text = "경기 통계"
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="DesktopLandscapeLayout/MainContent/RightPanel/StatsPanel/VBox"]
+layout_mode = 2
+
+[node name="StatsGrid" type="GridContainer" parent="DesktopLandscapeLayout/MainContent/RightPanel/StatsPanel/VBox"]
+layout_mode = 2
+columns = 2
+theme_override_constants/h_separation = 16
+
+[node name="PossessionLabel" type="Label" parent="DesktopLandscapeLayout/MainContent/RightPanel/StatsPanel/VBox/StatsGrid"]
+layout_mode = 2
+text = "점유율"
+theme_override_font_sizes/font_size = 20
+
+[node name="PossessionValue" type="Label" parent="DesktopLandscapeLayout/MainContent/RightPanel/StatsPanel/VBox/StatsGrid"]
+layout_mode = 2
+text = "52% : 48%"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="BottomBar" type="Panel" parent="DesktopLandscapeLayout"]
+layout_mode = 1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -180.0
+grow_horizontal = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/BottomBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="TogglesRow" type="HBoxContainer" parent="DesktopLandscapeLayout/BottomBar/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TempoGroup" type="VBoxContainer" parent="DesktopLandscapeLayout/BottomBar/VBox/TogglesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="DesktopLandscapeLayout/BottomBar/VBox/TogglesRow/TempoGroup"]
+layout_mode = 2
+text = "템포"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="TempoOption" type="OptionButton" parent="DesktopLandscapeLayout/BottomBar/VBox/TogglesRow/TempoGroup"]
+layout_mode = 2
+custom_minimum_size = Vector2(160, 52)
+theme_override_font_sizes/font_size = 20
+
+[node name="PressingGroup" type="VBoxContainer" parent="DesktopLandscapeLayout/BottomBar/VBox/TogglesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="DesktopLandscapeLayout/BottomBar/VBox/TogglesRow/PressingGroup"]
+layout_mode = 2
+text = "압박"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="PressingOption" type="OptionButton" parent="DesktopLandscapeLayout/BottomBar/VBox/TogglesRow/PressingGroup"]
+layout_mode = 2
+custom_minimum_size = Vector2(160, 52)
+theme_override_font_sizes/font_size = 20
+
+[node name="BuildUpGroup" type="VBoxContainer" parent="DesktopLandscapeLayout/BottomBar/VBox/TogglesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="DesktopLandscapeLayout/BottomBar/VBox/TogglesRow/BuildUpGroup"]
+layout_mode = 2
+text = "빌드업"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="BuildUpOption" type="OptionButton" parent="DesktopLandscapeLayout/BottomBar/VBox/TogglesRow/BuildUpGroup"]
+layout_mode = 2
+custom_minimum_size = Vector2(160, 52)
+theme_override_font_sizes/font_size = 20
+
+[node name="ActionsRow" type="HBoxContainer" parent="DesktopLandscapeLayout/BottomBar/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="AdvancedButton" type="Button" parent="DesktopLandscapeLayout/BottomBar/VBox/ActionsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 60)
+text = "고급"
+theme_override_font_sizes/font_size = 22
+
+[node name="SkipButton" type="Button" parent="DesktopLandscapeLayout/BottomBar/VBox/ActionsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 60)
+text = "⏩ 스킵"
+theme_override_font_sizes/font_size = 22
+
+[node name="PopupLayer" type="CanvasLayer" parent="."]
+
+[node name="TacticalPanel" parent="PopupLayer" instance=ExtResource("3")]

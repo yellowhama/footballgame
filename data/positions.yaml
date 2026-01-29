@@ -1,0 +1,85 @@
+meta:
+  file: "positions.yaml"
+  version: "0.3"
+  note: "모바일 최적화 역할별 가중치(Tier1~4). 약발은 경기 어댑터에서 패널티"
+
+weights:
+  # 공통 가중치 사전
+  T1: 1.00
+  T2: 0.70
+  T3: 0.40
+  T4: 0.20
+
+roles:
+  ST:
+    name: "스트라이커"
+    tiers:
+      T1: [Acceleration, Finishing, Composure, OffBall]
+      T2: [Pace, FirstTouch, Strength, Heading]
+      T3: [Agility, Anticipation, Dribbling, Jumping]
+      T4: [Concentration, Vision, LongShots, Passing, WeakFootUI]
+    notes: "골 결정력과 박스 내 움직임 중심"
+
+  AMCM:
+    name: "공격형/중앙 미드필더"
+    tiers:
+      T1: [Decisions, Vision, Passing, Stamina]
+      T2: [FirstTouch, Agility, Acceleration, Composure]
+      T3: [Anticipation, Positioning, WorkRate, Strength]
+      T4: [Dribbling, LongShots, WeakFootUI, Teamwork]
+    notes: "창의적 플레이메이킹과 지구력"
+
+  DMCB:
+    name: "수비형 미드/센터백"
+    tiers:
+      T1: [Decisions, Positioning, Marking, Strength]
+      T2: [Jumping, Heading, Acceleration, Tackling]
+      T3: [Anticipation, Concentration, Pace]
+      T4: [Composure, Passing, Balance]
+    notes: "수비 위치 선정과 1v1 능력"
+
+  FBWB:
+    name: "풀백/윙백"
+    tiers:
+      T1: [Pace, Stamina, Acceleration, Decisions]
+      T2: [Agility, Positioning, Tackling, Crossing]
+      T3: [Marking, Strength, WorkRate, FirstTouch]
+      T4: [Composure, Vision, WeakFootUI]
+    notes: "측면 공수 전환과 체력"
+
+rating:
+  # 역할 점수 계산식: 티어별 평균 후 가중합
+  formula: |
+    role_score =
+      T1 * avg(stats[T1]) +
+      T2 * avg(stats[T2]) +
+      T3 * avg(stats[T3]) +
+      T4 * avg(stats[T4])
+
+  scale: "1-20"  # UI 표시 스케일
+
+  # 약발 패널티는 별도 적용
+  action_modifiers:
+    shot:  "apply_foot_penalty('shot', used_left, foot_ctx, base)"
+    pass:  "apply_foot_penalty('pass', used_left, foot_ctx, base)"
+    cross: "apply_foot_penalty('cross', used_left, foot_ctx, base)"
+
+# 포지션 전환 시 적응도
+adaptation:
+  # 포지션 간 거리 (0=동일, 1=완전 다름)
+  distances:
+    ST_to_AMCM: 0.3
+    ST_to_DMCB: 0.7
+    ST_to_FBWB: 0.8
+    AMCM_to_ST: 0.3
+    AMCM_to_DMCB: 0.4
+    AMCM_to_FBWB: 0.5
+    DMCB_to_ST: 0.7
+    DMCB_to_AMCM: 0.4
+    DMCB_to_FBWB: 0.3
+    FBWB_to_ST: 0.8
+    FBWB_to_AMCM: 0.5
+    FBWB_to_DMCB: 0.3
+
+  # versatile trait 보유 시 거리 감소율
+  versatile_reduction: 0.4  # 40% 감소

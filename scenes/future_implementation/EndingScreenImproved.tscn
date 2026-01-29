@@ -1,0 +1,353 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/screens/EndingScreenImproved.gd" id="1"]
+[ext_resource type="Theme" path="res://themes/MobileTheme.tres" id="2"]
+
+[node name="EndingScreenImproved" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.05, 0.08, 1)
+
+[node name="ConfettiLayer" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Confetti1" type="Label" parent="ConfettiLayer"]
+visible = false
+offset_left = 100.0
+offset_top = -50.0
+text = "🎊"
+theme_override_font_sizes/font_size = 48
+
+[node name="Confetti2" type="Label" parent="ConfettiLayer"]
+visible = false
+offset_left = 500.0
+offset_top = -50.0
+text = "🎉"
+theme_override_font_sizes/font_size = 48
+
+[node name="Confetti3" type="Label" parent="ConfettiLayer"]
+visible = false
+offset_left = 900.0
+offset_top = -50.0
+text = "✨"
+theme_override_font_sizes/font_size = 48
+
+[node name="Confetti4" type="Label" parent="ConfettiLayer"]
+visible = false
+offset_left = 300.0
+offset_top = -50.0
+text = "🎊"
+theme_override_font_sizes/font_size = 48
+
+[node name="Confetti5" type="Label" parent="ConfettiLayer"]
+visible = false
+offset_left = 700.0
+offset_top = -50.0
+text = "🎉"
+theme_override_font_sizes/font_size = 48
+
+[node name="Header" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 200)
+anchor_right = 1.0
+offset_bottom = 200.0
+
+[node name="VBox" type="VBoxContainer" parent="Header"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = -40.0
+margin_bottom = -40.0
+
+[node name="EndingType" type="Label" parent="Header/VBox"]
+text = "프로 선수의 길"
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+horizontal_alignment = 1
+
+[node name="EndingTitle" type="Label" parent="Header/VBox"]
+text = "⚽ 축구 인생 3년의 여정 ⚽"
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="EndingSubtitle" type="Label" parent="Header/VBox"]
+text = "당신은 최고의 선수가 되었습니다!"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+horizontal_alignment = 1
+
+[node name="MainContent" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 200.0
+offset_bottom = -120.0
+margin_left = 40.0
+margin_right = -40.0
+theme_override_constants/separation = 40
+
+[node name="LeftPanel" type="VBoxContainer" parent="MainContent"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="CharacterCard" type="Panel" parent="MainContent/LeftPanel"]
+custom_minimum_size = Vector2(0, 400)
+
+[node name="VBox" type="VBoxContainer" parent="MainContent/LeftPanel/CharacterCard"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = -30.0
+
+[node name="CharacterImage" type="Label" parent="MainContent/LeftPanel/CharacterCard/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "🏃"
+theme_override_font_sizes/font_size = 128
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerName" type="Label" parent="MainContent/LeftPanel/CharacterCard/VBox"]
+text = "김민수"
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+
+[node name="Position" type="Label" parent="MainContent/LeftPanel/CharacterCard/VBox"]
+text = "공격수 (ST)"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+horizontal_alignment = 1
+
+[node name="FinalStats" type="Panel" parent="MainContent/LeftPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="MainContent/LeftPanel/FinalStats"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = -30.0
+
+[node name="Title" type="Label" parent="MainContent/LeftPanel/FinalStats/VBox"]
+text = "최종 능력치"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MainContent/LeftPanel/FinalStats/VBox"]
+
+[node name="StatsGrid" type="GridContainer" parent="MainContent/LeftPanel/FinalStats/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[node name="Stat1Label" type="Label" parent="MainContent/LeftPanel/FinalStats/VBox/StatsGrid"]
+text = "드리블"
+theme_override_font_sizes/font_size = 20
+
+[node name="Stat1Value" type="Label" parent="MainContent/LeftPanel/FinalStats/VBox/StatsGrid"]
+text = "85"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+horizontal_alignment = 2
+
+[node name="Stat2Label" type="Label" parent="MainContent/LeftPanel/FinalStats/VBox/StatsGrid"]
+text = "패스"
+theme_override_font_sizes/font_size = 20
+
+[node name="Stat2Value" type="Label" parent="MainContent/LeftPanel/FinalStats/VBox/StatsGrid"]
+text = "90"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+horizontal_alignment = 2
+
+[node name="Stat3Label" type="Label" parent="MainContent/LeftPanel/FinalStats/VBox/StatsGrid"]
+text = "골결정력"
+theme_override_font_sizes/font_size = 20
+
+[node name="Stat3Value" type="Label" parent="MainContent/LeftPanel/FinalStats/VBox/StatsGrid"]
+text = "88"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+horizontal_alignment = 2
+
+[node name="Stat4Label" type="Label" parent="MainContent/LeftPanel/FinalStats/VBox/StatsGrid"]
+text = "체력"
+theme_override_font_sizes/font_size = 20
+
+[node name="Stat4Value" type="Label" parent="MainContent/LeftPanel/FinalStats/VBox/StatsGrid"]
+text = "75"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+horizontal_alignment = 2
+
+[node name="RightPanel" type="VBoxContainer" parent="MainContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="EndingStory" type="Panel" parent="MainContent/RightPanel"]
+custom_minimum_size = Vector2(0, 500)
+
+[node name="VBox" type="VBoxContainer" parent="MainContent/RightPanel/EndingStory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = -30.0
+
+[node name="StoryTitle" type="Label" parent="MainContent/RightPanel/EndingStory/VBox"]
+text = "당신의 이야기"
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MainContent/RightPanel/EndingStory/VBox"]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainContent/RightPanel/EndingStory/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StoryText" type="RichTextLabel" parent="MainContent/RightPanel/EndingStory/VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]3년간의 고등학교 생활을 마친 당신.[/center]
+
+수많은 훈련과 경기를 통해 성장한 당신은 이제 프로의 문턱에 서있습니다.
+
+[color=yellow]⭐ 주요 업적[/color]
+• 전국대회 우승 🏆
+• 최우수 선수상 수상
+• 프로팀 스카우트 제의 3건
+
+당신의 노력과 열정은 많은 사람들에게 영감을 주었고, 이제 더 큰 무대가 당신을 기다리고 있습니다.
+
+[color=cyan]미래가 밝습니다![/color]"
+fit_content = true
+
+[node name="AchievementsPanel" type="Panel" parent="MainContent/RightPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="MainContent/RightPanel/AchievementsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = -30.0
+
+[node name="Title" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox"]
+text = "달성한 업적"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MainContent/RightPanel/AchievementsPanel/VBox"]
+
+[node name="AchievementsList" type="VBoxContainer" parent="MainContent/RightPanel/AchievementsPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Achievement1" type="HBoxContainer" parent="MainContent/RightPanel/AchievementsPanel/VBox/AchievementsList"]
+
+[node name="Icon" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox/AchievementsList/Achievement1"]
+text = "🏆"
+theme_override_font_sizes/font_size = 32
+
+[node name="Text" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox/AchievementsList/Achievement1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "전국 챔피언"
+theme_override_font_sizes/font_size = 20
+
+[node name="Achievement2" type="HBoxContainer" parent="MainContent/RightPanel/AchievementsPanel/VBox/AchievementsList"]
+
+[node name="Icon" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox/AchievementsList/Achievement2"]
+text = "⭐"
+theme_override_font_sizes/font_size = 32
+
+[node name="Text" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox/AchievementsList/Achievement2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MVP 3회"
+theme_override_font_sizes/font_size = 20
+
+[node name="Achievement3" type="HBoxContainer" parent="MainContent/RightPanel/AchievementsPanel/VBox/AchievementsList"]
+
+[node name="Icon" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox/AchievementsList/Achievement3"]
+text = "🎯"
+theme_override_font_sizes/font_size = 32
+
+[node name="Text" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox/AchievementsList/Achievement3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "득점왕"
+theme_override_font_sizes/font_size = 20
+
+[node name="EndingVariants" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ProEnding" type="Control" parent="EndingVariants"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="NormalEnding" type="Control" parent="EndingVariants"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="RetirementEnding" type="Control" parent="EndingVariants"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="InjuryEnding" type="Control" parent="EndingVariants"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AcademicEnding" type="Control" parent="EndingVariants"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BottomBar" type="Panel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+
+[node name="HBox" type="HBoxContainer" parent="BottomBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_right = -40.0
+alignment = 1
+theme_override_constants/separation = 40
+
+[node name="RestartButton" type="Button" parent="BottomBar/HBox"]
+custom_minimum_size = Vector2(250, 70)
+text = "🔄 새 게임"
+theme_override_font_sizes/font_size = 28
+
+[node name="GalleryButton" type="Button" parent="BottomBar/HBox"]
+custom_minimum_size = Vector2(250, 70)
+text = "🖼️ 갤러리"
+theme_override_font_sizes/font_size = 28
+
+[node name="MainMenuButton" type="Button" parent="BottomBar/HBox"]
+custom_minimum_size = Vector2(250, 70)
+text = "🏠 메인 메뉴"
+theme_override_font_sizes/font_size = 28

@@ -1,0 +1,19 @@
+{
+	"id": "balanced_4_2_3_1",
+	"name": "Balanced 4-2-3-1",
+	"description": "Versatile formation with balanced attack and defense.",
+	"formation": "4-2-3-1",
+	"tactical_parameters": {
+		"attacking_intensity": 0.5,
+		"defensive_line_height": 0.5,
+		"width": 0.5,
+		"pressing_trigger": 0.5,
+		"tempo": 0.5,
+		"directness": 0.5
+	},
+	"tags": [
+		"balanced",
+		"versatile",
+		"4231"
+	]
+}

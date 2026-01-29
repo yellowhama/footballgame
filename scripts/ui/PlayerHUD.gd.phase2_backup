@@ -1,0 +1,205 @@
+extends Control
+
+# ========== Career Player Mode: PlayerHUD ==========
+# On-ball action buttons for controlled player
+# Connects to MatchSimulationManager.send_user_command()
+
+# ========== Exports ==========
+@export var controlled_track_id: int = 9
+@export var controlled_side: String = "home"
+@export var match_id: String = "session_001"
+
+# ========== UI Lock ==========
+var _input_locked_until_ms: int = 0
+const INPUT_LOCK_MS := 300  # Client-side spam prevention
+
+# ========== State ==========
+var _is_on_ball: bool = false
+var _ball_owner_track_id: int = -1
+var _suggested_targets: Array[int] = []
+
+# ========== Node References ==========
+@onready var panel_container: PanelContainer = $PanelContainer
+@onready var btn_pass: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxActions/BtnPass
+@onready var btn_shoot: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxActions/BtnShoot
+@onready var btn_carry: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxActions/BtnCarry
+@onready var btn_takeon: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxActions/BtnTakeOn
+@onready var btn_hold: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxActions/BtnHold
+
+@onready var hbox_situational: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/HBoxSituational
+@onready var btn_through: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxSituational/BtnThrough
+@onready var btn_cross: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxSituational/BtnCross
+@onready var btn_chip: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxSituational/BtnChip
+
+@onready var hbox_targets: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/HBoxTargets
+@onready var btn_target0: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxTargets/BtnTarget0
+@onready var btn_target1: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxTargets/BtnTarget1
+@onready var btn_target2: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxTargets/BtnTarget2
+
+@onready var label_debug: Label = $PanelContainer/MarginContainer/VBoxContainer/LabelDebug
+
+# ========== Initialization ==========
+func _ready() -> void:
+	# Connect to UnifiedFramePipeline (single snapshot source)
+	var pipeline = get_node_or_null("/root/UnifiedFramePipeline")
+	if pipeline and pipeline.has_signal("snapshot_ready"):
+		pipeline.snapshot_ready.connect(_on_unified_snapshot)
+	else:
+		print("[PlayerHUD] WARNING: UnifiedFramePipeline not found")
+
+	_wire_buttons()
+	_set_enabled(false)
+
+	# Hide situational/target buttons (MVP - Phase 3)
+	hbox_situational.visible = false
+	hbox_targets.visible = false
+
+func _wire_buttons() -> void:
+	# Basic actions
+	btn_pass.pressed.connect(func(): _send_action("pass"))
+	btn_shoot.pressed.connect(func(): _send_action("shoot"))
+	btn_carry.pressed.connect(func(): _send_action("carry"))
+	btn_takeon.pressed.connect(func(): _send_action("take_on"))
+	btn_hold.pressed.connect(func(): _send_action("hold"))
+
+	# Situational (Phase 3)
+	btn_through.pressed.connect(func(): _send_action("pass", {"variant": "through"}))
+	btn_cross.pressed.connect(func(): _send_action("pass", {"variant": "cross"}))
+	btn_chip.pressed.connect(func(): _send_action("pass", {"variant": "chip"}))
+
+	# Targets (Phase 3)
+	btn_target0.pressed.connect(func(): _send_pass_to_target(0))
+	btn_target1.pressed.connect(func(): _send_pass_to_target(1))
+	btn_target2.pressed.connect(func(): _send_pass_to_target(2))
+
+# ========== Snapshot Handler ==========
+func _on_unified_snapshot(_t_ms: int, snapshot: Dictionary) -> void:
+	# Extract ball owner from snapshot
+	_ball_owner_track_id = _extract_ball_owner_track_id(snapshot)
+	_is_on_ball = (_ball_owner_track_id == controlled_track_id)
+
+	# Enable/disable buttons based on on-ball status and input lock
+	var can_act = _is_on_ball and not _is_input_locked()
+	_set_enabled(can_act)
+
+	# Update situational buttons (Phase 3 - currently hidden)
+	if _is_on_ball:
+		_update_situational_buttons(snapshot)
+
+	# Update debug label
+	var lock_status = ""
+	if _is_input_locked():
+		var remaining = get_remaining_lock_time()
+		lock_status = " | LOCKED (%.2fs)" % remaining
+
+	label_debug.text = "Owner: %d | Me: %d | On-ball: %s%s" % [
+		_ball_owner_track_id,
+		controlled_track_id,
+		str(_is_on_ball),
+		lock_status
+	]
+
+func _extract_ball_owner_track_id(snapshot: Dictionary) -> int:
+	# Try multiple keys (ball_owner_track_id, ball_owner_idx)
+	if snapshot.has("ball_owner_track_id"):
+		return int(snapshot["ball_owner_track_id"])
+	elif snapshot.has("ball_owner_idx"):
+		return int(snapshot["ball_owner_idx"])
+
+	# Fallback: check players array
+	if snapshot.has("players") and snapshot["players"] is Array:
+		var players = snapshot["players"]
+		for p in players:
+			if p is Dictionary and p.has("has_ball") and p["has_ball"]:
+				if p.has("track_id"):
+					return int(p["track_id"])
+
+	return -1
+
+# ========== User Command Sending ==========
+func _send_action(action: String, extra := {}) -> void:
+	if not _is_on_ball:
+		print("[PlayerHUD] Cannot send action: not on ball")
+		return
+
+	if _is_input_locked():
+		print("[PlayerHUD] Cannot send action: input locked")
+		return
+
+	# Lock input (client-side spam prevention)
+	_lock_input()
+
+	# Build user_command payload
+	var payload := {
+		"cmd": "on_ball_action",
+		"action": action
+	}
+
+	# Merge extra parameters (variant, target_track_id)
+	for key in extra.keys():
+		payload[key] = extra[key]
+
+	# Build full command
+	var cmd := {
+		"mode": "career_player",
+		"match_id": match_id,
+		"side": controlled_side,
+		"controlled_track_id": controlled_track_id,
+		"payload": payload
+	}
+
+	# Send via MatchSimulationManager
+	var manager = get_node_or_null("/root/MatchSimulationManager")
+	if manager and manager.has_method("send_user_command"):
+		manager.send_user_command(cmd)
+		print("[PlayerHUD] Sent command: %s" % action)
+	else:
+		print("[PlayerHUD] ERROR: MatchSimulationManager not found or missing method")
+
+func _send_pass_to_target(target_index: int) -> void:
+	if target_index >= _suggested_targets.size():
+		print("[PlayerHUD] Invalid target index: %d" % target_index)
+		return
+
+	var target_track_id = _suggested_targets[target_index]
+	_send_action("pass", {"target_track_id": target_track_id})
+
+# ========== Input Lock Helpers ==========
+func _is_input_locked() -> bool:
+	return Time.get_ticks_msec() < _input_locked_until_ms
+
+func _lock_input() -> void:
+	_input_locked_until_ms = Time.get_ticks_msec() + INPUT_LOCK_MS
+
+func get_remaining_lock_time() -> float:
+	if not _is_input_locked():
+		return 0.0
+	var now_ms = Time.get_ticks_msec()
+	return max(0.0, (_input_locked_until_ms - now_ms) / 1000.0)
+
+# ========== UI State Management ==========
+func _set_enabled(enabled: bool) -> void:
+	btn_pass.disabled = not enabled
+	btn_shoot.disabled = not enabled
+	btn_carry.disabled = not enabled
+	btn_takeon.disabled = not enabled
+	btn_hold.disabled = not enabled
+
+func _update_situational_buttons(snapshot: Dictionary) -> void:
+	# MVP: Hide all situational buttons (Phase 3)
+	hbox_situational.visible = false
+	hbox_targets.visible = false
+
+	# Phase 3 implementation:
+	# - Analyze snapshot position to determine if through/cross/chip are available
+	# - Extract suggested pass targets from snapshot
+	# - Show/hide buttons accordingly
+
+# ========== Process (Optional) ==========
+func _process(_delta: float) -> void:
+	# Auto-unlock check (redundant with _on_unified_snapshot, but ensures UI consistency)
+	if _is_input_locked():
+		if Time.get_ticks_msec() >= _input_locked_until_ms:
+			# Lock expired - re-enable buttons if on ball
+			if _is_on_ball:
+				_set_enabled(true)

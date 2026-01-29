@@ -1,0 +1,430 @@
+# IFAB Laws of the Game 2025/26 - Laws 9, 10, 13-17
+# Source: IFAB Laws of the Game 2025/26 PDF
+# Rule-as-Data: Ball in/out, Goal, Restarts
+
+# =============================================================================
+# Law 9 - Ball In and Out of Play
+# =============================================================================
+law_09_ball_in_out:
+  rule_id: "LAW_09_BALL_IN_OUT"
+  law_number: 9
+  ifab_ref: "Law 9 – The Ball in and out of Play"
+  name: "볼 인플레이와 아웃오브플레이"
+  name_en: "The Ball in and out of Play"
+  summary: "공은 라인을 '완전히' 넘어야 아웃이다. 일부가 걸쳐 있으면 인플레이."
+  summary_en: "The ball is out of play only when it has wholly passed over the goal line or touchline."
+
+  # 아웃오브플레이 조건
+  conditions_out:
+    - id: "WHOLLY_OVER_TOUCHLINE"
+      name: "터치라인 완전 통과"
+      name_en: "Wholly over touchline"
+      description: "공 전체가 터치라인을 완전히 넘어감"
+      description_en: "The whole of the ball passes over the touchline"
+    - id: "WHOLLY_OVER_GOAL_LINE"
+      name: "골라인 완전 통과"
+      name_en: "Wholly over goal line"
+      description: "공 전체가 골라인을 완전히 넘어감 (골 여부와 무관)"
+      description_en: "The whole of the ball passes over the goal line"
+    - id: "REFEREE_STOPPED"
+      name: "심판 중단"
+      name_en: "Referee stopped play"
+      description: "심판이 플레이를 중단함"
+      description_en: "Play has been stopped by the referee"
+
+  # 인플레이 조건
+  conditions_in:
+    - id: "BALL_ON_LINE"
+      name: "라인에 걸침"
+      name_en: "Ball on the line"
+      description: "공이 라인에 걸쳐 있으면 아직 인플레이"
+      description_en: "If the ball is touching the line, it is still in play"
+    - id: "REBOUNDS_FROM_OBJECTS"
+      name: "골대/심판에 맞고 튀어나옴"
+      name_en: "Rebounds from goal frame/referee"
+      description: "골대, 크로스바, 코너플래그, 심판에 맞고 튀어나와도 인플레이"
+      description_en: "Ball rebounds from goal frame, corner flag, or match official and stays in field"
+
+  # 엔진 불변식
+  engine_invariants:
+    - "BallOutOfPlay iff (ball_wholly_over_touchline OR ball_wholly_over_goal_line OR referee_stopped_play)"
+    - "공 중심점 기준 X - 공의 반지름 포함해서 '전체가 넘었는지' 판단"
+    - "OutOfPlay 결과에서 RestartType 결정 (ThrowIn/GoalKick/Corner)"
+
+  ci_gates:
+    - name: "gate_ball_out_requires_wholly_over_line"
+      description: "공이 라인에 걸쳐있을 때 OutOfPlay가 발생하면 실패"
+    - name: "gate_out_of_play_restart_consistency"
+      description: "같은 위치/마지막 터치 조건에서 restart type이 변하면 실패(결정론)"
+
+  related_rules:
+    - "law_13_free_kick"
+    - "law_15_throw_in"
+    - "law_16_goal_kick"
+    - "law_17_corner_kick"
+
+  explanation_templates:
+    out_touchline:
+      template: "공이 터치라인을 완전히 넘어갔습니다. 마지막 터치: {last_touch_team}"
+      template_en: "Ball wholly crossed the touchline. Last touch: {last_touch_team}"
+    out_goal_line:
+      template: "공이 골라인을 완전히 넘어갔습니다. 마지막 터치: {last_touch_team}"
+      template_en: "Ball wholly crossed the goal line. Last touch: {last_touch_team}"
+    still_in_play:
+      template: "공이 라인에 걸쳐 있어 아직 인플레이입니다."
+      template_en: "Ball is touching the line - still in play."
+
+# =============================================================================
+# Law 10 - Determining the Outcome of a Match (Goal)
+# =============================================================================
+law_10_goal:
+  rule_id: "LAW_10_GOAL"
+  law_number: 10
+  ifab_ref: "Law 10 – Determining the Outcome of a Match"
+  name: "골 판정"
+  name_en: "Determining the Outcome of a Match"
+  summary: "공이 골라인을 완전히 통과해야 골이다. 직전 반칙이 있으면 골이 취소될 수 있다."
+  summary_en: "A goal is scored when the whole of the ball passes over the goal line, between the goalposts and under the crossbar."
+
+  # 골 인정 조건
+  conditions_goal:
+    - id: "WHOLLY_CROSSED_GOAL_LINE"
+      name: "골라인 완전 통과"
+      name_en: "Wholly crossed goal line"
+      description: "공 전체가 골라인을 완전히 통과"
+      description_en: "The whole of the ball passes over the goal line"
+    - id: "BETWEEN_POSTS"
+      name: "골대 사이"
+      name_en: "Between the posts"
+      description: "두 골대 사이를 통과"
+      description_en: "Between the goalposts"
+    - id: "UNDER_CROSSBAR"
+      name: "크로스바 아래"
+      name_en: "Under the crossbar"
+      description: "크로스바 아래를 통과"
+      description_en: "Under the crossbar"
+
+  # 골 취소 조건
+  disallow_conditions:
+    - id: "OFFSIDE"
+      name: "오프사이드"
+      name_en: "Offside"
+      description: "득점 전 오프사이드 위반이 있었음"
+      description_en: "Offside offence occurred before the goal"
+    - id: "FOUL_BY_SCORING_TEAM"
+      name: "득점팀 파울"
+      name_en: "Foul by scoring team"
+      description: "득점팀이 득점 과정에서 파울을 범함"
+      description_en: "A foul was committed by the scoring team"
+    - id: "HANDBALL_BY_SCORER"
+      name: "득점자 핸드볼"
+      name_en: "Handball by scorer"
+      description: "득점자가 손으로 공을 터치함"
+      description_en: "The scorer handled the ball"
+    - id: "BALL_DAMAGED"
+      name: "공 손상"
+      name_en: "Ball damaged"
+      description: "공이 손상된 상태로 득점됨"
+      description_en: "The ball was damaged when the goal was scored"
+
+  # 엔진 불변식
+  engine_invariants:
+    - "Goal iff (ball_wholly_crossed_goal_line AND ball_between_posts AND ball_below_crossbar AND no_attacking_offence_in_build_up)"
+    - "Goal 인정/취소는 ActionResult::Goal 발생 직전 offence stack 체크"
+
+  ci_gates:
+    - name: "gate_goal_requires_wholly_over_line"
+      description: "공이 골라인을 완전히 넘지 않았는데 골이 인정되면 실패"
+    - name: "gate_goal_disallowed_when_offside_or_foul_before_goal"
+      description: "오프사이드/파울 이벤트가 먼저 찍혔는데 골이 인정되면 실패"
+
+  related_rules:
+    - "law_09_ball_in_out"
+    - "law_11_offside"
+    - "law_12_fouls_misconduct"
+
+  explanation_templates:
+    goal_valid:
+      template: "공이 골라인을 완전히 통과했습니다. 골 인정."
+      template_en: "Ball wholly crossed the goal line. Goal awarded."
+    goal_disallowed_offside:
+      template: "오프사이드로 인해 골이 취소되었습니다."
+      template_en: "Goal disallowed due to offside."
+    goal_disallowed_foul:
+      template: "파울로 인해 골이 취소되었습니다."
+      template_en: "Goal disallowed due to foul."
+    goal_disallowed_handball:
+      template: "핸드볼로 인해 골이 취소되었습니다."
+      template_en: "Goal disallowed due to handball."
+
+# =============================================================================
+# Law 13 - Free Kicks
+# =============================================================================
+law_13_free_kick:
+  rule_id: "LAW_13_FREE_KICK"
+  law_number: 13
+  ifab_ref: "Law 13 – Free Kicks"
+  name: "프리킥"
+  name_en: "Free Kicks"
+  summary: "프리킥은 직접/간접으로 나뉘며, 수비는 일정 거리(9.15m)를 유지해야 한다."
+  summary_en: "Free kicks are either direct or indirect. Opponents must be at least 9.15m from the ball."
+
+  # 프리킥 유형
+  types:
+    - id: "DIRECT"
+      name: "직접 프리킥"
+      name_en: "Direct free kick"
+      description: "킥으로 직접 골을 넣을 수 있음"
+      description_en: "A goal may be scored directly"
+      can_score_directly: true
+    - id: "INDIRECT"
+      name: "간접 프리킥"
+      name_en: "Indirect free kick"
+      description: "골 전에 다른 선수가 터치해야 함"
+      description_en: "A goal can only be scored if another player touches the ball"
+      can_score_directly: false
+
+  # 인플레이 조건
+  in_play_condition:
+    description: "공이 차여서 명확히 움직이면 인플레이"
+    description_en: "The ball is in play when it is kicked and clearly moves"
+
+  # 거리 규칙
+  distance_rules:
+    minimum_distance_m: 9.15
+    wall_distance_m: 1.0
+    description: "수비수는 공에서 최소 9.15m 거리를 유지해야 함. 벽을 형성할 때 공격수는 벽에서 1m 거리 유지"
+    description_en: "Opponents must be at least 9.15m from the ball. Attackers must be 1m from defensive wall"
+
+  # 엔진 불변식
+  engine_invariants:
+    - "FreeKick { direct: bool }"
+    - "In-play: kicked and clearly moves"
+    - "거리 강제 (기본 9.15m)"
+
+  related_rules:
+    - "law_12_fouls_misconduct"
+
+  explanation_templates:
+    direct_fk:
+      template: "직접 프리킥 - 파울 위치에서 재개"
+      template_en: "Direct free kick - restart from foul location"
+    indirect_fk:
+      template: "간접 프리킥 - 골 전에 다른 선수가 터치해야 함"
+      template_en: "Indirect free kick - another player must touch before goal"
+
+# =============================================================================
+# Law 14 - Penalty Kick
+# =============================================================================
+law_14_penalty:
+  rule_id: "LAW_14_PENALTY"
+  law_number: 14
+  ifab_ref: "Law 14 – The Penalty Kick"
+  name: "페널티킥"
+  name_en: "The Penalty Kick"
+  summary: "페널티킥은 페널티마크에서 진행되며, 선수 위치/골키퍼 위치 위반 시 재시행될 수 있다."
+  summary_en: "A penalty kick is taken from the penalty mark. Infringements may result in retake."
+
+  # PK 조건
+  awarded_when:
+    description: "페널티 에어리어 내에서 직접 프리킥에 해당하는 파울 발생"
+    description_en: "A direct free kick offence is committed inside the penalty area"
+
+  # 골키퍼 규칙
+  goalkeeper_rules:
+    - id: "ON_GOAL_LINE"
+      name: "골라인 위치"
+      name_en: "On goal line"
+      description: "골키퍼는 킥 순간까지 골라인 위에 있어야 함 (한 발만 터치해도 됨)"
+      description_en: "Goalkeeper must have at least part of one foot touching/in line with goal line"
+    - id: "FACE_KICKER"
+      name: "키커를 향함"
+      name_en: "Face the kicker"
+      description: "골키퍼는 키커를 향해야 함"
+      description_en: "Goalkeeper must face the kicker"
+
+  # 위반 시 재시행
+  retake_conditions:
+    - id: "GK_OFF_LINE_SAVED"
+      name: "골키퍼 라인 이탈 + 세이브"
+      name_en: "Goalkeeper off line and save"
+      description: "골키퍼가 라인을 벗어나서 세이브한 경우 재시행"
+      description_en: "Retake if goalkeeper moved off line before kick and saved"
+    - id: "ENCROACHMENT_AFFECTS_OUTCOME"
+      name: "인크로치먼트가 결과에 영향"
+      name_en: "Encroachment affects outcome"
+      description: "선수가 페널티 에어리어에 일찍 진입하여 결과에 영향을 미친 경우"
+      description_en: "Player entered penalty area early and affected the outcome"
+
+  # 엔진 불변식
+  engine_invariants:
+    - "PK 이벤트 설명 (왜 PK인지)"
+    - "골키퍼/키커 위반 시 재시작 분기"
+
+  related_rules:
+    - "law_12_fouls_misconduct"
+    - "law_10_goal"
+
+  explanation_templates:
+    pk_awarded:
+      template: "페널티 에어리어 내 파울로 페널티킥 선언"
+      template_en: "Penalty kick awarded for foul inside penalty area"
+    pk_retake_gk:
+      template: "골키퍼 위반으로 페널티킥 재시행"
+      template_en: "Penalty kick retake due to goalkeeper infringement"
+
+# =============================================================================
+# Law 15 - Throw-In
+# =============================================================================
+law_15_throw_in:
+  rule_id: "LAW_15_THROW_IN"
+  law_number: 15
+  ifab_ref: "Law 15 – The Throw-In"
+  name: "스로인"
+  name_en: "The Throw-In"
+  summary: "터치라인을 완전히 넘으면 상대팀에게 스로인. 스로인에서는 오프사이드 예외 적용."
+  summary_en: "Awarded when the ball wholly crosses the touchline. No offside from throw-in."
+
+  # 스로인 조건
+  awarded_when:
+    description: "공이 터치라인을 완전히 넘은 경우, 마지막으로 터치한 팀의 상대팀에게 부여"
+    description_en: "When the ball wholly crosses the touchline, awarded to opponents of player who last touched"
+
+  # 스로인 규칙
+  rules:
+    - id: "BOTH_HANDS"
+      name: "양손 사용"
+      name_en: "Both hands"
+      description: "양손으로 공을 던져야 함"
+      description_en: "Must throw with both hands"
+    - id: "BEHIND_HEAD"
+      name: "머리 뒤에서"
+      name_en: "From behind head"
+      description: "머리 뒤에서부터 던져야 함"
+      description_en: "Ball delivered from behind and over the head"
+    - id: "FEET_ON_GROUND"
+      name: "발은 지면에"
+      name_en: "Feet on ground"
+      description: "양발이 지면에 닿아 있어야 함"
+      description_en: "Both feet on the ground"
+    - id: "NO_DIRECT_GOAL"
+      name: "직접 골 불가"
+      name_en: "Cannot score directly"
+      description: "스로인으로 직접 골을 넣을 수 없음"
+      description_en: "A goal cannot be scored directly from a throw-in"
+
+  # 오프사이드 예외
+  offside_exception:
+    applies: true
+    description: "스로인에서 공을 직접 받는 경우 오프사이드 적용 안 됨"
+    description_en: "There is no offside offence if a player receives the ball directly from a throw-in"
+
+  # 엔진 불변식
+  engine_invariants:
+    - "OutOfPlay가 touchline이면 ThrowIn"
+    - "RestartType::ThrowIn이면 OffsideCheck 스킵 (예외 플래그)"
+
+  related_rules:
+    - "law_09_ball_in_out"
+    - "law_11_offside"
+
+  explanation_templates:
+    throw_in:
+      template: "공이 터치라인을 완전히 넘어갔습니다. {team_name} 스로인."
+      template_en: "Ball wholly crossed touchline. Throw-in to {team_name}."
+    offside_exception:
+      template: "스로인에서 직접 받은 경우 오프사이드가 적용되지 않습니다."
+      template_en: "No offside offence when receiving directly from a throw-in."
+
+# =============================================================================
+# Law 16 - Goal Kick
+# =============================================================================
+law_16_goal_kick:
+  rule_id: "LAW_16_GOAL_KICK"
+  law_number: 16
+  ifab_ref: "Law 16 – The Goal Kick"
+  name: "골킥"
+  name_en: "The Goal Kick"
+  summary: "공격팀이 마지막으로 터치한 후 골라인을 넘으면 골킥. 골킥에서는 오프사이드 예외 적용."
+  summary_en: "Awarded when ball wholly crosses goal line after last touched by attacker. No offside from goal kick."
+
+  # 골킥 조건
+  awarded_when:
+    description: "공이 골라인을 완전히 넘고(골 아님), 마지막 터치가 공격팀인 경우"
+    description_en: "Ball wholly crosses goal line (not a goal), last touched by attacking team"
+
+  # 인플레이 조건
+  in_play_condition:
+    description: "공이 차여서 명확히 움직이면 인플레이 (골 에어리어를 벗어날 필요 없음 - 2019년 규칙 변경)"
+    description_en: "Ball is in play when kicked and clearly moves (no longer needs to leave penalty area - 2019 rule change)"
+
+  # 오프사이드 예외
+  offside_exception:
+    applies: true
+    description: "골킥에서 공을 직접 받는 경우 오프사이드 적용 안 됨"
+    description_en: "There is no offside offence if a player receives the ball directly from a goal kick"
+
+  # 엔진 불변식
+  engine_invariants:
+    - "out-of-play가 goal line이고 last_touch=attacker이면 GoalKick"
+    - "RestartType::GoalKick이면 OffsideCheck 스킵"
+
+  related_rules:
+    - "law_09_ball_in_out"
+    - "law_11_offside"
+
+  explanation_templates:
+    goal_kick:
+      template: "공이 골라인을 넘어갔습니다. 마지막 터치: 공격팀. 골킥."
+      template_en: "Ball crossed goal line. Last touch: attacking team. Goal kick."
+    offside_exception:
+      template: "골킥에서 직접 받은 경우 오프사이드가 적용되지 않습니다."
+      template_en: "No offside offence when receiving directly from a goal kick."
+
+# =============================================================================
+# Law 17 - Corner Kick
+# =============================================================================
+law_17_corner_kick:
+  rule_id: "LAW_17_CORNER_KICK"
+  law_number: 17
+  ifab_ref: "Law 17 – The Corner Kick"
+  name: "코너킥"
+  name_en: "The Corner Kick"
+  summary: "수비팀이 마지막으로 터치한 후 골라인을 넘으면 코너킥. 코너킥에서는 오프사이드 예외 적용."
+  summary_en: "Awarded when ball wholly crosses goal line after last touched by defender. No offside from corner."
+
+  # 코너킥 조건
+  awarded_when:
+    description: "공이 골라인을 완전히 넘고(골 아님), 마지막 터치가 수비팀인 경우"
+    description_en: "Ball wholly crosses goal line (not a goal), last touched by defending team"
+
+  # 위치
+  position:
+    description: "공이 나간 쪽의 코너 아크 안에서 킥"
+    description_en: "Ball placed inside the corner arc nearest to where it crossed the goal line"
+
+  # 오프사이드 예외
+  offside_exception:
+    applies: true
+    description: "코너킥에서 공을 직접 받는 경우 오프사이드 적용 안 됨"
+    description_en: "There is no offside offence if a player receives the ball directly from a corner kick"
+
+  # 직접 골 가능
+  can_score_directly: true
+
+  # 엔진 불변식
+  engine_invariants:
+    - "last_touch=defender이면 CornerKick"
+    - "RestartType::CornerKick이면 OffsideCheck 스킵"
+
+  related_rules:
+    - "law_09_ball_in_out"
+    - "law_11_offside"
+
+  explanation_templates:
+    corner_kick:
+      template: "공이 골라인을 넘어갔습니다. 마지막 터치: 수비팀. 코너킥."
+      template_en: "Ball crossed goal line. Last touch: defending team. Corner kick."
+    offside_exception:
+      template: "코너킥에서 직접 받은 경우 오프사이드가 적용되지 않습니다."
+      template_en: "No offside offence when receiving directly from a corner kick."

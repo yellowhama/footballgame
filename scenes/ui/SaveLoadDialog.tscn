@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0ptj2g5jq72e"]
+
+[ext_resource type="Script" uid="uid://dbhbcqufekojn" path="res://scripts/ui/SaveLoadDialog.gd" id="1"]
+
+[node name="SaveLoadDialog" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.15
+anchor_top = 0.2
+anchor_right = 0.85
+anchor_bottom = 0.8
+
+[node name="Title" type="Label" parent="Panel"]
+anchor_left = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.1
+text = "저장/불러오기"
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SaveSlots" type="ItemList" parent="Panel"]
+anchor_left = 0.1
+anchor_top = 0.15
+anchor_right = 0.9
+anchor_bottom = 0.7
+select_mode = 0
+
+[node name="SaveButton" type="Button" parent="Panel"]
+anchor_left = 0.1
+anchor_top = 0.75
+anchor_right = 0.28
+anchor_bottom = 0.85
+text = "저장"
+
+[node name="LoadButton" type="Button" parent="Panel"]
+anchor_left = 0.32
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 0.85
+text = "불러오기"
+
+[node name="DeleteButton" type="Button" parent="Panel"]
+anchor_left = 0.54
+anchor_top = 0.75
+anchor_right = 0.72
+anchor_bottom = 0.85
+text = "삭제"
+
+[node name="CloseButton" type="Button" parent="Panel"]
+anchor_left = 0.76
+anchor_top = 0.75
+anchor_right = 0.9
+anchor_bottom = 0.85
+text = "닫기"

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "special_elite_speed_camp",
+    "name": "Elite Speed Camp",
+    "duration": 120,
+    "attributes": {"Acceleration": 3, "Agility": 2},
+    "condition_cost": 18,
+    "description": "코치진이 주도하는 스프린트 집중 캠프. 폭발력과 민첩성을 크게 끌어올립니다.",
+    "ui_note": "주 1회만 참여 가능"
+  },
+  {
+    "id": "special_tactics_retreat",
+    "name": "Vision & Tactics Retreat",
+    "duration": 110,
+    "attributes": {"Vision": 3, "Composure": 2},
+    "condition_cost": 16,
+    "description": "외부 전술 캠프에서 비디오 분석과 상황별 의사 결정을 집중적으로 훈련합니다.",
+    "ui_note": "팀 시너지 + 전술 이해도 보너스"
+  },
+  {
+    "id": "special_recovery_lab",
+    "name": "Recovery Science Lab",
+    "duration": 80,
+    "attributes": {"Stamina": 2, "Balance": 1},
+    "condition_cost": 10,
+    "description": "의무진이 상주하는 회복 연구소에서 장기 체력 관리를 지원합니다.",
+    "ui_note": "피로 누적 시 추천"
+  }
+]

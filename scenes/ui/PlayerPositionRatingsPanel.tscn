@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvqxm8yk7c8ro"]
+
+[ext_resource type="Script" path="res://scripts/ui/PlayerPositionRatingsPanel.gd" id="1_position_ratings"]
+
+[node name="PlayerPositionRatingsPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 120)
+script = ExtResource("1_position_ratings")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Position Ratings (FM 2023)"
+horizontal_alignment = 1
+
+[node name="PositionGrid" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+columns = 7

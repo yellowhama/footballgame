@@ -1,0 +1,356 @@
+# ACTION_SCORING_SSOT.yaml
+# Single Source of Truth for all action evaluations
+# Version: 1.0 MVP
+
+version: 1
+
+# ============================================================================
+# STAT SCALE (FM 1-100 range)
+# ============================================================================
+stat_scale:
+  min: 1
+  max: 100
+
+# ============================================================================
+# NORMALIZE (linear, clamp to 0..1)
+# ============================================================================
+normalize:
+  method: "linear"
+  clamp: true
+
+# ============================================================================
+# CURVES (default gamma for quality → peak mapping)
+# ============================================================================
+curves:
+  default_gamma: 0.85
+  by_action_override: false
+
+# ============================================================================
+# HUMAN PEAKS (physical reality constraints)
+# ============================================================================
+human_peaks:
+  player:
+    v_max_mps:
+      min: 5.0        # 100m in 20s (slowest)
+      max: 10.44      # 100m in 9.58s (Usain Bolt)
+      gamma: 0.75     # Upper range more valuable
+
+    t_to_vmax_s:
+      min: 1.2        # Elite acceleration (0→v_max in 1.2s)
+      max: 3.0        # Slow acceleration (0→v_max in 3.0s)
+      gamma: 0.85
+
+    turn_rate_deg_s:
+      min: 90.0       # Slow turn (4s for 360°)
+      max: 360.0      # Elite turn (1s for 360°)
+      gamma: 0.90
+
+  ball:
+    kick_speed_mps:
+      min: 12.0       # Weak pass (~43 km/h)
+      max: 32.0       # Power shot (~115 km/h)
+      gamma: 0.80
+
+    spin_quality:
+      min: 0.0        # No curve
+      max: 1.0        # Max spin
+      gamma: 1.0
+
+# ============================================================================
+# SITUATIONAL FACTORS (0..1 normalized externally)
+# ============================================================================
+situational_factors:
+  pressure:
+    range: [0.0, 1.0]   # 0=no pressure, 1=tight marking
+
+  fatigue:
+    range: [0.0, 1.0]   # 0=fresh, 1=exhausted
+
+  visibility:
+    range: [0.0, 1.0]   # 0=clear view, 1=blocked
+
+  distance:
+    range: [0.0, 1.0]   # 0=close, 1=far (normalized by context)
+
+  angle:
+    range: [0.0, 1.0]   # 0=optimal, 1=awkward
+
+  momentum:
+    range: [0.0, 1.0]   # 0=static, 1=full speed
+
+# ============================================================================
+# ACTION MODEL GLOBALS
+# ============================================================================
+action_model:
+  globals:
+    quality_clamp: [0.0, 1.0]
+
+    # Probability link (quality → success probability via sigmoid)
+    prob_link:
+      steep: 6.0      # Steepness of sigmoid curve
+      mid: 0.5        # Midpoint (q=0.5 → p=0.5)
+
+    # Error link (execution_q → error scale)
+    error_link:
+      k: 2.0          # Exponent (higher = more punishing for low quality)
+
+# ============================================================================
+# REUSABLE SCORES (nested by category)
+# ============================================================================
+scores:
+  # Movement
+  movement:
+    top_speed:
+      stats:
+        pace: 0.70
+        acceleration: 0.30
+      gamma: 0.75
+
+    acceleration_rating:
+      stats:
+        acceleration: 0.75
+        pace: 0.25
+      gamma: 0.85
+
+    agility_rating:
+      stats:
+        agility: 0.60
+        balance: 0.40
+      gamma: 0.90
+
+  # Passing
+  passing:
+    intent:
+      stats:
+        vision: 0.45
+        decisions: 0.35
+        technique: 0.20
+      gamma: 0.90
+
+    execution:
+      stats:
+        passing: 0.45
+        technique: 0.30
+        composure: 0.25
+      gamma: 0.85
+
+  # Shooting
+  shooting:
+    intent:
+      stats:
+        decisions: 0.40
+        composure: 0.35
+        anticipation: 0.25
+      gamma: 0.88
+
+    execution:
+      stats:
+        finishing: 0.50
+        technique: 0.30
+        composure: 0.20
+      gamma: 0.82
+
+  # Receiving
+  receiving:
+    intent:
+      stats:
+        anticipation: 0.50
+        decisions: 0.30
+        positioning: 0.20
+      gamma: 0.90
+
+    execution:
+      stats:
+        first_touch: 0.50
+        technique: 0.30
+        composure: 0.20
+      gamma: 0.85
+
+  # Defensive
+  defensive:
+    tackle_intent:
+      stats:
+        decisions: 0.40
+        anticipation: 0.35
+        positioning: 0.25
+      gamma: 0.88
+
+    tackle_execution:
+      stats:
+        tackling: 0.50
+        technique: 0.30
+        strength: 0.20
+      gamma: 0.85
+
+    interception:
+      stats:
+        anticipation: 0.50
+        positioning: 0.30
+        decisions: 0.20
+      gamma: 0.90
+
+# ============================================================================
+# ACTIONS (actual behaviors)
+# ============================================================================
+actions:
+  # ========== MOVEMENT (no ball interaction) ==========
+  move_player:
+    outputs:
+      v_max_mps:
+        from_peak: "human_peaks.player.v_max_mps"
+        score: "movement.top_speed"
+
+      accel_mps2:
+        from_peak: "human_peaks.player.t_to_vmax_s"
+        score: "movement.acceleration_rating"
+
+      turn_rate_deg_s:
+        from_peak: "human_peaks.player.turn_rate_deg_s"
+        score: "movement.agility_rating"
+
+    # Optional: fatigue modifier (MVP - hardcoded in code)
+    situational_effects:
+      v_max_reduction:
+        formula: "1.0 - 0.35*fatigue"  # Max 35% reduction when exhausted
+
+      accel_reduction:
+        formula: "1.0 - 0.40*fatigue"  # Max 40% reduction
+
+  # ========== PASS ==========
+  pass:
+    intent_quality:
+      score: "passing.intent"
+      situational:
+        penalties:
+          pressure: 0.10      # Intent penalty from pressure
+          visibility: 0.08    # Can't see target clearly
+
+    execution_quality:
+      score: "passing.execution"
+      situational:
+        penalties:
+          pressure: 0.22      # Execution penalty from pressure (higher than intent)
+          fatigue: 0.12       # Tired players misplace passes
+          angle: 0.08         # Awkward body angle
+
+    ball_outputs:
+      kick_speed_mps:
+        from_peak: "human_peaks.ball.kick_speed_mps"
+        score_combo:
+          stats:
+            passing: 0.40
+            technique: 0.35
+            strength: 0.25
+          gamma: 0.80
+
+      error:
+        base_error_m: 1.5     # Base error (meters)
+        scale_by: "action_model.globals.error_link"
+
+    outcome:
+      success_prob:
+        link: "action_model.globals.prob_link"
+        quality_mix:
+          intent: 0.35
+          execution: 0.65
+
+  # ========== SHOT ==========
+  shot:
+    intent_quality:
+      score: "shooting.intent"
+      situational:
+        penalties:
+          pressure: 0.12
+          angle: 0.10
+
+    execution_quality:
+      score: "shooting.execution"
+      situational:
+        penalties:
+          pressure: 0.25
+          fatigue: 0.15
+          momentum: 0.10    # Off-balance shot
+
+    ball_outputs:
+      kick_speed_mps:
+        from_peak: "human_peaks.ball.kick_speed_mps"
+        score_combo:
+          stats:
+            finishing: 0.40
+            long_shots: 0.35
+            technique: 0.25
+          gamma: 0.78
+
+      error:
+        base_error_m: 0.8     # Tighter tolerance for shots
+        scale_by: "action_model.globals.error_link"
+
+    outcome:
+      on_target_prob:
+        link: "action_model.globals.prob_link"
+        quality_mix:
+          intent: 0.30
+          execution: 0.70
+
+  # ========== RECEIVE ==========
+  receive:
+    intent_quality:
+      score: "receiving.intent"
+      situational:
+        penalties:
+          pressure: 0.08
+
+    execution_quality:
+      score: "receiving.execution"
+      situational:
+        penalties:
+          pressure: 0.20
+          momentum: 0.12    # Hard to control at full speed
+
+    outcome:
+      control_prob:
+        link: "action_model.globals.prob_link"
+        quality_mix:
+          intent: 0.40
+          execution: 0.60
+
+  # ========== TACKLE ==========
+  tackle:
+    intent_quality:
+      score: "defensive.tackle_intent"
+      situational:
+        penalties:
+          fatigue: 0.08
+
+    execution_quality:
+      score: "defensive.tackle_execution"
+      situational:
+        penalties:
+          momentum: 0.15    # Harder to tackle when both moving fast
+          fatigue: 0.12
+
+    outcome:
+      win_ball_prob:
+        link: "action_model.globals.prob_link"
+        quality_mix:
+          intent: 0.45
+          execution: 0.55
+
+  # ========== INTERCEPT ==========
+  intercept:
+    intent_quality:
+      score: "defensive.interception"
+      situational:
+        penalties:
+          distance: 0.15    # Farther = harder to predict
+
+    outcome:
+      cut_lane_prob:
+        link: "action_model.globals.prob_link"
+        quality_mix:
+          intent: 0.80      # Interception is mostly anticipation
+          execution: 0.20
+
+# ============================================================================
+# END OF SSOT
+# ============================================================================

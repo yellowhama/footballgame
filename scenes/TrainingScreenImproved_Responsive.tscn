@@ -1,0 +1,556 @@
+[gd_scene load_steps=3 format=3 uid="uid://responsive_training_001"]
+
+[ext_resource type="Script" path="res://scripts/screens/TrainingScreenImproved_Responsive.gd" id="1"]
+[ext_resource type="Theme" path="res://themes/MobileTheme.tres" id="2"]
+
+[node name="TrainingScreenImprovedResponsive" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="MobilePortraitLayout" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="MobilePortraitLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.07, 0.1, 1)
+
+[node name="Header" type="Panel" parent="MobilePortraitLayout"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="HBox" type="HBoxContainer" parent="MobilePortraitLayout/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="MobilePortraitLayout/Header/HBox"]
+custom_minimum_size = Vector2(120, 80)
+layout_mode = 2
+text = "이전"
+theme_override_font_sizes/font_size = 32
+
+[node name="Title" type="Label" parent="MobilePortraitLayout/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "훈련 선택"
+theme_override_font_sizes/font_size = 42
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FatigueInfo" type="VBoxContainer" parent="MobilePortraitLayout/Header/HBox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MobilePortraitLayout/Header/HBox/FatigueInfo"]
+layout_mode = 2
+text = "피로도"
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+
+[node name="FatigueBar" type="ProgressBar" parent="MobilePortraitLayout/Header/HBox/FatigueInfo"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+value = 30.0
+
+[node name="TabContainer" type="TabContainer" parent="MobilePortraitLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="기술" type="ScrollContainer" parent="MobilePortraitLayout/TabContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MobilePortraitLayout/TabContainer/기술"]
+custom_minimum_size = Vector2(1080, 0)
+layout_mode = 2
+columns = 1
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+
+[node name="TechCard1" type="Panel" parent="MobilePortraitLayout/TabContainer/기술/GridContainer"]
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/TabContainer/기술/GridContainer/TechCard1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="MobilePortraitLayout/TabContainer/기술/GridContainer/TechCard1/VBox"]
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="MobilePortraitLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Header"]
+layout_mode = 2
+text = "⚽"
+theme_override_font_sizes/font_size = 48
+
+[node name="Title" type="Label" parent="MobilePortraitLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "드리블 훈련"
+theme_override_font_sizes/font_size = 28
+
+[node name="HSeparator" type="HSeparator" parent="MobilePortraitLayout/TabContainer/기술/GridContainer/TechCard1/VBox"]
+layout_mode = 2
+
+[node name="Effects" type="VBoxContainer" parent="MobilePortraitLayout/TabContainer/기술/GridContainer/TechCard1/VBox"]
+layout_mode = 2
+
+[node name="Effect1" type="Label" parent="MobilePortraitLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Effects"]
+layout_mode = 2
+text = "✨ 드리블 · 민첩성 강화"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="Effect2" type="Label" parent="MobilePortraitLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Effects"]
+layout_mode = 2
+visible = false
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="Cost" type="Label" parent="MobilePortraitLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Effects"]
+layout_mode = 2
+text = "⚡ 피로도 소모"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.5, 0.5, 1)
+
+[node name="SelectButton" type="Button" parent="MobilePortraitLayout/TabContainer/기술/GridContainer/TechCard1/VBox"]
+layout_mode = 2
+size_flags_vertical = 8
+custom_minimum_size = Vector2(0, 60)
+text = "선택"
+theme_override_font_sizes/font_size = 26
+
+[node name="BottomBar" type="Panel" parent="MobilePortraitLayout"]
+layout_mode = 1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+
+[node name="HBox" type="HBoxContainer" parent="MobilePortraitLayout/BottomBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="CancelButton" type="Button" parent="MobilePortraitLayout/BottomBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 80)
+text = "취소"
+theme_override_font_sizes/font_size = 26
+
+[node name="ConfirmButton" type="Button" parent="MobilePortraitLayout/BottomBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 80)
+text = "확인"
+theme_override_font_sizes/font_size = 26
+disabled = true
+
+[node name="TabletHybridLayout" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="TabletHybridLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.07, 0.1, 1)
+
+[node name="Header" type="Panel" parent="TabletHybridLayout"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="HBox" type="HBoxContainer" parent="TabletHybridLayout/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="TabletHybridLayout/Header/HBox"]
+custom_minimum_size = Vector2(120, 80)
+layout_mode = 2
+text = "이전"
+theme_override_font_sizes/font_size = 32
+
+[node name="Title" type="Label" parent="TabletHybridLayout/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "훈련 선택"
+theme_override_font_sizes/font_size = 42
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FatigueInfo" type="VBoxContainer" parent="TabletHybridLayout/Header/HBox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabletHybridLayout/Header/HBox/FatigueInfo"]
+layout_mode = 2
+text = "피로도"
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+
+[node name="FatigueBar" type="ProgressBar" parent="TabletHybridLayout/Header/HBox/FatigueInfo"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+value = 30.0
+
+[node name="TabContainer" type="TabContainer" parent="TabletHybridLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="기술" type="ScrollContainer" parent="TabletHybridLayout/TabContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="TabletHybridLayout/TabContainer/기술"]
+custom_minimum_size = Vector2(1080, 0)
+layout_mode = 2
+columns = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+
+[node name="TechCard1" type="Panel" parent="TabletHybridLayout/TabContainer/기술/GridContainer"]
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/TabContainer/기술/GridContainer/TechCard1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="TabletHybridLayout/TabContainer/기술/GridContainer/TechCard1/VBox"]
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="TabletHybridLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Header"]
+layout_mode = 2
+text = "⚽"
+theme_override_font_sizes/font_size = 48
+
+[node name="Title" type="Label" parent="TabletHybridLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "드리블 훈련"
+theme_override_font_sizes/font_size = 28
+
+[node name="HSeparator" type="HSeparator" parent="TabletHybridLayout/TabContainer/기술/GridContainer/TechCard1/VBox"]
+layout_mode = 2
+
+[node name="Effects" type="VBoxContainer" parent="TabletHybridLayout/TabContainer/기술/GridContainer/TechCard1/VBox"]
+layout_mode = 2
+
+[node name="Effect1" type="Label" parent="TabletHybridLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Effects"]
+layout_mode = 2
+text = "✨ 드리블 · 민첩성 강화"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="Effect2" type="Label" parent="TabletHybridLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Effects"]
+layout_mode = 2
+visible = false
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="Cost" type="Label" parent="TabletHybridLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Effects"]
+layout_mode = 2
+text = "⚡ 피로도 소모"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.5, 0.5, 1)
+
+[node name="SelectButton" type="Button" parent="TabletHybridLayout/TabContainer/기술/GridContainer/TechCard1/VBox"]
+layout_mode = 2
+size_flags_vertical = 8
+custom_minimum_size = Vector2(0, 60)
+text = "선택"
+theme_override_font_sizes/font_size = 26
+
+[node name="BottomBar" type="Panel" parent="TabletHybridLayout"]
+layout_mode = 1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+
+[node name="HBox" type="HBoxContainer" parent="TabletHybridLayout/BottomBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="CancelButton" type="Button" parent="TabletHybridLayout/BottomBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 80)
+text = "취소"
+theme_override_font_sizes/font_size = 26
+
+[node name="ConfirmButton" type="Button" parent="TabletHybridLayout/BottomBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 80)
+text = "확인"
+theme_override_font_sizes/font_size = 26
+disabled = true
+
+[node name="DesktopLandscapeLayout" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="DesktopLandscapeLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.07, 0.1, 1)
+
+[node name="Header" type="Panel" parent="DesktopLandscapeLayout"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="HBox" type="HBoxContainer" parent="DesktopLandscapeLayout/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="DesktopLandscapeLayout/Header/HBox"]
+custom_minimum_size = Vector2(120, 80)
+layout_mode = 2
+text = "이전"
+theme_override_font_sizes/font_size = 32
+
+[node name="Title" type="Label" parent="DesktopLandscapeLayout/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "훈련 선택"
+theme_override_font_sizes/font_size = 42
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FatigueInfo" type="VBoxContainer" parent="DesktopLandscapeLayout/Header/HBox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DesktopLandscapeLayout/Header/HBox/FatigueInfo"]
+layout_mode = 2
+text = "피로도"
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+
+[node name="FatigueBar" type="ProgressBar" parent="DesktopLandscapeLayout/Header/HBox/FatigueInfo"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+value = 30.0
+
+[node name="TabContainer" type="TabContainer" parent="DesktopLandscapeLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="기술" type="ScrollContainer" parent="DesktopLandscapeLayout/TabContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="DesktopLandscapeLayout/TabContainer/기술"]
+custom_minimum_size = Vector2(1080, 0)
+layout_mode = 2
+columns = 4
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+
+[node name="TechCard1" type="Panel" parent="DesktopLandscapeLayout/TabContainer/기술/GridContainer"]
+custom_minimum_size = Vector2(280, 250)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/TabContainer/기술/GridContainer/TechCard1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="DesktopLandscapeLayout/TabContainer/기술/GridContainer/TechCard1/VBox"]
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="DesktopLandscapeLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Header"]
+layout_mode = 2
+text = "⚽"
+theme_override_font_sizes/font_size = 48
+
+[node name="Title" type="Label" parent="DesktopLandscapeLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "드리블"
+theme_override_font_sizes/font_size = 24
+
+[node name="HSeparator" type="HSeparator" parent="DesktopLandscapeLayout/TabContainer/기술/GridContainer/TechCard1/VBox"]
+layout_mode = 2
+
+[node name="Effects" type="VBoxContainer" parent="DesktopLandscapeLayout/TabContainer/기술/GridContainer/TechCard1/VBox"]
+layout_mode = 2
+
+[node name="Effect1" type="Label" parent="DesktopLandscapeLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Effects"]
+layout_mode = 2
+text = "✨ 드리블 · 민첩성 강화"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="Effect2" type="Label" parent="DesktopLandscapeLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Effects"]
+layout_mode = 2
+visible = false
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="Cost" type="Label" parent="DesktopLandscapeLayout/TabContainer/기술/GridContainer/TechCard1/VBox/Effects"]
+layout_mode = 2
+text = "⚡ 피로도 소모"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1, 0.5, 0.5, 1)
+
+[node name="SelectButton" type="Button" parent="DesktopLandscapeLayout/TabContainer/기술/GridContainer/TechCard1/VBox"]
+layout_mode = 2
+size_flags_vertical = 8
+custom_minimum_size = Vector2(0, 50)
+text = "선택"
+theme_override_font_sizes/font_size = 22
+
+[node name="BottomBar" type="Panel" parent="DesktopLandscapeLayout"]
+layout_mode = 1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+
+[node name="HBox" type="HBoxContainer" parent="DesktopLandscapeLayout/BottomBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="CancelButton" type="Button" parent="DesktopLandscapeLayout/BottomBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 80)
+text = "취소"
+theme_override_font_sizes/font_size = 26
+
+[node name="ConfirmButton" type="Button" parent="DesktopLandscapeLayout/BottomBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 80)
+text = "확인"
+theme_override_font_sizes/font_size = 26
+disabled = true

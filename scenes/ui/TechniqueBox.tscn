@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://technique_box_001"]
+
+[ext_resource type="Script" path="res://scripts/ui/TechniqueBox.gd" id="1_script"]
+
+[node name="TechniqueBox" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 180.0
+script = ExtResource("1_script")
+
+[node name="CornerTL" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 2
+stretch_mode = 1
+
+[node name="CornerTR" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+mouse_filter = 2
+stretch_mode = 1
+
+[node name="CornerBL" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 16.0
+grow_vertical = 0
+mouse_filter = 2
+stretch_mode = 1
+
+[node name="CornerBR" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+stretch_mode = 1
+
+[node name="Content" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ButtonContainer" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 4

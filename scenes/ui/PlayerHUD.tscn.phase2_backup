@@ -1,0 +1,149 @@
+[gd_scene load_steps=2 format=3 uid="uid://career_player_hud_001"]
+
+[ext_resource type="Script" path="res://scripts/ui/PlayerHUD.gd" id="1_playerhud"]
+
+[node name="PlayerHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -200.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_playerhud")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LabelTitle" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Career Player Mode"
+horizontal_alignment = 1
+
+[node name="HBoxActions" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="BtnPass" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxActions"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = "Pass"
+
+[node name="BtnShoot" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxActions"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = "Shoot"
+
+[node name="BtnCarry" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxActions"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = "Carry"
+
+[node name="BtnTakeOn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxActions"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = "Take On"
+
+[node name="BtnHold" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxActions"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = "Hold"
+
+[node name="HBoxSituational" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="BtnThrough" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxSituational"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = "Through"
+
+[node name="BtnCross" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxSituational"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = "Cross"
+
+[node name="BtnChip" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxSituational"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = "Chip"
+
+[node name="HBoxTargets" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="BtnTarget0" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxTargets"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = "Target 1"
+
+[node name="BtnTarget1" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxTargets"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = "Target 2"
+
+[node name="BtnTarget2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxTargets"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = "Target 3"
+
+[node name="LabelDebug" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Owner: -1 | Me: 9 | On-ball: false"
+horizontal_alignment = 1

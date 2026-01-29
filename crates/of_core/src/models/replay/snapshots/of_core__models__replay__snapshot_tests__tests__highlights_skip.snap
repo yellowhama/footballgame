@@ -1,0 +1,15 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: skip
+---
+{
+  "level": "skip",
+  "events": [],
+  "summary": {
+    "total_events": 6,
+    "filtered_events": 0,
+    "goals": 0,
+    "major_incidents": 0,
+    "player_events": null
+  }
+}

@@ -1,0 +1,15 @@
+[configuration]
+entry_symbol = "gdext_rust_init"
+compatibility_minimum = "4.4"
+reloadable = true
+
+[libraries]
+windows.debug.x86_64 = "res://bin/football_rust.dll"
+windows.release.x86_64 = "res://bin/football_rust.dll"
+windows.editor.x86_64 = "res://bin/football_rust.dll"
+linux.debug.x86_64 = "res://bin/libfootball_rust.so"
+linux.release.x86_64 = "res://bin/libfootball_rust.so"
+linux.editor.x86_64 = "res://bin/libfootball_rust.so"
+macos.debug = "res://target/debug/libfootball_rust.dylib"
+macos.release = "res://target/release/libfootball_rust.dylib"
+macos.editor = "res://target/release/libfootball_rust.dylib"

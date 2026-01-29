@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_guardian_combo_ssr",
+  "character_name": "수호신 콤비네이션",
+  "rarity": "SSR",
+  "character_type": "tactical",
+  "position": "DF",
+  "technical_bonus": 0.10,
+  "physical_bonus": 0.15,
+  "mental_bonus": 0.10,
+  "events": ["guardian_combo_event"],
+  "description": "수호신 루트 분기점 1 - B 선택 보상. 완벽한 수비 콤비네이션.",
+  "acquisition_condition": "guardian_branch1_B",
+  "special_effect": "수비 성공률 +35%, 백업 효과 +30%"
+}

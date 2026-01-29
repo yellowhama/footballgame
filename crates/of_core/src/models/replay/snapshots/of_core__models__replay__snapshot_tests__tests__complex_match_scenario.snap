@@ -1,0 +1,166 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: complex_replay
+---
+{
+  "coord_contract_version": 2,
+  "coord_system": "meters_v2",
+  "schema": {
+    "name": "of_replay",
+    "version": 1
+  },
+  "match_info": {
+    "id": "complex-scenario",
+    "seed": 999,
+    "pitch": {
+      "length_m": 105.0,
+      "width_m": 68.0
+    },
+    "goal": {
+      "center_y_m": 34.0,
+      "width_m": 7.32,
+      "depth_m": 2.44
+    },
+    "areas": {
+      "penalty_depth_m": 16.5,
+      "penalty_width_m": 40.32,
+      "six_depth_m": 5.5,
+      "six_width_m": 18.32,
+      "penalty_spot_from_line_m": 11.0,
+      "arc_radius_m": 9.15
+    },
+    "periods": [
+      {
+        "i": 1,
+        "start_t": 0.0,
+        "end_t": 2700.0,
+        "home_attacks_right": true
+      },
+      {
+        "i": 2,
+        "start_t": 2700.0,
+        "end_t": 5400.0,
+        "home_attacks_right": false
+      }
+    ]
+  },
+  "events": [
+    {
+      "etype": "pass",
+      "t": 0.0,
+      "minute": 0,
+      "team": "HOME",
+      "player_id": "H9",
+      "pos": {
+        "x": 52.5,
+        "y": 34.0
+      },
+      "end_pos": {
+        "x": 45.0,
+        "y": 30.0
+      },
+      "receiver_id": "H7",
+      "ground": true,
+      "ball": {
+        "from": {
+          "x": 52.5,
+          "y": 34.0
+        },
+        "to": {
+          "x": 45.0,
+          "y": 30.0
+        },
+        "speed_mps": 12.0,
+        "curve": "none"
+      },
+      "outcome": "complete"
+    },
+    {
+      "etype": "pass",
+      "t": 5.2,
+      "minute": 0,
+      "team": "HOME",
+      "player_id": "H7",
+      "pos": {
+        "x": 45.0,
+        "y": 30.0
+      },
+      "end_pos": {
+        "x": 75.0,
+        "y": 25.0
+      },
+      "receiver_id": "H11",
+      "ground": false,
+      "ball": {
+        "from": {
+          "x": 45.0,
+          "y": 30.0
+        },
+        "to": {
+          "x": 75.0,
+          "y": 25.0
+        },
+        "speed_mps": 25.0,
+        "curve": "outside"
+      },
+      "outcome": "complete"
+    },
+    {
+      "etype": "shot",
+      "t": 8.7,
+      "minute": 0,
+      "team": "HOME",
+      "player_id": "H11",
+      "pos": {
+        "x": 92.0,
+        "y": 28.0
+      },
+      "target": {
+        "x": 105.0,
+        "y": 32.0
+      },
+      "xg": 0.35,
+      "on_target": true,
+      "ball": {
+        "from": {
+          "x": 92.0,
+          "y": 28.0
+        },
+        "to": {
+          "x": 105.0,
+          "y": 32.0
+        },
+        "speed_mps": 30.0,
+        "curve": "none"
+      },
+      "outcome": "saved"
+    },
+    {
+      "etype": "save",
+      "t": 9.1,
+      "minute": 0,
+      "team": "AWAY",
+      "player_id": "A1",
+      "pos": {
+        "x": 105.0,
+        "y": 34.0
+      },
+      "ball": {
+        "from": {
+          "x": 92.0,
+          "y": 28.0
+        },
+        "to": {
+          "x": 105.0,
+          "y": 32.0
+        },
+        "speed_mps": 30.0,
+        "curve": "none"
+      },
+      "parry_to": {
+        "x": 98.0,
+        "y": 45.0
+      }
+    }
+  ]
+}

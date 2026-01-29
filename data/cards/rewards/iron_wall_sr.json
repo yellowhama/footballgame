@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_iron_wall_sr",
+  "character_name": "철벽 수비",
+  "rarity": "SR",
+  "character_type": "trait",
+  "position": "DF",
+  "technical_bonus": 0.05,
+  "physical_bonus": 0.15,
+  "mental_bonus": 0.10,
+  "events": [],
+  "description": "수호신 루트 분기점 2 - A 선택 보상. 그 누구도 뚫을 수 없는 철벽 수비.",
+  "acquisition_condition": "guardian_branch2_A",
+  "special_effect": "Defensive +20%, 태클 성공률 +25%, 실점률 -30%"
+}

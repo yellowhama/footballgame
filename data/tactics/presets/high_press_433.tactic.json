@@ -1,0 +1,19 @@
+{
+	"id": "high_press_4_3_3",
+	"name": "High Press 4-3-3",
+	"formation": "4-3-3",
+	"description": "Aggressive 4-3-3 focused on pressing high and quick transitions.",
+	"tactical_parameters": {
+		"attacking_intensity": 0.8,
+		"defensive_line_height": 0.75,
+		"width": 0.65,
+		"pressing_trigger": 0.85,
+		"tempo": 0.75,
+		"directness": 0.6
+	},
+	"tags": [
+		"pressing",
+		"possession",
+		"433"
+	]
+}

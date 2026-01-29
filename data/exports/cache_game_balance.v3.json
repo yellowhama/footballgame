@@ -1,0 +1,30 @@
+{
+  "FW": {
+    "position": "Forward",
+    "base_salary": 50000,
+    "salary_per_rating": 1000,
+    "training_efficiency": 0.85,
+    "injury_risk": 0.15
+  },
+  "MF": {
+    "position": "Midfielder",
+    "base_salary": 40000,
+    "salary_per_rating": 800,
+    "training_efficiency": 0.90,
+    "injury_risk": 0.12
+  },
+  "DF": {
+    "position": "Defender",
+    "base_salary": 35000,
+    "salary_per_rating": 700,
+    "training_efficiency": 0.88,
+    "injury_risk": 0.18
+  },
+  "GK": {
+    "position": "Goalkeeper",
+    "base_salary": 30000,
+    "salary_per_rating": 650,
+    "training_efficiency": 0.82,
+    "injury_risk": 0.08
+  }
+}

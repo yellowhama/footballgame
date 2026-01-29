@@ -1,0 +1,149 @@
+[gd_scene load_steps=2 format=3 uid="uid://league_management_001"]
+
+[ext_resource type="Script" path="res://scripts/screens/LeagueSimulationScreen.gd" id="1"]
+
+[node name="LeagueManagement" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+
+[node name="HeaderContainer" type="HBoxContainer" parent="MainContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackButton" type="Button" parent="MainContainer/Header/HeaderContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 50)
+text = "뒤로"
+
+[node name="Spacer" type="Control" parent="MainContainer/Header/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SeasonInfo" type="Label" parent="MainContainer/Header/HeaderContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "시즌 1"
+
+[node name="TabContainer" type="TabContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeagueTable" type="VBoxContainer" parent="MainContainer/TabContainer"]
+layout_mode = 2
+
+[node name="TableScroll" type="ScrollContainer" parent="MainContainer/TabContainer/LeagueTable"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TableContent" type="VBoxContainer" parent="MainContainer/TabContainer/LeagueTable/TableScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Fixtures" type="VBoxContainer" parent="MainContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="FixturesScroll" type="ScrollContainer" parent="MainContainer/TabContainer/Fixtures"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FixturesContent" type="VBoxContainer" parent="MainContainer/TabContainer/Fixtures/FixturesScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Teams" type="VBoxContainer" parent="MainContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TeamsScroll" type="ScrollContainer" parent="MainContainer/TabContainer/Teams"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TeamsContent" type="VBoxContainer" parent="MainContainer/TabContainer/Teams/TeamsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Simulation" type="VBoxContainer" parent="MainContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SimulationControls" type="VBoxContainer" parent="MainContainer/TabContainer/Simulation"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="ControlButtons" type="HBoxContainer" parent="MainContainer/TabContainer/Simulation/SimulationControls"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 20
+
+[node name="SimulateWeekButton" type="Button" parent="MainContainer/TabContainer/Simulation/SimulationControls/ControlButtons"]
+layout_mode = 2
+custom_minimum_size = Vector2(150, 60)
+text = "1주 시뮬레이션"
+
+[node name="SimulateMonthButton" type="Button" parent="MainContainer/TabContainer/Simulation/SimulationControls/ControlButtons"]
+layout_mode = 2
+custom_minimum_size = Vector2(150, 60)
+text = "1달 시뮬레이션"
+
+[node name="SimulateSeasonButton" type="Button" parent="MainContainer/TabContainer/Simulation/SimulationControls/ControlButtons"]
+layout_mode = 2
+custom_minimum_size = Vector2(150, 60)
+text = "시즌 시뮬레이션"
+
+[node name="StatusPanel" type="PanelContainer" parent="MainContainer/TabContainer/Simulation/SimulationControls"]
+layout_mode = 2
+
+[node name="StatusContainer" type="VBoxContainer" parent="MainContainer/TabContainer/Simulation/SimulationControls/StatusPanel"]
+layout_mode = 2
+
+[node name="StatusInfo" type="VBoxContainer" parent="MainContainer/TabContainer/Simulation/SimulationControls/StatusPanel/StatusContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="WeekInfo" type="Label" parent="MainContainer/TabContainer/Simulation/SimulationControls/StatusPanel/StatusContainer/StatusInfo"]
+layout_mode = 2
+text = "현재 주차: 1"
+
+[node name="SeasonInfo" type="Label" parent="MainContainer/TabContainer/Simulation/SimulationControls/StatusPanel/StatusContainer/StatusInfo"]
+layout_mode = 2
+text = "시즌: 1"
+
+[node name="TeamsInfo" type="Label" parent="MainContainer/TabContainer/Simulation/SimulationControls/StatusPanel/StatusContainer/StatusInfo"]
+layout_mode = 2
+text = "팀 수: 20"
+
+[node name="PlayersInfo" type="Label" parent="MainContainer/TabContainer/Simulation/SimulationControls/StatusPanel/StatusContainer/StatusInfo"]
+layout_mode = 2
+text = "선수 수: 500"
+
+[node name="Footer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+
+[node name="FooterContainer" type="HBoxContainer" parent="MainContainer/Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="RefreshButton" type="Button" parent="MainContainer/Footer/FooterContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 50)
+text = "새로고침"

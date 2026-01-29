@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_democratic_leadership_sr",
+  "character_name": "민주적 리더십",
+  "rarity": "SR",
+  "character_type": "tactical",
+  "position": "MF",
+  "technical_bonus": 0.05,
+  "physical_bonus": 0.0,
+  "mental_bonus": 0.15,
+  "events": [],
+  "description": "우정 루트 분기점 2 - C 선택 보상. 모두의 의견을 존중하는 민주적 리더십.",
+  "acquisition_condition": "friendship_branch2_C",
+  "special_effect": "팀 전체 만족도 +25%, Mental +10%"
+}

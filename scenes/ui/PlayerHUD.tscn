@@ -1,0 +1,123 @@
+[gd_scene load_steps=5 format=3 uid="uid://career_player_hud_001"]
+
+[ext_resource type="Script" path="res://scripts/ui/PlayerHUD.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://technique_box_001" path="res://scenes/ui/TechniqueBox.tscn" id="2_technique_box"]
+[ext_resource type="Script" path="res://scripts/ui/TargetSelectOverlay.gd" id="3_target_overlay"]
+[ext_resource type="Script" path="res://scripts/ui/SelectionConnector.gd" id="4_connector"]
+
+[node name="PlayerHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="IntentButtons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -340.0
+offset_top = -80.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="BtnPass" type="Button" parent="IntentButtons"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "PASS"
+
+[node name="BtnShoot" type="Button" parent="IntentButtons"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "SHOOT"
+
+[node name="BtnDribble" type="Button" parent="IntentButtons"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "DRIBBLE"
+
+[node name="TechniqueBox" parent="." instance=ExtResource("2_technique_box")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -90.0
+offset_right = 80.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TargetSelectOverlay" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_target_overlay")
+
+[node name="SelectionConnector" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_connector")
+
+[node name="LabelDebug" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 400.0
+offset_bottom = 35.0
+text = "State: IDLE | Owner: -1 | On-ball: false"
+
+[node name="StickyIcons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 38.0
+offset_right = 200.0
+offset_bottom = 60.0
+theme_override_constants/separation = 6
+
+[node name="StickySprint" type="Label" parent="StickyIcons"]
+custom_minimum_size = Vector2(20, 20)
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "S"
+theme_override_font_sizes/font_size = 12
+
+[node name="StickyDribble" type="Label" parent="StickyIcons"]
+custom_minimum_size = Vector2(20, 20)
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "D"
+theme_override_font_sizes/font_size = 12
+
+[node name="StickyPress" type="Label" parent="StickyIcons"]
+custom_minimum_size = Vector2(20, 20)
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "P"
+theme_override_font_sizes/font_size = 12

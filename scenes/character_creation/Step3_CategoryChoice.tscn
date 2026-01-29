@@ -1,0 +1,108 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk7st5buooa3n"]
+
+[ext_resource type="Script" uid="uid://dbmw3dpc5t20q" path="res://scripts/character_creation/Step3_CategoryChoice.gd" id="1"]
+
+[node name="Step3_CategoryChoice" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="Header" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TitleLabel" type="Label" parent="ScrollContainer/VBoxContainer/Header"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "능력 특성 선택"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="ScrollContainer/VBoxContainer/Header"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "어떤 분야에서 뛰어난 선수가 되고 싶나요?"
+horizontal_alignment = 1
+
+[node name="CADisplay" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Header"]
+layout_mode = 2
+alignment = 1
+
+[node name="CurrentCA" type="Label" parent="ScrollContainer/VBoxContainer/Header/CADisplay"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "현재 CA: 80"
+
+[node name="ProjectedCA" type="Label" parent="ScrollContainer/VBoxContainer/Header/CADisplay"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "예상 CA: 80"
+
+[node name="CategorySelection" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="TechnicalButton" type="Button" parent="ScrollContainer/VBoxContainer/CategorySelection"]
+custom_minimum_size = Vector2(600, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+toggle_mode = true
+text = "⚙️ Technical
+기술적 완성도"
+
+[node name="MentalButton" type="Button" parent="ScrollContainer/VBoxContainer/CategorySelection"]
+custom_minimum_size = Vector2(600, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+toggle_mode = true
+text = "🧠 Mental
+게임 이해력"
+
+[node name="PhysicalButton" type="Button" parent="ScrollContainer/VBoxContainer/CategorySelection"]
+custom_minimum_size = Vector2(600, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+toggle_mode = true
+text = "💪 Physical
+신체 능력"
+
+[node name="CategoryInfo" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="ScrollContainer/VBoxContainer/CategoryInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "카테고리를 선택하세요"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="ScrollContainer/VBoxContainer/CategoryInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "위 3개 중 하나를 선택하면 해당 영역의 모든 능력치가 향상됩니다"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="FeaturesLabel" type="Label" parent="ScrollContainer/VBoxContainer/CategoryInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+autowrap_mode = 3

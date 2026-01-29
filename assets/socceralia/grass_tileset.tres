@@ -1,0 +1,165 @@
+[gd_resource type="TileSet" load_steps=18 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/grass1.png" id=1]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/grass2.png" id=2]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/grass3.png" id=3]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/grass4.png" id=4]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/grass5.png" id=5]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/grass6.png" id=6]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/grass7.png" id=7]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/grass8.png" id=8]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/grass9.png" id=9]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/grass10.png" id=10]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/dirt1.png" id=11]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/dirt2.png" id=12]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/dirt3.png" id=13]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/dirt4.png" id=14]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/stone1.png" id=15]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/stone2.png" id=16]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/stone3.png" id=17]
+[ext_resource type="Texture2D" path="res://assets/socceralia/grass_tiles/stone4.png" id=18]
+
+[resource]
+tile_0/name = "grass1"
+tile_0/texture = ExtResource( 1 )
+tile_0/0 = Vector2(0, 0)
+tile_0/size = Vector2i(130, 130)
+tile_0/texture_offset = Vector2(0, 0)
+tile_0/texture_region = Rect2(0, 0, 130, 130)
+tile_0/modulate = Color(1, 1, 1, 1)
+
+tile_1/name = "grass2"
+tile_1/texture = ExtResource( 2 )
+tile_1/0 = Vector2(0, 0)
+tile_1/size = Vector2i(130, 130)
+tile_1/texture_offset = Vector2(0, 0)
+tile_1/texture_region = Rect2(0, 0, 130, 130)
+tile_1/modulate = Color(1, 1, 1, 1)
+
+tile_2/name = "grass3"
+tile_2/texture = ExtResource( 3 )
+tile_2/0 = Vector2(0, 0)
+tile_2/size = Vector2i(130, 130)
+tile_2/texture_offset = Vector2(0, 0)
+tile_2/texture_region = Rect2(0, 0, 130, 130)
+tile_2/modulate = Color(1, 1, 1, 1)
+
+tile_3/name = "grass4"
+tile_3/texture = ExtResource( 4 )
+tile_3/0 = Vector2(0, 0)
+tile_3/size = Vector2i(130, 130)
+tile_3/texture_offset = Vector2(0, 0)
+tile_3/texture_region = Rect2(0, 0, 130, 130)
+tile_3/modulate = Color(1, 1, 1, 1)
+
+tile_4/name = "grass5"
+tile_4/texture = ExtResource( 5 )
+tile_4/0 = Vector2(0, 0)
+tile_4/size = Vector2i(130, 130)
+tile_4/texture_offset = Vector2(0, 0)
+tile_4/texture_region = Rect2(0, 0, 130, 130)
+tile_4/modulate = Color(1, 1, 1, 1)
+
+tile_5/name = "grass6"
+tile_5/texture = ExtResource( 6 )
+tile_5/0 = Vector2(0, 0)
+tile_5/size = Vector2i(130, 130)
+tile_5/texture_offset = Vector2(0, 0)
+tile_5/texture_region = Rect2(0, 0, 130, 130)
+tile_5/modulate = Color(1, 1, 1, 1)
+
+tile_6/name = "grass7"
+tile_6/texture = ExtResource( 7 )
+tile_6/0 = Vector2(0, 0)
+tile_6/size = Vector2i(130, 130)
+tile_6/texture_offset = Vector2(0, 0)
+tile_6/texture_region = Rect2(0, 0, 130, 130)
+tile_6/modulate = Color(1, 1, 1, 1)
+
+tile_7/name = "grass8"
+tile_7/texture = ExtResource( 8 )
+tile_7/0 = Vector2(0, 0)
+tile_7/size = Vector2i(130, 130)
+tile_7/texture_offset = Vector2(0, 0)
+tile_7/texture_region = Rect2(0, 0, 130, 130)
+tile_7/modulate = Color(1, 1, 1, 1)
+
+tile_8/name = "grass9"
+tile_8/texture = ExtResource( 9 )
+tile_8/0 = Vector2(0, 0)
+tile_8/size = Vector2i(130, 130)
+tile_8/texture_offset = Vector2(0, 0)
+tile_8/texture_region = Rect2(0, 0, 130, 130)
+tile_8/modulate = Color(1, 1, 1, 1)
+
+tile_9/name = "grass10"
+tile_9/texture = ExtResource( 10 )
+tile_9/0 = Vector2(0, 0)
+tile_9/size = Vector2i(130, 130)
+tile_9/texture_offset = Vector2(0, 0)
+tile_9/texture_region = Rect2(0, 0, 130, 130)
+tile_9/modulate = Color(1, 1, 1, 1)
+
+tile_10/name = "dirt1"
+tile_10/texture = ExtResource( 11 )
+tile_10/0 = Vector2(0, 0)
+tile_10/size = Vector2i(130, 130)
+tile_10/texture_offset = Vector2(0, 0)
+tile_10/texture_region = Rect2(0, 0, 130, 130)
+tile_10/modulate = Color(1, 1, 1, 1)
+
+tile_11/name = "dirt2"
+tile_11/texture = ExtResource( 12 )
+tile_11/0 = Vector2(0, 0)
+tile_11/size = Vector2i(130, 130)
+tile_11/texture_offset = Vector2(0, 0)
+tile_11/texture_region = Rect2(0, 0, 130, 130)
+tile_11/modulate = Color(1, 1, 1, 1)
+
+tile_12/name = "dirt3"
+tile_12/texture = ExtResource( 13 )
+tile_12/0 = Vector2(0, 0)
+tile_12/size = Vector2i(130, 130)
+tile_12/texture_offset = Vector2(0, 0)
+tile_12/texture_region = Rect2(0, 0, 130, 130)
+tile_12/modulate = Color(1, 1, 1, 1)
+
+tile_13/name = "dirt4"
+tile_13/texture = ExtResource( 14 )
+tile_13/0 = Vector2(0, 0)
+tile_13/size = Vector2i(130, 130)
+tile_13/texture_offset = Vector2(0, 0)
+tile_13/texture_region = Rect2(0, 0, 130, 130)
+tile_13/modulate = Color(1, 1, 1, 1)
+
+tile_14/name = "stone1"
+tile_14/texture = ExtResource( 15 )
+tile_14/0 = Vector2(0, 0)
+tile_14/size = Vector2i(130, 130)
+tile_14/texture_offset = Vector2(0, 0)
+tile_14/texture_region = Rect2(0, 0, 130, 130)
+tile_14/modulate = Color(1, 1, 1, 1)
+
+tile_15/name = "stone2"
+tile_15/texture = ExtResource( 16 )
+tile_15/0 = Vector2(0, 0)
+tile_15/size = Vector2i(130, 130)
+tile_15/texture_offset = Vector2(0, 0)
+tile_15/texture_region = Rect2(0, 0, 130, 130)
+tile_15/modulate = Color(1, 1, 1, 1)
+
+tile_16/name = "stone3"
+tile_16/texture = ExtResource( 17 )
+tile_16/0 = Vector2(0, 0)
+tile_16/size = Vector2i(130, 130)
+tile_16/texture_offset = Vector2(0, 0)
+tile_16/texture_region = Rect2(0, 0, 130, 130)
+tile_16/modulate = Color(1, 1, 1, 1)
+
+tile_17/name = "stone4"
+tile_17/texture = ExtResource( 18 )
+tile_17/0 = Vector2(0, 0)
+tile_17/size = Vector2i(130, 130)
+tile_17/texture_offset = Vector2(0, 0)
+tile_17/texture_region = Rect2(0, 0, 130, 130)
+tile_17/modulate = Color(1, 1, 1, 1)

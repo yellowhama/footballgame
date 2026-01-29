@@ -1,0 +1,155 @@
+meta:
+  game: "Highschool Soccer Maker"
+  version: "0.2.0-fm"
+  locale_default: "ko-KR"
+
+calendar:
+  years: 3
+  weeks_per_year: 48
+  phases:
+    - { id: "preseason", weeks: 4 }
+    - { id: "season", weeks: 36 }
+    - { id: "postseason", weeks: 8 }
+
+attributes:
+  scale:
+    ui: { min: 1, max: 20 }
+    engine: { min: 0, max: 100 }
+  technical: [FirstTouch, Dribbling, Passing, Finishing, Tackling, Heading]
+  mental: [Decision, Vision, OffBall, Positioning, WorkRate, Composure]
+  physical: [Pace, Accel, Stamina, Strength]
+  hidden: [Professionalism, Consistency, InjuryProne, Pressure, Ambition]
+
+player_init:
+  role: "ST"
+  attrs_ui20:
+    FirstTouch: 10
+    Dribbling: 10
+    Passing: 9
+    Finishing: 11
+    Tackling: 7
+    Heading: 8
+    Decision: 9
+    Vision: 9
+    OffBall: 10
+    Positioning: 8
+    WorkRate: 10
+    Composure: 9
+    Pace: 10
+    Accel: 10
+    Stamina: 11
+    Strength: 9
+  hidden_eng100:
+    Professionalism: 55
+    Consistency: 60
+    InjuryProne: 30
+    Pressure: 50
+    Ambition: 65
+  morale: 50
+  fatigue: 10
+  popularity: 20
+
+roles:
+  ST:
+    weights:
+      Finishing: 0.25
+      FirstTouch: 0.10
+      Dribbling: 0.10
+      OffBall: 0.15
+      Decision: 0.10
+      Vision: 0.05
+      Composure: 0.10
+      Pace: 0.10
+      Accel: 0.05
+  AM_CM:
+    weights:
+      Passing: 0.20
+      Vision: 0.20
+      Decision: 0.15
+      FirstTouch: 0.10
+      WorkRate: 0.10
+      Dribbling: 0.10
+      Stamina: 0.10
+      Composure: 0.05
+  DM_CB:
+    weights:
+      Tackling: 0.25
+      Positioning: 0.20
+      Strength: 0.15
+      Decision: 0.10
+      Passing: 0.05
+      FirstTouch: 0.05
+      Stamina: 0.10
+      Heading: 0.10
+  FB_WB:
+    weights:
+      Pace: 0.15
+      Accel: 0.10
+      Tackling: 0.15
+      Positioning: 0.10
+      Passing: 0.10
+      WorkRate: 0.15
+      Stamina: 0.15
+      Dribbling: 0.10
+
+match:
+  halves: 2
+  duration_min: 20
+  tick_sec: 15
+  opponent_strength_by_year:
+    1: 50
+    2: 58
+    3: 66
+
+training:
+  plans:
+    Tech:
+      targets: [Passing, FirstTouch, Dribbling, Finishing]
+      base_gain: 1.2
+    Mental:
+      targets: [Decision, Vision, Composure, WorkRate]
+      base_gain: 1.0
+    Physical:
+      targets: [Pace, Accel, Stamina, Strength]
+      base_gain: 1.4
+  fatigue_cost: 6
+
+events:
+  - id: "teammate_conflict"
+    title: "팀 동료와의 다툼"
+    probability: 0.25
+    choices:
+      - label: "사과하고 화해한다"
+        effects:
+          Composure: 2
+          popularity: 3
+      - label: "무시하고 훈련에 집중한다"
+        effects:
+          Finishing: 1
+          popularity: -2
+  - id: "scout_watch"
+    title: "스카우트의 관찰"
+    probability: 0.15
+    choices:
+      - label: "긴장하며 임한다"
+        effects:
+          Pressure: -2
+          popularity: 2
+      - label: "평소대로 한다"
+        effects:
+          Consistency: 1
+
+progression:
+  endings:
+    - id: "draft_pro"
+      min_overall: 80
+      min_popularity: 70
+      label: "프로 지명"
+    - id: "college_scholar"
+      min_overall: 65
+      min_popularity: 50
+      label: "대학 장학생"
+    - id: "no_offer"
+      min_overall: 0
+      min_popularity: 0
+      label: "지명 실패"

@@ -1,0 +1,128 @@
+{
+  "bridge_class": "FootballMatchSimulator",
+  "version": "2026-01-29",
+  "notes": [
+    "SSOT for Godot↔Rust boundary. Used by boot-time gate + CI drift checks.",
+    "Fail-closed principle: missing method/signature/return-shape is a hard error.",
+    "used_by lists call sites that MUST stay consistent with this SSOT."
+  ],
+  "methods": [
+    {
+      "name": "test_connection",
+      "args": ["String?"],
+      "return": "Variant",
+      "success_shape": {},
+      "error_shape": {},
+      "used_by": ["autoload/rust/FootballRustEngine.gd", "bridge/match_gateway.gd"]
+    },
+    {
+      "name": "simulate_match_with_budget",
+      "args": ["String", "int64", "int64", "int64"],
+      "return": "String",
+      "success_shape": {
+        "error": false,
+        "schema_version": "int",
+        "events": "Array",
+        "partial": "bool?"
+      },
+      "error_shape": { "error": true, "code": "String", "message": "String" },
+      "used_by": ["bridge/match_gateway.gd", "scenes/match/services/match_gateway.gd"]
+    },
+    {
+      "name": "simulate_match_json",
+      "args": ["String"],
+      "return": "String",
+      "success_shape": {
+        "error": false,
+        "schema_version": "int",
+        "events": "Array"
+      },
+      "error_shape": { "error": true, "code": "String", "message": "String" },
+      "used_by": [
+        "autoload/rust/rust_bridge/MatchSimulationBridge.gd",
+        "autoload/rust/FootballRustEngine.gd",
+        "scripts/ui/ai_match_setup_controller.gd"
+      ]
+    },
+    {
+      "name": "simulate_match_v2_json",
+      "args": ["String"],
+      "return": "String",
+      "success_shape": {
+        "error": false,
+        "schema_version": "int",
+        "events": "Array"
+      },
+      "error_shape": { "error": true, "code": "String", "message": "String" },
+      "used_by": ["autoload/rust/rust_bridge/MatchSimulationBridge.gd", "autoload/rust/FootballRustEngine.gd"]
+    },
+    {
+      "name": "simulate_match_with_instructions",
+      "args": ["String"],
+      "return": "String",
+      "success_shape": {
+        "error": false,
+        "schema_version": "int",
+        "events": "Array"
+      },
+      "error_shape": { "error": true, "code": "String", "message": "String" },
+      "used_by": ["autoload/rust/rust_bridge/MatchSimulationBridge.gd", "autoload/rust/FootballRustEngine.gd"]
+    },
+    {
+      "name": "simulate_match_from_setup",
+      "args": ["Dictionary"],
+      "return": "Dictionary",
+      "success_shape": { "error": false, "result_json": "String", "replay_json": "String?" },
+      "error_shape": { "error": true, "code": "String", "message": "String" },
+      "used_by": ["autoload/rust/rust_bridge/MatchSimulationBridge.gd", "autoload/rust/FootballRustEngine.gd"]
+    },
+    {
+      "name": "simulate_match_from_binary",
+      "args": ["PackedByteArray"],
+      "return": "PackedByteArray",
+      "success_shape": {},
+      "error_shape": {},
+      "used_by": ["autoload/rust/FootballRustEngine.gd"]
+    },
+    {
+      "name": "start_match_session",
+      "args": ["String"],
+      "return": "Dictionary",
+      "success_shape": { "success": true, "match_id": "String?" },
+      "error_shape": { "success": false, "code": "String", "message": "String" },
+      "used_by": ["autoload/rust/rust_bridge/MatchSessionBridge.gd", "scripts/match_pipeline/MatchSessionController.gd"]
+    },
+    {
+      "name": "step_match_session",
+      "args": ["int"],
+      "return": "Dictionary",
+      "success_shape": { "success": true, "tick": "int?", "events": "Array?" },
+      "error_shape": { "success": false, "code": "String", "message": "String" },
+      "used_by": ["autoload/rust/rust_bridge/MatchSessionBridge.gd", "scripts/match_pipeline/MatchSessionController.gd"]
+    },
+    {
+      "name": "finish_match_session",
+      "args": ["String?"],
+      "return": "Dictionary",
+      "success_shape": { "success": true },
+      "error_shape": { "success": false, "code": "String", "message": "String" },
+      "used_by": ["autoload/rust/rust_bridge/MatchSessionBridge.gd", "scripts/match_pipeline/MatchSessionController.gd"]
+    },
+    {
+      "name": "change_live_tactic",
+      "args": ["String", "String"],
+      "return": "String",
+      "success_shape": { "success": true },
+      "error_shape": { "success": false, "code": "String", "message": "String" },
+      "used_by": ["autoload/rust/TacticalEngine.gd"]
+    },
+    {
+      "name": "change_formation_live_match",
+      "args": ["String", "String"],
+      "return": "String",
+      "success_shape": { "success": true },
+      "error_shape": { "success": false, "code": "String", "message": "String" },
+      "used_by": ["autoload/rust/TacticalEngine.gd"]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: stats
+---
+{
+  "match_id": "snapshot-test-match",
+  "total_events": 6,
+  "duration_seconds": 5400.0,
+  "goals": 1,
+  "distribution": {
+    "total": 6,
+    "major": 1,
+    "important": 3,
+    "all": 2,
+    "shots": 1,
+    "passes": 1,
+    "dribbles": 1,
+    "tackles": 0,
+    "fouls": 1,
+    "saves": 0,
+    "set_pieces": 1,
+    "substitutions": 1
+  }
+}

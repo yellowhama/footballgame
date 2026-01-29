@@ -1,0 +1,79 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: minimal_replay
+---
+{
+  "coord_contract_version": 2,
+  "coord_system": "meters_v2",
+  "schema": {
+    "name": "of_replay",
+    "version": 1
+  },
+  "match_info": {
+    "id": "minimal-match",
+    "seed": 123,
+    "pitch": {
+      "length_m": 105.0,
+      "width_m": 68.0
+    },
+    "goal": {
+      "center_y_m": 34.0,
+      "width_m": 7.32,
+      "depth_m": 2.44
+    },
+    "areas": {
+      "penalty_depth_m": 16.5,
+      "penalty_width_m": 40.32,
+      "six_depth_m": 5.5,
+      "six_width_m": 18.32,
+      "penalty_spot_from_line_m": 11.0,
+      "arc_radius_m": 9.15
+    },
+    "periods": [
+      {
+        "i": 1,
+        "start_t": 0.0,
+        "end_t": 2700.0,
+        "home_attacks_right": true
+      },
+      {
+        "i": 2,
+        "start_t": 2700.0,
+        "end_t": 5400.0,
+        "home_attacks_right": false
+      }
+    ]
+  },
+  "events": [
+    {
+      "etype": "pass",
+      "t": 1.0,
+      "minute": 0,
+      "team": "HOME",
+      "player_id": "H1",
+      "pos": {
+        "x": 52.5,
+        "y": 34.0
+      },
+      "end_pos": {
+        "x": 55.0,
+        "y": 34.0
+      },
+      "receiver_id": "H2",
+      "ground": true,
+      "ball": {
+        "from": {
+          "x": 52.5,
+          "y": 34.0
+        },
+        "to": {
+          "x": 55.0,
+          "y": 34.0
+        },
+        "speed_mps": 10.0,
+        "curve": "none"
+      },
+      "outcome": "complete"
+    }
+  ]
+}

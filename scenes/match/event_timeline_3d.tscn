@@ -1,0 +1,178 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8k4xan2p8qxs"]
+
+[ext_resource type="Script" uid="uid://dmokufwoyumbb" path="res://scripts/match/EventAnimator3D.gd" id="1_animator"]
+[ext_resource type="PackedScene" uid="uid://c7p65g8xru0rv" path="res://scenes/match/football_pitch.fbx" id="2_field"]
+[ext_resource type="PackedScene" uid="uid://mq0d6xf4t64d" path="res://scenes/match/football.glb" id="3_football"]
+[ext_resource type="Script" path="res://scripts/match/QuarterViewSmartCineCamera.gd" id="4_camera"]
+
+[sub_resource type="SphereShape3D" id="SphereShape_ball"]
+radius = 0.11
+
+[sub_resource type="StandardMaterial3D" id="Material_corner"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 0.8
+
+[sub_resource type="BoxShape3D" id="GoalPostShape_vertical"]
+size = Vector3(0.24, 5.86, 0.24)
+
+[sub_resource type="BoxShape3D" id="GoalPostShape_horizontal"]
+size = Vector3(17.57, 0.24, 0.24)
+
+[sub_resource type="BoxShape3D" id="GoalNetShape"]
+size = Vector3(17.57, 5.86, 1.0)
+
+[sub_resource type="BoxShape3D" id="BackWallShape"]
+size = Vector3(17.57, 5.86, 0.5)
+
+[sub_resource type="BoxShape3D" id="GroundPlaneShape"]
+size = Vector3(200.0, 0.1, 200.0)
+
+[node name="EventTimeline3D" type="Node3D"]
+script = ExtResource("1_animator")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.469312, -0.569953, 0.674463, -0.197239, 0.676845, 0.70921, -0.860723, -0.465871, 0.205234, 198.23, 27.2421, 99.9266)
+projection = 1
+size = 200.0
+far = 1000.0
+script = ExtResource("4_camera")
+field_node_path = NodePath("../FootballPitch")
+players_group_path = NodePath("..")
+ball_node_path = NodePath("../PlayerMarker")
+enable_tracking = true
+tracking_smoothness = 0.15
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 50, 0)
+shadow_enabled = true
+
+[node name="FootballPitch" parent="." instance=ExtResource("2_field")]
+transform = Transform3D(2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, 0, 0, 0)
+
+[node name="Goal_Top" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 168.48, 2.44, 153.2)
+
+[node name="LeftPost" type="CollisionShape3D" parent="Goal_Top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.785, 0, 0)
+shape = SubResource("GoalPostShape_vertical")
+
+[node name="RightPost" type="CollisionShape3D" parent="Goal_Top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.785, 0, 0)
+shape = SubResource("GoalPostShape_vertical")
+
+[node name="Crossbar" type="CollisionShape3D" parent="Goal_Top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81, 0)
+shape = SubResource("GoalPostShape_horizontal")
+
+[node name="GoalNet" type="CollisionShape3D" parent="Goal_Top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.0)
+shape = SubResource("GoalNetShape")
+
+[node name="BackWallTop" type="CollisionShape3D" parent="Goal_Top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.5)
+shape = SubResource("BackWallShape")
+
+[node name="Goal_Bottom" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 168.48, 2.44, 30.76)
+
+[node name="LeftPost" type="CollisionShape3D" parent="Goal_Bottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.785, 0, 0)
+shape = SubResource("GoalPostShape_vertical")
+
+[node name="RightPost" type="CollisionShape3D" parent="Goal_Bottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.785, 0, 0)
+shape = SubResource("GoalPostShape_vertical")
+
+[node name="Crossbar" type="CollisionShape3D" parent="Goal_Bottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81, 0)
+shape = SubResource("GoalPostShape_horizontal")
+
+[node name="GoalNet" type="CollisionShape3D" parent="Goal_Bottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.0)
+shape = SubResource("GoalNetShape")
+
+[node name="BackWallBottom" type="CollisionShape3D" parent="Goal_Bottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.5)
+shape = SubResource("BackWallShape")
+
+[node name="GroundPlane" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 168.5, -0.55, 92.0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundPlane"]
+shape = SubResource("GroundPlaneShape")
+
+[node name="PlayerMarker" type="RigidBody3D" parent="."]
+visible = false
+mass = 0.45
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerMarker"]
+shape = SubResource("SphereShape_ball")
+
+[node name="FootballModel" parent="PlayerMarker" instance=ExtResource("3_football")]
+
+[node name="OpenFootballCorner1" type="CSGSphere3D" parent="." groups=["debug"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.41, -1.24286, 37.1532)
+visible = false
+radius = 1.0
+material = SubResource("Material_corner")
+
+[node name="OpenFootballCorner2" type="CSGSphere3D" parent="." groups=["debug"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 198.525, -0.595163, 36.1757)
+visible = false
+radius = 1.0
+material = SubResource("Material_corner")
+
+[node name="OpenFootballCorner3" type="CSGSphere3D" parent="." groups=["debug"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.535, -0.147347, 153.204)
+visible = false
+radius = 1.0
+material = SubResource("Material_corner")
+
+[node name="OpenFootballCorner4" type="CSGSphere3D" parent="." groups=["debug"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 198.596, -0.363087, 152.925)
+visible = false
+radius = 1.0
+material = SubResource("Material_corner")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="EventLabel" type="Label" parent="UI"]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 700.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 32
+text = "이벤트 대기 중..."
+
+[node name="ControlPanel" type="VBoxContainer" parent="UI"]
+offset_left = 50.0
+offset_top = 900.0
+offset_right = 450.0
+offset_bottom = 1050.0
+
+[node name="PlayButton" type="Button" parent="UI/ControlPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "▶ 재생"
+
+[node name="StopButton" type="Button" parent="UI/ControlPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "⏹ 정지"
+
+[node name="SpeedLabel" type="Label" parent="UI/ControlPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "재생 속도: 1.0x"
+
+[connection signal="pressed" from="UI/ControlPanel/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="UI/ControlPanel/StopButton" to="." method="_on_stop_button_pressed"]

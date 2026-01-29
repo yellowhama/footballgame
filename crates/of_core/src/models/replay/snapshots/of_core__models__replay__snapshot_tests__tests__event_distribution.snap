@@ -1,0 +1,18 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: distribution
+---
+{
+  "total": 6,
+  "major": 1,
+  "important": 3,
+  "all": 2,
+  "shots": 1,
+  "passes": 1,
+  "dribbles": 1,
+  "tackles": 0,
+  "fouls": 1,
+  "saves": 0,
+  "set_pieces": 1,
+  "substitutions": 1
+}

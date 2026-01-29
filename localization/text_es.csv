@@ -1,0 +1,46 @@
+keys,es
+GAME_TITLE,Juego de Desarrollo de Futbolista
+NEW_GAME,Nuevo Juego
+CONTINUE,Continuar
+SETTINGS,Configuración
+QUIT,Salir
+LANGUAGE,Idioma
+SELECT_LANGUAGE,Seleccionar Idioma
+TRAINING,Entrenamiento
+MATCH,Partido
+STATS,Estadísticas
+NEXT_WEEK,Próxima Semana
+WEEK,Semana
+YEAR,Año
+CONDITION_EXCELLENT,Excelente
+CONDITION_GOOD,Bueno
+CONDITION_AVERAGE,Normal
+CONDITION_POOR,Pobre
+CONDITION_TERRIBLE,Terrible
+TRAINING_PHYSICAL,Entrenamiento Físico
+TRAINING_TECHNICAL,Entrenamiento Técnico
+TRAINING_TACTICAL,Entrenamiento Táctico
+TRAINING_MENTAL,Entrenamiento Mental
+TRAINING_ENDURANCE,Resistencia
+TRAINING_STRENGTH,Fuerza
+TRAINING_SPEED,Velocidad
+TRAINING_AGILITY,Agilidad
+TRAINING_RECOVERY,Recuperación
+TRAINING_BALL_CONTROL,Control del Balón
+TRAINING_PASSING,Pases
+TRAINING_SHOOTING,Tiros
+TRAINING_CROSSING,Centros
+TRAINING_SET_PIECES,Jugadas a Balón Parado
+PLAYER_NAME,Nombre del Jugador
+POSITION,Posición
+GOALKEEPER,Portero
+DEFENDER,Defensa
+MIDFIELDER,Mediocampista
+FORWARD,Delantero
+SAVE_GAME,Guardar
+LOAD_GAME,Cargar
+BACK,Atrás
+CONFIRM,Confirmar
+CANCEL,Cancelar
+YES,Sí
+NO,No

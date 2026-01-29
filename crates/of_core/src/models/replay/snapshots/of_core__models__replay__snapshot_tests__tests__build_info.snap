@@ -1,0 +1,9 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: replay.build
+---
+{
+  "of_core": "0.1.0",
+  "gdext": "0.6.0",
+  "build_tag": "abc1234"
+}

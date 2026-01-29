@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource path="res://themes/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/ui/CoachInteraction.gd" type="Script" id=2]
+[ext_resource path="res://scripts/ui/QuickBar.gd" type="Script" id=3]
+
+[node name="CoachInteraction" type="Control"]
+theme = ExtResource("1")
+script = ExtResource("2")
+layout_mode = 3
+
+[node name="Header" type="HBoxContainer" parent="."]
+offset_top = 0.0
+offset_right = 1080.0
+offset_bottom = 96.0
+alignment = 1
+
+[node name="BtnBack" type="Button" parent="Header"]
+custom_minimum_size = Vector2(88,48)
+text = ""
+
+[node name="LblTitle" type="Label" parent="Header"]
+size_flags_horizontal = 3
+text = "CoachInteraction"
+
+[node name="BtnSettings" type="Button" parent="Header"]
+custom_minimum_size = Vector2(88,48)
+text = ""
+
+[node name="Portrait" type="Panel" parent="."]
+offset_left = 40.0
+offset_top = 120.0
+offset_right = 360.0
+offset_bottom = 520.0
+
+[node name="Dialogue" type="RichTextLabel" parent="."]
+offset_left = 380.0
+offset_top = 120.0
+offset_right = 1040.0
+offset_bottom = 380.0
+
+[node name="Relation" type="HBoxContainer" parent="."]
+offset_left = 380.0
+offset_top = 400.0
+offset_right = 1040.0
+offset_bottom = 460.0
+[node name="LblRelation" type="Label" parent="Relation"]
+text = "Relation 85 / Trust 90"
+
+[node name="Choices" type="VBoxContainer" parent="."]
+offset_left = 380.0
+offset_top = 480.0
+offset_right = 1040.0
+offset_bottom = 760.0
+[node name="BtnChoice1" type="Button" parent="Choices"]
+text = "선택지1"
+[node name="BtnChoice2" type="Button" parent="Choices"]
+text = "선택지2"
+[node name="BtnChoice3" type="Button" parent="Choices"]
+text = "선택지3"
+
+[node name="QuickBar" type="Control" parent="."]
+script = ExtResource("3")
+anchors_preset = 12

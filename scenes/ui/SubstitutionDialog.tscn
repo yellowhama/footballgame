@@ -1,0 +1,96 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/screens/SubstitutionDialog.gd" id="1_sub_dialog"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_team_tab"]
+
+[node name="SubstitutionDialog" type="Window"]
+script = ExtResource("1_sub_dialog")
+title = "교체 선택"
+initial_position = 1
+size = Vector2i(640, 400)
+unresizable = true
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "교체할 선수를 선택하세요."
+
+[node name="TeamTabBar" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HomeButton" type="Button" parent="VBox/TeamTabBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 32)
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_team_tab")
+text = "홈"
+
+[node name="AwayButton" type="Button" parent="VBox/TeamTabBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 32)
+toggle_mode = true
+button_group = SubResource("ButtonGroup_team_tab")
+text = "어웨이"
+
+[node name="HSplit" type="HSplitContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Left" type="VBoxContainer" parent="VBox/HSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="LeftLabel" type="Label" parent="VBox/HSplit/Left"]
+layout_mode = 2
+text = "출전 선수"
+
+[node name="StartingList" type="ItemList" parent="VBox/HSplit/Left"]
+layout_mode = 2
+size_flags_vertical = 3
+allow_reselect = true
+same_column_width = true
+
+[node name="Right" type="VBoxContainer" parent="VBox/HSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="RightLabel" type="Label" parent="VBox/HSplit/Right"]
+layout_mode = 2
+text = "벤치"
+
+[node name="BenchList" type="ItemList" parent="VBox/HSplit/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+allow_reselect = true
+same_column_width = true
+
+[node name="Buttons" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+alignment = 2
+theme_override_constants/separation = 12
+
+[node name="CancelButton" type="Button" parent="VBox/Buttons"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 40)
+text = "취소"
+
+[node name="ConfirmButton" type="Button" parent="VBox/Buttons"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 40)
+text = "확인"
+

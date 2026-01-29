@@ -1,0 +1,34 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: event
+---
+{
+  "etype": "shot",
+  "t": 165.8,
+  "minute": 3,
+  "team": "HOME",
+  "player_id": "H9",
+  "pos": {
+    "x": 95.0,
+    "y": 32.0
+  },
+  "target": {
+    "x": 105.0,
+    "y": 30.5
+  },
+  "xg": 0.25,
+  "on_target": true,
+  "ball": {
+    "from": {
+      "x": 95.0,
+      "y": 32.0
+    },
+    "to": {
+      "x": 105.0,
+      "y": 30.5
+    },
+    "speed_mps": 28.0,
+    "curve": "inside"
+  },
+  "outcome": "goal"
+}

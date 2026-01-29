@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq5m8vb7j2x9k"]
+
+[ext_resource type="Script" path="res://scripts/ui/ChoiceImpactPopup.gd" id="1_choice_impact"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_popup_bg"]
+bg_color = Color(0.1, 0.1, 0.15, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.6, 0.9, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.3)
+
+[node name="ChoiceImpactPopup" type="PanelContainer"]
+custom_minimum_size = Vector2(500, 200)
+offset_right = 500.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_popup_bg")
+script = ExtResource("1_choice_impact")
+
+[node name="MarginContainer" type="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 15
+
+[node name="VBox" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TitleBar" type="HBoxContainer"]
+layout_mode = 2
+
+[node name="Icon" type="Label"]
+layout_mode = 2
+text = "✨"
+theme_type_variation = &"LabelLarge"
+
+[node name="Title" type="Label"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "선택의 결과"
+theme_type_variation = &"LabelLarge"
+
+[node name="ImpactList" type="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="AutoCloseTimer" type="Timer"]
+one_shot = true

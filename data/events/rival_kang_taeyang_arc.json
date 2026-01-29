@@ -1,0 +1,341 @@
+{
+  "route_id": "rival",
+  "character_id": "kang_taeyang",
+  "arc_title": "강태양 Fall-Rise 아크",
+  "events": [
+    {
+      "event_id": "rival_week52_injury",
+      "week": 52,
+      "title": "부상",
+      "type": "fall_start",
+      "description": "강태양이 발목 부상으로 6주 결장하게 된다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "훈련 중 강태양이 발목을 접질렀다."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "으윽... 발목이..."
+        },
+        {
+          "speaker": "coach_kim",
+          "text": "태양아! 괜찮나? 빨리 의무실로!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "진단 결과: 발목 염좌, 6주 회복 필요"
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "(침울한 표정) ...6주라니."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": [
+          "rival_injured",
+          "rival_6week_absence"
+        ],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "rival_week64_slump_return",
+      "week": 64,
+      "title": "복귀 후 슬럼프",
+      "type": "fall_middle",
+      "condition": {
+        "flags": [
+          "rival_injured"
+        ]
+      },
+      "description": "강태양이 복귀했지만 퍼포먼스가 저하되어 있다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "6주 만에 강태양이 훈련에 복귀했다."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "...다들 기다리게 해서 미안."
+        },
+        {
+          "speaker": "narrator",
+          "text": "하지만 복귀 후 첫 경기, 강태양의 움직임이 예전만 못하다."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "(속으로) ...왜 몸이 안 따라와."
+        },
+        {
+          "speaker": "teammate_1",
+          "text": "(수군거림) 태양이 예전만 못한 것 같은데..."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": [
+          "rival_slump"
+        ],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "rival_week72_bench_lowpoint",
+      "week": 72,
+      "title": "LOW POINT - 벤치 강등",
+      "type": "low_point",
+      "condition": {
+        "flags": [
+          "rival_slump"
+        ]
+      },
+      "description": "코치가 강태양을 후보로 강등시킨다. 주인공의 선택이 강태양의 운명을 결정한다.",
+      "dialogue": [
+        {
+          "speaker": "coach_kim",
+          "text": "태양아, 오늘 경기는 후보로 대기해라."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "...코치님, 제가 좀 더 노력하면..."
+        },
+        {
+          "speaker": "coach_kim",
+          "text": "지금은 컨디션을 회복하는 게 우선이다. 서두르지 마라."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "(무표정) ...알겠습니다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "경기 후, 강태양이 홀로 벤치에 앉아 있다."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": [
+          "rival_benched",
+          "rival_low_point_week75"
+        ],
+        "stats": {}
+      },
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "너의 자리를 지켜줄게",
+          "description": "주인공이 강태양 대신 주전으로 활약하겠다고 다짐한다.",
+          "effects": {
+            "affection_change": -15,
+            "flags": [
+              "rival_jealousy_path"
+            ],
+            "next_event": "rival_week76_jealousy"
+          }
+        },
+        {
+          "choice_id": "B",
+          "text": "같이 극복하자",
+          "description": "강태양과 함께 특별 훈련을 제안한다.",
+          "effects": {
+            "affection_change": 10,
+            "flags": [
+              "rival_cooperation_path"
+            ],
+            "next_event": "rival_week80_recovery"
+          }
+        },
+        {
+          "choice_id": "C",
+          "text": "혼자 극복해. 너는 강하니까",
+          "description": "강태양을 믿고 스스로 극복하도록 둔다.",
+          "effects": {
+            "affection_change": 0,
+            "flags": [
+              "rival_solo_path"
+            ],
+            "next_event": "rival_week86_solo_recovery"
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "rival_week76_jealousy",
+      "week": 76,
+      "title": "질투의 폭발",
+      "type": "fall_climax",
+      "condition": {
+        "flags": [
+          "rival_jealousy_path"
+        ]
+      },
+      "description": "강태양이 질투심에 폭발한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "주인공이 주전으로 활약하며 좋은 성적을 내고 있다."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "...잘하네. 내 자리를 지켜준다고?"
+        },
+        {
+          "speaker": "player",
+          "text": "태양아, 나는 그냥..."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "(감정 폭발) 날 불쌍히 여기는 거야? 내가 무너진 걸 보고 싶었어?"
+        },
+        {
+          "speaker": "player",
+          "text": "그게 아니야! 난 네가 돌아올 때까지..."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "됐어. 이제 네가 넘어야 할 벽이 되어줄게."
+        }
+      ],
+      "effects": {
+        "affection_change": -10,
+        "flags": [
+          "rival_hostile_relationship"
+        ],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "rival_week80_recovery",
+      "week": 80,
+      "title": "재기의 시작",
+      "type": "rise_start",
+      "condition": {
+        "flags": [
+          "rival_cooperation_path"
+        ]
+      },
+      "description": "강태양과 함께 특별 훈련을 시작한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "주인공과 강태양이 새벽 훈련을 시작했다."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "...왜 날 도와주는 거야?"
+        },
+        {
+          "speaker": "player",
+          "text": "너 없으면 이 팀은 재미없잖아. 빨리 돌아와."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "(약간 웃으며) ...바보 같은 소리."
+        },
+        {
+          "speaker": "narrator",
+          "text": "2주간의 특훈 끝에 강태양의 컨디션이 회복되었다."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "...고마워. 진심으로."
+        }
+      ],
+      "effects": {
+        "affection_change": 15,
+        "flags": [
+          "rival_recovered",
+          "rival_friendship_deepened"
+        ],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "rival_week86_solo_recovery",
+      "week": 86,
+      "title": "자력 극복",
+      "type": "rise_start",
+      "condition": {
+        "flags": [
+          "rival_solo_path"
+        ]
+      },
+      "description": "강태양이 혼자 훈련하여 평범하게 복귀한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "강태양이 혼자 새벽 훈련을 이어가고 있다."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "(혼잣말) 내가 극복해야 해. 스스로."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Week 85 복귀전. 강태양의 성적은 평범했지만..."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "(주인공에게) ...네 말대로, 혼자 해냈어."
+        },
+        {
+          "speaker": "player",
+          "text": "잘했어. 너답게."
+        }
+      ],
+      "effects": {
+        "affection_change": 10,
+        "flags": [
+          "rival_recovered",
+          "rival_independent"
+        ],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "rival_week125_true_rival",
+      "week": 125,
+      "title": "진정한 경쟁자",
+      "type": "resolution",
+      "condition": {
+        "flags": [
+          "rival_recovered"
+        ]
+      },
+      "description": "강태양이 완전히 회복하고 주인공과 진정한 라이벌 관계를 맺는다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "강태양이 완전히 복귀했다. 오히려 전보다 강해진 모습이다."
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "덕분에 깨달았어. 혼자서는 부족하다는 걸."
+        },
+        {
+          "speaker": "player",
+          "text": "이제 진짜 경쟁이네?"
+        },
+        {
+          "speaker": "kang_taeyang",
+          "text": "(웃으며) 각오해. 이제부터 진짜야."
+        }
+      ],
+      "effects": {
+        "affection_change": 20,
+        "flags": [
+          "rival_true_rival_achieved"
+        ],
+        "stats": {}
+      },
+      "choices": []
+    }
+  ]
+}

@@ -1,0 +1,496 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgtkn4h2q1km"]
+
+[ext_resource type="Script" uid="uid://buoye1l22g3fe" path="res://scripts/screens/MainHomeController2D.gd" id="1_main"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.1, 0.1, 0.1, 0.95)
+border_width_bottom = 2
+border_color = Color(0.2, 0.7, 0.3, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(1, 1, 1, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.7, 0.3, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(1, 1, 1, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.7, 0.3, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 4
+
+[node name="MainHomeScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.95, 0.96, 0.94, 1)
+
+[node name="HeaderBar" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
+
+[node name="HeaderContent" type="HBoxContainer" parent="HeaderBar"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PlayerSection" type="HBoxContainer" parent="HeaderBar/HeaderContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerInfo" type="VBoxContainer" parent="HeaderBar/HeaderContent/PlayerSection"]
+layout_mode = 2
+
+[node name="PlayerName" type="Label" parent="HeaderBar/HeaderContent/PlayerSection/PlayerInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "플레이어"
+
+[node name="PlayerLevel" type="Label" parent="HeaderBar/HeaderContent/PlayerSection/PlayerInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.8)
+theme_override_font_sizes/font_size = 14
+text = "Lv.80"
+
+[node name="CurrencySection" type="HBoxContainer" parent="HeaderBar/HeaderContent"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="GoldPanel" type="HBoxContainer" parent="HeaderBar/HeaderContent/CurrencySection"]
+layout_mode = 2
+
+[node name="GoldIcon" type="Label" parent="HeaderBar/HeaderContent/CurrencySection/GoldPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "💰"
+
+[node name="GoldAmount" type="Label" parent="HeaderBar/HeaderContent/CurrencySection/GoldPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "2,500"
+
+[node name="GemPanel" type="HBoxContainer" parent="HeaderBar/HeaderContent/CurrencySection"]
+layout_mode = 2
+
+[node name="GemIcon" type="Label" parent="HeaderBar/HeaderContent/CurrencySection/GemPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "💎"
+
+[node name="GemAmount" type="Label" parent="HeaderBar/HeaderContent/CurrencySection/GemPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "150"
+
+[node name="CharacterDisplay" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -300.0
+offset_right = 150.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterSprite" type="TextureRect" parent="CharacterDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CharacterPlaceholder" type="Label" parent="CharacterDisplay/CharacterSprite"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "⚽
+선수"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionArea" type="Control" parent="CharacterDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpeechBubble" type="PanelContainer" parent="CharacterDisplay"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 200.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="SpeechText" type="Label" parent="CharacterDisplay/SpeechBubble"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+text = "안녕하세요!"
+
+[node name="GameModeButtons" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -420.0
+offset_top = -460.0
+offset_right = 420.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="CareerButton" type="Button" parent="GameModeButtons"]
+custom_minimum_size = Vector2(400, 90)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+
+[node name="HBox" type="HBoxContainer" parent="GameModeButtons/CareerButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Icon" type="Label" parent="GameModeButtons/CareerButton/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "🏃‍♂️"
+
+[node name="VBox" type="VBoxContainer" parent="GameModeButtons/CareerButton/HBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="GameModeButtons/CareerButton/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.7, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "육성 모드"
+
+[node name="Desc" type="Label" parent="GameModeButtons/CareerButton/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "선수를 키워보세요"
+
+[node name="TeamButton" type="Button" parent="GameModeButtons"]
+custom_minimum_size = Vector2(400, 90)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+
+[node name="HBox" type="HBoxContainer" parent="GameModeButtons/TeamButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Icon" type="Label" parent="GameModeButtons/TeamButton/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "⚽"
+
+[node name="VBox" type="VBoxContainer" parent="GameModeButtons/TeamButton/HBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="GameModeButtons/TeamButton/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.7, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "팀 관리"
+
+[node name="Desc" type="Label" parent="GameModeButtons/TeamButton/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "스쿼드를 구성하세요"
+
+[node name="ShopButton" type="Button" parent="GameModeButtons"]
+custom_minimum_size = Vector2(400, 90)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+
+[node name="HBox" type="HBoxContainer" parent="GameModeButtons/ShopButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Icon" type="Label" parent="GameModeButtons/ShopButton/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "🛒"
+
+[node name="VBox" type="VBoxContainer" parent="GameModeButtons/ShopButton/HBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="GameModeButtons/ShopButton/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.7, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "상점"
+
+[node name="Desc" type="Label" parent="GameModeButtons/ShopButton/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "코치 카드를 뽑아보세요"
+
+[node name="QuestButton" type="Button" parent="GameModeButtons"]
+custom_minimum_size = Vector2(400, 90)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+
+[node name="HBox" type="HBoxContainer" parent="GameModeButtons/QuestButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Icon" type="Label" parent="GameModeButtons/QuestButton/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "📜"
+
+[node name="VBox" type="VBoxContainer" parent="GameModeButtons/QuestButton/HBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="GameModeButtons/QuestButton/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.7, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "퀘스트"
+
+[node name="Desc" type="Label" parent="GameModeButtons/QuestButton/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "업적을 달성하세요"
+
+[node name="MultiplayerButton" type="Button" parent="GameModeButtons"]
+modulate = Color(1, 1, 1, 0.6)
+custom_minimum_size = Vector2(400, 90)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+disabled = true
+
+[node name="HBox" type="HBoxContainer" parent="GameModeButtons/MultiplayerButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Icon" type="Label" parent="GameModeButtons/MultiplayerButton/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "🌐"
+
+[node name="VBox" type="VBoxContainer" parent="GameModeButtons/MultiplayerButton/HBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="GameModeButtons/MultiplayerButton/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 20
+text = "멀티플레이"
+
+[node name="Desc" type="Label" parent="GameModeButtons/MultiplayerButton/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 12
+text = "Coming Soon!"
+
+[node name="GameInfoCards" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -240.0
+offset_right = -40.0
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="MyTeamCard" type="PanelContainer" parent="GameInfoCards"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="HBox" type="HBoxContainer" parent="GameInfoCards/MyTeamCard"]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="Label" parent="GameInfoCards/MyTeamCard/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "⚽"
+
+[node name="VBox" type="VBoxContainer" parent="GameInfoCards/MyTeamCard/HBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="GameInfoCards/MyTeamCard/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.7, 0.3, 1)
+theme_override_font_sizes/font_size = 14
+text = "My Team"
+
+[node name="Info" type="Label" parent="GameInfoCards/MyTeamCard/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "0명 보유"
+
+[node name="NoticeCard" type="PanelContainer" parent="GameInfoCards"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="HBox" type="HBoxContainer" parent="GameInfoCards/NoticeCard"]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="Label" parent="GameInfoCards/NoticeCard/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "📢"
+
+[node name="VBox" type="VBoxContainer" parent="GameInfoCards/NoticeCard/HBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="GameInfoCards/NoticeCard/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.7, 0.3, 1)
+theme_override_font_sizes/font_size = 14
+text = "공지사항"
+
+[node name="Info" type="Label" parent="GameInfoCards/NoticeCard/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "환영합니다!"
+
+[node name="AchievementCard" type="PanelContainer" parent="GameInfoCards"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="HBox" type="HBoxContainer" parent="GameInfoCards/AchievementCard"]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="Label" parent="GameInfoCards/AchievementCard/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "🏅"
+
+[node name="VBox" type="VBoxContainer" parent="GameInfoCards/AchievementCard/HBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="GameInfoCards/AchievementCard/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.7, 0.3, 1)
+theme_override_font_sizes/font_size = 14
+text = "업적"
+
+[node name="Info" type="Label" parent="GameInfoCards/AchievementCard/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "새로 시작!"

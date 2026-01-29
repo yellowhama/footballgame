@@ -1,0 +1,41 @@
+class_name MatchActions
+
+# Match Core Actions
+const IDLE = "idle"
+const WALK = "walk"
+const RUN = "run"
+const SPRINT = "sprint"
+const DRIBBLE = "dribble"
+const PASS_SHORT = "pass_short"
+const PASS_LONG = "pass_long"
+const CROSS = "cross"
+const SHOOT = "shoot"
+const HEADER = "header"
+const TACKLE_STAND = "tackle_stand"
+const TACKLE_SLIDE = "tackle_slide"
+const BLOCK = "block"
+const RECOVER = "recover"
+const FALL = "fall"
+const GET_UP = "get_up"
+const CELEBRATE_1 = "celebrate_1"
+const CELEBRATE_2 = "celebrate_2"
+const DISAPPOINTED = "disappointed"
+
+# UI / Flavor Actions
+const IDLE_UI = "idle_ui"
+const GREET_UI = "greet_ui"
+const SIT_UI = "sit_ui"
+const SIT_IDLE_UI = "sit_idle_ui"
+const SLEEP_UI = "sleep_ui"
+const SLEEP_IDLE_UI = "sleep_idle_ui"
+
+# GK Core Actions
+const GK_IDLE = "gk_idle"
+const GK_READY = "gk_ready"
+const GK_DIVE_L = "gk_dive_l"
+const GK_DIVE_R = "gk_dive_r"
+const GK_CATCH_HIGH = "gk_catch_high"
+const GK_CATCH_LOW = "gk_catch_low"
+const GK_PUNCH = "gk_punch"
+const GK_PICKUP = "gk_pickup"
+const GK_GOAL_KICK = "gk_goal_kick"

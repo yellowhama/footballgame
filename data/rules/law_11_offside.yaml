@@ -1,0 +1,92 @@
+# IFAB Laws of the Game - Law 11: Offside
+# Source: https://www.theifab.com/laws/latest/offside/
+# Rule-as-Data: Explanation templates and reference info
+
+rule_id: "LAW_11_OFFSIDE"
+law_number: 11
+name: "오프사이드"
+name_en: "Offside"
+summary: "공격 선수가 볼이 플레이되는 순간 수비 두 번째 선수보다 골라인에 더 가까운 위치에 있으면 오프사이드"
+summary_en: "A player is offside if nearer to the opponent's goal line than both the ball and the second-last opponent when the ball is played"
+
+# 오프사이드 위치 판정 기준
+offside_position:
+  description: "오프사이드 위치 판정 조건"
+  description_en: "Conditions for offside position"
+  conditions:
+    - id: "NEARER_GOAL_LINE"
+      name: "골라인에 더 가까움"
+      name_en: "Nearer to goal line"
+      description: "수비 두 번째 선수보다 상대방 골라인에 더 가까운 위치"
+      description_en: "Nearer to the opponent's goal line than the second-last defender"
+    - id: "IN_OPPONENT_HALF"
+      name: "상대방 진영"
+      name_en: "In opponent's half"
+      description: "하프라인을 기준으로 상대방 진영에 있어야 함"
+      description_en: "Must be in the opponent's half of the field"
+    - id: "BALL_PLAYED_MOMENT"
+      name: "볼 플레이 순간"
+      name_en: "Moment ball is played"
+      description: "동료가 볼을 플레이하는 순간에 판정"
+      description_en: "Judged at the moment when a teammate plays the ball"
+
+# 오프사이드 위반 조건 (관여)
+offside_offence:
+  description: "오프사이드 위반으로 인정되는 관여 유형"
+  description_en: "Types of involvement that constitute an offside offence"
+  involvement_types:
+    - id: "INTERFERING_WITH_PLAY"
+      name: "플레이 관여"
+      name_en: "Interfering with play"
+      description: "볼을 만지거나 플레이하려고 함"
+      description_en: "Touching the ball or attempting to play it"
+    - id: "INTERFERING_WITH_OPPONENT"
+      name: "상대방 방해"
+      name_en: "Interfering with an opponent"
+      description: "상대방의 볼 플레이를 방해하거나 시야를 가림"
+      description_en: "Preventing an opponent from playing the ball or obstructing their line of vision"
+    - id: "GAINING_ADVANTAGE"
+      name: "이익 획득"
+      name_en: "Gaining an advantage"
+      description: "골대나 상대방에 맞고 나온 볼을 플레이"
+      description_en: "Playing a ball that rebounds from the goal frame or an opponent"
+
+# 오프사이드가 아닌 상황
+no_offside:
+  description: "오프사이드가 적용되지 않는 상황"
+  description_en: "Situations where offside does not apply"
+  exceptions:
+    - id: "GOAL_KICK"
+      name: "골킥"
+      name_en: "Goal kick"
+    - id: "THROW_IN"
+      name: "스로인"
+      name_en: "Throw-in"
+    - id: "CORNER_KICK"
+      name: "코너킥"
+      name_en: "Corner kick"
+    - id: "DELIBERATE_SAVE"
+      name: "의도적 세이브"
+      name_en: "Deliberate save"
+      description: "수비수가 의도적으로 볼을 걷어낸 경우 (실수나 리바운드 제외)"
+      description_en: "If a defender deliberately saves the ball (not a mistake or rebound)"
+
+# 설명 템플릿
+explanation_templates:
+  basic:
+    template: "{player_name}이(가) 오프사이드 위치에서 플레이에 관여 (마진: {margin_m:.2f}m)"
+    template_en: "{player_name} was in an offside position and interfered with play (margin: {margin_m:.2f}m)"
+  detailed:
+    template: "{player_name}이(가) 오프사이드. 오프사이드 라인: {offside_line_m:.2f}m, 선수 위치: {player_pos_m:.2f}m (마진: {margin_m:.2f}m)"
+    template_en: "{player_name} was offside. Offside line: {offside_line_m:.2f}m, player position: {player_pos_m:.2f}m (margin: {margin_m:.2f}m)"
+  why_offside:
+    template: "동료 {passer_name}이(가) 볼을 플레이하는 순간, {player_name}은(는) 수비 두 번째 선수보다 {margin_m:.2f}m 더 앞에 있었습니다."
+    template_en: "At the moment {passer_name} played the ball, {player_name} was {margin_m:.2f}m beyond the second-last defender."
+
+# 재시작 정보
+restart:
+  type: "INDIRECT_FREE_KICK"
+  name: "간접 프리킥"
+  name_en: "Indirect free kick"
+  position: "오프사이드 위반이 일어난 위치"
+  position_en: "Where the offside offence occurred"

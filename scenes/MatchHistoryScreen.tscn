@@ -1,0 +1,264 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgf5r8k3m7j2w"]
+
+[ext_resource type="Script" path="res://scripts/screens/MatchHistoryScreen.gd" id="1"]
+[ext_resource type="Theme" uid="uid://dv8rowrpphj8g" path="res://themes/MobileTheme.tres" id="2"]
+
+[node name="MatchHistoryScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.15, 0.15, 0.2, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 36
+text = "⚽ 경기 기록"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 20
+text = "◀ 뒤로"
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 90.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="History" type="Control" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/History"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="HistoryList" type="Panel" parent="TabContainer/History/VBox"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="TabContainer/History/VBox/HistoryList"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 290.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 22
+text = "경기 기록 목록"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/History/VBox/HistoryList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/History/VBox/HistoryList/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="MatchDetail" type="Panel" parent="TabContainer/History/VBox"]
+visible = false
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/History/VBox/MatchDetail"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="TabContainer/History/VBox/MatchDetail/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "경기 상세 정보"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/History/VBox/MatchDetail/VBox"]
+layout_mode = 2
+
+[node name="OpponentLabel" type="Label" parent="TabContainer/History/VBox/MatchDetail/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "상대: Unknown (OVR 50)"
+
+[node name="ScoreLabel" type="Label" parent="TabContainer/History/VBox/MatchDetail/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1, 0.8, 0.3, 1)
+text = "최종 스코어: 0 - 0"
+
+[node name="ResultLabel" type="Label" parent="TabContainer/History/VBox/MatchDetail/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "🤝 무승부"
+
+[node name="DateLabel" type="Label" parent="TabContainer/History/VBox/MatchDetail/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "경기 일자: 1학년 1주차"
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/History/VBox/MatchDetail/VBox"]
+layout_mode = 2
+
+[node name="Events" type="Panel" parent="TabContainer/History/VBox/MatchDetail/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="TabContainer/History/VBox/MatchDetail/VBox/Events"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 290.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 20
+text = "이벤트 타임라인"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/History/VBox/MatchDetail/VBox/Events"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/History/VBox/MatchDetail/VBox/Events/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="ViewerButtons" type="HBoxContainer" parent="TabContainer/History/VBox/MatchDetail/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TimelineButton" type="Button" parent="TabContainer/History/VBox/MatchDetail/VBox/ViewerButtons"]
+layout_mode = 2
+text = "타임라인 보기"
+
+[node name="TacticalButton" type="Button" parent="TabContainer/History/VBox/MatchDetail/VBox/ViewerButtons"]
+layout_mode = 2
+text = "전술 분석"
+
+[node name="Statistics" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/Statistics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Title" type="Label" parent="TabContainer/Statistics/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "📊 전체 통계"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Statistics/VBox"]
+layout_mode = 2
+
+[node name="TotalMatches" type="Label" parent="TabContainer/Statistics/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "총 경기: 0 경기"
+
+[node name="Record" type="Label" parent="TabContainer/Statistics/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "전적: 0승 0무 0패"
+
+[node name="WinRate" type="Label" parent="TabContainer/Statistics/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+text = "승률: 0.0%"
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Statistics/VBox"]
+layout_mode = 2
+
+[node name="Goals" type="Label" parent="TabContainer/Statistics/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "득점/실점: 0 / 0"
+
+[node name="AvgGoals" type="Label" parent="TabContainer/Statistics/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "평균 득점/실점: 0.00 / 0.00"
+
+[node name="Spacer" type="Control" parent="TabContainer/Statistics/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InfoLabel" type="Label" parent="TabContainer/Statistics/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+text = "💡 경기를 진행할수록 더 많은 통계가 쌓입니다!"
+horizontal_alignment = 1
+autowrap_mode = 2

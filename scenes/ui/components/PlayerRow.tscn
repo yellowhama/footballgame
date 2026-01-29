@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://player_row_v1"]
+
+[ext_resource type="Script" path="res://scripts/ui/components/PlayerRow.gd" id="1_player_row"]
+
+[node name="PlayerRow" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+script = ExtResource("1_player_row")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PosRect" type="ColorRect" parent="HBox"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+color = Color(0.3, 0.3, 0.3, 1)
+
+[node name="Label" type="Label" parent="HBox/PosRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ST"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player Name"
+clip_text = true
+
+[node name="RoleLabel" type="Label" parent="HBox"]
+layout_mode = 2
+text = "Role"
+horizontal_alignment = 2
+
+[node name="VerticalSeparator" type="VSeparator" parent="HBox"]
+layout_mode = 2
+
+[node name="CABar" type="ProgressBar" parent="HBox"]
+custom_minimum_size = Vector2(60, 10)
+layout_mode = 2
+size_flags_vertical = 4
+value = 75.0
+show_percentage = false
+
+[node name="CondBar" type="ProgressBar" parent="HBox"]
+custom_minimum_size = Vector2(60, 10)
+layout_mode = 2
+size_flags_vertical = 4
+value = 95.0
+show_percentage = false

@@ -1,0 +1,177 @@
+{
+  "version": "2023_24",
+  "source": "WhoScored/FBref aggregate",
+  "unit": "per_match_both_teams",
+  "leagues": {
+    "EPL": {
+      "goals": 2.87,
+      "xg": 2.74,
+      "shots": 24.5,
+      "shots_on_target": 8.9,
+      "sot_pct": 0.36,
+      "passes": 830,
+      "pass_accuracy": 0.81,
+      "tackles": 38,
+      "tackles_won": 22,
+      "tackle_success_pct": 0.58,
+      "fouls": 21.4,
+      "yellow": 3.9,
+      "red": 0.15,
+      "corners": 9.7,
+      "offsides": 3.4
+    },
+    "LA_LIGA": {
+      "goals": 2.54,
+      "xg": 2.47,
+      "shots": 25.0,
+      "shots_on_target": 8.6,
+      "sot_pct": 0.34,
+      "passes": 860,
+      "pass_accuracy": 0.83,
+      "tackles": 40,
+      "tackles_won": 23,
+      "tackle_success_pct": 0.57,
+      "fouls": 25.0,
+      "yellow": 4.7,
+      "red": 0.22,
+      "corners": 9.6,
+      "offsides": 4.0
+    },
+    "BUNDESLIGA": {
+      "goals": 3.20,
+      "xg": 3.05,
+      "shots": 26.3,
+      "shots_on_target": 9.7,
+      "sot_pct": 0.37,
+      "passes": 800,
+      "pass_accuracy": 0.79,
+      "tackles": 36,
+      "tackles_won": 21,
+      "tackle_success_pct": 0.58,
+      "fouls": 21.8,
+      "yellow": 4.1,
+      "red": 0.18,
+      "corners": 9.5,
+      "offsides": 3.7
+    },
+    "SERIE_A": {
+      "goals": 2.56,
+      "xg": 2.48,
+      "shots": 24.8,
+      "shots_on_target": 8.5,
+      "sot_pct": 0.34,
+      "passes": 810,
+      "pass_accuracy": 0.82,
+      "tackles": 41,
+      "tackles_won": 24,
+      "tackle_success_pct": 0.59,
+      "fouls": 26.4,
+      "yellow": 4.1,
+      "red": 0.20,
+      "corners": 8.8,
+      "offsides": 3.2
+    },
+    "LIGUE_1": {
+      "goals": 2.85,
+      "xg": 2.72,
+      "shots": 24.5,
+      "shots_on_target": 8.8,
+      "sot_pct": 0.36,
+      "passes": 790,
+      "pass_accuracy": 0.80,
+      "tackles": 39,
+      "tackles_won": 23,
+      "tackle_success_pct": 0.59,
+      "fouls": 24.7,
+      "yellow": 4.3,
+      "red": 0.19,
+      "corners": 9.6,
+      "offsides": 3.4
+    }
+  },
+  "thresholds": {
+    "danger_low": {
+      "shots": 20,
+      "sot_pct": 0.30,
+      "fouls": 18,
+      "corners": 7
+    },
+    "danger_high": {
+      "shots": 30,
+      "sot_pct": 0.40,
+      "pass_accuracy": 0.88,
+      "tackle_success_pct": 0.65,
+      "fouls": 30,
+      "corners": 11
+    },
+    "acceptable_deviation_pct": 0.10
+  },
+  "advanced": {
+    "_comment": "FIX_2601/1125: Advanced QA metrics from real match analysis",
+    "line_spacing": {
+      "df_mean_m": 32.0,
+      "df_std_m": 5.5,
+      "dm_mean_m": 14.0,
+      "mf_mean_m": 18.0,
+      "compact_rate": 0.25,
+      "stretch_rate": 0.15,
+      "_note": "Team length (DEF-FWD) typically 28-40m, compact <28m, stretched >40m"
+    },
+    "pass_network": {
+      "gini_involvement": 0.35,
+      "density": 0.40,
+      "reciprocity": 0.55,
+      "forward_pass_rate": 0.22,
+      "centralization": 0.08,
+      "_note": "Gini <0.30 = good distribution, >0.50 = hub dependency"
+    },
+    "ppda": {
+      "high_press": {
+        "ppda_low": 5.0,
+        "ppda_high": 8.0,
+        "high_regain_rate": 0.35
+      },
+      "medium_press": {
+        "ppda_low": 8.0,
+        "ppda_high": 12.0,
+        "high_regain_rate": 0.25
+      },
+      "low_block": {
+        "ppda_low": 12.0,
+        "ppda_high": 18.0,
+        "high_regain_rate": 0.15
+      },
+      "_note": "PPDA = passes allowed / defensive actions. Lower = more intense pressing"
+    },
+    "tactical_profiles": {
+      "HIGH_PRESS": {
+        "df_mean_m": 28.0,
+        "compact_rate": 0.40,
+        "ppda": 6.5,
+        "forward_pass_rate": 0.25,
+        "gini_involvement": 0.32
+      },
+      "POSSESSION": {
+        "df_mean_m": 32.0,
+        "compact_rate": 0.30,
+        "ppda": 13.0,
+        "forward_pass_rate": 0.18,
+        "gini_involvement": 0.28
+      },
+      "COUNTER": {
+        "df_mean_m": 38.0,
+        "compact_rate": 0.15,
+        "ppda": 11.0,
+        "forward_pass_rate": 0.32,
+        "gini_involvement": 0.42
+      },
+      "PARK_THE_BUS": {
+        "df_mean_m": 24.0,
+        "compact_rate": 0.55,
+        "ppda": 16.0,
+        "forward_pass_rate": 0.35,
+        "gini_involvement": 0.38
+      }
+    }
+  }
+}

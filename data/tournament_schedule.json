@@ -1,0 +1,96 @@
+{
+  "tournaments": {
+    "regional_cup": {
+      "name": "지역 축구 대회",
+      "name_en": "Regional Football Cup",
+      "description": "지역 16개 고등학교가 참여하는 봄 대회",
+      "start_week": 13,
+      "duration": 4,
+      "participants": 16,
+      "format": "knockout",
+      "prize": {
+        "winner": {
+          "reputation": 100,
+          "money": 50000,
+          "special_event": "regional_champion"
+        },
+        "runner_up": {
+          "reputation": 50,
+          "money": 20000
+        },
+        "semifinalist": {
+          "reputation": 25,
+          "money": 10000
+        }
+      },
+      "qualifying_requirements": {
+        "team_rating_min": 60,
+        "player_rating_min": 70
+      }
+    },
+    "national_championship": {
+      "name": "전국 고등학교 축구 선수권 대회",
+      "name_en": "National High School Football Championship",
+      "description": "전국 32개 대표 고등학교가 참여하는 최고 권위의 대회",
+      "start_week": 43,
+      "duration": 6,
+      "participants": 32,
+      "format": "knockout",
+      "prize": {
+        "winner": {
+          "reputation": 300,
+          "money": 200000,
+          "special_event": "national_champion",
+          "unlock_feature": "pro_scout_attention"
+        },
+        "runner_up": {
+          "reputation": 150,
+          "money": 100000,
+          "special_event": "national_runner_up"
+        },
+        "semifinalist": {
+          "reputation": 75,
+          "money": 50000
+        }
+      },
+      "qualifying_requirements": {
+        "team_rating_min": 80,
+        "player_rating_min": 85,
+        "previous_achievement": "regional_cup_participant"
+      }
+    }
+  },
+  "bracket_config": {
+    "round_names": {
+      "1": "1회전",
+      "2": "2회전",
+      "4": "8강",
+      "8": "4강",
+      "16": "16강",
+      "32": "32강"
+    },
+    "match_scheduling": {
+      "matches_per_week": 2,
+      "rest_days_between": 3,
+      "final_special_week": true
+    }
+  },
+  "story_integration": {
+    "pre_tournament_events": [
+      "coach_speech",
+      "team_preparation",
+      "rival_encounter"
+    ],
+    "match_events": [
+      "crucial_moment",
+      "injury_concern",
+      "unexpected_hero"
+    ],
+    "post_tournament_events": [
+      "celebration",
+      "disappointment",
+      "scout_attention",
+      "team_reflection"
+    ]
+  }
+}

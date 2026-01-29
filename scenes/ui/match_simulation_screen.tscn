@@ -1,0 +1,178 @@
+[gd_scene load_steps=3 format=3 uid="uid://match_sim_screen_001"]
+
+[ext_resource type="Script" path="res://scripts/screens/MatchSimulationScreen.gd" id="1_match_sim_screen"]
+[ext_resource type="Script" path="res://scripts/match_pipeline/MatchSessionController.gd" id="2_match_session_controller"]
+
+[node name="match_simulation_screen" type="Control"]
+script = ExtResource("1_match_sim_screen")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MatchSessionController" type="Node" parent="."]
+script = ExtResource("2_match_session_controller")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.15, 0.1, 1)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+theme_override_constants/separation = 20
+
+[node name="Header" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="VBox/Header"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 50)
+text = "뒤로"
+
+[node name="Spacer" type="Control" parent="VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TitleLabel" type="Label" parent="VBox/Header"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "경기 시뮬레이션"
+
+[node name="Spacer2" type="Control" parent="VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MatchInfo" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="MatchInfoVBox" type="VBoxContainer" parent="VBox/MatchInfo"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TeamsRow" type="HBoxContainer" parent="VBox/MatchInfo/MatchInfoVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="HomeTeam" type="Label" parent="VBox/MatchInfo/MatchInfoVBox/TeamsRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "홈팀"
+
+[node name="VS" type="Label" parent="VBox/MatchInfo/MatchInfoVBox/TeamsRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "  VS  "
+
+[node name="AwayTeam" type="Label" parent="VBox/MatchInfo/MatchInfoVBox/TeamsRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "원정팀"
+
+[node name="ScoreRow" type="HBoxContainer" parent="VBox/MatchInfo/MatchInfoVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="HomeScore" type="Label" parent="VBox/MatchInfo/MatchInfoVBox/ScoreRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[node name="Dash" type="Label" parent="VBox/MatchInfo/MatchInfoVBox/ScoreRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = " - "
+
+[node name="AwayScore" type="Label" parent="VBox/MatchInfo/MatchInfoVBox/ScoreRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[node name="TimeLabel" type="Label" parent="VBox/MatchInfo/MatchInfoVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "00:00"
+horizontal_alignment = 1
+
+[node name="MatchViewContainer" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+visible = false
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="MatchViewPlaceholder" type="Label" parent="VBox/MatchViewContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "경기 화면이 여기 표시됩니다."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EventLog" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EventScroll" type="ScrollContainer" parent="VBox/EventLog"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EventList" type="VBoxContainer" parent="VBox/EventLog/EventScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Controls" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 20
+
+[node name="AttackButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 60)
+text = "공격"
+tooltip_text = "라인을 끌어올리고 강하게 압박합니다."
+
+[node name="BalancedButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 60)
+text = "밸런스"
+tooltip_text = "위험을 줄이면서 균형 잡힌 플레이를 합니다."
+
+[node name="DefendButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 60)
+text = "수비"
+tooltip_text = "라인을 낮추고 공간을 내주지 않습니다."
+
+[node name="SubButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 60)
+text = "교체"
+
+[node name="PlayButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 60)
+text = "▶ 시작"
+
+[node name="PauseButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 60)
+text = "⏸ 일시정지"
+
+[node name="SpeedButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 60)
+text = "⏩ 2x"
+
+[node name="SkipButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 60)
+text = "⏭ 스킵"

@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_eternal_partner_sr",
+  "character_name": "강태양 - 영원한 파트너",
+  "rarity": "SR",
+  "character_type": "teammate",
+  "position": "FW",
+  "technical_bonus": 0.10,
+  "physical_bonus": 0.05,
+  "mental_bonus": 0.10,
+  "events": [],
+  "description": "라이벌 루트 분기점 3 - B 선택 보상. 함께 에이스가 되기로 한 영원한 파트너.",
+  "acquisition_condition": "rival_branch3_B",
+  "special_effect": "콤비 효과 +30%"
+}

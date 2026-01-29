@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0layered_char"]
+
+[ext_resource type="Script" path="res://scripts/match/LayeredCharacter.gd" id="1_script"]
+
+[node name="LayeredCharacter" type="Node2D"]
+script = ExtResource("1_script")
+asset_base_path = "res://assets/nanobanana_works/character/done/extracted/"
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(0, 10)
+modulate = Color(0, 0, 0, 0.3)
+
+[node name="InfoAnchor" type="Node2D" parent="."]
+position = Vector2(0, -80)
+
+[node name="NameLabel" type="Label" parent="InfoAnchor"]
+offset_left = -50.0
+offset_top = -10.0
+offset_right = 50.0
+offset_bottom = 10.0
+horizontal_alignment = 1
+vertical_alignment = 1

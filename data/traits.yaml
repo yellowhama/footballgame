@@ -1,0 +1,446 @@
+meta:
+  file: "traits_v0_2.yaml"
+  version: "0.2"
+  note: "공격/수비/멘탈/하이브리드 Trait Bank"
+
+formulas:
+  morale_scale: "1.0 + 0.003*(Composure-50) + 0.002*(Decision-50)"
+  fatigue_penalty: "1.0 - 0.4*pct(fatigue)"
+
+trait_bank:
+
+  # ──────────────── ⚽ 공격형 ────────────────
+  - id: finisher
+    group: offense
+    name: "결정력"
+    name_en: "Finisher"
+    linked_stats: [Finishing, Composure, OffBall]
+    visibility: "on_unlock"
+    progress: { threshold_unlock: 60, decay_per_week: 2 }
+    triggers:
+      - on: "training_end"
+        plan_tags: ["Tech","Finishing"]
+        gain: "3.0 * morale_scale * fatigue_penalty"
+      - on: "match_end"
+        cond: "goals_for >= 1"
+        gain: "5 + 2*goals_for"
+    unlock:
+      message: "결정적인 순간에도 침착하게 마무리한다."
+      message_en: "Calm finishing in crucial moments"
+      effects:
+        passive_mods:
+          shot_accuracy_mul: "1.04"
+          finishing_gain_mul: "1.06"
+    tiers:
+      - id: "bronze"
+        at_progress: 70
+        effects:
+          shot_accuracy_mul: "1.06"
+      - id: "silver"
+        at_progress: 85
+        effects:
+          shot_accuracy_mul: "1.08"
+          clutch_bonus_add: "0.3"
+
+  - id: playmaker
+    group: offense
+    name: "플레이메이커"
+    name_en: "Playmaker"
+    linked_stats: [Passing, Vision, FirstTouch]
+    visibility: "on_unlock"
+    progress: { threshold_unlock: 55, decay_per_week: 1 }
+    triggers:
+      - on: "training_end"
+        plan_tags: ["Tech","Passing"]
+        gain: "2.5 * morale_scale"
+      - on: "match_end"
+        cond: "key_passes >= 2"
+        gain: "4 + key_passes"
+    unlock:
+      message: "경기의 흐름을 바꾸는 패스를 뿌릴 수 있다."
+      message_en: "Game-changing passes"
+      effects:
+        passive_mods:
+          pass_accuracy_mul: "1.04"
+          assist_weight_add: "0.5"
+    tiers:
+      - id: "bronze"
+        at_progress: 70
+        effects:
+          pass_accuracy_mul: "1.06"
+      - id: "silver"
+        at_progress: 85
+        effects:
+          chance_creation_add: "0.5"
+
+  - id: poacher
+    group: offense
+    name: "득점 본능"
+    name_en: "Poacher"
+    linked_stats: [Heading, Positioning, Accel]
+    visibility: "on_unlock"
+    progress: { threshold_unlock: 50, decay_per_week: 0 }
+    triggers:
+      - on: "match_end"
+        cond: "shots_in_box >= 3"
+        gain: "3 + shots_on*0.5"
+    unlock:
+      message: "골문 앞에서 본능적으로 움직인다."
+      message_en: "Instinctive movement in the box"
+      effects:
+        passive_mods:
+          box_presence_mul: "1.05"
+    tiers:
+      - id: "bronze"
+        at_progress: 65
+        effects:
+          box_presence_mul: "1.07"
+      - id: "silver"
+        at_progress: 80
+        effects:
+          box_presence_mul: "1.10"
+          positioning_add: "0.5"
+
+  # ──────────────── 🛡 수비형 ────────────────
+  - id: resilience
+    group: defense
+    name: "강인함"
+    name_en: "Resilience"
+    linked_stats: [Jumping, Heading, Bravery, Stamina]
+    visibility: "on_unlock"
+    progress: { threshold_unlock: 60, decay_per_week: 0 }
+    triggers:
+      - on: "camp_end"
+        camp_tags: ["camp_summer","camp_winter"]
+        gain: "rnd(8,12)"
+      - on: "match_end"
+        cond: "aerial_duels_won >= 3"
+        gain: "4 + aerial_duels_won"
+    unlock:
+      message: "몸싸움과 공중볼에서 더 강인해졌다!"
+      message_en: "Stronger in duels and aerials"
+      effects:
+        passive_mods:
+          aerial_duel_mul: "1.06"
+          injury_risk_week: "clamp(injury_risk_week - 0.02, 0, 1)"
+    tiers:
+      - id: "bronze"
+        at_progress: 75
+        effects:
+          aerial_duel_mul: "1.08"
+      - id: "silver"
+        at_progress: 90
+        effects:
+          aerial_duel_mul: "1.10"
+          strength_add: "0.5"
+
+  - id: toughness
+    group: defense
+    name: "단단함"
+    name_en: "Toughness"
+    linked_stats: [Strength, Aggression, Pressure]
+    visibility: "on_unlock"
+    progress: { threshold_unlock: 55, decay_per_week: 0 }
+    triggers:
+      - on: "training_end"
+        plan_tags: ["Physical","Strength"]
+        gain: "3"
+      - on: "match_end"
+        cond: "tackles_won >= 4"
+        gain: "3 + 0.5*tackles_won"
+    unlock:
+      message: "몸싸움에서 밀리지 않는 단단함을 보인다."
+      message_en: "Solid in physical battles"
+      effects:
+        passive_mods:
+          duel_stability_mul: "1.05"
+          pressure_drop_mul: "0.95"
+    tiers:
+      - id: "bronze"
+        at_progress: 70
+        effects:
+          duel_stability_mul: "1.07"
+      - id: "silver"
+        at_progress: 85
+        effects:
+          duel_stability_mul: "1.09"
+
+  - id: wall
+    group: defense
+    name: "철벽"
+    name_en: "Wall"
+    linked_stats: [Tackling, Positioning, WorkRate]
+    visibility: "on_unlock"
+    progress: { threshold_unlock: 65, decay_per_week: 0 }
+    triggers:
+      - on: "match_end"
+        cond: "interceptions >= 3 || clean_sheet == true"
+        gain: "5 + interceptions"
+    unlock:
+      message: "상대를 벽처럼 막아내기 시작했다."
+      message_en: "Blocking opponents like a wall"
+      effects:
+        passive_mods:
+          tackle_success_mul: "1.05"
+          line_compactness_add: "0.3"
+    tiers:
+      - id: "bronze"
+        at_progress: 75
+        effects:
+          tackle_success_mul: "1.07"
+      - id: "silver"
+        at_progress: 90
+        effects:
+          tackle_success_mul: "1.09"
+          positioning_add: "0.5"
+
+  # ──────────────── 🧠 멘탈형 ────────────────
+  - id: calmness
+    group: mental
+    name: "침착함"
+    name_en: "Calmness"
+    linked_stats: [Composure, Consistency, Professionalism]
+    visibility: "on_unlock"
+    progress: { threshold_unlock: 55, decay_per_week: 1 }
+    triggers:
+      - on: "camp_end"
+        camp_tags: ["camp_winter"]
+        gain: "rnd(6,10)"
+      - on: "match_end"
+        cond: "late_game_events >= 1"
+        gain: "3 + clutch_success"
+    unlock:
+      message: "결정적인 순간에도 흔들리지 않는 침착함을 보여준다."
+      message_en: "Unwavering composure in crucial moments"
+      effects:
+        passive_mods:
+          error_rate_mul: "0.95"
+          clutch_bonus_add: "0.5"
+    tiers:
+      - id: "bronze"
+        at_progress: 70
+        effects:
+          error_rate_mul: "0.93"
+      - id: "silver"
+        at_progress: 85
+        effects:
+          error_rate_mul: "0.90"
+          composure_add: "0.5"
+
+  - id: ambition
+    group: mental
+    name: "야망"
+    name_en: "Ambition"
+    linked_stats: [Ambition, WorkRate, OffBall]
+    visibility: "on_unlock"
+    progress: { threshold_unlock: 50, decay_per_week: 0 }
+    triggers:
+      - on: "event_choice"
+        event_tags: ["scout_watch","award_nomination"]
+        gain: "rnd(4,7)"
+      - on: "training_end"
+        plan_tags: ["Mixed","Extra"]
+        gain: "2"
+    unlock:
+      message: "더 큰 무대를 향한 야망이 드러나기 시작했다."
+      message_en: "Showing ambition for bigger stages"
+      effects:
+        passive_mods:
+          training_gain_mul: "1.05"
+          sprint_intent_add: "0.2"
+    tiers:
+      - id: "bronze"
+        at_progress: 65
+        effects:
+          training_gain_mul: "1.07"
+      - id: "silver"
+        at_progress: 80
+        effects:
+          training_gain_mul: "1.10"
+
+  - id: leadership
+    group: mental
+    name: "리더십"
+    name_en: "Leadership"
+    linked_stats: [Leadership, Teamwork, Vision]
+    visibility: "on_unlock"
+    progress: { threshold_unlock: 60, decay_per_week: 0 }
+    triggers:
+      - on: "event_choice"
+        event_tags: ["captain_offer","team_talk"]
+        gain: "rnd(5,9)"
+      - on: "match_end"
+        cond: "motivation_actions >= 2"
+        gain: "3 + 0.5*motivation_actions"
+    unlock:
+      message: "팀을 이끄는 리더십이 싹트고 있다."
+      message_en: "Emerging team leadership"
+      effects:
+        passive_mods:
+          cohesion_mul: "1.06"
+          comms_clarity_add: "0.3"
+    tiers:
+      - id: "bronze"
+        at_progress: 75
+        effects:
+          cohesion_mul: "1.08"
+      - id: "silver"
+        at_progress: 90
+        effects:
+          cohesion_mul: "1.10"
+          teamwork_add: "0.5"
+
+  # ──────────────── 🔀 하이브리드형 ────────────────
+  - id: workhorse
+    group: hybrid
+    name: "일꾼"
+    name_en: "Workhorse"
+    linked_stats: [Stamina, WorkRate, Teamwork]
+    visibility: "on_unlock"
+    progress: { threshold_unlock: 50, decay_per_week: 0 }
+    triggers:
+      - on: "match_end"
+        cond: "minutes_played >= 80"
+        gain: "4"
+      - on: "training_end"
+        plan_tags: ["Physical","Stamina"]
+        gain: "2"
+    unlock:
+      message: "끝까지 뛰는 체력과 헌신을 보여준다."
+      message_en: "Shows stamina and dedication till the end"
+      effects:
+        passive_mods:
+          stamina_efficiency_mul: "1.05"
+          fatigue_recovery_add: "0.2"
+    tiers:
+      - id: "bronze"
+        at_progress: 65
+        effects:
+          stamina_efficiency_mul: "1.07"
+      - id: "silver"
+        at_progress: 80
+        effects:
+          stamina_efficiency_mul: "1.10"
+          workrate_add: "0.5"
+
+  - id: clutch
+    group: hybrid
+    name: "승부사"
+    name_en: "Clutch Performer"
+    linked_stats: [Composure, OffBall, Finishing]
+    visibility: "on_unlock"
+    progress: { threshold_unlock: 65, decay_per_week: 0 }
+    triggers:
+      - on: "match_end"
+        cond: "minute >= 75 && (goal_scored == 1 || assist == 1)"
+        gain: "6"
+    unlock:
+      message: "중요한 순간에 진가를 발휘한다."
+      message_en: "Shines in crucial moments"
+      effects:
+        passive_mods:
+          clutch_bonus_add: "1.0"
+          late_game_mul: "1.05"
+    tiers:
+      - id: "bronze"
+        at_progress: 75
+        effects:
+          clutch_bonus_add: "1.5"
+      - id: "silver"
+        at_progress: 90
+        effects:
+          clutch_bonus_add: "2.0"
+          composure_late_add: "1.0"
+
+  - id: twoway
+    group: hybrid
+    name: "양면형"
+    name_en: "Two-Way Player"
+    linked_stats: [Positioning, Vision, WorkRate]
+    visibility: "on_unlock"
+    progress: { threshold_unlock: 60, decay_per_week: 0 }
+    triggers:
+      - on: "match_end"
+        cond: "tackles_won >= 2 && key_passes >= 1"
+        gain: "5"
+      - on: "training_end"
+        plan_tags: ["Mixed"]
+        gain: "2"
+    unlock:
+      message: "공격과 수비 모두에 기여하는 플레이어로 성장한다."
+      message_en: "Contributing to both attack and defense"
+      effects:
+        passive_mods:
+          transition_speed_mul: "1.05"
+          balance_bonus_add: "0.3"
+    tiers:
+      - id: "bronze"
+        at_progress: 75
+        effects:
+          transition_speed_mul: "1.07"
+      - id: "silver"
+        at_progress: 90
+        effects:
+          transition_speed_mul: "1.10"
+          positioning_both_add: "0.5"
+
+  - id: versatile
+    group: hybrid
+    name: "멀티 포지션"
+    name_en: "Versatile"
+    linked_stats: [FirstTouch, Decision, Professionalism]
+    visibility: "on_unlock"
+    progress: { threshold_unlock: 55, decay_per_week: 0 }
+    triggers:
+      - on: "event_choice"
+        event_tags: ["position_change_accept"]
+        gain: "rnd(5,8)"
+      - on: "training_end"
+        plan_tags: ["Tactical"]
+        gain: "2"
+    unlock:
+      message: "여러 포지션에 적응하는 능력을 갖췄다."
+      message_en: "Adapted to multiple positions"
+      effects:
+        passive_mods:
+          pos_adapt_penalty_mul: "0.8"
+          tactical_flex_add: "0.5"
+    tiers:
+      - id: "bronze"
+        at_progress: 70
+        effects:
+          pos_adapt_penalty_mul: "0.6"
+      - id: "silver"
+        at_progress: 85
+        effects:
+          pos_adapt_penalty_mul: "0.4"
+          role_rating_bonus_add: "0.5"
+
+hooks:
+  on_training_end:
+    pass_vars: ["Composure", "Decision", "fatigue"]
+    apply: ["finisher", "playmaker", "toughness", "ambition", "workhorse", "twoway", "versatile"]
+  on_match_end:
+    pass_vars: ["goals_for", "shots_on", "key_passes", "tackles_won", "aerial_duels_won", "interceptions", "minutes_played"]
+    apply: ["finisher", "playmaker", "poacher", "resilience", "toughness", "wall", "calmness", "clutch", "twoway", "workhorse"]
+  on_camp_end:
+    pass_vars: []
+    apply: ["resilience", "calmness"]
+  on_event_choice:
+    pass_vars: ["event_tag"]
+    apply: ["ambition", "leadership", "versatile"]
+
+ui:
+  trait_groups:
+    - id: "offense"
+      name: "⚡ 공격 특성"
+      color: "#FFD700"
+    - id: "defense"
+      name: "🛡️ 수비 특성"
+      color: "#4169E1"
+    - id: "mental"
+      name: "🧠 정신 특성"
+      color: "#9370DB"
+    - id: "hybrid"
+      name: "🔀 하이브리드"
+      color: "#20B2AA"

@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_absolute_trust_sr",
+  "character_name": "박민준 - 절대적 신뢰",
+  "rarity": "SR",
+  "character_type": "teammate",
+  "position": "MF",
+  "technical_bonus": 0.10,
+  "physical_bonus": 0.05,
+  "mental_bonus": 0.10,
+  "events": [],
+  "description": "우정 루트 분기점 2 - A 선택 보상. 코치의 지시를 따르며 얻은 절대적 신뢰.",
+  "acquisition_condition": "friendship_branch2_A",
+  "special_effect": "팀 보너스 +15%"
+}

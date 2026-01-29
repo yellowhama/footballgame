@@ -1,0 +1,291 @@
+[gd_scene load_steps=2 format=3 uid="uid://special_ability_screen"]
+
+[ext_resource type="Script" path="res://scripts/screens/SpecialAbilityScreen.gd" id="1"]
+
+[node name="SpecialAbilityScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.08, 0.08, 0.12, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20
+margin_top = 20
+margin_right = -20
+margin_bottom = -20
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackButton" type="Button" parent="VBoxContainer/Header"]
+layout_mode = 2
+text = "뒤로"
+custom_minimum_size = Vector2(120, 60)
+theme_override_font_sizes/font_size = 24
+
+[node name="Title" type="Label" parent="VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "특수능력 (Special Abilities)"
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="UnlockCount" type="Label" parent="VBoxContainer/Header"]
+layout_mode = 2
+text = "해금: 0/12"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.7, 0.9, 0.7, 1)
+
+[node name="CategoryTabs" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 500)
+theme_override_font_sizes/font_size = 22
+
+[node name="Technical" type="ScrollContainer" parent="VBoxContainer/CategoryTabs"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="TechnicalGrid" type="GridContainer" parent="VBoxContainer/CategoryTabs/Technical"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+# DribblingMaster Card
+[node name="DribblingMaster" type="Panel" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 180)
+
+[node name="VBox" type="VBoxContainer" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10
+margin_top = 10
+margin_right = -10
+margin_bottom = -10
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox"]
+layout_mode = 2
+
+[node name="TierBadge" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox/Header"]
+layout_mode = 2
+text = "🟤"
+theme_override_font_sizes/font_size = 28
+
+[node name="Name" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "드리블 마스터"
+theme_override_font_sizes/font_size = 20
+
+[node name="LockIcon" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox/Header"]
+layout_mode = 2
+text = "🔒"
+theme_override_font_sizes/font_size = 20
+
+[node name="Description" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox"]
+layout_mode = 2
+text = "드리블링 +20%, 기술 향상"
+theme_override_font_sizes/font_size = 16
+autowrap_mode = 2
+
+[node name="UnlockCondition" type="VBoxContainer" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox/UnlockCondition"]
+layout_mode = 2
+text = "해금 조건:"
+theme_override_font_sizes/font_size = 14
+
+[node name="Dribbling" type="HBoxContainer" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox/UnlockCondition"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox/UnlockCondition/Dribbling"]
+layout_mode = 2
+text = "Dribbling:"
+custom_minimum_size = Vector2(80, 0)
+theme_override_font_sizes/font_size = 14
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox/UnlockCondition/Dribbling"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 80.0
+value = 0.0
+show_percentage = false
+
+[node name="Value" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox/UnlockCondition/Dribbling"]
+layout_mode = 2
+text = "0/80"
+theme_override_font_sizes/font_size = 14
+
+[node name="Technique" type="HBoxContainer" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox/UnlockCondition"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox/UnlockCondition/Technique"]
+layout_mode = 2
+text = "Technique:"
+custom_minimum_size = Vector2(80, 0)
+theme_override_font_sizes/font_size = 14
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox/UnlockCondition/Technique"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 70.0
+value = 0.0
+show_percentage = false
+
+[node name="Value" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/DribblingMaster/VBox/UnlockCondition/Technique"]
+layout_mode = 2
+text = "0/70"
+theme_override_font_sizes/font_size = 14
+
+# PassingGenius Card
+[node name="PassingGenius" type="Panel" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 180)
+
+[node name="VBox" type="VBoxContainer" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/PassingGenius"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10
+margin_top = 10
+margin_right = -10
+margin_bottom = -10
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/PassingGenius/VBox"]
+layout_mode = 2
+
+[node name="TierBadge" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/PassingGenius/VBox/Header"]
+layout_mode = 2
+text = "⚪"
+theme_override_font_sizes/font_size = 28
+
+[node name="Name" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/PassingGenius/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "패스 천재"
+theme_override_font_sizes/font_size = 20
+
+[node name="LockIcon" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/PassingGenius/VBox/Header"]
+layout_mode = 2
+text = "🔒"
+theme_override_font_sizes/font_size = 20
+
+# ShootingStar Card
+[node name="ShootingStar" type="Panel" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 180)
+
+[node name="VBox" type="VBoxContainer" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/ShootingStar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10
+margin_top = 10
+margin_right = -10
+margin_bottom = -10
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/ShootingStar/VBox"]
+layout_mode = 2
+
+[node name="TierBadge" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/ShootingStar/VBox/Header"]
+layout_mode = 2
+text = "🟡"
+theme_override_font_sizes/font_size = 28
+
+[node name="Name" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/ShootingStar/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "슈팅 스타"
+theme_override_font_sizes/font_size = 20
+
+[node name="LockIcon" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/ShootingStar/VBox/Header"]
+layout_mode = 2
+text = "🔒"
+theme_override_font_sizes/font_size = 20
+
+# SetPieceSpecialist Card
+[node name="SetPieceSpecialist" type="Panel" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 180)
+
+[node name="VBox" type="VBoxContainer" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/SetPieceSpecialist"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10
+margin_top = 10
+margin_right = -10
+margin_bottom = -10
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/SetPieceSpecialist/VBox"]
+layout_mode = 2
+
+[node name="TierBadge" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/SetPieceSpecialist/VBox/Header"]
+layout_mode = 2
+text = "💎"
+theme_override_font_sizes/font_size = 28
+
+[node name="Name" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/SetPieceSpecialist/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "세트피스 전문가"
+theme_override_font_sizes/font_size = 20
+
+[node name="LockIcon" type="Label" parent="VBoxContainer/CategoryTabs/Technical/TechnicalGrid/SetPieceSpecialist/VBox/Header"]
+layout_mode = 2
+text = "🔒"
+theme_override_font_sizes/font_size = 20
+
+[node name="Mental" type="ScrollContainer" parent="VBoxContainer/CategoryTabs"]
+layout_mode = 2
+visible = false
+horizontal_scroll_mode = 0
+
+[node name="MentalGrid" type="GridContainer" parent="VBoxContainer/CategoryTabs/Mental"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="Physical" type="ScrollContainer" parent="VBoxContainer/CategoryTabs"]
+layout_mode = 2
+visible = false
+horizontal_scroll_mode = 0
+
+[node name="PhysicalGrid" type="GridContainer" parent="VBoxContainer/CategoryTabs/Physical"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="BottomPanel" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CombineButton" type="Button" parent="VBoxContainer/BottomPanel"]
+layout_mode = 2
+text = "조합"
+custom_minimum_size = Vector2(120, 60)
+theme_override_font_sizes/font_size = 20
+disabled = true
+
+[node name="DetailButton" type="Button" parent="VBoxContainer/BottomPanel"]
+layout_mode = 2
+text = "상세 정보"
+custom_minimum_size = Vector2(120, 60)
+theme_override_font_sizes/font_size = 20
+
+[node name="TestButton" type="Button" parent="VBoxContainer/BottomPanel"]
+layout_mode = 2
+text = "테스트 해금"
+custom_minimum_size = Vector2(120, 60)
+theme_override_font_sizes/font_size = 20
+visible = false
+
+[connection signal="pressed" from="VBoxContainer/Header/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BottomPanel/CombineButton" to="." method="_on_combine_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BottomPanel/DetailButton" to="." method="_on_detail_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BottomPanel/TestButton" to="." method="_on_test_button_pressed"]

@@ -1,0 +1,145 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8jv2x3m4kqar"]
+
+[ext_resource type="Script" path="res://scripts/match/BroadcastUIPanel.gd" id="1_broadcast_ui"]
+
+[node name="BroadcastUIPanel" type="PanelContainer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_broadcast_ui")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TimelineInfo" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/TimelineInfo"]
+layout_mode = 2
+text = "🎬 Broadcast Timeline"
+horizontal_alignment = 1
+
+[node name="HSeparator1" type="HSeparator" parent="MarginContainer/VBoxContainer/TimelineInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ClipCounter" type="Label" parent="MarginContainer/VBoxContainer/TimelineInfo"]
+layout_mode = 2
+text = "Clip 0/0"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/TimelineInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimeDisplay" type="Label" parent="MarginContainer/VBoxContainer/TimelineInfo"]
+layout_mode = 2
+text = "0:00 / 0:00"
+
+[node name="TimelineProgress" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/TimelineProgress"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+show_percentage = false
+
+[node name="TimelineSlider" type="HSlider" parent="MarginContainer/VBoxContainer/TimelineProgress"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="ClipMarkers" type="Control" parent="MarginContainer/VBoxContainer/TimelineProgress"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="PlaybackControls" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="StopButton" type="Button" parent="MarginContainer/VBoxContainer/PlaybackControls"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "⏹️ Stop"
+
+[node name="PrevClipButton" type="Button" parent="MarginContainer/VBoxContainer/PlaybackControls"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "⏮️ Prev"
+
+[node name="FrameBackButton" type="Button" parent="MarginContainer/VBoxContainer/PlaybackControls"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "◀️"
+
+[node name="PlayPauseButton" type="Button" parent="MarginContainer/VBoxContainer/PlaybackControls"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "▶️ Play"
+
+[node name="FrameForwardButton" type="Button" parent="MarginContainer/VBoxContainer/PlaybackControls"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "▶️"
+
+[node name="NextClipButton" type="Button" parent="MarginContainer/VBoxContainer/PlaybackControls"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "⏭️ Next"
+
+[node name="SpeedLabel" type="Label" parent="MarginContainer/VBoxContainer/PlaybackControls"]
+layout_mode = 2
+text = "Speed:"
+
+[node name="SpeedSlider" type="HSlider" parent="MarginContainer/VBoxContainer/PlaybackControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+min_value = 0.25
+max_value = 2.0
+step = 0.25
+value = 1.0
+
+[node name="SpeedValue" type="Label" parent="MarginContainer/VBoxContainer/PlaybackControls"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1.00x"
+
+[node name="ClipInfo" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CurrentClipLabel" type="Label" parent="MarginContainer/VBoxContainer/ClipInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "No clip active"
+
+[node name="CameraLabel" type="Label" parent="MarginContainer/VBoxContainer/ClipInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "📷 Camera: None"
+
+[node name="EffectLabel" type="Label" parent="MarginContainer/VBoxContainer/ClipInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "⚡ Effect: None"

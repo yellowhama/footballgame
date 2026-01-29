@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_tactical_genius_sr",
+  "character_name": "전술의 귀재",
+  "rarity": "SR",
+  "character_type": "trait",
+  "position": "MF",
+  "technical_bonus": 0.10,
+  "physical_bonus": 0.0,
+  "mental_bonus": 0.15,
+  "events": [],
+  "description": "우정 루트 분기점 3 - B 선택 보상. 팀 전술을 완벽히 이해한 전술의 귀재.",
+  "acquisition_condition": "friendship_branch3_B",
+  "special_effect": "Vision +3, 전술 효과 +20%"
+}

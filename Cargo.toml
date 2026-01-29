@@ -1,0 +1,45 @@
+[workspace]
+members = [
+    "crates/of_core",
+    # "crates/of_adapter",  # Disabled: references archived of_engine crate
+    "crates/cache_builder",
+    "crates/of_cli",
+    "godot_extension",
+]
+exclude = [
+    "third_party/open-football",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Football Game Team"]
+
+[workspace.dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rand = "0.8"
+chrono = { version = "0.4", features = ["serde"] }
+log = "0.4"
+
+[profile.release]
+lto = "fat"              # Full link-time optimization
+codegen-units = 1        # Maximum optimization (single codegen unit)
+panic = "abort"          # Remove panic unwinding overhead
+strip = true             # Strip debug symbols for smaller binary
+opt-level = 3            # Maximum optimization level
+
+[profile.dev]
+opt-level = 0
+debug = 0
+incremental = true
+panic = "unwind"
+
+[profile.test]
+# On Windows MSVC, large test binaries can occasionally fail to link with
+# `LNK1318: unexpected PDB error`. Reducing debuginfo and forcing a single
+# codegen unit significantly reduces PDB/type-merging pressure during linking.
+debug = 0
+incremental = false
+codegen-units = 1

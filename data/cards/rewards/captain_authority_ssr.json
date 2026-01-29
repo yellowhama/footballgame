@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_captain_authority_ssr",
+  "character_name": "주장의 권한",
+  "rarity": "SSR",
+  "character_type": "trait",
+  "position": "ALL",
+  "technical_bonus": 0.10,
+  "physical_bonus": 0.05,
+  "mental_bonus": 0.20,
+  "events": ["captain_speech_event"],
+  "description": "주장 루트 분기점 2 - C 선택 보상. 진정한 주장으로서의 권한과 책임.",
+  "acquisition_condition": "captain_branch2_C",
+  "special_effect": "팀 전체 능력치 +10%, 사기 +30%, 중요 경기 Rating +3"
+}

@@ -1,0 +1,155 @@
+[gd_scene load_steps=4 format=3 uid="uid://formation_selection_screen"]
+
+[ext_resource type="Script" path="res://scripts/components/FormationDisplay.gd" id="1_formation_display"]
+[ext_resource type="Script" path="res://scripts/components/FormationSelector.gd" id="2_formation_selector"]
+[ext_resource type="Script" path="res://scenes/ui/FormationSelectionScreen.gd" id="3_screen_controller"]
+
+[node name="FormationSelectionScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_screen_controller")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Header" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="BackButton" type="Button" parent="MainContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "← 뒤로"
+custom_minimum_size = Vector2(100, 50)
+
+[node name="Title" type="Label" parent="MainContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "포메이션 선택"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 32
+
+[node name="RecommendButton" type="Button" parent="MainContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "AI 추천"
+custom_minimum_size = Vector2(120, 50)
+tooltip_text = "현재 스쿼드에 최적인 포메이션을 AI가 추천합니다"
+
+[node name="ContentContainer" type="HSplitContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftPanel" type="PanelContainer" parent="MainContainer/ContentContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(300, 0)
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/ContentContainer/LeftPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="FormationSelector" type="Control" parent="MainContainer/ContentContainer/LeftPanel/MarginContainer"]
+layout_mode = 2
+script = ExtResource("2_formation_selector")
+
+[node name="RightPanel" type="PanelContainer" parent="MainContainer/ContentContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/ContentContainer/RightPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="RightContent" type="VBoxContainer" parent="MainContainer/ContentContainer/RightPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="FormationName" type="Label" parent="MainContainer/ContentContainer/RightPanel/MarginContainer/RightContent"]
+layout_mode = 2
+text = "현재 포메이션: 4-4-2"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+
+[node name="FormationDisplay" type="Control" parent="MainContainer/ContentContainer/RightPanel/MarginContainer/RightContent"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 500)
+script = ExtResource("1_formation_display")
+
+[node name="StatsContainer" type="HBoxContainer" parent="MainContainer/ContentContainer/RightPanel/MarginContainer/RightContent"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+theme_override_constants/separation = 30
+
+[node name="FitnessLabel" type="Label" parent="MainContainer/ContentContainer/RightPanel/MarginContainer/RightContent/StatsContainer"]
+layout_mode = 2
+text = "적합도: --"
+theme_override_font_sizes/font_size = 18
+
+[node name="StyleLabel" type="Label" parent="MainContainer/ContentContainer/RightPanel/MarginContainer/RightContent/StatsContainer"]
+layout_mode = 2
+text = "스타일: --"
+theme_override_font_sizes/font_size = 18
+
+[node name="ComplexityLabel" type="Label" parent="MainContainer/ContentContainer/RightPanel/MarginContainer/RightContent/StatsContainer"]
+layout_mode = 2
+text = "복잡도: --"
+theme_override_font_sizes/font_size = 18
+
+[node name="Footer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 2
+theme_override_constants/separation = 20
+
+[node name="CompareButton" type="Button" parent="MainContainer/Footer"]
+layout_mode = 2
+text = "포메이션 비교"
+custom_minimum_size = Vector2(150, 60)
+
+[node name="ApplyButton" type="Button" parent="MainContainer/Footer"]
+layout_mode = 2
+text = "적용하기"
+custom_minimum_size = Vector2(200, 60)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[connection signal="pressed" from="MainContainer/Header/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MainContainer/Header/RecommendButton" to="." method="_on_recommend_pressed"]
+[connection signal="formation_selected" from="MainContainer/ContentContainer/LeftPanel/MarginContainer/FormationSelector" to="." method="_on_formation_selected"]
+[connection signal="formation_preview_started" from="MainContainer/ContentContainer/LeftPanel/MarginContainer/FormationSelector" to="." method="_on_formation_preview_started"]
+[connection signal="formation_preview_ended" from="MainContainer/ContentContainer/LeftPanel/MarginContainer/FormationSelector" to="." method="_on_formation_preview_ended"]
+[connection signal="pressed" from="MainContainer/Footer/CompareButton" to="." method="_on_compare_pressed"]
+[connection signal="pressed" from="MainContainer/Footer/ApplyButton" to="." method="_on_apply_pressed"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cstadium3denv"]
+
+[ext_resource type="Script" path="res://scripts/match_viewer_3d/stadium_environment.gd" id="1_stadium"]
+[ext_resource type="Script" path="res://scripts/match_viewer_3d/goal_posts.gd" id="2_goals"]
+
+[node name="StadiumEnvironment" type="Node3D"]
+script = ExtResource("1_stadium")
+
+[node name="GoalPosts" type="Node3D" parent="."]
+script = ExtResource("2_goals")

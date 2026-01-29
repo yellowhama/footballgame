@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://bottom_nav_v1"]
+
+[ext_resource type="Script" path="res://scripts/ui/components/BottomNav.gd" id="1_bottom_nav"]
+
+[node name="BottomNav" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 60)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_bottom_nav")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="NavBtn_Home" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Home"
+
+[node name="NavBtn_Training" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Training"
+
+[node name="NavBtn_Match" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Match"
+
+[node name="NavBtn_Status" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Status"
+
+[node name="NavBtn_Menu" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Menu"

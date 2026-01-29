@@ -1,0 +1,57 @@
+## Route Decision Timeline
+## Major branching point - Elite, Standard, or Underdog path
+
+[character join="manager" position="center"]
+박감독 (serious): 10주가 지났습니다. 이제 중요한 결정을 할 때입니다.
+박감독: 당신의 재능과 노력을 보았습니다.
+
+[character leave="manager"]
+[character join="scout" position="left"]
+스카우터 (smile): 프로 구단에서 관심을 보이고 있습니다.
+스카우터: 엘리트 코스로 진학하는 건 어떨까요?
+
+[character join="coach" position="right"]
+코치 (normal): 하지만 서두를 필요는 없습니다.
+코치: 기초를 다지면서 천천히 성장하는 것도 좋은 선택입니다.
+
+내레이터: 세 가지 길이 있다...
+
+- 엘리트 루트: 최고를 목표로!
+	set {route} = "Elite"
+	set {ambition} += 20
+	set {pressure} += 10
+	박감독 (smile): 큰 꿈을 품었군요. 응원하겠습니다!
+	스카우터: 다음 주부터 특별 훈련을 시작합니다.
+	jump elite_path
+- 일반 루트: 균형잡힌 성장
+	set {route} = "Standard"
+	set {balance} += 10
+	set {confidence} += 5
+	박감독 (normal): 현명한 선택입니다.
+	코치: 탄탄하게 키워드리겠습니다.
+	jump standard_path
+- 언더독 루트: 불굴의 도전
+	set {route} = "Underdog"
+	set {determination} += 20
+	set {grit} += 15
+	박감독 (proud): 쉽지 않은 길이지만, 당신이라면 할 수 있습니다!
+	코치: 함께 이겨냅시다!
+	jump underdog_path
+
+label elite_path
+내레이터: 엘리트 코스로 결정했다.
+내레이터: 높은 목표, 큰 압박... 하지만 최고가 될 것이다.
+=> EventBus.emit("route_selected", {"route": "Elite"})
+[end_timeline]
+
+label standard_path
+내레이터: 일반 코스로 결정했다.
+내레이터: 꾸준함과 성실함으로 프로의 꿈을 이룰 것이다.
+=> EventBus.emit("route_selected", {"route": "Standard"})
+[end_timeline]
+
+label underdog_path
+내레이터: 언더독의 길을 선택했다.
+내레이터: 불리한 조건을 극복하고 모두를 놀라게 할 것이다!
+=> EventBus.emit("route_selected", {"route": "Underdog"})
+[end_timeline]

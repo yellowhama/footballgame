@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://training_card_v1"]
+
+[ext_resource type="Script" path="res://scripts/ui/components/TrainingCard.gd" id="1_tc_script"]
+
+[node name="TrainingCard" type="PanelContainer"]
+custom_minimum_size = Vector2(200, 120)
+size_flags_horizontal = 3
+script = ExtResource("1_tc_script")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="VBox/Header"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "🏃"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+text = "Training Name"
+
+[node name="Description" type="Label" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+text = "Description of the training effects"
+autowrap_mode = 2

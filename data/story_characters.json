@@ -1,0 +1,236 @@
+{
+  "main_characters": {
+    "lee_minho": {
+      "name": "이민호",
+      "en_name": "Lee Min-ho",
+      "role": "rival",
+      "position": "FW",
+      "grade": 2,
+      "personality": ["competitive", "talented", "charismatic"],
+      "initial_ca": 105,
+      "portrait": "res://assets/characters/lee_minho.png",
+      "relationship_events": ["rival_challenge", "respect_earned", "final_duel"],
+      "dialogue_style": "confident"
+    },
+    "kim_jimin": {
+      "name": "김지민",
+      "en_name": "Kim Ji-min",
+      "role": "friend",
+      "position": "MF",
+      "grade": 1,
+      "personality": ["supportive", "cheerful", "loyal"],
+      "initial_ca": 85,
+      "portrait": "res://assets/characters/kim_jimin.png",
+      "relationship_events": ["first_meeting", "team_bonding", "crisis_support"],
+      "dialogue_style": "friendly"
+    },
+    "coach_park": {
+      "name": "박감독",
+      "en_name": "Coach Park",
+      "role": "coach",
+      "position": null,
+      "grade": null,
+      "personality": ["strict", "experienced", "caring"],
+      "initial_ca": null,
+      "portrait": "res://assets/characters/coach_park.png",
+      "relationship_events": ["first_impression", "tactical_lesson", "final_advice"],
+      "dialogue_style": "mentor"
+    },
+    "jung_sooyeon": {
+      "name": "정수연",
+      "en_name": "Jung Soo-yeon",
+      "role": "captain",
+      "position": "DF",
+      "grade": 3,
+      "personality": ["leader", "responsible", "inspiring"],
+      "initial_ca": 125,
+      "portrait": "res://assets/characters/jung_sooyeon.png",
+      "relationship_events": ["leadership_test", "captain_talk", "graduation_farewell"],
+      "dialogue_style": "authoritative"
+    },
+    "alex_kim": {
+      "name": "알렉스 김",
+      "en_name": "Alex Kim",
+      "role": "transfer_student",
+      "position": "MF",
+      "grade": 2,
+      "personality": ["mysterious", "skilled", "lonely"],
+      "initial_ca": 110,
+      "portrait": "res://assets/characters/alex_kim.png",
+      "relationship_events": ["foreign_perspective", "culture_clash", "true_friendship"],
+      "dialogue_style": "reserved"
+    },
+    "choi_junho": {
+      "name": "최준호",
+      "en_name": "Choi Jun-ho",
+      "role": "goalkeeper",
+      "position": "GK",
+      "grade": 2,
+      "personality": ["reliable", "quiet", "observant"],
+      "initial_ca": 100,
+      "portrait": "res://assets/characters/choi_junho.png",
+      "relationship_events": ["penalty_save", "trust_building", "last_defense"],
+      "dialogue_style": "calm"
+    },
+    "han_taehyung": {
+      "name": "한태형",
+      "en_name": "Han Tae-hyung",
+      "role": "genius",
+      "position": "FW",
+      "grade": 1,
+      "personality": ["prodigy", "arrogant", "vulnerable"],
+      "initial_ca": 90,
+      "portrait": "res://assets/characters/han_taehyung.png",
+      "relationship_events": ["genius_burden", "humbling_moment", "mutual_respect"],
+      "dialogue_style": "cocky"
+    },
+    "yoon_seunghoon": {
+      "name": "윤승훈",
+      "en_name": "Yoon Seung-hoon",
+      "role": "injured_senior",
+      "position": "MF",
+      "grade": 3,
+      "personality": ["wise", "melancholic", "supportive"],
+      "initial_ca": 115,
+      "portrait": "res://assets/characters/yoon_seunghoon.png",
+      "relationship_events": ["injury_story", "tactical_wisdom", "legacy_passed"],
+      "dialogue_style": "philosophical"
+    },
+    "shin_dongwook": {
+      "name": "신동욱",
+      "en_name": "Shin Dong-wook",
+      "role": "class_president",
+      "position": "DF",
+      "grade": 2,
+      "personality": ["organized", "academic", "balanced"],
+      "initial_ca": 95,
+      "portrait": "res://assets/characters/shin_dongwook.png",
+      "relationship_events": ["study_help", "balance_advice", "leadership_choice"],
+      "dialogue_style": "intellectual"
+    },
+    "manager_lee": {
+      "name": "이매니저",
+      "en_name": "Manager Lee",
+      "role": "team_manager",
+      "position": null,
+      "grade": 2,
+      "personality": ["efficient", "caring", "observant"],
+      "initial_ca": null,
+      "portrait": "res://assets/characters/manager_lee.png",
+      "relationship_events": ["support_system", "secret_revealed", "confession"],
+      "dialogue_style": "supportive"
+    },
+    "kang_minsoo": {
+      "name": "강민수",
+      "en_name": "Kang Min-soo",
+      "role": "benchwarmer",
+      "position": "MF",
+      "grade": 2,
+      "personality": ["hardworking", "frustrated", "determined"],
+      "initial_ca": 85,
+      "portrait": "res://assets/characters/kang_minsoo.png",
+      "relationship_events": ["bench_frustration", "breakthrough_moment", "team_contribution"],
+      "dialogue_style": "earnest"
+    },
+    "oh_jaehyun": {
+      "name": "오재현",
+      "en_name": "Oh Jae-hyun",
+      "role": "scout",
+      "position": null,
+      "grade": null,
+      "personality": ["professional", "evaluative", "encouraging"],
+      "initial_ca": null,
+      "portrait": "res://assets/characters/oh_jaehyun.png",
+      "relationship_events": ["first_scouting", "performance_review", "pro_offer"],
+      "dialogue_style": "professional"
+    },
+    "song_hyunwoo": {
+      "name": "송현우",
+      "en_name": "Song Hyun-woo",
+      "role": "childhood_friend",
+      "position": "DF",
+      "grade": 1,
+      "personality": ["nostalgic", "protective", "emotional"],
+      "initial_ca": 80,
+      "portrait": "res://assets/characters/song_hyunwoo.png",
+      "relationship_events": ["childhood_memory", "growing_apart", "reconnection"],
+      "dialogue_style": "familiar"
+    },
+    "park_jiyoung": {
+      "name": "박지영",
+      "en_name": "Park Ji-young",
+      "role": "sports_reporter",
+      "position": null,
+      "grade": null,
+      "personality": ["curious", "ambitious", "fair"],
+      "initial_ca": null,
+      "portrait": "res://assets/characters/park_jiyoung.png",
+      "relationship_events": ["interview_request", "media_pressure", "story_published"],
+      "dialogue_style": "journalistic"
+    },
+    "na_youngho": {
+      "name": "나영호",
+      "en_name": "Na Young-ho",
+      "role": "graduated_legend",
+      "position": "FW",
+      "grade": null,
+      "personality": ["legendary", "humble", "inspirational"],
+      "initial_ca": 180,
+      "portrait": "res://assets/characters/na_youngho.png",
+      "relationship_events": ["legend_visit", "training_session", "torch_passed"],
+      "dialogue_style": "legendary"
+    }
+  },
+  "relationship_levels": {
+    "stranger": 0,
+    "acquaintance": 20,
+    "teammate": 40,
+    "friend": 60,
+    "close_friend": 80,
+    "best_friend": 100,
+    "rival": -50,
+    "respected_rival": 50
+  },
+  "emotional_states": {
+    "happy": {
+      "modifier": 1.1,
+      "duration": 3,
+      "icon": "😊"
+    },
+    "motivated": {
+      "modifier": 1.15,
+      "duration": 4,
+      "icon": "💪"
+    },
+    "stressed": {
+      "modifier": 0.9,
+      "duration": 2,
+      "icon": "😰"
+    },
+    "angry": {
+      "modifier": 0.85,
+      "duration": 2,
+      "icon": "😠"
+    },
+    "sad": {
+      "modifier": 0.8,
+      "duration": 3,
+      "icon": "😢"
+    },
+    "confident": {
+      "modifier": 1.2,
+      "duration": 5,
+      "icon": "😎"
+    },
+    "anxious": {
+      "modifier": 0.95,
+      "duration": 2,
+      "icon": "😟"
+    },
+    "determined": {
+      "modifier": 1.25,
+      "duration": 4,
+      "icon": "🔥"
+    }
+  }
+}

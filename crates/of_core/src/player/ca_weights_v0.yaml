@@ -1,0 +1,481 @@
+version: 1
+attr_range: { min: 1, max: 100 }
+weight_range: { min: 0, max: 10 }
+attr_keys:
+  - corners
+  - crossing
+  - dribbling
+  - finishing
+  - first_touch
+  - free_kicks
+  - heading
+  - long_shots
+  - long_throws
+  - marking
+  - passing
+  - penalty_taking
+  - tackling
+  - technique
+  - aggression
+  - anticipation
+  - bravery
+  - composure
+  - concentration
+  - decisions
+  - determination
+  - flair
+  - leadership
+  - off_the_ball
+  - positioning
+  - teamwork
+  - vision
+  - work_rate
+  - acceleration
+  - agility
+  - balance
+  - jumping
+  - natural_fitness
+  - pace
+  - stamina
+  - strength
+groups:
+  GK:
+    weights:
+      corners: 0
+      crossing: 0
+      dribbling: 1
+      finishing: 0
+      first_touch: 5
+      free_kicks: 0
+      heading: 4
+      long_shots: 0
+      long_throws: 3
+      marking: 2
+      passing: 4
+      penalty_taking: 0
+      tackling: 1
+      technique: 4
+      aggression: 2
+      anticipation: 6
+      bravery: 4
+      composure: 6
+      concentration: 6
+      decisions: 6
+      determination: 3
+      flair: 1
+      leadership: 6
+      off_the_ball: 0
+      positioning: 6
+      teamwork: 4
+      vision: 4
+      work_rate: 2
+      acceleration: 3
+      agility: 6
+      balance: 5
+      jumping: 6
+      natural_fitness: 3
+      pace: 2
+      stamina: 2
+      strength: 6
+    caps:
+      finishing: { max: 35 }
+      long_shots: { max: 40 }
+  CB:
+    weights:
+      corners: 0
+      crossing: 0
+      dribbling: 1
+      finishing: 0
+      first_touch: 2
+      free_kicks: 0
+      heading: 6
+      long_shots: 0
+      long_throws: 0
+      marking: 6
+      passing: 4
+      penalty_taking: 0
+      tackling: 6
+      technique: 3
+      aggression: 4
+      anticipation: 6
+      bravery: 5
+      composure: 5
+      concentration: 6
+      decisions: 6
+      determination: 3
+      flair: 0
+      leadership: 3
+      off_the_ball: 1
+      positioning: 6
+      teamwork: 6
+      vision: 1
+      work_rate: 4
+      acceleration: 5
+      agility: 3
+      balance: 4
+      jumping: 6
+      natural_fitness: 4
+      pace: 4
+      stamina: 4
+      strength: 6
+  FB:
+    weights:
+      corners: 2
+      crossing: 5
+      dribbling: 3
+      finishing: 1
+      first_touch: 3
+      free_kicks: 1
+      heading: 2
+      long_shots: 1
+      long_throws: 2
+      marking: 5
+      passing: 4
+      penalty_taking: 0
+      tackling: 6
+      technique: 3
+      aggression: 3
+      anticipation: 4
+      bravery: 3
+      composure: 3
+      concentration: 4
+      decisions: 5
+      determination: 3
+      flair: 2
+      leadership: 2
+      off_the_ball: 3
+      positioning: 6
+      teamwork: 5
+      vision: 3
+      work_rate: 6
+      acceleration: 7
+      agility: 5
+      balance: 4
+      jumping: 3
+      natural_fitness: 4
+      pace: 7
+      stamina: 7
+      strength: 3
+  WB:
+    weights:
+      corners: 3
+      crossing: 7
+      dribbling: 5
+      finishing: 2
+      first_touch: 4
+      free_kicks: 2
+      heading: 2
+      long_shots: 2
+      long_throws: 2
+      marking: 4
+      passing: 4
+      penalty_taking: 0
+      tackling: 5
+      technique: 4
+      aggression: 3
+      anticipation: 4
+      bravery: 3
+      composure: 3
+      concentration: 4
+      decisions: 5
+      determination: 3
+      flair: 3
+      leadership: 2
+      off_the_ball: 5
+      positioning: 5
+      teamwork: 5
+      vision: 4
+      work_rate: 7
+      acceleration: 8
+      agility: 6
+      balance: 4
+      jumping: 3
+      natural_fitness: 4
+      pace: 8
+      stamina: 8
+      strength: 3
+  DM:
+    weights:
+      corners: 1
+      crossing: 1
+      dribbling: 2
+      finishing: 1
+      first_touch: 3
+      free_kicks: 1
+      heading: 3
+      long_shots: 2
+      long_throws: 1
+      marking: 4
+      passing: 5
+      penalty_taking: 0
+      tackling: 6
+      technique: 3
+      aggression: 3
+      anticipation: 5
+      bravery: 2
+      composure: 4
+      concentration: 4
+      decisions: 5
+      determination: 3
+      flair: 0
+      leadership: 2
+      off_the_ball: 1
+      positioning: 6
+      teamwork: 5
+      vision: 3
+      work_rate: 5
+      acceleration: 4
+      agility: 4
+      balance: 4
+      jumping: 3
+      natural_fitness: 4
+      pace: 4
+      stamina: 5
+      strength: 5
+  CM:
+    weights:
+      corners: 2
+      crossing: 2
+      dribbling: 4
+      finishing: 2
+      first_touch: 6
+      free_kicks: 2
+      heading: 2
+      long_shots: 3
+      long_throws: 1
+      marking: 2
+      passing: 7
+      penalty_taking: 1
+      tackling: 3
+      technique: 6
+      aggression: 2
+      anticipation: 3
+      bravery: 2
+      composure: 4
+      concentration: 3
+      decisions: 6
+      determination: 2
+      flair: 2
+      leadership: 2
+      off_the_ball: 3
+      positioning: 3
+      teamwork: 5
+      vision: 5
+      work_rate: 5
+      acceleration: 5
+      agility: 5
+      balance: 5
+      jumping: 2
+      natural_fitness: 5
+      pace: 5
+      stamina: 6
+      strength: 4
+  AM:
+    weights:
+      corners: 2
+      crossing: 2
+      dribbling: 6
+      finishing: 5
+      first_touch: 7
+      free_kicks: 3
+      heading: 1
+      long_shots: 4
+      long_throws: 0
+      marking: 1
+      passing: 6
+      penalty_taking: 2
+      tackling: 1
+      technique: 7
+      aggression: 2
+      anticipation: 4
+      bravery: 2
+      composure: 6
+      concentration: 3
+      decisions: 7
+      determination: 2
+      flair: 6
+      leadership: 2
+      off_the_ball: 6
+      positioning: 2
+      teamwork: 3
+      vision: 7
+      work_rate: 3
+      acceleration: 6
+      agility: 6
+      balance: 5
+      jumping: 2
+      natural_fitness: 4
+      pace: 6
+      stamina: 4
+      strength: 2
+  WM:
+    weights:
+      corners: 4
+      crossing: 6
+      dribbling: 4
+      finishing: 2
+      first_touch: 4
+      free_kicks: 2
+      heading: 2
+      long_shots: 2
+      long_throws: 1
+      marking: 3
+      passing: 5
+      penalty_taking: 1
+      tackling: 3
+      technique: 4
+      aggression: 3
+      anticipation: 3
+      bravery: 2
+      composure: 3
+      concentration: 3
+      decisions: 5
+      determination: 3
+      flair: 3
+      leadership: 2
+      off_the_ball: 4
+      positioning: 3
+      teamwork: 5
+      vision: 4
+      work_rate: 6
+      acceleration: 6
+      agility: 5
+      balance: 4
+      jumping: 2
+      natural_fitness: 4
+      pace: 6
+      stamina: 7
+      strength: 3
+  WG:
+    weights:
+      corners: 4
+      crossing: 7
+      dribbling: 7
+      finishing: 4
+      first_touch: 6
+      free_kicks: 3
+      heading: 2
+      long_shots: 3
+      long_throws: 1
+      marking: 1
+      passing: 4
+      penalty_taking: 1
+      tackling: 1
+      technique: 6
+      aggression: 2
+      anticipation: 3
+      bravery: 2
+      composure: 4
+      concentration: 3
+      decisions: 5
+      determination: 2
+      flair: 6
+      leadership: 1
+      off_the_ball: 6
+      positioning: 2
+      teamwork: 3
+      vision: 5
+      work_rate: 4
+      acceleration: 8
+      agility: 7
+      balance: 5
+      jumping: 2
+      natural_fitness: 4
+      pace: 8
+      stamina: 5
+      strength: 2
+  CF:
+    weights:
+      corners: 1
+      crossing: 2
+      dribbling: 6
+      finishing: 7
+      first_touch: 7
+      free_kicks: 2
+      heading: 4
+      long_shots: 4
+      long_throws: 0
+      marking: 0
+      passing: 5
+      penalty_taking: 2
+      tackling: 1
+      technique: 6
+      aggression: 3
+      anticipation: 4
+      bravery: 3
+      composure: 6
+      concentration: 3
+      decisions: 6
+      determination: 3
+      flair: 4
+      leadership: 2
+      off_the_ball: 6
+      positioning: 2
+      teamwork: 3
+      vision: 5
+      work_rate: 3
+      acceleration: 6
+      agility: 5
+      balance: 5
+      jumping: 4
+      natural_fitness: 4
+      pace: 6
+      stamina: 4
+      strength: 5
+  ST:
+    weights:
+      corners: 0
+      crossing: 1
+      dribbling: 6
+      finishing: 8
+      first_touch: 7
+      free_kicks: 2
+      heading: 5
+      long_shots: 4
+      long_throws: 0
+      marking: 0
+      passing: 3
+      penalty_taking: 3
+      tackling: 1
+      technique: 5
+      aggression: 3
+      anticipation: 4
+      bravery: 4
+      composure: 7
+      concentration: 3
+      decisions: 5
+      determination: 4
+      flair: 3
+      leadership: 1
+      off_the_ball: 6
+      positioning: 1
+      teamwork: 2
+      vision: 3
+      work_rate: 3
+      acceleration: 7
+      agility: 5
+      balance: 5
+      jumping: 6
+      natural_fitness: 4
+      pace: 7
+      stamina: 4
+      strength: 6
+positions:
+  GK: { group: GK }
+  LB: { group: FB }
+  RB: { group: FB }
+  CB: { group: CB }
+  LWB: { group: WB }
+  RWB: { group: WB }
+  CDM: { group: DM }
+  CM: { group: CM }
+  CAM: { group: AM }
+  LM: { group: WM }
+  RM: { group: WM }
+  LW: { group: WG }
+  RW: { group: WG }
+  CF: { group: CF }
+  ST: { group: ST }
+  DF: { group: CB }
+  MF: { group: CM }
+  FW: { group: ST }

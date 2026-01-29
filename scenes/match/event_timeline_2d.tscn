@@ -1,0 +1,143 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7k3w9n2p8qxr"]
+
+[ext_resource type="Script" path="res://scripts/match/EventAnimator2D.gd" id="1_animator"]
+
+[node name="EventTimeline2D" type="Node2D"]
+script = ExtResource("1_animator")
+camera = NodePath("Camera2D")
+event_label = NodePath("UI/EventLabel")
+player_marker = NodePath("PlayerMarker")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.0, 1.0)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="Field" type="Node2D" parent="."]
+
+[node name="GrassStripes" type="Node2D" parent="Field"]
+
+[node name="Stripe1" type="Polygon2D" parent="Field/GrassStripes"]
+polygon = PackedVector2Array(-485, 48, 250, -320, 312.5, -289, -422.5, 79)
+color = Color(0.18, 0.55, 0.18, 1)
+
+[node name="Stripe2" type="Polygon2D" parent="Field/GrassStripes"]
+polygon = PackedVector2Array(-422.5, 79, 312.5, -289, 375, -258, -360, 110)
+color = Color(0.15, 0.5, 0.15, 1)
+
+[node name="Stripe3" type="Polygon2D" parent="Field/GrassStripes"]
+polygon = PackedVector2Array(-360, 110, 375, -258, 437.5, -227, -297.5, 141)
+color = Color(0.18, 0.55, 0.18, 1)
+
+[node name="Stripe4" type="Polygon2D" parent="Field/GrassStripes"]
+polygon = PackedVector2Array(-297.5, 141, 437.5, -227, 485, -48, -250, 172)
+color = Color(0.15, 0.5, 0.15, 1)
+
+[node name="Stripe5" type="Polygon2D" parent="Field/GrassStripes"]
+polygon = PackedVector2Array(-250, 172, 485, -48, 422.5, -17, -187.5, 203)
+color = Color(0.18, 0.55, 0.18, 1)
+
+[node name="Stripe6" type="Polygon2D" parent="Field/GrassStripes"]
+polygon = PackedVector2Array(-187.5, 203, 422.5, -17, 360, 14, -125, 234)
+color = Color(0.15, 0.5, 0.15, 1)
+
+[node name="Stripe7" type="Polygon2D" parent="Field/GrassStripes"]
+polygon = PackedVector2Array(-125, 234, 360, 14, 297.5, 45, -62.5, 265)
+color = Color(0.18, 0.55, 0.18, 1)
+
+[node name="Stripe8" type="Polygon2D" parent="Field/GrassStripes"]
+polygon = PackedVector2Array(-62.5, 265, 297.5, 45, 235, 76, 0, 296)
+color = Color(0.15, 0.5, 0.15, 1)
+
+[node name="Stripe9" type="Polygon2D" parent="Field/GrassStripes"]
+polygon = PackedVector2Array(0, 296, 235, 76, 172.5, 107, 62.5, 320)
+color = Color(0.18, 0.55, 0.18, 1)
+
+[node name="Stripe10" type="Polygon2D" parent="Field/GrassStripes"]
+polygon = PackedVector2Array(62.5, 320, 172.5, 107, 110, 138, 125, 320)
+color = Color(0.15, 0.5, 0.15, 1)
+
+[node name="Stripe11" type="Polygon2D" parent="Field/GrassStripes"]
+polygon = PackedVector2Array(125, 320, 110, 138, 47.5, 169, 187.5, 320)
+color = Color(0.18, 0.55, 0.18, 1)
+
+[node name="Stripe12" type="Polygon2D" parent="Field/GrassStripes"]
+polygon = PackedVector2Array(187.5, 320, 47.5, 169, -250, 320, -250, 320)
+color = Color(0.15, 0.5, 0.15, 1)
+
+[node name="FieldOutline" type="Line2D" parent="Field"]
+points = PackedVector2Array(-485, 48, 250, -320, 485, -48, -250, 320, -485, 48)
+width = 4.0
+default_color = Color(1, 1, 1, 0.8)
+
+[node name="CenterLine" type="Line2D" parent="Field"]
+points = PackedVector2Array(-367.5, 184, 367.5, -184)
+width = 3.0
+default_color = Color(1, 1, 1, 0.6)
+
+[node name="CenterCircle" type="Line2D" parent="Field"]
+width = 3.0
+default_color = Color(1, 1, 1, 0.6)
+
+[node name="LeftPenaltyBox" type="Line2D" parent="Field"]
+points = PackedVector2Array(-485, 48, -400, 100, -315, 152, -250, 320)
+width = 3.0
+default_color = Color(1, 1, 1, 0.6)
+
+[node name="RightPenaltyBox" type="Line2D" parent="Field"]
+points = PackedVector2Array(485, -48, 400, -100, 315, -152, 250, -320)
+width = 3.0
+default_color = Color(1, 1, 1, 0.6)
+
+[node name="LeftGoal" type="Line2D" parent="Field"]
+points = PackedVector2Array(-367.5, 184, -407.5, 204, -367.5, 224, -327.5, 204)
+width = 4.0
+default_color = Color(1, 1, 0, 1)
+
+[node name="RightGoal" type="Line2D" parent="Field"]
+points = PackedVector2Array(367.5, -184, 407.5, -204, 367.5, -224, 327.5, -204)
+width = 4.0
+default_color = Color(1, 1, 0, 1)
+
+[node name="PlayerMarker" type="Polygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
+color = Color(1, 0.2, 0.2, 1)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="EventLabel" type="Label" parent="UI"]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 700.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 32
+text = "이벤트 대기 중..."
+
+[node name="ControlPanel" type="VBoxContainer" parent="UI"]
+offset_left = 50.0
+offset_top = 900.0
+offset_right = 450.0
+offset_bottom = 1050.0
+
+[node name="PlayButton" type="Button" parent="UI/ControlPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "▶ 재생"
+
+[node name="StopButton" type="Button" parent="UI/ControlPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "⏹ 정지"
+
+[node name="SpeedLabel" type="Label" parent="UI/ControlPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "재생 속도: 1.0x"
+
+[connection signal="pressed" from="UI/ControlPanel/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="UI/ControlPanel/StopButton" to="." method="_on_stop_button_pressed"]

@@ -1,0 +1,37 @@
+## First Day at Youth Academy Timeline
+## Introductory story event for new players
+
+내레이터: 오늘은 유스 아카데미 첫 날이다.
+내레이터 (neutral): 새로운 환경, 새로운 동료들... 긴장되지만 설렌다.
+
+[character join="manager" position="center"]
+박감독 (smile): 환영합니다! 오늘부터 우리 팀의 일원이네요.
+박감독 (normal): 먼저 시설을 둘러보겠습니다. 따라오세요.
+
+내레이터: 감독님이 훈련장, 라커룸, 그리고 체육관을 보여주셨다.
+
+박감독: 오후에는 간단한 테스트 경기가 있습니다.
+박감독 (serious): 긴장하지 말고, 본인의 실력을 보여주세요.
+
+- 네, 최선을 다하겠습니다!
+	set {confidence} += 10
+	set {manager_relationship} += 5
+	박감독 (smile): 그 각오가 좋습니다!
+	jump first_day_confident
+- 잘 할 수 있을까요...?
+	set {anxiety} += 5
+	set {manager_relationship} += 3
+	박감독 (understanding): 괜찮습니다. 천천히 하면 됩니다.
+	jump first_day_nervous
+
+label first_day_confident
+박감독: 자신감 있는 모습이 보기 좋네요.
+박감독: 오후 4시에 운동장에서 만나요!
+=> EventBus.emit("story_completed", {"timeline": "first_day_at_academy", "mood": "confident"})
+[end_timeline]
+
+label first_day_nervous
+박감독: 긴장은 자연스러운 겁니다.
+박감독: 오후 4시까지 준비하세요. 화이팅!
+=> EventBus.emit("story_completed", {"timeline": "first_day_at_academy", "mood": "nervous"})
+[end_timeline]

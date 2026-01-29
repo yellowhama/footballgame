@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwx5y6k2m3n4o"]
+
+[ext_resource type="Script" path="res://scripts/components/SkillWidget.gd" id="1_skill"]
+
+[node name="SkillWidget" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 80)
+script = ExtResource("1_skill")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="NameLabel" type="Label" parent="HBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(150, 0)
+text = "Skill Name"
+theme_override_font_sizes/font_size = 18
+
+[node name="BarContainer" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="HBox/BarContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 25)
+value = 50.0
+max_value = 100.0
+show_percentage = false
+
+[node name="ValueLabel" type="Label" parent="HBox/BarContainer"]
+layout_mode = 2
+text = "50 / 100"
+theme_override_font_sizes/font_size = 14
+
+[node name="GradeContainer" type="CenterContainer" parent="HBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(60, 60)
+
+[node name="GradePanel" type="Panel" parent="HBox/GradeContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(50, 50)
+
+[node name="GradeLabel" type="Label" parent="HBox/GradeContainer/GradePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+text = "B"
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChangeLabel" type="Label" parent="HBox"]
+layout_mode = 2
+text = "+0"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+visible = false

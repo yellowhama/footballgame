@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_coach_kim_ssr",
+  "character_name": "김민수 감독 - 신뢰하는 제자",
+  "rarity": "SSR",
+  "character_type": "mentor",
+  "position": "ALL",
+  "technical_bonus": 0.15,
+  "physical_bonus": 0.10,
+  "mental_bonus": 0.15,
+  "events": ["mentor_special_training"],
+  "description": "멘토 루트 분기점 1 - A 선택 보상. 감독의 전폭적인 신뢰를 얻은 제자.",
+  "acquisition_condition": "mentor_branch1_A",
+  "special_effect": "훈련 효율 +25%, 전술 이해도 +20%"
+}

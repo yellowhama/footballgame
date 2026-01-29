@@ -1,0 +1,69 @@
+[package]
+name = "of_core"
+version = "0.1.0"
+edition = "2021"
+authors = ["Football Player Game Team"]
+description = "Deterministic football match simulation engine"
+license = "MIT"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rand = "0.8"
+rand_chacha = "0.3"
+rand_distr = "0.4"
+chrono = { version = "0.4", features = ["serde"] }
+schemars = { version = "0.8", features = ["derive"] }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+validator = { version = "0.16", features = ["derive"] }
+tracing = "0.1"
+rayon = "1.10"
+anyhow = "1.0"
+thiserror = "1.0"
+once_cell = "1.19"
+nalgebra = { version = "0.32", features = ["serde-serialize"] }
+rmp-serde = "1.1"
+lz4_flex = { version = "0.11", features = ["std"] }
+sha2 = "0.10"
+time = { version = "0.3", features = ["serde", "formatting", "parsing"] }
+log = "0.4"
+fluent = "0.16"
+fluent-langneg = "0.13"
+unic-langid = "0.9"
+serde_yaml = "0.9.34"
+pathfinding = "4.0"  # FIX_2601/0112: Hungarian Algorithm for role assignment
+fxhash = "0.2"  # FIX_2601/0123: Version-stable hash for determinism (PR#1)
+
+[dev-dependencies]
+proptest = "1.4"
+insta = { version = "1.34", features = ["yaml", "json"] }
+tempfile = "3.10"
+criterion = { version = "0.5", features = ["html_reports"] }
+strum = "0.26"
+strum_macros = "0.26"
+jsonschema = "0.17"
+
+[[bench]]
+name = "match_bench"
+harness = false
+
+[[bench]]
+name = "memory_benchmarks"
+harness = false
+
+[features]
+default = ["detail_v2"]  # FIX_2601/1123: detail_v2 now default
+proptest = []
+embedded_players = []
+strict_contracts = []  # CI/test 빌드에서 contract 위반 시 panic
+physics_resolve_shots = []  # FIX_2601/0106: Physics-based shot resolution (Level 1)
+fm_meta_attributes = []  # FIX_2601/0107: FM 메타 속성 공식 사용 (Pace/Accel/Concentration/Teamwork)
+snapshot_decide = []  # FIX_2601/0117: Snapshot-based 2-Phase decision system
+diag_resolve_shuffle = []  # FIX_2601/0120: Diagnostic - shuffle resolve order to test bias
+deterministic_fallback = []  # FIX_2601/1122: RNG 제거 실험 - deterministic fallback for causation analysis
+detail_v2 = []  # FIX_2601/1123: ActionDetailV2 완전성 계약 - Conversion RNG 제거
+detail_v2_pipeline = ["detail_v2"]  # FIX_2601/1124: 프로덕션 파이프라인에서 V2 사용 (Phase 3)
+# P2.3: strict_attributes removed - now always-on (100% injection coverage verified)
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ["cfg(proptest)", "cfg(feature, values(\"strict_contracts\", \"physics_resolve_shots\", \"fm_meta_attributes\", \"snapshot_decide\", \"diag_resolve_shuffle\", \"deterministic_fallback\", \"detail_v2\", \"detail_v2_pipeline\"))"] }

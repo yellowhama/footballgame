@@ -1,0 +1,182 @@
+[gd_scene load_steps=3 format=3 uid="uid://shop-improved"]
+
+[ext_resource type="Script" path="res://scripts/screens/ShopScreenImproved.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://quickbar" path="res://scenes/ui/QuickBar.tscn" id="2"]
+
+[node name="ShopScreenImproved" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.95, 0.95, 0.98, 1)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16
+offset_top = 16
+offset_right = -16
+offset_bottom = -16
+theme_override_constants/separation = 16
+
+[node name="Header" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+
+[node name="BackButton" type="Button" parent="VBox/Header"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 44)
+text = "← 뒤로"
+theme_override_font_sizes/font_size = 16
+
+[node name="Title" type="Label" parent="VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "코치 카드 상점"
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="VBox/Header"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 0)
+
+[node name="BannerSection" type="Panel" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 200)
+
+[node name="BannerContainer" type="Control" parent="VBox/BannerSection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8
+offset_top = 8
+offset_right = -8
+offset_bottom = -8
+
+[node name="CurrencySection" type="Panel" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 80)
+
+[node name="HBox" type="HBoxContainer" parent="VBox/CurrencySection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16
+offset_right = -16
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="FreeGems" type="HBoxContainer" parent="VBox/CurrencySection/HBox"]
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="VBox/CurrencySection/HBox/FreeGems"]
+layout_mode = 2
+text = "💎"
+theme_override_font_sizes/font_size = 24
+
+[node name="Label" type="Label" parent="VBox/CurrencySection/HBox/FreeGems"]
+layout_mode = 2
+text = "무료 젬:"
+theme_override_font_sizes/font_size = 16
+
+[node name="Amount" type="Label" parent="VBox/CurrencySection/HBox/FreeGems"]
+layout_mode = 2
+text = "3000"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.2, 0.6, 0.2, 1)
+
+[node name="PaidDiamonds" type="HBoxContainer" parent="VBox/CurrencySection/HBox"]
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="VBox/CurrencySection/HBox/PaidDiamonds"]
+layout_mode = 2
+text = "💎"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.8, 0.2, 0.8, 1)
+
+[node name="Label" type="Label" parent="VBox/CurrencySection/HBox/PaidDiamonds"]
+layout_mode = 2
+text = "유료 다이아:"
+theme_override_font_sizes/font_size = 16
+
+[node name="Amount" type="Label" parent="VBox/CurrencySection/HBox/PaidDiamonds"]
+layout_mode = 2
+text = "0"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.8, 0.2, 0.8, 1)
+
+[node name="DrawSection" type="Panel" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 120)
+
+[node name="HBox" type="HBoxContainer" parent="VBox/DrawSection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16
+offset_right = -16
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="SingleDrawButton" type="Button" parent="VBox/DrawSection/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(140, 80)
+text = "단차 뽑기
+300 젬"
+theme_override_font_sizes/font_size = 18
+
+[node name="TenDrawButton" type="Button" parent="VBox/DrawSection/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(140, 80)
+text = "10연차
+2700 젬"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.8, 0.6, 0, 1)
+
+[node name="InfoSection" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 44)
+alignment = 1
+
+[node name="PityCounter" type="Label" parent="VBox/InfoSection"]
+layout_mode = 2
+text = "천장: 5★(0/200) 4★(0/100)"
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="Spacer" type="Control" parent="VBox/InfoSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ProbabilityButton" type="Button" parent="VBox/InfoSection"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 44)
+text = "확률 정보"
+theme_override_font_sizes/font_size = 14
+
+[node name="QuickBar" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -60
+offset_bottom = 0

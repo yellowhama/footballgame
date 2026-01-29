@@ -1,0 +1,219 @@
+[gd_scene load_steps=3 format=3 uid="uid://training_screen_v2"]
+
+[ext_resource type="Script" path="res://scripts/screens/TrainingScreen.gd" id="1_script"]
+[ext_resource type="Theme" path="res://themes/MobileTheme.tres" id="2_theme"]
+
+[node name="TrainingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.051, 0.067, 0.09, 1)
+
+[node name="Header" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 140.0
+
+[node name="HeaderContent" type="VBoxContainer" parent="Header"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TopRow" type="HBoxContainer" parent="Header/HeaderContent"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="BackButton" type="Button" parent="Header/HeaderContent/TopRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(80, 40)
+text = "← 뒤로"
+
+[node name="TitleLabel" type="Label" parent="Header/HeaderContent/TopRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "훈련"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrainingLimitLabel" type="Label" parent="Header/HeaderContent/TopRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.545, 0.58, 0.62, 1)
+text = "개인 훈련: 0/3"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ConditionRow" type="HBoxContainer" parent="Header/HeaderContent"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ConditionLabel" type="Label" parent="Header/HeaderContent/ConditionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(120, 0)
+theme_override_font_sizes/font_size = 16
+text = "컨디션: 100%"
+
+[node name="ConditionBar" type="ProgressBar" parent="Header/HeaderContent/ConditionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 20)
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="Content" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 140.0
+offset_bottom = -120.0
+
+[node name="CategoryTabs" type="TabContainer" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = -8.0
+
+[node name="General" type="Control" parent="Content/CategoryTabs"]
+layout_mode = 2
+metadata/_tab_name = "기본 훈련"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Content/CategoryTabs/General"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_scroll_mode = 0
+
+[node name="Grid" type="GridContainer" parent="Content/CategoryTabs/General/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="Personal" type="Control" parent="Content/CategoryTabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_name = "개인 훈련"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Content/CategoryTabs/Personal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_scroll_mode = 0
+
+[node name="Grid" type="GridContainer" parent="Content/CategoryTabs/Personal/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="Special" type="Control" parent="Content/CategoryTabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_name = "특별 훈련"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Content/CategoryTabs/Special"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_scroll_mode = 0
+
+[node name="Grid" type="GridContainer" parent="Content/CategoryTabs/Special/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="Footer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+
+[node name="FooterContent" type="VBoxContainer" parent="Footer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IntensitySelector" type="HBoxContainer" parent="Footer/FooterContent"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="IntensityLabel" type="Label" parent="Footer/FooterContent/IntensitySelector"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "강도:"
+vertical_alignment = 1
+
+[node name="LightButton" type="Button" parent="Footer/FooterContent/IntensitySelector"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(100, 40)
+text = "가벼움"
+flat = true
+
+[node name="NormalButton" type="Button" parent="Footer/FooterContent/IntensitySelector"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(100, 40)
+text = "보통"
+flat = true
+
+[node name="IntenseButton" type="Button" parent="Footer/FooterContent/IntensitySelector"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(100, 40)
+text = "강함"
+flat = true
+
+[node name="ActionButtons" type="HBoxContainer" parent="Footer/FooterContent"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="RestButton" type="Button" parent="Footer/FooterContent/ActionButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(160, 50)
+theme_override_font_sizes/font_size = 18
+text = "😴 휴식"
+
+[node name="GoOutButton" type="Button" parent="Footer/FooterContent/ActionButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(160, 50)
+theme_override_font_sizes/font_size = 18
+text = "🎮 외출"

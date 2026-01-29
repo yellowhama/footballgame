@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/match_viewer_3d/player_controller_glb.gd" id="1_controller"]
+
+[node name="AnimatedPlayerGLB" type="Node3D"]
+script = ExtResource("1_controller")
+
+[node name="ModelRoot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+# GLB model will be loaded dynamically via script
+# Supports characters from assets/soccer_players/characters/

@@ -1,0 +1,197 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: replay
+---
+{
+  "coord_contract_version": 2,
+  "coord_system": "meters_v2",
+  "schema": {
+    "name": "of_replay",
+    "version": 1
+  },
+  "build": {
+    "of_core": "0.1.0",
+    "gdext": "0.6.0",
+    "build_tag": "abc1234"
+  },
+  "match_info": {
+    "id": "snapshot-test-match",
+    "seed": 42,
+    "pitch": {
+      "length_m": 105.0,
+      "width_m": 68.0
+    },
+    "goal": {
+      "center_y_m": 34.0,
+      "width_m": 7.32,
+      "depth_m": 2.44
+    },
+    "areas": {
+      "penalty_depth_m": 16.5,
+      "penalty_width_m": 40.32,
+      "six_depth_m": 5.5,
+      "six_width_m": 18.32,
+      "penalty_spot_from_line_m": 11.0,
+      "arc_radius_m": 9.15
+    },
+    "periods": [
+      {
+        "i": 1,
+        "start_t": 0.0,
+        "end_t": 2700.0,
+        "home_attacks_right": true
+      },
+      {
+        "i": 2,
+        "start_t": 2700.0,
+        "end_t": 5400.0,
+        "home_attacks_right": false
+      }
+    ]
+  },
+  "events": [
+    {
+      "etype": "pass",
+      "t": 120.5,
+      "minute": 2,
+      "team": "HOME",
+      "player_id": "H7",
+      "pos": {
+        "x": 45.0,
+        "y": 30.0
+      },
+      "vel": {
+        "x": 5.0,
+        "y": 0.0
+      },
+      "end_pos": {
+        "x": 55.0,
+        "y": 35.0
+      },
+      "receiver_id": "H9",
+      "ground": true,
+      "ball": {
+        "from": {
+          "x": 45.0,
+          "y": 30.0
+        },
+        "to": {
+          "x": 55.0,
+          "y": 35.0
+        },
+        "speed_mps": 15.0,
+        "curve": "none"
+      },
+      "outcome": "complete"
+    },
+    {
+      "etype": "dribble",
+      "t": 145.2,
+      "minute": 2,
+      "team": "HOME",
+      "player_id": "H9",
+      "pos": {
+        "x": 55.0,
+        "y": 35.0
+      },
+      "path": [
+        {
+          "x": 56.0,
+          "y": 36.0
+        },
+        {
+          "x": 58.0,
+          "y": 37.0
+        }
+      ],
+      "end_pos": {
+        "x": 60.0,
+        "y": 38.0
+      },
+      "beats": [
+        "A3"
+      ],
+      "outcome": "kept"
+    },
+    {
+      "etype": "shot",
+      "t": 165.8,
+      "minute": 3,
+      "team": "HOME",
+      "player_id": "H9",
+      "pos": {
+        "x": 95.0,
+        "y": 32.0
+      },
+      "target": {
+        "x": 105.0,
+        "y": 30.5
+      },
+      "xg": 0.25,
+      "on_target": true,
+      "ball": {
+        "from": {
+          "x": 95.0,
+          "y": 32.0
+        },
+        "to": {
+          "x": 105.0,
+          "y": 30.5
+        },
+        "speed_mps": 28.0,
+        "curve": "inside"
+      },
+      "outcome": "goal"
+    },
+    {
+      "etype": "foul",
+      "t": 892.3,
+      "minute": 15,
+      "team": "AWAY",
+      "player_id": "A5",
+      "pos": {
+        "x": 25.0,
+        "y": 40.0
+      },
+      "opponent_id": "H6",
+      "card": "yellow"
+    },
+    {
+      "etype": "set_piece",
+      "t": 895.0,
+      "minute": 15,
+      "team": "HOME",
+      "player_id": "H8",
+      "pos": {
+        "x": 25.0,
+        "y": 40.0
+      },
+      "kind": "free_kick",
+      "ball": {
+        "from": {
+          "x": 25.0,
+          "y": 40.0
+        },
+        "to": {
+          "x": 35.0,
+          "y": 30.0
+        },
+        "speed_mps": 18.0,
+        "curve": "outside"
+      }
+    },
+    {
+      "etype": "substitution",
+      "t": 2700.0,
+      "minute": 45,
+      "team": "AWAY",
+      "player_id": "COACH_A",
+      "pos": {
+        "x": -5.0,
+        "y": 34.0
+      },
+      "out_id": "A11",
+      "in_id": "A12"
+    }
+  ]
+}

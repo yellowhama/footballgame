@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://top_bar_v1"]
+
+[ext_resource type="Script" path="res://scripts/ui/components/TopBar.gd" id="1_top_bar"]
+
+[node name="TopBar" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+script = ExtResource("1_top_bar")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="DateLabel" type="Label" parent="HBox"]
+layout_mode = 2
+text = "2026-01-01"
+
+[node name="Spacer" type="Control" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StaminaBar" type="ProgressBar" parent="HBox"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false

@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_team_guardian_sr",
+  "character_name": "팀의 수호자",
+  "rarity": "SR",
+  "character_type": "trait",
+  "position": "DF",
+  "technical_bonus": 0.05,
+  "physical_bonus": 0.15,
+  "mental_bonus": 0.10,
+  "events": [],
+  "description": "수호신 루트 분기점 3 - B 선택 보상. 팀을 지키는 진정한 수호자.",
+  "acquisition_condition": "guardian_branch3_B",
+  "special_effect": "팀 수비력 +20%, 백업 효과 +25%"
+}

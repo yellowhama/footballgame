@@ -1,0 +1,382 @@
+{
+  "route_id": "mentor",
+  "character_id": "kim_cheolsu",
+  "arc_title": "김철수 Fall-Rise 아크",
+  "events": [
+    {
+      "event_id": "mentor_week50_tactical_rejection",
+      "week": 50,
+      "title": "전술 제안 거부",
+      "type": "fall_start",
+      "description": "주인공이 새로운 전술을 제안하지만 김철수 코치가 거부한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "주인공이 김철수 코치에게 새로운 전술 아이디어를 제안했다."
+        },
+        {
+          "speaker": "player",
+          "text": "코치님, 토탈 풋볼 방식을 도입해보는 건 어떨까요?"
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "토탈 풋볼? 이상적이긴 하지."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "하지만 너무 이상적이야. 현실성이 없어."
+        },
+        {
+          "speaker": "player",
+          "text": "하지만 선수들 수준이라면 충분히..."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "안 돼. 내 경험상 그런 화려한 전술은 실전에서 통하지 않아."
+        },
+        {
+          "speaker": "narrator",
+          "text": "김철수 코치는 단호하게 제안을 거부했다."
+        }
+      ],
+      "effects": {
+        "affection_change": -10,
+        "flags": ["mentor_tactical_rejection", "mentor_tension_start"],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "mentor_week60_director_conflict",
+      "week": 60,
+      "title": "감독과의 갈등",
+      "type": "fall_middle",
+      "condition": {
+        "flags": ["mentor_tactical_rejection"]
+      },
+      "description": "김철수 코치의 엄격한 훈련 방식이 감독과 충돌한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "감독실에서 큰 소리가 들린다."
+        },
+        {
+          "speaker": "director",
+          "text": "김 코치, 훈련이 너무 빡빡합니다. 선수들 불만이 많아요."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "불만? 이 정도로 안 하면 프로에서 살아남을 수 없습니다."
+        },
+        {
+          "speaker": "director",
+          "text": "그래도 유스인데 너무 무리한 거 아닙니까?"
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "제 방식이 틀렸다는 겁니까?"
+        },
+        {
+          "speaker": "narrator",
+          "text": "회의가 끝난 후, 김철수 코치의 표정이 어둡다."
+        },
+        {
+          "speaker": "player",
+          "text": "(속으로) 코치님 너무 강하게 밀어붙이시는 것 같은데..."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": ["mentor_director_conflict", "mentor_pressure_increasing"],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "mentor_week70_injury_crisis",
+      "week": 70,
+      "title": "LOW POINT - 선수 부상 사태",
+      "type": "low_point",
+      "condition": {
+        "flags": ["mentor_director_conflict"]
+      },
+      "description": "과도한 훈련으로 선수 3명이 부상당하고, 김철수 코치가 훈련 지도에서 배제된다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "주말 연습 경기 중 선수 3명이 동시에 부상당했다."
+        },
+        {
+          "speaker": "teammate_1",
+          "text": "아악! 다리가..."
+        },
+        {
+          "speaker": "teammate_2",
+          "text": "코치님 훈련이 너무 과했어..."
+        },
+        {
+          "speaker": "director",
+          "text": "김 코치! 사무실로 오세요."
+        },
+        {
+          "speaker": "narrator",
+          "text": "30분 후, 감독실에서 나온 김철수 코치."
+        },
+        {
+          "speaker": "director",
+          "text": "김 코치, 미안하지만 당분간 훈련 지도는 중단해주시오."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "(무표정) ...알겠습니다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "김철수 코치가 훈련장을 떠났다. 2주간 훈련 참여 금지."
+        }
+      ],
+      "effects": {
+        "affection_change": -15,
+        "flags": ["mentor_suspended", "mentor_low_point_week70"],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "mentor_week75_retirement_consideration",
+      "week": 75,
+      "title": "은퇴 고민",
+      "type": "low_point",
+      "condition": {
+        "flags": ["mentor_suspended"]
+      },
+      "description": "김철수 코치가 코치직 은퇴를 고민한다. 주인공의 선택이 그의 운명을 바꾼다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "코치실 문틈으로 혼자 앉아있는 김철수 코치가 보인다."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "(혼잣말) ...내가 코치 자격이 있나."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "선수 때도 그랬지. 결정적인 순간에 실수했어."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "이제 코치로서도... 선수들을 다치게 했어."
+        },
+        {
+          "speaker": "narrator",
+          "text": "주인공이 문을 두드린다."
+        },
+        {
+          "speaker": "player",
+          "text": "코치님... 들어가도 될까요?"
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "...어. 무슨 일이냐."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": ["mentor_crisis_moment"],
+        "stats": {}
+      },
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "코치님은 최고의 지도자입니다",
+          "description": "김철수 코치를 직접적으로 위로한다.",
+          "effects": {
+            "affection_change": 20,
+            "flags": ["mentor_direct_comfort_path"],
+            "next_event": "mentor_week80_training_reform"
+          }
+        },
+        {
+          "choice_id": "B",
+          "text": "코치님 덕분에 제가 성장했습니다",
+          "description": "구체적인 예시를 들어 간접적으로 위로한다.",
+          "effects": {
+            "affection_change": 30,
+            "flags": ["mentor_deep_gratitude_path"],
+            "next_event": "mentor_week80_training_reform"
+          }
+        },
+        {
+          "choice_id": "C",
+          "text": "완벽한 코치는 없습니다. 배우면 됩니다",
+          "description": "현실적인 조언을 제공한다.",
+          "effects": {
+            "affection_change": 15,
+            "flags": ["mentor_realistic_advice_path"],
+            "next_event": "mentor_week80_training_reform"
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "mentor_week80_training_reform",
+      "week": 80,
+      "title": "훈련 방식 개선",
+      "type": "rise_start",
+      "condition": {
+        "flags": ["mentor_crisis_moment"]
+      },
+      "description": "김철수 코치가 복귀하며 새로운 훈련 프로그램을 도입한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "2주간의 정지 기간이 끝나고 김철수 코치가 훈련장에 돌아왔다."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "다들 모여봐. 앞으로 훈련 방식을 바꾸겠다."
+        },
+        {
+          "speaker": "teammate_1",
+          "text": "어... 바꾼다고요?"
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "과학적 컨디셔닝 프로그램을 도입한다. 무작정 강도만 높이는 건 그만두겠어."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "개인별 회복 시간을 존중하고, 부상 예방에 집중하겠다."
+        },
+        {
+          "speaker": "teammate_2",
+          "text": "오... 코치님이 바뀌셨네?"
+        },
+        {
+          "speaker": "narrator",
+          "text": "새로운 훈련 프로그램이 시작되었다. 선수들의 반응이 좋다."
+        },
+        {
+          "speaker": "player",
+          "text": "(속으로) 코치님, 변화하셨어..."
+        }
+      ],
+      "effects": {
+        "affection_change": 10,
+        "flags": ["mentor_reformed", "mentor_scientific_training"],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "mentor_week95_tactical_reconsideration",
+      "week": 95,
+      "title": "전술 제안 재논의",
+      "type": "rise_climax",
+      "condition": {
+        "flags": ["mentor_reformed"]
+      },
+      "description": "김철수 코치가 Week 50에 거부했던 전술 제안을 다시 꺼낸다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "훈련 후, 김철수 코치가 주인공을 불렀다."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "저기... Week 50에 네가 제안했던 전술 있잖아."
+        },
+        {
+          "speaker": "player",
+          "text": "아, 토탈 풋볼요? 그건 거부하셨잖아요."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "그때는 내가 틀렸어. 다시 생각해봤는데..."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "우리 선수들 수준이라면 가능할 것 같아. 같이 개선안 만들어볼래?"
+        },
+        {
+          "speaker": "player",
+          "text": "정말요? 코치님!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "주인공과 김철수 코치가 협업하여 전술 수정안을 개발했다."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "너의 아이디어와 내 경험이 합쳐지니 훨씬 좋네."
+        },
+        {
+          "speaker": "player",
+          "text": "코치님과 함께여서 가능했습니다."
+        }
+      ],
+      "effects": {
+        "affection_change": 15,
+        "flags": ["mentor_tactical_collaboration", "mentor_trust_deepened"],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "mentor_week110_disciple_recognition",
+      "week": 110,
+      "title": "제자로서의 인정",
+      "type": "resolution",
+      "condition": {
+        "flags": ["mentor_tactical_collaboration"]
+      },
+      "description": "김철수 코치가 주인공을 진정한 제자로 인정한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "새로운 전술을 도입한 팀이 중요 경기에서 승리했다."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "잘했다, 모두들. 오늘 경기는 완벽했어."
+        },
+        {
+          "speaker": "narrator",
+          "text": "훈련 후, 김철수 코치가 주인공을 따로 불렀다."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "내가 못 이룬 걸 네가 이루길 바란다."
+        },
+        {
+          "speaker": "player",
+          "text": "코치님..."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "선수로서 실패했던 내가... 코치로서도 실패할 뻔했어."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "하지만 너 같은 제자가 있어서... 다시 일어설 수 있었어."
+        },
+        {
+          "speaker": "player",
+          "text": "코치님 덕분에 여기까지 왔습니다. 감사합니다."
+        },
+        {
+          "speaker": "kim_cheolsu",
+          "text": "(미소) 프로 가서도 연락하고 지내자."
+        }
+      ],
+      "effects": {
+        "affection_change": 10,
+        "flags": ["mentor_disciple_bond_complete", "mentor_arc_resolved"],
+        "stats": {},
+        "unlocks": ["special_mentor_training"]
+      },
+      "choices": []
+    }
+  ]
+}

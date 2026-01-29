@@ -1,0 +1,87 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc7q8h2m4rdwp"]
+
+[ext_resource type="Script" path="res://scripts/match/PlayerCommandOverlay.gd" id="1_script"]
+
+[node name="PlayerCommandOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="DimBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "HERO TIME"
+horizontal_alignment = 1
+
+[node name="ContextLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "공을 잡았다! 다음 행동을 선택하세요."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="StateLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = ""
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="HeaderRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="ActionLabel" type="Label" parent="Panel/VBox/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "액션"
+horizontal_alignment = 1
+
+[node name="SuccessLabel" type="Label" parent="Panel/VBox/HeaderRow"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "성공률"
+horizontal_alignment = 1
+
+[node name="RiskLabel" type="Label" parent="Panel/VBox/HeaderRow"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "리스크"
+horizontal_alignment = 1
+
+[node name="OptionsContainer" type="VBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8

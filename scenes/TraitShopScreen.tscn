@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsh4p2qn6t1rs"]
+
+[ext_resource type="Script" path="res://scripts/screens/TraitShopScreen.gd" id="1_script"]
+
+[node name="TraitShopScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BackButton" type="Button" parent="VBoxContainer/Header"]
+layout_mode = 2
+text = "< Back"
+
+[node name="Title" type="Label" parent="VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Trait Shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoinsContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
+layout_mode = 2
+
+[node name="CoinsLabel" type="Label" parent="VBoxContainer/Header/CoinsContainer"]
+layout_mode = 2
+text = "Coins: 0"
+
+[node name="PackSection" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PackTitle" type="Label" parent="VBoxContainer/PackSection"]
+layout_mode = 2
+text = "Trait Packs"
+horizontal_alignment = 1
+
+[node name="PackGrid" type="GridContainer" parent="VBoxContainer/PackSection"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+columns = 3
+
+[node name="DailyDeals" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="DealTitle" type="HBoxContainer" parent="VBoxContainer/DailyDeals"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/DailyDeals/DealTitle"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Daily Deals"
+
+[node name="RefreshTimer" type="Label" parent="VBoxContainer/DailyDeals"]
+layout_mode = 2
+text = "Refresh: 00:00"
+horizontal_alignment = 2
+
+[node name="DealsGrid" type="HBoxContainer" parent="VBoxContainer/DailyDeals"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20

@@ -1,0 +1,451 @@
+# traits_v05.yaml - 선수 특성 시스템 (v0.5)
+# FM PPM + 오리지널 특성 조합
+
+traits:
+  # ============================================
+  # 🏋️ Physical / 피지컬 특성
+  # ============================================
+
+  iron_will:
+    id: "iron_will"
+    name: "강인함"
+    name_en: "Iron Will"
+    category: "physical"
+    description: "극도의 피로 상황에서도 경기력 유지"
+    effects:
+      fatigue_resistance: 0.3
+      injury_resistance: 0.2
+      late_game_performance: 1.15
+    rarity: "rare"
+
+  endless_runner:
+    id: "endless_runner"
+    name: "스태미너 괴물"
+    name_en: "Endless Runner"
+    category: "physical"
+    description: "지치지 않는 활동량"
+    effects:
+      stamina_decay: -0.4
+      work_rate: 1.25
+      distance_covered: 1.3
+    rarity: "uncommon"
+
+  quick_feet:
+    id: "quick_feet"
+    name: "민첩한 움직임"
+    name_en: "Quick Feet"
+    category: "physical"
+    description: "빠른 방향 전환과 반응 속도"
+    effects:
+      agility: 1.2
+      acceleration: 1.15
+      dribbling_speed: 1.1
+    rarity: "common"
+
+  tough_body:
+    id: "tough_body"
+    name: "강골"
+    name_en: "Tough Body"
+    category: "physical"
+    description: "몸싸움과 헤딩 경합에 강함"
+    effects:
+      strength: 1.2
+      aerial_duels: 1.25
+      physical_duels: 1.2
+    rarity: "uncommon"
+
+  # ============================================
+  # 🎯 Shooting / 슈팅 특성
+  # ============================================
+
+  cannon_shooter:
+    id: "cannon_shooter"
+    name: "캐논 슈터"
+    name_en: "Cannon Shooter"
+    category: "shooting"
+    description: "강력한 중거리 슛"
+    effects:
+      shot_power: 1.3
+      long_shot_accuracy: 1.25
+      shot_velocity: 1.2
+    highlight_action: "power_shot"
+    rarity: "uncommon"
+
+  curler:
+    id: "curler"
+    name: "감아차기 장인"
+    name_en: "Curler"
+    category: "shooting"
+    description: "정교한 커브 킥"
+    effects:
+      curve: 1.35
+      finesse_shot: 1.3
+      free_kick_accuracy: 1.2
+    highlight_action: "curve_shot"
+    rarity: "rare"
+
+  cool_finisher:
+    id: "cool_finisher"
+    name: "침착한 마무리"
+    name_en: "Cool Finisher"
+    category: "shooting"
+    description: "박스 내에서 침착함을 유지"
+    effects:
+      composure: 1.3
+      finishing: 1.25
+      penalty_accuracy: 1.2
+    rarity: "uncommon"
+
+  acrobatic_finisher:
+    id: "acrobatic_finisher"
+    name: "아크로바틱"
+    name_en: "Acrobatic Finisher"
+    category: "shooting"
+    description: "화려한 슈팅 기술"
+    effects:
+      volleys: 1.3
+      overhead_kicks: 1.4
+      flair_shots: 1.35
+    highlight_action: "acrobatic_goal"
+    rarity: "rare"
+
+  # ============================================
+  # 🎩 Passing & Link-up / 패스·연계
+  # ============================================
+
+  groundbreaker_passer:
+    id: "groundbreaker_passer"
+    name: "대지를 가르는 패스"
+    name_en: "Groundbreaker Passer"
+    category: "passing"
+    description: "정확한 롱패스"
+    effects:
+      long_pass_accuracy: 1.3
+      vision: 1.2
+      pass_distance: 1.25
+    rarity: "uncommon"
+
+  through_master:
+    id: "through_master"
+    name: "쓰루 마스터"
+    name_en: "Through Master"
+    category: "passing"
+    description: "완벽한 쓰루패스 타이밍"
+    effects:
+      through_ball: 1.35
+      vision: 1.25
+      assist_rate: 1.2
+    rarity: "uncommon"
+
+  one_two_addict:
+    id: "one_two_addict"
+    name: "벽패서"
+    name_en: "One-Two Addict"
+    category: "passing"
+    description: "원투 패스 선호"
+    effects:
+      short_pass: 1.2
+      link_up_play: 1.3
+      quick_passing: 1.25
+    fm_ppm: true
+    rarity: "common"
+
+  switch_flank_specialist:
+    id: "switch_flank_specialist"
+    name: "측면 전환"
+    name_en: "Switch Flank Specialist"
+    category: "passing"
+    description: "측면을 바꾸는 롱패스 선호"
+    effects:
+      cross_field_pass: 1.4
+      vision: 1.15
+      playmaking: 1.1
+    fm_ppm: true
+    rarity: "uncommon"
+
+  # ============================================
+  # 🌀 Flair & Creativity / 개인기·창의
+  # ============================================
+
+  trickster:
+    id: "trickster"
+    name: "트릭스터"
+    name_en: "Trickster"
+    category: "flair"
+    description: "화려한 개인기로 상대 농락"
+    effects:
+      dribbling: 1.25
+      skill_moves: 1.35
+      foul_draw: 1.2
+    highlight_action: "skill_move"
+    rarity: "uncommon"
+
+  fantasista:
+    id: "fantasista"
+    name: "판타지스타"
+    name_en: "Fantasista"
+    category: "flair"
+    description: "예측 불가능한 창의적 플레이"
+    effects:
+      creativity: 1.4
+      flair: 1.35
+      unpredictability: 1.3
+    rarity: "legendary"
+
+  looks_for_pass:
+    id: "looks_for_pass"
+    name: "슛 대신 패스"
+    name_en: "Looks for Pass"
+    category: "flair"
+    description: "득점 기회에서도 동료 찾기"
+    effects:
+      teamwork: 1.3
+      assist_tendency: 1.4
+      selfishness: -0.5
+    fm_ppm: true
+    rarity: "common"
+
+  holds_up_ball:
+    id: "holds_up_ball"
+    name: "볼키퍼"
+    name_en: "Holds Up Ball"
+    category: "flair"
+    description: "볼을 지키며 동료 지원 대기"
+    effects:
+      hold_up_play: 1.35
+      strength: 1.1
+      target_man: 1.3
+    fm_ppm: true
+    rarity: "uncommon"
+
+  # ============================================
+  # 🛡️ Defense / 수비 특성
+  # ============================================
+
+  fighter:
+    id: "fighter"
+    name: "파이터"
+    name_en: "Fighter"
+    category: "defense"
+    description: "거친 수비로 상대 위축"
+    effects:
+      aggression: 1.3
+      tackling: 1.2
+      intimidation: 1.25
+      yellow_card_risk: 1.15
+    rarity: "common"
+
+  hard_tackler:
+    id: "hard_tackler"
+    name: "하드 태클러"
+    name_en: "Hard Tackler"
+    category: "defense"
+    description: "강력한 태클"
+    effects:
+      standing_tackle: 1.3
+      sliding_tackle: 1.25
+      tackle_success: 1.2
+    fm_ppm: true
+    rarity: "common"
+
+  close_marker:
+    id: "close_marker"
+    name: "집중 마커"
+    name_en: "Close Marker"
+    category: "defense"
+    description: "밀착 맨마킹"
+    effects:
+      marking: 1.35
+      defensive_awareness: 1.2
+      man_marking: 1.3
+    rarity: "uncommon"
+
+  interceptor:
+    id: "interceptor"
+    name: "차단 본능"
+    name_en: "Interceptor"
+    category: "defense"
+    description: "패스 차단의 달인"
+    effects:
+      interceptions: 1.4
+      positioning: 1.2
+      anticipation: 1.25
+    rarity: "uncommon"
+
+  drops_deep:
+    id: "drops_deep"
+    name: "뒤로 물러서 방어"
+    name_en: "Drops Deep"
+    category: "defense"
+    description: "포지션을 내려서 안정적 수비"
+    effects:
+      defensive_positioning: 1.3
+      defensive_contribution: 1.25
+      attacking_runs: -0.2
+    fm_ppm: true
+    rarity: "common"
+
+  # ============================================
+  # 🧠 Mental & Positioning / 멘탈·포지셔닝
+  # ============================================
+
+  line_breaker:
+    id: "line_breaker"
+    name: "라인 브레이커"
+    name_en: "Line Breaker"
+    category: "mental"
+    description: "오프사이드 라인 돌파"
+    effects:
+      off_the_ball: 1.3
+      acceleration: 1.15
+      offside_trap_beating: 1.4
+    fm_ppm: true
+    rarity: "uncommon"
+
+  space_seeker:
+    id: "space_seeker"
+    name: "공간 침투"
+    name_en: "Space Seeker"
+    category: "mental"
+    description: "빈 공간을 찾는 움직임"
+    effects:
+      positioning: 1.25
+      off_the_ball: 1.35
+      anticipation: 1.2
+    rarity: "uncommon"
+
+  never_give_up:
+    id: "never_give_up"
+    name: "근성"
+    name_en: "Never Give Up"
+    category: "mental"
+    description: "끝까지 포기하지 않는 정신력"
+    effects:
+      determination: 1.4
+      late_game_stamina: 1.2
+      comeback_potential: 1.3
+    rarity: "rare"
+
+  leadership:
+    id: "leadership"
+    name: "리더십"
+    name_en: "Leadership"
+    category: "mental"
+    description: "팀을 이끄는 주장감"
+    effects:
+      team_morale: 1.2
+      influence: 1.35
+      captain_bonus: 1.3
+    rarity: "rare"
+
+  risk_taker:
+    id: "risk_taker"
+    name: "과감성"
+    name_en: "Risk Taker"
+    category: "mental"
+    description: "위험을 감수하는 플레이"
+    effects:
+      bravery: 1.3
+      decision_aggression: 1.25
+      spectacular_attempts: 1.35
+    rarity: "common"
+
+  # ============================================
+  # 👔 Professionalism / 프로 성향
+  # ============================================
+
+  hard_worker:
+    id: "hard_worker"
+    name: "성실한 훈련자"
+    name_en: "Hard Worker"
+    category: "professional"
+    description: "훈련에 집중하는 모범생"
+    effects:
+      training_efficiency: 1.3
+      development_rate: 1.2
+      consistency: 1.15
+    rarity: "common"
+
+  lazy_genius:
+    id: "lazy_genius"
+    name: "게으른 천재"
+    name_en: "Lazy Genius"
+    category: "professional"
+    description: "재능은 있지만 게으른 성향"
+    effects:
+      training_efficiency: 0.7
+      match_performance_variance: 1.4
+      flair: 1.2
+      potential_ceiling: 1.1
+    rarity: "uncommon"
+
+  team_player:
+    id: "team_player"
+    name: "팀 플레이어"
+    name_en: "Team Player"
+    category: "professional"
+    description: "팀을 위해 희생하는 선수"
+    effects:
+      teamwork: 1.35
+      work_rate: 1.2
+      selfishness: -0.4
+    rarity: "common"
+
+  maverick:
+    id: "maverick"
+    name: "돌아이 성향"
+    name_en: "Maverick"
+    category: "professional"
+    description: "예측 불가능한 자유로운 영혼"
+    effects:
+      creativity: 1.3
+      unpredictability: 1.4
+      tactical_discipline: -0.3
+      controversy: 1.2
+    rarity: "rare"
+
+# ============================================
+# Trait 시스템 설정
+# ============================================
+
+system:
+  max_traits_per_player: 3
+  trait_discovery_rate: 0.15  # 매주 15% 확률로 새 특성 발견
+
+  rarity_weights:
+    common: 0.5
+    uncommon: 0.3
+    rare: 0.15
+    legendary: 0.05
+
+  position_trait_preferences:
+    GK: ["interceptor", "leadership", "never_give_up"]
+    CB: ["tough_body", "hard_tackler", "close_marker", "drops_deep"]
+    LB: ["endless_runner", "quick_feet", "switch_flank_specialist"]
+    RB: ["endless_runner", "quick_feet", "switch_flank_specialist"]
+    CDM: ["fighter", "interceptor", "drops_deep", "hard_worker"]
+    CM: ["groundbreaker_passer", "through_master", "team_player"]
+    CAM: ["fantasista", "through_master", "looks_for_pass"]
+    LW: ["trickster", "quick_feet", "curler"]
+    RW: ["trickster", "quick_feet", "cannon_shooter"]
+    ST: ["cool_finisher", "acrobatic_finisher", "line_breaker", "holds_up_ball"]
+
+  trait_combinations:
+    # 시너지 조합
+    synergies:
+      - traits: ["cool_finisher", "line_breaker"]
+        bonus: "poacher"
+        effect: "골 결정력 추가 +10%"
+      - traits: ["tough_body", "holds_up_ball"]
+        bonus: "target_man"
+        effect: "타겟형 스트라이커 완성"
+      - traits: ["fantasista", "trickster"]
+        bonus: "magician"
+        effect: "경기 지배력 +15%"
+
+    # 충돌 조합
+    conflicts:
+      - traits: ["lazy_genius", "hard_worker"]
+        penalty: "내적 갈등으로 성장 둔화"
+      - traits: ["team_player", "maverick"]
+        penalty: "팀 케미스트리 불안정"

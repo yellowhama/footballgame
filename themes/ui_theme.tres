@@ -1,0 +1,49 @@
+[gd_resource type="Theme" format=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color(0.12, 0.12, 0.14, 1)
+border_color = Color(0.30, 0.30, 0.35, 1)
+border_width_all = 2
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+corner_radius_bottom_right = 12
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color(0.16, 0.16, 0.18, 1)
+border_color = Color(0.40, 0.40, 0.45, 1)
+border_width_all = 2
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+corner_radius_bottom_right = 12
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color(0.08, 0.08, 0.10, 1)
+border_color = Color(0.50, 0.50, 0.55, 1)
+border_width_all = 2
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+corner_radius_bottom_right = 12
+
+[resource]
+default_font_size = 16
+default_base_scale = 1.0
+
+colors/Accent = Color(0.20, 0.60, 1.00, 1)
+colors/AccentWarning = Color(1.00, 0.80, 0.20, 1)
+colors/TextPrimary = Color(0.92, 0.94, 0.96, 1)
+colors/TextMuted = Color(0.70, 0.74, 0.78, 1)
+colors/PanelBg = Color(0.12, 0.12, 0.14, 1)
+
+font_sizes/Label/font_size = 16
+font_sizes/Button/font_size = 16
+font_sizes/TooltipPanel/font_size = 14
+
+styles/Panel = SubResource(1)
+styles/PanelContainer = SubResource(1)
+
+styles/Button/normal = SubResource(1)
+styles/Button/hover = SubResource(2)
+styles/Button/pressed = SubResource(3)

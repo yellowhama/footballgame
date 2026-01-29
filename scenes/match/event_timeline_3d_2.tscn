@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwucrd6v4d2bv"]
+
+[ext_resource type="Script" uid="uid://dmokufwoyumbb" path="res://scripts/match/EventAnimator3D.gd" id="1_84yuo"]
+[ext_resource type="PackedScene" uid="uid://c7p65g8xru0rv" path="res://scenes/match/football_pitch.fbx" id="2_c23sm"]
+
+[sub_resource type="StandardMaterial3D" id="Material_marker"]
+albedo_color = Color(1, 0.2, 0.2, 1)
+emission_enabled = true
+emission = Color(1, 0.2, 0.2, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="StandardMaterial3D" id="Material_corner"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 0.8
+
+[node name="EventTimeline3D" type="Node3D"]
+script = ExtResource("1_84yuo")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.408248, 0.577351, -0.0605834, 0.778517, 0.624693, -0.704507, -0.476702, 0.525761, 428.16, 146.22, 276)
+projection = 1
+size = 450.0
+far = 1000.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 50, 0)
+shadow_enabled = true
+
+[node name="FootballPitch" parent="." instance=ExtResource("2_c23sm")]
+transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 0, 0, 0)
+
+[node name="PlayerMarker" type="CSGSphere3D" parent="."]
+visible = false
+radius = 2.5
+material = SubResource("Material_marker")
+
+[node name="OpenFootballCorner1" type="CSGSphere3D" parent="." groups=["debug"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.423, -1.24286, 68.8743)
+radius = 1.0
+material = SubResource("Material_corner")
+
+[node name="OpenFootballCorner2" type="CSGSphere3D" parent="." groups=["debug"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 372.819, -1.14033, 68.5855)
+radius = 1.0
+material = SubResource("Material_corner")
+
+[node name="OpenFootballCorner2" type="CSGSphere3D" parent="OpenFootballCorner2" groups=["debug"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 372.819, -1.14033, 68.5855)
+radius = 1.0
+material = SubResource("Material_corner")
+
+[node name="OpenFootballCorner3" type="CSGSphere3D" parent="." groups=["debug"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 258.675, -0.147347, 288.565)
+radius = 1.0
+material = SubResource("Material_corner")
+
+[node name="OpenFootballCorner4" type="CSGSphere3D" parent="." groups=["debug"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 373.196, -0.363087, 288.599)
+radius = 1.0
+material = SubResource("Material_corner")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="EventLabel" type="Label" parent="UI"]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 700.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 32
+text = "이벤트 대기 중..."
+
+[node name="ControlPanel" type="VBoxContainer" parent="UI"]
+offset_left = 50.0
+offset_top = 900.0
+offset_right = 450.0
+offset_bottom = 1050.0
+
+[node name="PlayButton" type="Button" parent="UI/ControlPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "▶ 재생"
+
+[node name="StopButton" type="Button" parent="UI/ControlPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "⏹ 정지"
+
+[node name="SpeedLabel" type="Label" parent="UI/ControlPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "재생 속도: 1.0x"
+
+[connection signal="pressed" from="UI/ControlPanel/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="UI/ControlPanel/StopButton" to="." method="_on_stop_button_pressed"]

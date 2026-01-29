@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgame001"]
+
+[ext_resource type="Script" path="res://scripts/game/game_controller.gd" id="1"]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="WeeklyView" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Header" type="Panel" parent="UI/WeeklyView"]
+anchor_right = 1.0
+offset_bottom = 80.0
+
+[node name="WeekLabel" type="Label" parent="UI/WeeklyView/Header"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -15.0
+offset_right = 100.0
+offset_bottom = 15.0
+theme_override_font_sizes/font_size = 24
+text = "Week 1 - Year 1"
+horizontal_alignment = 1
+
+[node name="MainContent" type="VBoxContainer" parent="UI/WeeklyView"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+
+[node name="TrainingButton" type="Button" parent="UI/WeeklyView/MainContent"]
+layout_mode = 2
+custom_minimum_size = Vector2(400, 60)
+text = "Training"
+theme_override_font_sizes/font_size = 20
+
+[node name="MatchButton" type="Button" parent="UI/WeeklyView/MainContent"]
+layout_mode = 2
+custom_minimum_size = Vector2(400, 60)
+text = "Play Match"
+theme_override_font_sizes/font_size = 20
+
+[node name="StatsButton" type="Button" parent="UI/WeeklyView/MainContent"]
+layout_mode = 2
+custom_minimum_size = Vector2(400, 60)
+text = "View Stats"
+theme_override_font_sizes/font_size = 20
+
+[node name="NextWeekButton" type="Button" parent="UI/WeeklyView/MainContent"]
+layout_mode = 2
+custom_minimum_size = Vector2(400, 60)
+text = "Next Week"
+theme_override_font_sizes/font_size = 20
+
+[connection signal="pressed" from="UI/WeeklyView/MainContent/TrainingButton" to="." method="_on_training_pressed"]
+[connection signal="pressed" from="UI/WeeklyView/MainContent/MatchButton" to="." method="_on_match_pressed"]
+[connection signal="pressed" from="UI/WeeklyView/MainContent/StatsButton" to="." method="_on_stats_pressed"]
+[connection signal="pressed" from="UI/WeeklyView/MainContent/NextWeekButton" to="." method="_on_next_week_pressed"]

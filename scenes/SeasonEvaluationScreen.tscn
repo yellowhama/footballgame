@@ -1,0 +1,104 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/screens/SeasonEvaluationScreen.gd" id="1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxPanel"]
+bg_color = Color(0.12, 0.12, 0.2, 0.95)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+corner_radius_bottom_right = 12
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.6, 0.9, 1)
+
+[node name="SeasonEvaluationScreen" type="Control"]
+script = ExtResource("1")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dimmer" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.5)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(900, 600)
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/panel = SubResource("StyleBoxPanel")
+
+[node name="TitleBar" type="HBoxContainer" parent="CenterContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBox/TitleBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+text = "Season Evaluation"
+theme_override_font_sizes/font_size = 30
+
+[node name="Content" type="VBoxContainer" parent="CenterContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SeasonClassLabel" type="Label" parent="CenterContainer/VBox/Content"]
+layout_mode = 2
+text = "올해 등급: -"
+theme_override_font_sizes/font_size = 24
+
+[node name="SummaryLabel" type="Label" parent="CenterContainer/VBox/Content"]
+layout_mode = 2
+text = "경기 0 | 골 0 | 도움 0\n평균 평점: 0.0 | MOM 0회"
+theme_override_font_sizes/font_size = 18
+
+[node name="MarketValueLabel" type="Label" parent="CenterContainer/VBox/Content"]
+layout_mode = 2
+text = "추정 시장 가치: -"
+theme_override_font_sizes/font_size = 18
+
+[node name="HighlightsLabel" type="Label" parent="CenterContainer/VBox/Content"]
+layout_mode = 2
+text = "하이라이트"
+theme_override_font_sizes/font_size = 20
+
+[node name="HighlightsList" type="VBoxContainer" parent="CenterContainer/VBox/Content"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="RecommendationsLabel" type="Label" parent="CenterContainer/VBox/Content"]
+layout_mode = 2
+text = "추천 사항"
+theme_override_font_sizes/font_size = 20
+
+[node name="RecommendationsList" type="VBoxContainer" parent="CenterContainer/VBox/Content"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="BottomBar" type="HBoxContainer" parent="CenterContainer/VBox"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBox/BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseButton" type="Button" parent="CenterContainer/VBox/BottomBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(140, 48)
+text = "닫기"
+

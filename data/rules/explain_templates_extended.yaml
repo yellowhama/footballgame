@@ -1,0 +1,302 @@
+# Extended Explain Templates + Offside Payload Schema
+# IFAB Laws of the Game 2025/26 기준
+# "왜 이 판정?" UI를 위한 템플릿 + 상세 payload 정의
+
+# =============================================================================
+# Offside Explain Payload Schema (SSOT)
+# =============================================================================
+offside_explain_payload:
+  schema_version: "2.0"
+  description: "오프사이드 판정의 상세 설명을 위한 payload 스키마"
+
+  fields:
+    # 기본 필드
+    rule_id:
+      type: "string"
+      value: "LAW_11_OFFSIDE"
+      description: "규칙 ID"
+
+    timestamp_ms:
+      type: "u64"
+      description: "판정 시점 (밀리초)"
+
+    # 관련 선수
+    passer_track_id:
+      type: "u8"
+      description: "패스한 선수의 track_id (0-21)"
+
+    receiver_track_id:
+      type: "u8"
+      description: "오프사이드 위치의 선수 track_id"
+
+    # 재시작 컨텍스트 (예외 판단용)
+    restart_context:
+      type: "object"
+      fields:
+        restart_type:
+          type: "enum"
+          values:
+            - "normal"
+            - "goal_kick"
+            - "throw_in"
+            - "corner_kick"
+            - "free_kick"
+            - "kickoff"
+          description: "직전 재시작 유형"
+        offside_exception_applies:
+          type: "bool"
+          description: "오프사이드 예외 적용 여부 (goal_kick/throw_in/corner_kick이면 true)"
+
+    # 터치 기준점 (GK throw 처리용 - IFAB 25/26 변경점)
+    touch_reference:
+      type: "object"
+      fields:
+        touch_type:
+          type: "enum"
+          values:
+            - "kick"
+            - "header"
+            - "gk_throw"
+          description: "볼 플레이 유형"
+        reference_point:
+          type: "enum"
+          values:
+            - "first_contact"
+            - "last_contact"
+          description: "판정 기준점 (GK throw는 last_contact 사용)"
+
+    # 위치 스냅샷
+    position_snapshot:
+      type: "object"
+      fields:
+        receiver_x_team_m:
+          type: "f32"
+          description: "수신자 x 위치 (팀 관점, 미터)"
+        ball_x_team_m:
+          type: "f32"
+          description: "볼 x 위치 (팀 관점, 미터)"
+        second_last_defender_x_team_m:
+          type: "f32"
+          description: "수비 두 번째 선수 x 위치 (팀 관점, 미터)"
+        margin_m:
+          type: "f32"
+          description: "오프사이드 마진 (양수=오프사이드, 음수=온사이드)"
+
+    # 관여 유형
+    involvement:
+      type: "object"
+      fields:
+        phase:
+          type: "enum"
+          values:
+            - "interfering_with_play"
+            - "interfering_with_opponent"
+            - "gaining_advantage"
+          description: "오프사이드 관여 유형"
+        touches_ball:
+          type: "bool"
+          description: "볼을 터치했는지"
+        blocks_line_of_sight:
+          type: "bool"
+          description: "시야를 차단했는지"
+        challenges_opponent:
+          type: "bool"
+          description: "상대방과 경합했는지"
+
+    # 굴절/세이브 컨텍스트 (deliberate play 판단용)
+    deflection_context:
+      type: "object"
+      fields:
+        last_touch_by_defender:
+          type: "enum"
+          values:
+            - "none"
+            - "deliberate_play"
+            - "deflection"
+            - "save"
+          description: "수비수의 마지막 터치 유형"
+        resets_offside:
+          type: "bool"
+          description: "오프사이드 리셋 여부 (deliberate_play만 true)"
+
+# =============================================================================
+# Offside Explanation Templates
+# =============================================================================
+offside_templates:
+  # 예외 케이스 (오프사이드 적용 안 됨)
+  exception_goal_kick:
+    template: "이 상황은 **골킥에서 공을 직접 받은 경우**라 오프사이드가 적용되지 않습니다."
+    template_en: "No offside - the ball was received directly from a **goal kick**."
+    condition: "restart_context.restart_type == goal_kick"
+
+  exception_throw_in:
+    template: "이 상황은 **스로인에서 공을 직접 받은 경우**라 오프사이드가 적용되지 않습니다."
+    template_en: "No offside - the ball was received directly from a **throw-in**."
+    condition: "restart_context.restart_type == throw_in"
+
+  exception_corner_kick:
+    template: "이 상황은 **코너킥에서 공을 직접 받은 경우**라 오프사이드가 적용되지 않습니다."
+    template_en: "No offside - the ball was received directly from a **corner kick**."
+    condition: "restart_context.restart_type == corner_kick"
+
+  # 일반 오프사이드 선언
+  offside_basic:
+    template: "패스 순간 공격수(#{receiver_track_id})가 공과 최종 수비 라인보다 앞에 있었습니다."
+    template_en: "At the moment of the pass, attacker #{receiver_track_id} was ahead of the ball and second-last defender."
+
+  offside_with_margin:
+    template: "앞서 있던 거리: 약 {margin_m:.2f}m"
+    template_en: "Distance offside: approximately {margin_m:.2f}m"
+
+  offside_involvement:
+    interfering_with_play:
+      template: "판정 사유: **플레이 관여** (볼을 터치하거나 플레이하려고 함)"
+      template_en: "Reason: **Interfering with play** (touching or attempting to play the ball)"
+    interfering_with_opponent:
+      template: "판정 사유: **상대방 방해** (상대방의 볼 플레이를 방해하거나 시야를 가림)"
+      template_en: "Reason: **Interfering with an opponent** (preventing opponent from playing the ball or obstructing line of vision)"
+    gaining_advantage:
+      template: "판정 사유: **이익 획득** (골대나 상대방에 맞고 나온 볼을 플레이)"
+      template_en: "Reason: **Gaining advantage** (playing a ball that rebounds from goal frame or opponent)"
+
+  # deliberate play 케이스 (오프사이드 리셋)
+  deliberate_play_reset:
+    template: "수비수가 공을 **의도적으로 플레이**한 것으로 판정되어 오프사이드가 리셋되었습니다."
+    template_en: "The defender **deliberately played** the ball, resetting the offside situation."
+    condition: "deflection_context.last_touch_by_defender == deliberate_play"
+
+  # deflection/save 케이스 (오프사이드 리셋 안 됨)
+  deflection_no_reset:
+    template: "수비수의 단순 **굴절**은 오프사이드를 리셋하지 않습니다."
+    template_en: "A mere **deflection** by the defender does not reset the offside."
+    condition: "deflection_context.last_touch_by_defender == deflection"
+
+  save_no_reset:
+    template: "골키퍼의 **세이브**는 오프사이드를 리셋하지 않습니다."
+    template_en: "A **save** by the goalkeeper does not reset the offside."
+    condition: "deflection_context.last_touch_by_defender == save"
+
+  # GK throw 특수 케이스 (IFAB 25/26)
+  gk_throw_last_contact:
+    template: "골키퍼 스로 시 오프사이드 판정 기준점: **last contact** (IFAB 25/26 변경)"
+    template_en: "Offside reference for GK throw: **last contact** (IFAB 25/26 change)"
+    condition: "touch_reference.touch_type == gk_throw"
+
+# =============================================================================
+# Foul Explanation Templates
+# =============================================================================
+foul_templates:
+  foul_basic:
+    template: "{player_name}이(가) {victim_name}에게 {foul_type} 파울"
+    template_en: "{player_name} committed a {foul_type} foul on {victim_name}"
+
+  foul_severity:
+    careless:
+      template: "**부주의한** 파울 - 직접 프리킥"
+      template_en: "**Careless** foul - direct free kick"
+    reckless:
+      template: "**무모한** 파울 - 옐로카드 + 직접 프리킥"
+      template_en: "**Reckless** foul - yellow card + direct free kick"
+    excessive_force:
+      template: "**과도한 힘** 사용 - 레드카드 + 직접 프리킥"
+      template_en: "**Excessive force** - red card + direct free kick"
+
+  dogso:
+    template: "**명백한 득점 기회 저지 (DOGSO)** - 레드카드"
+    template_en: "**Denying an obvious goal-scoring opportunity (DOGSO)** - red card"
+
+  dogso_penalty_area_reduction:
+    template: "페널티 에어리어 내 DOGSO이나 볼 플레이 시도로 **옐로카드로 감경**"
+    template_en: "DOGSO in penalty area but attempted to play ball - **reduced to yellow card**"
+
+# =============================================================================
+# Restart Explanation Templates
+# =============================================================================
+restart_templates:
+  throw_in:
+    template: "공이 터치라인을 완전히 넘어갔습니다. 마지막 터치: {last_touch_team}. **스로인**."
+    template_en: "Ball wholly crossed touchline. Last touch: {last_touch_team}. **Throw-in**."
+
+  goal_kick:
+    template: "공이 골라인을 완전히 넘어갔습니다. 마지막 터치: 공격팀. **골킥**."
+    template_en: "Ball wholly crossed goal line. Last touch: attacking team. **Goal kick**."
+
+  corner_kick:
+    template: "공이 골라인을 완전히 넘어갔습니다. 마지막 터치: 수비팀. **코너킥**."
+    template_en: "Ball wholly crossed goal line. Last touch: defending team. **Corner kick**."
+
+  free_kick_direct:
+    template: "파울 위치에서 **직접 프리킥**. 직접 골 가능."
+    template_en: "**Direct free kick** from foul location. Goal may be scored directly."
+
+  free_kick_indirect:
+    template: "파울 위치에서 **간접 프리킥**. 골 전에 다른 선수가 터치해야 함."
+    template_en: "**Indirect free kick** from foul location. Another player must touch before goal."
+
+  penalty:
+    template: "페널티 에어리어 내 파울. **페널티킥** 선언."
+    template_en: "Foul inside penalty area. **Penalty kick** awarded."
+
+# =============================================================================
+# Goal Explanation Templates
+# =============================================================================
+goal_templates:
+  goal_valid:
+    template: "공이 골라인을 **완전히 통과**했습니다. **골 인정**."
+    template_en: "Ball **wholly crossed** the goal line. **Goal awarded**."
+
+  goal_disallowed_offside:
+    template: "**오프사이드**로 인해 골이 **취소**되었습니다."
+    template_en: "Goal **disallowed** due to **offside**."
+
+  goal_disallowed_foul:
+    template: "**파울**로 인해 골이 **취소**되었습니다."
+    template_en: "Goal **disallowed** due to **foul**."
+
+  goal_disallowed_handball:
+    template: "**핸드볼**로 인해 골이 **취소**되었습니다."
+    template_en: "Goal **disallowed** due to **handball**."
+
+  post_hit:
+    template: "슈팅이 **골포스트**에 맞았습니다. 골 아님."
+    template_en: "Shot hit the **goalpost**. No goal."
+
+  bar_hit:
+    template: "슈팅이 **크로스바**에 맞았습니다. 골 아님."
+    template_en: "Shot hit the **crossbar**. No goal."
+
+# =============================================================================
+# Ball In/Out Explanation Templates
+# =============================================================================
+ball_in_out_templates:
+  out_touchline:
+    template: "공이 터치라인을 **완전히** 넘어갔습니다."
+    template_en: "Ball **wholly** crossed the touchline."
+
+  out_goal_line:
+    template: "공이 골라인을 **완전히** 넘어갔습니다."
+    template_en: "Ball **wholly** crossed the goal line."
+
+  still_in_play:
+    template: "공이 라인에 걸쳐 있어 아직 **인플레이**입니다."
+    template_en: "Ball is touching the line - still **in play**."
+
+  rebounds_in_play:
+    template: "공이 골대/크로스바/코너플래그에 맞고 튀어나왔지만 필드 안이므로 **인플레이**."
+    template_en: "Ball rebounded from goal frame/corner flag but stayed in field - **in play**."
+
+# =============================================================================
+# VAR Review Templates
+# =============================================================================
+var_templates:
+  var_review_start:
+    template: "VAR 리뷰 중: {reviewed_event_type}"
+    template_en: "VAR review in progress: {reviewed_event_type}"
+
+  var_upheld:
+    template: "VAR 리뷰 결과: 원심 **유지**"
+    template_en: "VAR review result: Decision **upheld**"
+
+  var_overturned:
+    template: "VAR 리뷰 결과: 원심 **번복**"
+    template_en: "VAR review result: Decision **overturned**"

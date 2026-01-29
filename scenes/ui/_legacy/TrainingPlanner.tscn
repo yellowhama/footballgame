@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource path="res://themes/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/ui/TrainingPlanner.gd" type="Script" id=2]
+[ext_resource path="res://scripts/ui/QuickBar.gd" type="Script" id=3]
+
+[node name="TrainingPlanner" type="Control"]
+theme = ExtResource("1")
+script = ExtResource("2")
+layout_mode = 3
+
+[node name="Header" type="HBoxContainer" parent="."]
+offset_top = 0.0
+offset_right = 1080.0
+offset_bottom = 96.0
+alignment = 1
+
+[node name="BtnBack" type="Button" parent="Header"]
+custom_minimum_size = Vector2(88,48)
+text = ""
+
+[node name="LblTitle" type="Label" parent="Header"]
+size_flags_horizontal = 3
+text = "TrainingPlanner"
+
+[node name="BtnSettings" type="Button" parent="Header"]
+custom_minimum_size = Vector2(88,48)
+text = ""
+
+[node name="IntensityRow" type="HBoxContainer" parent="."]
+offset_top = 110.0
+offset_right = 1080.0
+offset_bottom = 170.0
+[node name="LblIntensity" type="Label" parent="IntensityRow"]
+text = "Intensity"
+[node name="Intensity" type="HSlider" parent="IntensityRow"]
+min_value = 0.5
+max_value = 1.5
+step = 0.1
+value = 1.0
+
+[node name="WeekGrid" type="GridContainer" parent="."]
+offset_top = 180.0
+offset_right = 1080.0
+offset_bottom = 900.0
+columns = 7
+
+[node name="Day1" type="Button" parent="WeekGrid"]
+text = "Mon"
+[node name="Day2" type="Button" parent="WeekGrid"]
+text = "Tue"
+[node name="Day3" type="Button" parent="WeekGrid"]
+text = "Wed"
+[node name="Day4" type="Button" parent="WeekGrid"]
+text = "Thu"
+[node name="Day5" type="Button" parent="WeekGrid"]
+text = "Fri"
+[node name="Day6" type="Button" parent="WeekGrid"]
+text = "Sat"
+[node name="Day7" type="Button" parent="WeekGrid"]
+text = "Sun"
+
+[node name="PreviewPanel" type="PanelContainer" parent="."]
+offset_top = 920.0
+offset_right = 1080.0
+offset_bottom = 1180.0
+
+[node name="ActionRow" type="HBoxContainer" parent="."]
+offset_top = 1200.0
+offset_right = 1080.0
+offset_bottom = 1280.0
+[node name="BtnCommit" type="Button" parent="ActionRow"]
+text = "Commit Plan"
+
+[node name="QuickBar" type="Control" parent="."]
+script = ExtResource("3")
+anchors_preset = 12

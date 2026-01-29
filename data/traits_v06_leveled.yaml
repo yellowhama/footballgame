@@ -1,0 +1,545 @@
+# traits_v06_leveled.yaml - 레벨형 Trait 시스템
+# 각 특성이 Lv1 → Lv2 → Lv3로 성장
+
+meta:
+  version: "0.6"
+  feature: "Leveled Trait System"
+  description: "특성이 경험에 따라 성장하는 3단계 시스템"
+
+# ============================================
+# 시스템 설정
+# ============================================
+system:
+  max_traits_per_player: 3
+  trait_discovery_rate: 0.15
+
+  level_up_requirements:
+    lv1_to_lv2:
+      exp_required: 100
+      weeks_minimum: 4
+    lv2_to_lv3:
+      exp_required: 300
+      weeks_minimum: 12
+      special_condition: "해당 특성 관련 주요 이벤트 1회 이상"
+
+  exp_gains:
+    training_match: 5
+    practice_success: 3
+    official_match: 10
+    match_highlight: 20
+    special_event: 30
+
+# ============================================
+# 특성 정의 (레벨별 성장)
+# ============================================
+
+traits:
+  # ============================================
+  # 🎯 Shooting / 슈팅 특성
+  # ============================================
+
+  cannon_shooter:
+    id: "cannon_shooter"
+    name: "캐논 슈터"
+    name_en: "Cannon Shooter"
+    category: "shooting"
+    base_rarity: "uncommon"
+
+    levels:
+      1:
+        name: "강한 슈팅"
+        description: "중거리에서 강한 슛을 시도하기 시작했다"
+        effects:
+          shot_power: 1.02
+          long_shot_attempt: 1.05
+        unlock_message: "중거리 슈팅에 자신감을 보이기 시작했다"
+
+      2:
+        name: "파워 슈터"
+        description: "중거리 슛이 더욱 강력하고 정확해졌다"
+        effects:
+          shot_power: 1.05
+          long_shot_accuracy: 1.03
+          long_shot_attempt: 1.10
+        level_up_message: "중거리 슈팅이 위협적으로 발전했다"
+
+      3:
+        name: "대포알 슈터"
+        description: "대포알 같은 슈팅으로 경기를 지배한다"
+        effects:
+          shot_power: 1.10
+          long_shot_accuracy: 1.07
+          long_shot_xG: 1.15
+          highlight_trigger: "cannon_goal_cutscene"
+        master_message: "전설적인 캐논 슈터가 되었다!"
+        special_ability: "30m 이상 원더골 확률 대폭 상승"
+
+  curler:
+    id: "curler"
+    name: "감아차기 장인"
+    name_en: "Curler"
+    category: "shooting"
+    base_rarity: "rare"
+
+    levels:
+      1:
+        name: "커브 시도"
+        description: "감아차는 슛을 시도하기 시작했다"
+        effects:
+          curve: 1.03
+          finesse_shot_attempt: 1.05
+        unlock_message: "감아차기를 연습하고 있다"
+
+      2:
+        name: "커브 마스터"
+        description: "정교한 커브킥을 구사한다"
+        effects:
+          curve: 1.07
+          finesse_shot_accuracy: 1.05
+          free_kick_accuracy: 1.03
+        level_up_message: "감아차기가 정교해졌다"
+
+      3:
+        name: "벤드 잇 라이크 베컴"
+        description: "예술적인 커브로 골망을 흔든다"
+        effects:
+          curve: 1.15
+          finesse_shot_accuracy: 1.10
+          free_kick_accuracy: 1.08
+          highlight_trigger: "curve_goal_replay"
+        master_message: "환상적인 커브의 달인이 되었다!"
+        special_ability: "프리킥/코너킥 직접 득점 확률 상승"
+
+  cool_finisher:
+    id: "cool_finisher"
+    name: "침착한 마무리"
+    name_en: "Cool Finisher"
+    category: "shooting"
+    base_rarity: "uncommon"
+
+    levels:
+      1:
+        name: "침착함"
+        description: "박스 안에서 침착함을 유지하려 노력한다"
+        effects:
+          composure: 1.02
+          finishing: 1.02
+        unlock_message: "결정적 순간에 침착함을 보이기 시작했다"
+
+      2:
+        name: "쿨 피니셔"
+        description: "압박 상황에서도 침착하게 마무리한다"
+        effects:
+          composure: 1.05
+          finishing: 1.05
+          one_on_one: 1.03
+        level_up_message: "골키퍼 앞에서 더욱 침착해졌다"
+
+      3:
+        name: "아이스맨"
+        description: "극도의 압박에서도 완벽한 마무리"
+        effects:
+          composure: 1.10
+          finishing: 1.08
+          one_on_one: 1.07
+          penalty_success: 1.15
+        master_message: "얼음같은 침착함의 경지에 올랐다!"
+        special_ability: "중요한 순간 결정력 극대화"
+
+  # ============================================
+  # 🎩 Passing / 패스 특성
+  # ============================================
+
+  through_master:
+    id: "through_master"
+    name: "쓰루 마스터"
+    name_en: "Through Master"
+    category: "passing"
+    base_rarity: "uncommon"
+
+    levels:
+      1:
+        name: "쓰루 시도"
+        description: "쓰루패스를 시도하기 시작했다"
+        effects:
+          through_ball_attempt: 1.05
+          vision: 1.02
+        unlock_message: "수비 뒷공간을 노리기 시작했다"
+
+      2:
+        name: "쓰루 전문가"
+        description: "정확한 타이밍의 쓰루패스를 구사한다"
+        effects:
+          through_ball_accuracy: 1.05
+          vision: 1.05
+          assist_potential: 1.03
+        level_up_message: "쓰루패스가 날카로워졌다"
+
+      3:
+        name: "킬패스 마스터"
+        description: "한 번의 패스로 수비를 무너뜨린다"
+        effects:
+          through_ball_accuracy: 1.10
+          vision: 1.08
+          assist_potential: 1.07
+          highlight_trigger: "killer_pass_assist"
+        master_message: "킬패스의 달인이 되었다!"
+        special_ability: "완벽한 타이밍의 관통 패스"
+
+  # ============================================
+  # 🏃 Physical / 피지컬 특성
+  # ============================================
+
+  endless_runner:
+    id: "endless_runner"
+    name: "스태미너 괴물"
+    name_en: "Endless Runner"
+    category: "physical"
+    base_rarity: "uncommon"
+
+    levels:
+      1:
+        name: "활동량 증가"
+        description: "남들보다 조금 더 뛴다"
+        effects:
+          stamina_decay: 0.98
+          work_rate: 1.03
+        unlock_message: "활동량이 늘어나기 시작했다"
+
+      2:
+        name: "무한 체력"
+        description: "지치지 않고 계속 뛴다"
+        effects:
+          stamina_decay: 0.95
+          work_rate: 1.07
+          distance_covered: 1.05
+        level_up_message: "체력이 눈에 띄게 향상되었다"
+
+      3:
+        name: "영구기관"
+        description: "90분 내내 전력질주가 가능하다"
+        effects:
+          stamina_decay: 0.90
+          work_rate: 1.12
+          distance_covered: 1.10
+          late_game_performance: 1.15
+        master_message: "무한 체력의 경지에 도달했다!"
+        special_ability: "후반 추가시간에도 전력질주 가능"
+
+  # ============================================
+  # 🛡️ Defense / 수비 특성
+  # ============================================
+
+  hard_tackler:
+    id: "hard_tackler"
+    name: "하드 태클러"
+    name_en: "Hard Tackler"
+    category: "defense"
+    base_rarity: "common"
+    fm_ppm: true
+
+    levels:
+      1:
+        name: "거친 태클"
+        description: "태클이 거칠어지기 시작했다"
+        effects:
+          tackle_intensity: 1.03
+          yellow_card_risk: 1.02
+        unlock_message: "더 강한 태클을 시도한다"
+
+      2:
+        name: "파이터"
+        description: "강력한 태클로 상대를 압박한다"
+        effects:
+          tackle_intensity: 1.07
+          tackle_success: 1.04
+          intimidation: 1.05
+          yellow_card_risk: 1.05
+        level_up_message: "태클이 위협적으로 변했다"
+
+      3:
+        name: "파괴자"
+        description: "파괴적인 태클로 상대를 제압한다"
+        effects:
+          tackle_intensity: 1.12
+          tackle_success: 1.08
+          intimidation: 1.10
+          yellow_card_risk: 1.08
+          injury_inflict_chance: 1.05
+        master_message: "상대가 두려워하는 태클러가 되었다!"
+        special_ability: "상대 에이스 마크 시 위축 효과"
+
+  # ============================================
+  # 🧠 Mental / 멘탈 특성
+  # ============================================
+
+  leadership:
+    id: "leadership"
+    name: "리더십"
+    name_en: "Leadership"
+    category: "mental"
+    base_rarity: "rare"
+
+    levels:
+      1:
+        name: "리더 기질"
+        description: "리더십을 보이기 시작했다"
+        effects:
+          influence: 1.03
+          team_morale: 1.02
+        unlock_message: "팀을 이끄는 모습을 보이기 시작했다"
+
+      2:
+        name: "팀 리더"
+        description: "팀의 정신적 지주 역할을 한다"
+        effects:
+          influence: 1.07
+          team_morale: 1.05
+          communication: 1.05
+        level_up_message: "진정한 리더로 성장했다"
+
+      3:
+        name: "캡틴"
+        description: "타고난 지도자로 팀을 이끈다"
+        effects:
+          influence: 1.15
+          team_morale: 1.10
+          communication: 1.10
+          captain_aura: 1.20
+        master_message: "전설적인 캡틴이 되었다!"
+        special_ability: "주장 완장 시 팀 전체 능력치 상승"
+
+  line_breaker:
+    id: "line_breaker"
+    name: "라인 브레이커"
+    name_en: "Line Breaker"
+    category: "mental"
+    base_rarity: "uncommon"
+    fm_ppm: true
+
+    levels:
+      1:
+        name: "침투 시도"
+        description: "오프사이드 라인 뒤를 노리기 시작했다"
+        effects:
+          off_the_ball: 1.03
+          runs_behind: 1.05
+        unlock_message: "수비 라인 뒤를 노리기 시작했다"
+
+      2:
+        name: "라인 브레이커"
+        description: "절묘한 타이밍으로 침투한다"
+        effects:
+          off_the_ball: 1.07
+          runs_behind: 1.10
+          acceleration: 1.03
+        level_up_message: "침투 타이밍이 향상되었다"
+
+      3:
+        name: "오프사이드 트랩 파괴자"
+        description: "완벽한 타이밍으로 수비라인을 무너뜨린다"
+        effects:
+          off_the_ball: 1.12
+          runs_behind: 1.15
+          acceleration: 1.07
+          offside_beating: 1.20
+        master_message: "오프사이드 트랩의 천적이 되었다!"
+        special_ability: "VAR 판정 유리함 보정"
+
+  # ============================================
+  # 🌟 Flair / 창의성 특성
+  # ============================================
+
+  trickster:
+    id: "trickster"
+    name: "트릭스터"
+    name_en: "Trickster"
+    category: "flair"
+    base_rarity: "uncommon"
+
+    levels:
+      1:
+        name: "개인기 시도"
+        description: "개인기를 시도하기 시작했다"
+        effects:
+          dribbling: 1.03
+          skill_moves: 1.05
+        unlock_message: "화려한 개인기를 선보이기 시작했다"
+
+      2:
+        name: "스킬 마스터"
+        description: "다양한 개인기를 자유자재로 구사한다"
+        effects:
+          dribbling: 1.07
+          skill_moves: 1.10
+          foul_draw: 1.05
+        level_up_message: "개인기가 더욱 화려해졌다"
+
+      3:
+        name: "마술사"
+        description: "환상적인 개인기로 관중을 열광시킨다"
+        effects:
+          dribbling: 1.12
+          skill_moves: 1.15
+          foul_draw: 1.10
+          nutmeg_chance: 1.20
+          highlight_trigger: "skill_compilation"
+        master_message: "축구 마술사가 되었다!"
+        special_ability: "레인보우 플릭, 엘라스티코 등 특수기술"
+
+  fantasista:
+    id: "fantasista"
+    name: "판타지스타"
+    name_en: "Fantasista"
+    category: "flair"
+    base_rarity: "legendary"
+
+    levels:
+      1:
+        name: "창의성"
+        description: "창의적인 플레이를 시도한다"
+        effects:
+          creativity: 1.05
+          flair: 1.05
+        unlock_message: "특별한 재능을 보이기 시작했다"
+
+      2:
+        name: "게임 메이커"
+        description: "창의적인 플레이로 경기를 만들어간다"
+        effects:
+          creativity: 1.10
+          flair: 1.10
+          unpredictability: 1.07
+        level_up_message: "경기를 지배하는 능력이 생겼다"
+
+      3:
+        name: "전설의 판타지스타"
+        description: "천재적인 플레이로 역사를 쓴다"
+        effects:
+          creativity: 1.20
+          flair: 1.20
+          unpredictability: 1.15
+          genius_play: 1.25
+          highlight_trigger: "legendary_moment"
+        master_message: "축구 역사에 남을 판타지스타가 되었다!"
+        special_ability: "경기당 1회 '천재적 플레이' 발동 가능"
+
+# ============================================
+# 경험치 획득 조건
+# ============================================
+
+exp_triggers:
+  cannon_shooter:
+    - event: "long_range_goal"
+      exp: 50
+    - event: "long_shot_on_target"
+      exp: 10
+    - event: "training_shooting"
+      exp: 5
+
+  curler:
+    - event: "finesse_goal"
+      exp: 40
+    - event: "free_kick_goal"
+      exp: 60
+    - event: "curve_shot_attempt"
+      exp: 8
+
+  cool_finisher:
+    - event: "one_on_one_goal"
+      exp: 40
+    - event: "penalty_goal"
+      exp: 30
+    - event: "clutch_goal"
+      exp: 50
+
+  through_master:
+    - event: "through_ball_assist"
+      exp: 40
+    - event: "key_pass"
+      exp: 15
+    - event: "defense_splitting_pass"
+      exp: 25
+
+  endless_runner:
+    - event: "90min_played"
+      exp: 20
+    - event: "distance_10km+"
+      exp: 30
+    - event: "extra_time_sprint"
+      exp: 25
+
+  hard_tackler:
+    - event: "successful_tackle"
+      exp: 10
+    - event: "crucial_tackle"
+      exp: 25
+    - event: "yellow_card"
+      exp: 5
+
+  leadership:
+    - event: "captain_armband"
+      exp: 30
+    - event: "team_motivation"
+      exp: 20
+    - event: "comeback_leader"
+      exp: 40
+
+  line_breaker:
+    - event: "offside_trap_beat"
+      exp: 30
+    - event: "through_ball_received"
+      exp: 15
+    - event: "behind_run_goal"
+      exp: 40
+
+  trickster:
+    - event: "successful_dribble"
+      exp: 10
+    - event: "nutmeg"
+      exp: 25
+    - event: "skill_move_goal"
+      exp: 50
+
+  fantasista:
+    - event: "moment_of_genius"
+      exp: 100
+    - event: "assist_of_season"
+      exp: 60
+    - event: "goal_of_month"
+      exp: 50
+
+# ============================================
+# UI 표시 설정
+# ============================================
+
+ui_config:
+  level_icons:
+    1: "⭐"
+    2: "⭐⭐"
+    3: "⭐⭐⭐"
+
+  level_colors:
+    1: "#808080"  # 회색
+    2: "#4169E1"  # 파란색
+    3: "#FFD700"  # 금색
+
+  exp_bar_display:
+    show_numeric: false
+    show_percentage: true
+    animate_on_gain: true
+
+  notification_settings:
+    trait_unlock:
+      priority: "high"
+      duration: 5000
+      sound: "achievement.ogg"
+    level_up:
+      priority: "high"
+      duration: 4000
+      sound: "levelup.ogg"
+    master:
+      priority: "critical"
+      duration: 8000
+      sound: "legendary.ogg"
+      special_effect: "golden_particles"

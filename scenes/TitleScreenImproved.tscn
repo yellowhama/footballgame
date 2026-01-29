@@ -1,0 +1,406 @@
+[gd_scene load_steps=2 format=3 uid="uid://8i0fcqc5wtrn"]
+
+[ext_resource type="Script" uid="uid://nof4rtjf37n0" path="res://scripts/screens/TitleScreenImproved.gd" id="1"]
+
+[node name="TitleScreenImproved" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.4, 0.7, 0.95, 1)
+
+[node name="CloudLayer" type="Control" parent="."]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Cloud1" type="Label" parent="CloudLayer"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 100.0
+theme_override_font_sizes/font_size = 80
+text = "☁️"
+
+[node name="Cloud2" type="Label" parent="CloudLayer"]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 200.0
+theme_override_font_sizes/font_size = 60
+text = "☁️"
+
+[node name="Cloud3" type="Label" parent="CloudLayer"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 50.0
+theme_override_font_sizes/font_size = 100
+text = "☁️"
+
+[node name="StadiumBackground" type="Panel" parent="."]
+layout_mode = 0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Field" type="ColorRect" parent="StadiumBackground"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.2, 0.7, 0.3, 1)
+
+[node name="FieldLines" type="Control" parent="StadiumBackground"]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CenterLine" type="ColorRect" parent="StadiumBackground/FieldLines"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = 2.0
+color = Color(1, 1, 1, 0.8)
+
+[node name="CenterCircle" type="Control" parent="StadiumBackground/FieldLines"]
+anchors_preset = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="MiniCharacters" type="Control" parent="."]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Player1" type="Label" parent="MiniCharacters"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 1200.0
+theme_override_font_sizes/font_size = 48
+text = "🏃"
+
+[node name="Player2" type="Label" parent="MiniCharacters"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 1100.0
+theme_override_font_sizes/font_size = 48
+text = "🏃‍♀️"
+
+[node name="Player3" type="Label" parent="MiniCharacters"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 1150.0
+theme_override_font_sizes/font_size = 40
+text = "⚽"
+
+[node name="Player4" type="Label" parent="MiniCharacters"]
+modulate = Color(0.8, 0.8, 1, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 1250.0
+theme_override_font_sizes/font_size = 48
+text = "🏃"
+
+[node name="Player5" type="Label" parent="MiniCharacters"]
+modulate = Color(1, 0.8, 0.8, 1)
+layout_mode = 0
+offset_left = 900.0
+offset_top = 1200.0
+theme_override_font_sizes/font_size = 48
+text = "🏃‍♀️"
+
+[node name="TitleContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_right = 400.0
+theme_override_constants/separation = 20
+
+[node name="MainTitle" type="Label" parent="TitleContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "⚽ 축구 선수 키우기 ⚽"
+horizontal_alignment = 1
+
+[node name="SubTitle" type="Label" parent="TitleContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.9)
+theme_override_font_sizes/font_size = 32
+text = "Princess Maker Style"
+horizontal_alignment = 1
+
+[node name="Version" type="Label" parent="TitleContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.7)
+theme_override_font_sizes/font_size = 20
+text = "v1.2"
+horizontal_alignment = 1
+
+[node name="MenuContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.55
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -300.0
+offset_right = 300.0
+theme_override_constants/separation = 20
+
+[node name="NewGameButton" type="Button" parent="MenuContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "⚽ 육성게임"
+
+[node name="ContinueButton" type="Button" parent="MenuContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "📂 이어하기"
+
+[node name="MyTeamButton" type="Button" parent="MenuContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "👥 내 팀 보기"
+
+[node name="PersonalityDemoButton" type="Button" parent="MenuContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "🧠 성격 테스트"
+
+[node name="OptionsButton" type="Button" parent="MenuContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "⚙️ 설정"
+
+[node name="ExitButton" type="Button" parent="MenuContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "🚪 나가기"
+
+[node name="SaveSlotsPopup" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -500.0
+offset_right = 400.0
+offset_bottom = 500.0
+
+[node name="VBox" type="VBoxContainer" parent="SaveSlotsPopup"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="SaveSlotsPopup/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "세이브 슬롯 선택"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SaveSlotsPopup/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SlotsContainer" type="VBoxContainer" parent="SaveSlotsPopup/VBox/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Slot1" type="Panel" parent="SaveSlotsPopup/VBox/ScrollContainer/SlotsContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="SaveSlotsPopup/VBox/ScrollContainer/SlotsContainer/Slot1"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Icon" type="Label" parent="SaveSlotsPopup/VBox/ScrollContainer/SlotsContainer/Slot1/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "👤"
+
+[node name="Info" type="VBoxContainer" parent="SaveSlotsPopup/VBox/ScrollContainer/SlotsContainer/Slot1/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerName" type="Label" parent="SaveSlotsPopup/VBox/ScrollContainer/SlotsContainer/Slot1/HBox/Info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "김민수"
+
+[node name="Progress" type="Label" parent="SaveSlotsPopup/VBox/ScrollContainer/SlotsContainer/Slot1/HBox/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 20
+text = "2학년 15주차"
+
+[node name="PlayTime" type="Label" parent="SaveSlotsPopup/VBox/ScrollContainer/SlotsContainer/Slot1/HBox/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 22
+text = "플레이 시간: 3시간 25분"
+
+[node name="Slot2" type="Panel" parent="SaveSlotsPopup/VBox/ScrollContainer/SlotsContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="EmptyLabel" type="Label" parent="SaveSlotsPopup/VBox/ScrollContainer/SlotsContainer/Slot2"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 32
+text = "➕ 빈 슬롯"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot3" type="Panel" parent="SaveSlotsPopup/VBox/ScrollContainer/SlotsContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="EmptyLabel" type="Label" parent="SaveSlotsPopup/VBox/ScrollContainer/SlotsContainer/Slot3"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 32
+text = "➕ 빈 슬롯"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="SaveSlotsPopup/VBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "닫기"
+
+[node name="SaveSlotsPopup_VBox_ScrollController_SlotsContainer_Slot1_HBox#LoadButton" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 0
+text = "불러오기"
+
+[node name="FooterInfo" type="HBoxContainer" parent="."]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+theme_override_constants/separation = 40
+
+[node name="Copyright" type="Label" parent="FooterInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 0.7)
+theme_override_font_sizes/font_size = 16
+text = "© 2025 Football Dreams"
+horizontal_alignment = 1
+
+[node name="MusicToggle" type="Button" parent="FooterInfo"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "🎵"
+
+[node name="SoundToggle" type="Button" parent="FooterInfo"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "🔊"
+
+[node name="LanguageButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 16
+text = "🌐 Language"
+
+[node name="LanguagePopup" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Select Language"
+initial_position = 2
+size = Vector2i(400, 300)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LanguagePopup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 40.0
+offset_right = -20.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LanguageList" type="VBoxContainer" parent="LanguagePopup/VBoxContainer"]
+layout_mode = 2
+
+[node name="KoreanButton" type="Button" parent="LanguagePopup/VBoxContainer/LanguageList"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "한국어"
+
+[node name="EnglishButton" type="Button" parent="LanguagePopup/VBoxContainer/LanguageList"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "English"
+
+[node name="JapaneseButton" type="Button" parent="LanguagePopup/VBoxContainer/LanguageList"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "日本語"
+
+[node name="ChineseButton" type="Button" parent="LanguagePopup/VBoxContainer/LanguageList"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "中文"
+
+[node name="HSeparator" type="HSeparator" parent="LanguagePopup/VBoxContainer"]
+layout_mode = 2
+
+[node name="SelectButton" type="Button" parent="LanguagePopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Select"

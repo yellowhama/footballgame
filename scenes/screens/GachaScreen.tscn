@@ -1,0 +1,177 @@
+[gd_scene load_steps=2 format=3 uid="uid://gacha_screen"]
+
+[ext_resource type="Script" path="res://scripts/screens/GachaScreen.gd" id="1_script"]
+
+[node name="GachaScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.051, 0.067, 0.09, 1)
+
+[node name="Header" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 64.0
+theme_override_constants/separation = 16
+
+[node name="BackButton" type="Button" parent="Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "< 뒤로"
+
+[node name="TitleLabel" type="Label" parent="Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.902, 0.929, 0.953, 1)
+theme_override_font_sizes/font_size = 24
+text = "가챠"
+vertical_alignment = 1
+
+[node name="PityLabel" type="Label" parent="Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.545, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 14
+text = "천장까지: 100회"
+vertical_alignment = 1
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 80.0
+offset_right = -16.0
+offset_bottom = -140.0
+theme_override_constants/separation = 24
+
+[node name="BannerContainer" type="PanelContainer" parent="Content"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 100)
+
+[node name="BannerBG" type="ColorRect" parent="Content/BannerContainer"]
+layout_mode = 2
+color = Color(0.086, 0.106, 0.133, 1)
+
+[node name="BannerContent" type="VBoxContainer" parent="Content/BannerContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MarginTop" type="Control" parent="Content/BannerContainer/BannerContent"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="BannerName" type="Label" parent="Content/BannerContainer/BannerContent"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.902, 0.929, 0.953, 1)
+theme_override_font_sizes/font_size = 20
+text = "일반 가챠"
+horizontal_alignment = 1
+
+[node name="BannerDescription" type="Label" parent="Content/BannerContainer/BannerContent"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.545, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 14
+text = "감독, 코치, 전술 카드를 뽑을 수 있습니다"
+horizontal_alignment = 1
+
+[node name="RateInfo" type="Label" parent="Content/BannerContainer/BannerContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431, 0.463, 0.494, 1)
+theme_override_font_sizes/font_size = 12
+text = "★5: 3% | ★4: 7% | ★3: 15% | ★2: 25% | ★1: 50%"
+horizontal_alignment = 1
+
+[node name="MarginBottom" type="Control" parent="Content/BannerContainer/BannerContent"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="CardsDisplay" type="CenterContainer" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CardsGrid" type="GridContainer" parent="Content/CardsDisplay"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 5
+
+[node name="Footer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -130.0
+offset_right = -16.0
+offset_bottom = -16.0
+theme_override_constants/separation = 12
+
+[node name="DrawButtons" type="HBoxContainer" parent="Footer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 24
+
+[node name="DrawSingleButton" type="Button" parent="Footer/DrawButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "1회 뽑기"
+
+[node name="Draw10xButton" type="Button" parent="Footer/DrawButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "10회 뽑기"
+
+[node name="ActionButtons" type="HBoxContainer" parent="Footer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 24
+
+[node name="InventoryButton" type="Button" parent="Footer/ActionButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "📦 인벤토리"
+
+[node name="DeckBuilderButton" type="Button" parent="Footer/ActionButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🃏 덱 편성"
+
+[node name="SkipButton" type="Button" parent="Footer/ActionButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "스킵"

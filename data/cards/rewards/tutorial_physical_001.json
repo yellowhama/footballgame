@@ -1,0 +1,11 @@
+{
+  "character_id": "reward_tutorial_physical",
+  "character_name": "훈련 튜토리얼 보상",
+  "rarity": "N",
+  "character_type": "other",
+  "position": "FW",
+  "technical_bonus": 0.0,
+  "physical_bonus": 0.05,
+  "mental_bonus": 0.0,
+  "events": []
+}

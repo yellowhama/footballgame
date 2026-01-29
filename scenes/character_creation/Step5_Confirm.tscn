@@ -1,0 +1,273 @@
+[gd_scene load_steps=2 format=3 uid="uid://v0nk3hcvs58y"]
+
+[ext_resource type="Script" uid="uid://04nagu2cmand" path="res://scripts/character_creation/Step5_Confirm.gd" id="1"]
+
+[node name="Step5_Confirm" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "최종 확인"
+horizontal_alignment = 1
+
+[node name="PreviewSection" type="PanelContainer" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer/VBoxContainer/PreviewSection"]
+layout_mode = 2
+
+[node name="CharacterPreview" type="Control" parent="ScrollContainer/VBoxContainer/PreviewSection/CenterContainer"]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/PreviewSection/CenterContainer/CharacterPreview"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="Head" type="Label" parent="ScrollContainer/VBoxContainer/PreviewSection/CenterContainer/CharacterPreview/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "😀"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="ScrollContainer/VBoxContainer/PreviewSection/CenterContainer/CharacterPreview/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "👕"
+horizontal_alignment = 1
+
+[node name="Legs" type="Label" parent="ScrollContainer/VBoxContainer/PreviewSection/CenterContainer/CharacterPreview/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "🩳👟"
+horizontal_alignment = 1
+
+[node name="BasicInfoSection" type="PanelContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/BasicInfoSection"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/BasicInfoSection/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="SectionTitle" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/BasicInfoSection/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/BasicInfoSection/MarginContainer/VBoxContainer/SectionTitle"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "기본 정보"
+
+[node name="EditButton" type="Button" parent="ScrollContainer/VBoxContainer/BasicInfoSection/MarginContainer/VBoxContainer/SectionTitle"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "수정"
+
+[node name="NameRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/BasicInfoSection/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/BasicInfoSection/MarginContainer/VBoxContainer/NameRow"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "이름:"
+
+[node name="ValueLabel" type="Label" parent="ScrollContainer/VBoxContainer/BasicInfoSection/MarginContainer/VBoxContainer/NameRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "홍길동"
+
+[node name="PositionRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/BasicInfoSection/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/BasicInfoSection/MarginContainer/VBoxContainer/PositionRow"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "포지션:"
+
+[node name="ValueLabel" type="Label" parent="ScrollContainer/VBoxContainer/BasicInfoSection/MarginContainer/VBoxContainer/PositionRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "ST"
+
+[node name="NumberRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/BasicInfoSection/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/BasicInfoSection/MarginContainer/VBoxContainer/NumberRow"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "등번호:"
+
+[node name="ValueLabel" type="Label" parent="ScrollContainer/VBoxContainer/BasicInfoSection/MarginContainer/VBoxContainer/NumberRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "7"
+
+[node name="AppearanceSection" type="PanelContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/AppearanceSection"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/AppearanceSection/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="SectionTitle" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/AppearanceSection/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/AppearanceSection/MarginContainer/VBoxContainer/SectionTitle"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "외형"
+
+[node name="EditButton" type="Button" parent="ScrollContainer/VBoxContainer/AppearanceSection/MarginContainer/VBoxContainer/SectionTitle"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "수정"
+
+[node name="HairRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/AppearanceSection/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/AppearanceSection/MarginContainer/VBoxContainer/HairRow"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "헤어스타일:"
+
+[node name="ValueLabel" type="Label" parent="ScrollContainer/VBoxContainer/AppearanceSection/MarginContainer/VBoxContainer/HairRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "짧은 머리"
+
+[node name="BodyRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/AppearanceSection/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/AppearanceSection/MarginContainer/VBoxContainer/BodyRow"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "체형:"
+
+[node name="ValueLabel" type="Label" parent="ScrollContainer/VBoxContainer/AppearanceSection/MarginContainer/VBoxContainer/BodyRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "보통"
+
+[node name="StatsSection" type="PanelContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/StatsSection"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/StatsSection/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="SectionTitle" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/StatsSection/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/StatsSection/MarginContainer/VBoxContainer/SectionTitle"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "능력치"
+
+[node name="EditButton" type="Button" parent="ScrollContainer/VBoxContainer/StatsSection/MarginContainer/VBoxContainer/SectionTitle"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "수정"
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer/StatsSection/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="PaceLabel" type="Label" parent="ScrollContainer/VBoxContainer/StatsSection/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "속력: 50"
+
+[node name="ShootingLabel" type="Label" parent="ScrollContainer/VBoxContainer/StatsSection/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "슈팅: 50"
+
+[node name="PassingLabel" type="Label" parent="ScrollContainer/VBoxContainer/StatsSection/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "패스: 50"
+
+[node name="DribblingLabel" type="Label" parent="ScrollContainer/VBoxContainer/StatsSection/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "드리블: 50"
+
+[node name="DefendingLabel" type="Label" parent="ScrollContainer/VBoxContainer/StatsSection/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "수비: 50"
+
+[node name="PhysicalLabel" type="Label" parent="ScrollContainer/VBoxContainer/StatsSection/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "피지컬: 50"
+
+[node name="Spacer" type="Control" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "✅ 생성 완료"

@@ -1,0 +1,151 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/match/TacticalPanel.gd" id="1"]
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.11, 0.11, 0.15, 0.96)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+corner_radius_bottom_right = 12
+
+[node name="TacticalPanel" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+visible = false
+script = ExtResource("1")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.55)
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -340.0
+offset_right = 480.0
+offset_bottom = 340.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 28.0
+margin_right = -32.0
+margin_bottom = -28.0
+theme_override_constants/separation = 24
+
+[node name="HeaderLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "전술 변경"
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+
+[node name="FormSection" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="FormLabel" type="Label" parent="Panel/VBox/FormSection"]
+layout_mode = 2
+text = "포메이션"
+theme_override_font_sizes/font_size = 24
+size_flags_horizontal = 1
+
+[node name="FormationOption" type="OptionButton" parent="Panel/VBox/FormSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+
+[node name="SliderSection" type="VBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="AttackRow" type="HBoxContainer" parent="Panel/VBox/SliderSection"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="AttackLabel" type="Label" parent="Panel/VBox/SliderSection/AttackRow"]
+layout_mode = 2
+text = "공격 성향"
+theme_override_font_sizes/font_size = 24
+size_flags_horizontal = 1
+
+[node name="AttackSlider" type="HSlider" parent="Panel/VBox/SliderSection/AttackRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+value = 50.0
+
+[node name="ValueLabel" type="Label" parent="Panel/VBox/SliderSection/AttackRow"]
+layout_mode = 2
+text = "50"
+theme_override_font_sizes/font_size = 20
+custom_minimum_size = Vector2(60, 0)
+horizontal_alignment = 2
+
+[node name="PressRow" type="HBoxContainer" parent="Panel/VBox/SliderSection"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PressLabel" type="Label" parent="Panel/VBox/SliderSection/PressRow"]
+layout_mode = 2
+text = "압박 강도"
+theme_override_font_sizes/font_size = 24
+size_flags_horizontal = 1
+
+[node name="PressSlider" type="HSlider" parent="Panel/VBox/SliderSection/PressRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+value = 50.0
+
+[node name="ValueLabel" type="Label" parent="Panel/VBox/SliderSection/PressRow"]
+layout_mode = 2
+text = "50"
+theme_override_font_sizes/font_size = 20
+custom_minimum_size = Vector2(60, 0)
+horizontal_alignment = 2
+
+[node name="TempoSection" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TempoLabel" type="Label" parent="Panel/VBox/TempoSection"]
+layout_mode = 2
+text = "템포"
+theme_override_font_sizes/font_size = 24
+size_flags_horizontal = 1
+
+[node name="TempoOption" type="OptionButton" parent="Panel/VBox/TempoSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+
+[node name="ButtonRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+alignment = 2
+theme_override_constants/separation = 16
+
+[node name="ApplyButton" type="Button" parent="Panel/VBox/ButtonRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 64)
+text = "적용"
+
+[node name="CancelButton" type="Button" parent="Panel/VBox/ButtonRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 64)
+text = "취소"

@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_first_place_qualification_r",
+  "character_name": "1등의 자격",
+  "rarity": "R",
+  "character_type": "trait",
+  "position": "FW",
+  "technical_bonus": 0.05,
+  "physical_bonus": 0.05,
+  "mental_bonus": 0.10,
+  "events": [],
+  "description": "라이벌 루트 분기점 3 - A 선택 추가 보상. 진정한 1등만이 가질 수 있는 자격.",
+  "acquisition_condition": "rival_branch3_A",
+  "special_effect": "중요 경기 Rating +2"
+}

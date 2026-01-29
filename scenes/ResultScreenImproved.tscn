@@ -1,0 +1,358 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/screens/ResultScreenImproved.gd" id="1"]
+[ext_resource type="Theme" path="res://themes/MobileTheme.tres" id="2"]
+
+[node name="ResultScreenImproved" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.05, 0.08, 1)
+
+[node name="ParticleLayer" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Star1" type="Label" parent="ParticleLayer"]
+offset_left = 100.0
+offset_top = 200.0
+text = "✨"
+theme_override_font_sizes/font_size = 32
+modulate = Color(1, 1, 1, 0.5)
+
+[node name="Star2" type="Label" parent="ParticleLayer"]
+offset_left = 900.0
+offset_top = 400.0
+text = "✨"
+theme_override_font_sizes/font_size = 40
+modulate = Color(1, 1, 1, 0.5)
+
+[node name="Star3" type="Label" parent="ParticleLayer"]
+offset_left = 500.0
+offset_top = 100.0
+text = "✨"
+theme_override_font_sizes/font_size = 28
+modulate = Color(1, 1, 1, 0.5)
+
+[node name="Header" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 150)
+anchor_right = 1.0
+offset_bottom = 150.0
+
+[node name="VBox" type="VBoxContainer" parent="Header"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="Header/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "훈련 완료!"
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="Header/VBox"]
+text = "열심히 훈련한 결과입니다"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+horizontal_alignment = 1
+
+[node name="MainContent" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 150.0
+offset_bottom = -120.0
+margin_left = 40.0
+margin_right = -40.0
+theme_override_constants/separation = 40
+
+[node name="BeforeAfterPanel" type="Panel" parent="MainContent"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MainContent/BeforeAfterPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = -30.0
+theme_override_constants/separation = 30
+
+[node name="SectionTitle" type="Label" parent="MainContent/BeforeAfterPanel/VBox"]
+text = "능력치 변화"
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MainContent/BeforeAfterPanel/VBox"]
+
+[node name="StatsContainer" type="VBoxContainer" parent="MainContent/BeforeAfterPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+
+[node name="Stat1" type="HBoxContainer" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer"]
+custom_minimum_size = Vector2(0, 60)
+
+[node name="StatName" type="Label" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat1"]
+custom_minimum_size = Vector2(150, 0)
+text = "드리블"
+theme_override_font_sizes/font_size = 24
+
+[node name="BeforeBar" type="ProgressBar" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat1"]
+custom_minimum_size = Vector2(150, 30)
+value = 60.0
+show_percentage = false
+
+[node name="Arrow" type="Label" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat1"]
+text = "→"
+theme_override_font_sizes/font_size = 28
+
+[node name="AfterBar" type="ProgressBar" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat1"]
+custom_minimum_size = Vector2(150, 30)
+value = 63.0
+show_percentage = false
+
+[node name="Change" type="Label" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat1"]
+text = "+3"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="Stat2" type="HBoxContainer" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer"]
+custom_minimum_size = Vector2(0, 60)
+
+[node name="StatName" type="Label" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat2"]
+custom_minimum_size = Vector2(150, 0)
+text = "패스"
+theme_override_font_sizes/font_size = 24
+
+[node name="BeforeBar" type="ProgressBar" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat2"]
+custom_minimum_size = Vector2(150, 30)
+value = 70.0
+show_percentage = false
+
+[node name="Arrow" type="Label" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat2"]
+text = "→"
+theme_override_font_sizes/font_size = 28
+
+[node name="AfterBar" type="ProgressBar" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat2"]
+custom_minimum_size = Vector2(150, 30)
+value = 72.0
+show_percentage = false
+
+[node name="Change" type="Label" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat2"]
+text = "+2"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="Stat3" type="HBoxContainer" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer"]
+custom_minimum_size = Vector2(0, 60)
+
+[node name="StatName" type="Label" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat3"]
+custom_minimum_size = Vector2(150, 0)
+text = "체력"
+theme_override_font_sizes/font_size = 24
+
+[node name="BeforeBar" type="ProgressBar" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat3"]
+custom_minimum_size = Vector2(150, 30)
+value = 55.0
+show_percentage = false
+
+[node name="Arrow" type="Label" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat3"]
+text = "→"
+theme_override_font_sizes/font_size = 28
+
+[node name="AfterBar" type="ProgressBar" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat3"]
+custom_minimum_size = Vector2(150, 30)
+value = 55.0
+show_percentage = false
+
+[node name="Change" type="Label" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/Stat3"]
+text = "0"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="FatigueStat" type="HBoxContainer" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer"]
+custom_minimum_size = Vector2(0, 60)
+
+[node name="StatName" type="Label" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/FatigueStat"]
+custom_minimum_size = Vector2(150, 0)
+text = "피로도"
+theme_override_font_sizes/font_size = 24
+
+[node name="BeforeBar" type="ProgressBar" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/FatigueStat"]
+custom_minimum_size = Vector2(150, 30)
+value = 30.0
+show_percentage = false
+
+[node name="Arrow" type="Label" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/FatigueStat"]
+text = "→"
+theme_override_font_sizes/font_size = 28
+
+[node name="AfterBar" type="ProgressBar" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/FatigueStat"]
+custom_minimum_size = Vector2(150, 30)
+value = 38.0
+show_percentage = false
+
+[node name="Change" type="Label" parent="MainContent/BeforeAfterPanel/VBox/StatsContainer/FatigueStat"]
+text = "+8"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 0.5, 0.5, 1)
+
+[node name="RightPanel" type="VBoxContainer" parent="MainContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="GrowthChart" type="Panel" parent="MainContent/RightPanel"]
+custom_minimum_size = Vector2(0, 350)
+
+[node name="VBox" type="VBoxContainer" parent="MainContent/RightPanel/GrowthChart"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+
+[node name="Title" type="Label" parent="MainContent/RightPanel/GrowthChart/VBox"]
+text = "성장 추이"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="ChartArea" type="Control" parent="MainContent/RightPanel/GrowthChart/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 250)
+
+[node name="ChartBackground" type="ColorRect" parent="MainContent/RightPanel/GrowthChart/VBox/ChartArea"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="GridLines" type="Control" parent="MainContent/RightPanel/GrowthChart/VBox/ChartArea"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ChartLine" type="Line2D" parent="MainContent/RightPanel/GrowthChart/VBox/ChartArea"]
+points = PackedVector2Array(0, 200, 50, 180, 100, 170, 150, 150, 200, 140, 250, 120, 300, 100, 350, 90, 400, 70)
+width = 3.0
+default_color = Color(0.3, 1, 0.3, 1)
+
+[node name="AchievementsPanel" type="Panel" parent="MainContent/RightPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="MainContent/RightPanel/AchievementsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+
+[node name="Title" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox"]
+text = "획득한 업적"
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MainContent/RightPanel/AchievementsPanel/VBox"]
+
+[node name="Achievement1" type="HBoxContainer" parent="MainContent/RightPanel/AchievementsPanel/VBox"]
+visible = false
+
+[node name="Icon" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox/Achievement1"]
+text = "🏆"
+theme_override_font_sizes/font_size = 48
+
+[node name="Info" type="VBoxContainer" parent="MainContent/RightPanel/AchievementsPanel/VBox/Achievement1"]
+
+[node name="Name" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox/Achievement1/Info"]
+text = "첫 훈련 완료"
+theme_override_font_sizes/font_size = 24
+
+[node name="Description" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox/Achievement1/Info"]
+text = "첫 번째 훈련을 완료했습니다"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="Achievement2" type="HBoxContainer" parent="MainContent/RightPanel/AchievementsPanel/VBox"]
+visible = false
+
+[node name="Icon" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox/Achievement2"]
+text = "💪"
+theme_override_font_sizes/font_size = 48
+
+[node name="Info" type="VBoxContainer" parent="MainContent/RightPanel/AchievementsPanel/VBox/Achievement2"]
+
+[node name="Name" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox/Achievement2/Info"]
+text = "체력 강화"
+theme_override_font_sizes/font_size = 24
+
+[node name="Description" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox/Achievement2/Info"]
+text = "체력이 70을 돌파했습니다"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="NoAchievement" type="Label" parent="MainContent/RightPanel/AchievementsPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "이번 훈련에서는
+특별한 업적이 없습니다"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FloatingStats" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="FloatingStat1" type="Label" parent="FloatingStats"]
+visible = false
+offset_left = 200.0
+offset_top = 400.0
+text = "+3"
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="FloatingStat2" type="Label" parent="FloatingStats"]
+visible = false
+offset_left = 600.0
+offset_top = 500.0
+text = "+2"
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="FloatingStat3" type="Label" parent="FloatingStats"]
+visible = false
+offset_left = 400.0
+offset_top = 600.0
+text = "+8 피로도"
+theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(1, 0.5, 0.5, 1)
+
+[node name="BottomBar" type="Panel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+
+[node name="ContinueButton" type="Button" parent="BottomBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -35.0
+offset_right = 150.0
+offset_bottom = 35.0
+custom_minimum_size = Vector2(300, 70)
+text = "계속하기"
+theme_override_font_sizes/font_size = 28

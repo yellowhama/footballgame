@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_team_player_r",
+  "character_name": "팀 플레이어",
+  "rarity": "R",
+  "character_type": "trait",
+  "position": "MF",
+  "technical_bonus": 0.0,
+  "physical_bonus": 0.0,
+  "mental_bonus": 0.10,
+  "events": [],
+  "description": "우정 루트 분기점 2 - A 선택 추가 보상. 팀을 위해 헌신하는 진정한 팀 플레이어.",
+  "acquisition_condition": "friendship_branch2_A",
+  "special_effect": "어시스트 +20%"
+}

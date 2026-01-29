@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_dual_leadership_r",
+  "character_name": "듀얼 리더십",
+  "rarity": "R",
+  "character_type": "trait",
+  "position": "FW",
+  "technical_bonus": 0.0,
+  "physical_bonus": 0.0,
+  "mental_bonus": 0.10,
+  "events": [],
+  "description": "라이벌 루트 분기점 3 - B 선택 추가 보상. 두 에이스의 공동 리더십.",
+  "acquisition_condition": "rival_branch3_B",
+  "special_effect": "팀 사기 +20%"
+}

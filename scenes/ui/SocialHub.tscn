@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource path="res://themes/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/ui/SocialHub.gd" type="Script" id=2]
+[ext_resource path="res://scripts/ui/QuickBar.gd" type="Script" id=3]
+
+[node name="SocialHub" type="Control"]
+theme = ExtResource("1")
+script = ExtResource("2")
+layout_mode = 3
+
+[node name="Header" type="HBoxContainer" parent="."]
+offset_top = 0.0
+offset_right = 1080.0
+offset_bottom = 96.0
+alignment = 1
+
+[node name="BtnBack" type="Button" parent="Header"]
+custom_minimum_size = Vector2(88,48)
+text = ""
+
+[node name="LblTitle" type="Label" parent="Header"]
+size_flags_horizontal = 3
+text = "SocialHub"
+
+[node name="BtnSettings" type="Button" parent="Header"]
+custom_minimum_size = Vector2(88,48)
+text = ""
+
+[node name="Tabs" type="TabContainer" parent="."]
+offset_top = 110.0
+offset_right = 1080.0
+offset_bottom = 1280.0
+
+[node name="Relations" type="Control" parent="Tabs"]
+[node name="ListRelations" type="ItemList" parent="Tabs/Relations"]
+unique_name_in_owner = true
+offset_top = 10.0
+offset_right = 1080.0
+offset_bottom = 540.0
+
+[node name="Fans" type="Control" parent="Tabs"]
+[node name="LblFans" type="Label" parent="Tabs/Fans"]
+unique_name_in_owner = true
+offset_top = 10.0
+offset_right = 1080.0
+offset_bottom = 60.0
+text = "팬 0명 • 티어 LOCAL • Δ+0"
+[node name="FanActions" type="HBoxContainer" parent="Tabs/Fans"]
+offset_top = 70.0
+offset_right = 1080.0
+offset_bottom = 130.0
+[node name="BtnEvent1" type="Button" parent="Tabs/Fans/FanActions"]
+text = "팬미팅"
+[node name="BtnEvent2" type="Button" parent="Tabs/Fans/FanActions"]
+text = "사인회"
+
+[node name="Media" type="Control" parent="Tabs"]
+[node name="ListMedia" type="ItemList" parent="Tabs/Media"]
+unique_name_in_owner = true
+offset_top = 10.0
+offset_right = 1080.0
+offset_bottom = 540.0
+
+[node name="QuickBar" type="Control" parent="."]
+script = ExtResource("3")
+anchors_preset = 12

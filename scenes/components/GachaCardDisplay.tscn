@@ -1,0 +1,154 @@
+[gd_scene load_steps=2 format=3 uid="uid://gacha_card_display"]
+
+[ext_resource type="Script" path="res://scripts/components/GachaCardDisplay.gd" id="1_script"]
+
+[node name="GachaCardDisplay" type="Control"]
+custom_minimum_size = Vector2(180, 250)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 180.0
+offset_bottom = 250.0
+mouse_filter = 1
+script = ExtResource("1_script")
+
+[node name="CardContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+pivot_offset = Vector2(90, 125)
+
+[node name="GlowEffect" type="ColorRect" parent="CardContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(1, 0.843, 0, 0.5)
+
+[node name="CardBack" type="ColorRect" parent="CardContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.086, 0.106, 0.133, 1)
+
+[node name="BackPattern" type="Label" parent="CardContainer/CardBack"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.247, 0.286, 0.341, 1)
+theme_override_font_sizes/font_size = 48
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardFront" type="Control" parent="CardContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="ColorRect" parent="CardContainer/CardFront"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.129, 0.149, 0.18, 1)
+
+[node name="TopSection" type="ColorRect" parent="CardContainer/CardFront"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 150.0
+color = Color(0.086, 0.106, 0.133, 1)
+
+[node name="CardIcon" type="Label" parent="CardContainer/CardFront/TopSection"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.545, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 48
+text = "🃏"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityStars" type="Label" parent="CardContainer/CardFront"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 155.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(1, 0.843, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "★★★★★"
+horizontal_alignment = 1
+
+[node name="CardName" type="Label" parent="CardContainer/CardFront"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 182.0
+offset_bottom = 208.0
+theme_override_colors/font_color = Color(0.902, 0.929, 0.953, 1)
+theme_override_font_sizes/font_size = 16
+text = "카드 이름"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="CardType" type="Label" parent="CardContainer/CardFront"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 208.0
+offset_bottom = 228.0
+theme_override_colors/font_color = Color(0.545, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "코치"
+horizontal_alignment = 1
+
+[node name="Specialty" type="Label" parent="CardContainer/CardFront"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 228.0
+offset_bottom = 246.0
+theme_override_colors/font_color = Color(0.431, 0.463, 0.494, 1)
+theme_override_font_sizes/font_size = 11
+text = "스피드"
+horizontal_alignment = 1
+
+[node name="NewBadge" type="Label" parent="CardContainer/CardFront"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 44.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.137, 0.525, 0.212, 1)
+theme_override_font_sizes/font_size = 12
+text = "NEW!"

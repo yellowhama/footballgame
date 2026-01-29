@@ -1,0 +1,11 @@
+{
+  "character_id": "reward_growth_milestone",
+  "character_name": "성장의 증표",
+  "rarity": "R",
+  "character_type": "other",
+  "position": "FW",
+  "technical_bonus": 0.0,
+  "physical_bonus": 0.0,
+  "mental_bonus": 0.10,
+  "events": []
+}

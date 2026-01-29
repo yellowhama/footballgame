@@ -1,0 +1,11 @@
+{
+  "character_id": "reward_coach_kim_basic",
+  "character_name": "김철수 코치 - 기본",
+  "rarity": "R",
+  "character_type": "coach",
+  "position": "MF",
+  "technical_bonus": 0.10,
+  "physical_bonus": 0.0,
+  "mental_bonus": 0.0,
+  "events": []
+}

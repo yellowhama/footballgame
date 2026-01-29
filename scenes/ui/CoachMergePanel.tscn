@@ -1,0 +1,196 @@
+[gd_scene load_steps=2 format=3 uid="uid://coach_merge_panel"]
+
+[ext_resource type="Script" path="res://scripts/ui/CoachMergePanel.gd" id="1_script"]
+
+[node name="CoachMergePanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="BackgroundDim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(550, 500)
+layout_mode = 2
+
+[node name="PanelBG" type="ColorRect" parent="CenterContainer/Panel"]
+layout_mode = 2
+color = Color(0.086, 0.106, 0.133, 1)
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MarginTop" type="Control" parent="CenterContainer/Panel/VBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.75, 0.2, 1)
+theme_override_font_sizes/font_size = 24
+text = "코치 카드 합성"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+
+[node name="ContentHBox" type="HBoxContainer" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="LeftPanel" type="VBoxContainer" parent="CenterContainer/Panel/VBox/ContentHBox"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="ListLabel" type="Label" parent="CenterContainer/Panel/VBox/ContentHBox/LeftPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "보유 코치"
+
+[node name="CoachList" type="ItemList" parent="CenterContainer/Panel/VBox/ContentHBox/LeftPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 14
+auto_height = true
+
+[node name="RightPanel" type="VBoxContainer" parent="CenterContainer/Panel/VBox/ContentHBox"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="SelectedCoachLabel" type="Label" parent="CenterContainer/Panel/VBox/ContentHBox/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "코치를 선택하세요"
+horizontal_alignment = 1
+
+[node name="RarityLabel" type="Label" parent="CenterContainer/Panel/VBox/ContentHBox/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+text = ""
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="CenterContainer/Panel/VBox/ContentHBox/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = ""
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/Panel/VBox/ContentHBox/RightPanel"]
+layout_mode = 2
+
+[node name="CardsContainer" type="HBoxContainer" parent="CenterContainer/Panel/VBox/ContentHBox/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+
+[node name="ArrowLabel" type="Label" parent="CenterContainer/Panel/VBox/ContentHBox/RightPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.75, 0.2, 1)
+theme_override_font_sizes/font_size = 28
+text = "▼"
+horizontal_alignment = 1
+
+[node name="ResultLabel" type="Label" parent="CenterContainer/Panel/VBox/ContentHBox/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 16
+text = ""
+horizontal_alignment = 1
+
+[node name="BonusLabel" type="Label" parent="CenterContainer/Panel/VBox/ContentHBox/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.3, 1)
+theme_override_font_sizes/font_size = 14
+text = ""
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="CenterContainer/Panel/VBox/ContentHBox/RightPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CloseButton" type="Button" parent="CenterContainer/Panel/VBox/ButtonsHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 45)
+theme_override_font_sizes/font_size = 16
+text = "닫기"
+
+[node name="MergeButton" type="Button" parent="CenterContainer/Panel/VBox/ButtonsHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 45)
+disabled = true
+theme_override_colors/font_color = Color(0.15, 0.15, 0.15, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 16
+text = "합성하기"
+
+[node name="MarginBottom" type="Control" parent="CenterContainer/Panel/VBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="ResultContainer" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ResultPanel" type="PanelContainer" parent="ResultContainer"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+
+[node name="ResultBG" type="ColorRect" parent="ResultContainer/ResultPanel"]
+layout_mode = 2
+color = Color(0.05, 0.08, 0.12, 0.95)
+
+[node name="ResultCardLabel" type="Label" parent="ResultContainer/ResultPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.75, 0.2, 1)
+theme_override_font_sizes/font_size = 22
+text = "합성 성공!"
+horizontal_alignment = 1
+vertical_alignment = 1

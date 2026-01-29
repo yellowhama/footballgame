@@ -1,0 +1,9 @@
+[gd_resource type="DialogicCharacter" script_class="DialogicCharacter" format=3]
+
+[resource]
+
+color = Color(0.2, 0.4, 0.8, 1)
+default_portrait = "normal"
+display_name = "박감독"
+nicknames = ["감독님", "매니저"]
+scale = 1.0

@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource path="res://themes/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/ui/SettingsMenu.gd" type="Script" id=2]
+[ext_resource path="res://scripts/ui/QuickBar.gd" type="Script" id=3]
+
+[node name="SettingsMenu" type="Control"]
+theme = ExtResource("1")
+script = ExtResource("2")
+layout_mode = 3
+
+[node name="Header" type="HBoxContainer" parent="."]
+offset_top = 0.0
+offset_right = 1080.0
+offset_bottom = 96.0
+alignment = 1
+
+[node name="BtnBack" type="Button" parent="Header"]
+custom_minimum_size = Vector2(88,48)
+text = ""
+
+[node name="LblTitle" type="Label" parent="Header"]
+size_flags_horizontal = 3
+text = "SettingsMenu"
+
+[node name="BtnSettings" type="Button" parent="Header"]
+custom_minimum_size = Vector2(88,48)
+text = ""
+
+[node name="Tabs" type="TabContainer" parent="."]
+offset_top = 110.0
+offset_right = 1080.0
+offset_bottom = 1280.0
+
+[node name="Audio" type="Control" parent="Tabs"]
+[node name="Bgm" type="HSlider" parent="Tabs/Audio"]
+[node name="Sfx" type="HSlider" parent="Tabs/Audio"]
+[node name="Haptics" type="CheckBox" parent="Tabs/Audio"]
+[node name="Graphics" type="Control" parent="Tabs"]
+[node name="Quality" type="OptionButton" parent="Tabs/Graphics"]
+[node name="FpsCap" type="OptionButton" parent="Tabs/Graphics"]
+[node name="Controls" type="Control" parent="Tabs"]
+[node name="Language" type="Control" parent="Tabs"]
+[node name="LangList" type="OptionButton" parent="Tabs/Language"]

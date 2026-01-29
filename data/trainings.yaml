@@ -1,0 +1,64 @@
+meta:
+  file: "trainings.yaml"
+  version: "0.2"
+
+trainings:
+  - id: physical
+    name: "피지컬 훈련"
+    desc: "속도와 체력을 키운다."
+    effects:
+      stat_changes: { Acceleration: 1.0, Stamina: 1.0, Strength: 0.5, Balance: 0.5 }
+      fatigue: 8
+      trait_progress: { Resilience: 3 }
+
+  - id: skill
+    name: "기술 훈련"
+    desc: "패스와 드리블을 다듬는다."
+    effects:
+      stat_changes: { Passing: 1.0, Dribbling: 1.0, FirstTouch: 0.5 }
+      fatigue: 7
+      trait_progress: { Playmaker: 3 }
+
+  - id: shooting
+    name: "슈팅 훈련"
+    desc: "슈팅과 오프더볼 움직임을 강화한다."
+    effects:
+      stat_changes: { Finishing: 1.0, OffTheBall: 1.0, Crossing: 0.5 }
+      fatigue: 9
+      trait_progress: { Finisher: 3 }
+
+  - id: defense
+    name: "수비 훈련"
+    desc: "태클과 포지셔닝을 연습한다."
+    effects:
+      stat_changes: { Tackling: 1.0, Positioning: 1.0, Marking: 0.5 }
+      fatigue: 8
+      trait_progress: { Defender: 3 }
+
+special_actions:
+  - id: rest
+    name: "휴식"
+    desc: "집에서 푹 쉰다."
+    effects:
+      fatigue: -10
+      morale: 2
+      trait_progress: { Calmness: 2 }
+
+  - id: leisure
+    name: "외출"
+    desc: "친구들과 놀러 나간다."
+    effects:
+      fatigue: -5
+      morale: 8
+      trait_progress: { Versatile: 2, Teamwork: 2 }
+      relationship: { friends: 5 }
+
+  - id: hospital
+    name: "병원"
+    desc: "부상 치료를 받는다."
+    conditions:
+      require_injured: true
+    effects:
+      fatigue: -8
+      morale: -2
+      injury_recovery: 15

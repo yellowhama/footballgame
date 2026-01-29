@@ -1,0 +1,5 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: "format!(\"{}\", e)"
+---
+"Position error: Position (200, 34) is out of bounds"

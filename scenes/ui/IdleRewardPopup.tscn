@@ -1,0 +1,173 @@
+[gd_scene load_steps=2 format=3 uid="uid://idle_reward_popup"]
+
+[ext_resource type="Script" path="res://scripts/ui/IdleRewardPopup.gd" id="1_script"]
+
+[node name="IdleRewardPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="BackgroundDim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.75)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(400, 380)
+layout_mode = 2
+
+[node name="PanelBG" type="ColorRect" parent="CenterContainer/Panel"]
+layout_mode = 2
+color = Color(0.067, 0.09, 0.125, 1)
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="MarginTop" type="Control" parent="CenterContainer/Panel/VBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 26
+text = "WELCOME BACK!"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "방치 보상을 획득했습니다!"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "6시간 24분 동안 방치"
+horizontal_alignment = 1
+
+[node name="MultiplierLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 14
+text = "보상 배율: x1.5"
+horizontal_alignment = 1
+
+[node name="RewardsContainer" type="VBoxContainer" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="GoldRow" type="HBoxContainer" parent="CenterContainer/Panel/VBox/RewardsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="CenterContainer/Panel/VBox/RewardsContainer/GoldRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Gold"
+
+[node name="Spacer" type="Control" parent="CenterContainer/Panel/VBox/RewardsContainer/GoldRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GoldLabel" type="Label" parent="CenterContainer/Panel/VBox/RewardsContainer/GoldRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "+640"
+
+[node name="ExpRow" type="HBoxContainer" parent="CenterContainer/Panel/VBox/RewardsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="CenterContainer/Panel/VBox/RewardsContainer/ExpRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Coach EXP"
+
+[node name="Spacer" type="Control" parent="CenterContainer/Panel/VBox/RewardsContainer/ExpRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ExpLabel" type="Label" parent="CenterContainer/Panel/VBox/RewardsContainer/ExpRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "+320"
+
+[node name="StaminaRow" type="HBoxContainer" parent="CenterContainer/Panel/VBox/RewardsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="CenterContainer/Panel/VBox/RewardsContainer/StaminaRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Stamina"
+
+[node name="Spacer" type="Control" parent="CenterContainer/Panel/VBox/RewardsContainer/StaminaRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StaminaLabel" type="Label" parent="CenterContainer/Panel/VBox/RewardsContainer/StaminaRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 20
+text = "+12"
+
+[node name="TokenRow" type="HBoxContainer" parent="CenterContainer/Panel/VBox/RewardsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="CenterContainer/Panel/VBox/RewardsContainer/TokenRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Gacha Token"
+
+[node name="Spacer" type="Control" parent="CenterContainer/Panel/VBox/RewardsContainer/TokenRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TokenLabel" type="Label" parent="CenterContainer/Panel/VBox/RewardsContainer/TokenRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.5, 0.9, 1)
+theme_override_font_sizes/font_size = 20
+text = "+3"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+
+[node name="ClaimButton" type="Button" parent="CenterContainer/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 55)
+theme_override_font_sizes/font_size = 20
+text = "CLAIM REWARDS"
+
+[node name="MarginBottom" type="Control" parent="CenterContainer/Panel/VBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2

@@ -1,0 +1,38 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: event
+---
+{
+  "etype": "pass",
+  "t": 120.5,
+  "minute": 2,
+  "team": "HOME",
+  "player_id": "H7",
+  "pos": {
+    "x": 45.0,
+    "y": 30.0
+  },
+  "vel": {
+    "x": 5.0,
+    "y": 0.0
+  },
+  "end_pos": {
+    "x": 55.0,
+    "y": 35.0
+  },
+  "receiver_id": "H9",
+  "ground": true,
+  "ball": {
+    "from": {
+      "x": 45.0,
+      "y": 30.0
+    },
+    "to": {
+      "x": 55.0,
+      "y": 35.0
+    },
+    "speed_mps": 15.0,
+    "curve": "none"
+  },
+  "outcome": "complete"
+}

@@ -1,0 +1,11 @@
+{
+  "character_id": "reward_debut_mental",
+  "character_name": "데뷔전 기념",
+  "rarity": "N",
+  "character_type": "other",
+  "position": "FW",
+  "technical_bonus": 0.0,
+  "physical_bonus": 0.0,
+  "mental_bonus": 0.05,
+  "events": []
+}

@@ -1,0 +1,168 @@
+{
+  "dialogue_styles": {
+    "confident": {
+      "greetings": ["자신있게 인사한다!", "당당하게 다가간다", "눈을 마주치며 말한다"],
+      "responses": ["물론이지!", "할 수 있어!", "문제없어!"],
+      "challenges": ["좋아, 해보자!", "나를 이길 수 있을까?", "준비됐어!"]
+    },
+    "friendly": {
+      "greetings": ["반갑게 인사한다", "웃으며 다가간다", "친근하게 말을 건다"],
+      "responses": ["그래, 좋아!", "함께하자!", "도와줄게!"],
+      "support": ["힘내!", "넌 할 수 있어!", "내가 있잖아!"]
+    },
+    "mentor": {
+      "greetings": ["진지하게 부른다", "차분히 말을 시작한다"],
+      "advice": ["경험상 말이야...", "내가 본 바로는...", "중요한 건..."],
+      "lessons": ["이것을 기억해라", "실수에서 배워라", "성장의 기회다"]
+    },
+    "rival": {
+      "greetings": ["차갑게 쳐다본다", "도전적으로 다가온다"],
+      "challenges": ["날 이길 수 있겠어?", "실력으로 보여줘", "겨우 그 정도야?"],
+      "respect": ["인정하지...", "나쁘지 않네", "성장했구나"]
+    },
+    "reserved": {
+      "greetings": ["조용히 고개를 끄덕인다", "간단히 인사한다"],
+      "responses": ["...알겠어", "그래", "..."],
+      "thoughts": ["(혼자 생각한다)", "(고민하는 듯하다)", "(망설인다)"]
+    }
+  },
+  "choice_templates": {
+    "basic_response": [
+      {"text": "긍정적으로 대답한다", "effect": "positive", "emotion": "happy"},
+      {"text": "중립적으로 대답한다", "effect": "neutral", "emotion": "normal"},
+      {"text": "부정적으로 대답한다", "effect": "negative", "emotion": "stressed"}
+    ],
+    "training_choice": [
+      {"text": "열심히 훈련한다", "effect": "effort", "fatigue": 10, "gain": 15},
+      {"text": "적당히 훈련한다", "effect": "balanced", "fatigue": 5, "gain": 10},
+      {"text": "컨디션을 조절한다", "effect": "rest", "fatigue": -5, "gain": 5}
+    ],
+    "relationship_choice": [
+      {"text": "친하게 지내자고 한다", "effect": "friendly", "relationship": 10},
+      {"text": "거리를 둔다", "effect": "distant", "relationship": -5},
+      {"text": "경쟁 관계를 제안한다", "effect": "rival", "relationship": 0, "determination": 5}
+    ],
+    "conflict_resolution": [
+      {"text": "직접 맞선다", "effect": "confront", "leadership": 5, "risk": "high"},
+      {"text": "중재를 시도한다", "effect": "mediate", "teamwork": 5, "risk": "medium"},
+      {"text": "상황을 지켜본다", "effect": "observe", "decisions": 5, "risk": "low"}
+    ],
+    "tactical_choice": [
+      {"text": "공격적으로 나간다", "effect": "offensive", "aggression": 5},
+      {"text": "균형을 잡는다", "effect": "balanced", "decisions": 5},
+      {"text": "수비적으로 접근한다", "effect": "defensive", "positioning": 5}
+    ]
+  },
+  "emotion_dialogues": {
+    "happy": {
+      "expressions": ["웃으며", "기쁜 표정으로", "활짝 웃으며"],
+      "words": ["정말 좋아!", "최고야!", "기뻐!"],
+      "actions": ["주먹을 불끈 쥔다", "뛰어오른다", "환호한다"]
+    },
+    "motivated": {
+      "expressions": ["의욕적으로", "불타는 눈빛으로", "결의에 찬 표정으로"],
+      "words": ["해내고 말겠어!", "포기하지 않아!", "더 강해질거야!"],
+      "actions": ["주먹을 쥔다", "깊게 숨을 들이쉰다", "앞을 응시한다"]
+    },
+    "stressed": {
+      "expressions": ["긴장한 표정으로", "불안하게", "초조한 듯"],
+      "words": ["괜찮을까...", "부담스러워", "어떻게 하지..."],
+      "actions": ["이마를 짚는다", "한숨을 쉰다", "머리를 긁적인다"]
+    },
+    "angry": {
+      "expressions": ["화난 표정으로", "인상을 쓰며", "짜증스럽게"],
+      "words": ["짜증나!", "왜 그래!", "이해가 안 돼!"],
+      "actions": ["주먹을 꽉 쥔다", "돌아선다", "발을 구른다"]
+    },
+    "sad": {
+      "expressions": ["슬픈 표정으로", "우울하게", "침울한 듯"],
+      "words": ["힘들어...", "자신이 없어", "실망이야..."],
+      "actions": ["고개를 숙인다", "멍하니 있는다", "한숨을 내쉰다"]
+    },
+    "confident": {
+      "expressions": ["자신감 있게", "당당하게", "확신에 찬 표정으로"],
+      "words": ["할 수 있어!", "문제없어!", "맡겨둬!"],
+      "actions": ["가슴을 편다", "엄지를 치켜든다", "씩 웃는다"]
+    },
+    "anxious": {
+      "expressions": ["불안하게", "걱정스럽게", "초조한 듯"],
+      "words": ["걱정돼...", "실수하면 어쩌지", "준비가 안 된 것 같아"],
+      "actions": ["손을 비빈다", "왔다갔다한다", "깊게 숨을 쉰다"]
+    },
+    "determined": {
+      "expressions": ["결연한 표정으로", "단호하게", "굳은 의지로"],
+      "words": ["반드시!", "절대 포기 안 해!", "끝까지!"],
+      "actions": ["눈을 부릅뜬다", "이를 악문다", "주먹을 불끈 쥔다"]
+    }
+  },
+  "situation_dialogues": {
+    "pre_match": {
+      "nervous": ["긴장되는데...", "준비됐나?", "오늘이 그날이야"],
+      "confident": ["오늘 보여주자!", "우리가 이긴다!", "준비 완료!"],
+      "tactical": ["전술 기억해", "포지션 유지해", "침착하게 가자"]
+    },
+    "post_victory": {
+      "celebration": ["해냈다!", "우리가 이겼어!", "최고의 경기였어!"],
+      "humble": ["아직 끝이 아니야", "계속 노력해야 해", "팀워크 덕분이야"],
+      "exhausted": ["힘들었지만 해냈어", "겨우 이겼네", "다음엔 더 잘하자"]
+    },
+    "post_defeat": {
+      "frustrated": ["믿을 수 없어...", "왜 졌을까", "분하다..."],
+      "determined": ["다음엔 이긴다", "더 열심히 하자", "여기서 배워야 해"],
+      "supportive": ["괜찮아, 다음 기회가 있어", "우리 잘했어", "머리 들어"]
+    },
+    "training": {
+      "start": ["오늘도 파이팅!", "시작하자!", "집중해서 하자"],
+      "middle": ["조금만 더!", "힘내!", "거의 다 했어!"],
+      "end": ["수고했어!", "오늘 잘했네", "내일 또 보자"]
+    },
+    "injury": {
+      "concern": ["괜찮아?", "무리하지 마", "쉬는 게 좋겠어"],
+      "encouragement": ["빨리 나아", "곧 돌아올거야", "천천히 회복해"],
+      "frustration": ["왜 하필...", "타이밍이 최악이야", "빨리 뛰고 싶어"]
+    }
+  },
+  "character_specific": {
+    "lee_minho": {
+      "greeting": "또 만났네",
+      "challenge": "내가 더 강해",
+      "respect": "너도 성장했구나",
+      "farewell": "다음에 보자"
+    },
+    "kim_jimin": {
+      "greeting": "안녕! 오늘 기분 어때?",
+      "support": "내가 도와줄게!",
+      "celebration": "우리가 해냈어!",
+      "concern": "괜찮아? 무슨 일 있어?"
+    },
+    "coach_park": {
+      "instruction": "오늘 훈련 목표는...",
+      "praise": "잘했다, 계속 그렇게",
+      "criticism": "더 집중해야 한다",
+      "advice": "네 장점을 살려라"
+    },
+    "jung_sooyeon": {
+      "leadership": "팀을 위해 뛰어라",
+      "guidance": "선배로서 조언하자면",
+      "motivation": "우리는 하나의 팀이다",
+      "farewell": "후배들을 잘 이끌어줘"
+    }
+  },
+  "narration_styles": {
+    "dramatic": {
+      "opening": "운명적인 순간이 다가온다...",
+      "climax": "모든 것이 이 순간에 달려있다!",
+      "resolution": "그리고 새로운 전설이 시작되었다."
+    },
+    "realistic": {
+      "opening": "평범한 하루가 시작된다.",
+      "development": "훈련은 계속되고 있다.",
+      "conclusion": "오늘도 한 걸음 성장했다."
+    },
+    "emotional": {
+      "opening": "가슴이 뛰기 시작한다.",
+      "peak": "눈물이 날 것 같은 순간.",
+      "ending": "잊을 수 없는 기억이 되었다."
+    }
+  }
+}

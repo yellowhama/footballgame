@@ -1,0 +1,458 @@
+meta:
+  file: "events_positions.yaml"
+  version: "0.1"
+  note: "1학년 말 포지션 전환 이벤트. 제안 수락/거절 + 자율 선택. 능력치 재분배 없음."
+
+# Position recommendation formulas based on stats
+formulas:
+  # Forward recommendations
+  recommend_LW: "(Pace + Dribbling + Crossing) >= 40"  # Scaled to 0-100
+  recommend_ST: "(Finishing + Heading + Strength) >= 40"
+  recommend_RW: "(Pace + Dribbling + Crossing) >= 40"
+  recommend_CF: "(Finishing + FirstTouch + Vision) >= 40"
+
+  # Midfielder recommendations
+  recommend_AM: "(Passing + Vision + FirstTouch) >= 40"
+  recommend_CM: "(Passing + WorkRate + Stamina) >= 40"
+  recommend_DM: "(Tackling + Positioning + Strength) >= 40"
+  recommend_LM: "(Pace + Crossing + Stamina) >= 40"
+  recommend_RM: "(Pace + Crossing + Stamina) >= 40"
+
+  # Defender recommendations
+  recommend_CB: "(Tackling + Heading + Strength) >= 40"
+  recommend_LB: "(Tackling + Pace + Stamina) >= 40"
+  recommend_RB: "(Tackling + Pace + Stamina) >= 40"
+
+events:
+  # ═══════════════════════════════════════════════════════════════════════
+  # Forward Position Change Event (Year 1 End)
+  # ═══════════════════════════════════════════════════════════════════════
+
+  - id: pos_change_fw_year1
+    title: "포지션 전환 제안"
+    title_en: "Position Change Offer"
+    category: "team"
+    trigger:
+      type: "seasonal"
+      condition: "year == 1 && week >= 45 && week <= 48"
+      probability: 1.0
+    pre_conditions:
+      - "role_category == 'FW'"  # ST, LW, RW, CF
+      - "!flag:position_changed_year1"
+
+    description: |
+      코치님이 불러서 이야기를 나눴다.
+      "너의 플레이를 분석해봤는데, 다른 포지션도 잘 어울릴 것 같아.
+      물론 지금 포지션도 좋지만, 한번 고려해보지 않겠니?"
+
+    choices:
+      - id: "accept_lw"
+        text: "왼쪽 윙(LW)으로 전향한다"
+        visible_if: "recommend_LW && role != 'LW'"
+        effects:
+          position_change: "LW"
+          relationship: { coach: 3 }
+          flag_set: "position_changed_year1"
+          message: "왼쪽 측면을 누비는 윙어가 되기로 했다!"
+
+      - id: "accept_st"
+        text: "중앙 스트라이커(ST)로 전향한다"
+        visible_if: "recommend_ST && role != 'ST'"
+        effects:
+          position_change: "ST"
+          relationship: { coach: 3 }
+          flag_set: "position_changed_year1"
+          message: "골문 앞의 해결사가 되기로 했다!"
+
+      - id: "accept_rw"
+        text: "오른쪽 윙(RW)으로 전향한다"
+        visible_if: "recommend_RW && role != 'RW'"
+        effects:
+          position_change: "RW"
+          relationship: { coach: 3 }
+          flag_set: "position_changed_year1"
+          message: "오른쪽 측면을 책임지기로 했다!"
+
+      - id: "accept_cf"
+        text: "중앙 공격수(CF)로 전향한다"
+        visible_if: "recommend_CF && role != 'CF'"
+        effects:
+          position_change: "CF"
+          relationship: { coach: 3 }
+          flag_set: "position_changed_year1"
+          message: "False 9 역할을 맡기로 했다!"
+
+      - id: "decline"
+        text: "정중히 거절한다"
+        effects:
+          flag_set: "coach_recommendation_declined"
+        next_event: "pos_change_fw_custom"
+
+  # ─────────────────────────────────────────────────────────────
+  # Custom Position Selection (After Decline)
+  # ─────────────────────────────────────────────────────────────
+
+  - id: pos_change_fw_custom
+    title: "원하는 포지션 선택"
+    title_en: "Choose Your Position"
+    category: "team"
+
+    description: |
+      코치님이 고개를 끄덕였다.
+      "좋아, 네 선택을 존중한다. 그럼 어느 포지션에서 뛰고 싶니?"
+
+    choices:
+      # Forward positions
+      - id: "choose_lw"
+        text: "왼쪽 윙(LW)"
+        visible_if: "role != 'LW'"
+        effects:
+          position_change: "LW"
+          flag_set: "position_changed_year1"
+          message: "왼쪽 윙으로 뛰기로 결정했다."
+
+      - id: "choose_st"
+        text: "스트라이커(ST)"
+        visible_if: "role != 'ST'"
+        effects:
+          position_change: "ST"
+          flag_set: "position_changed_year1"
+          message: "스트라이커로 뛰기로 결정했다."
+
+      - id: "choose_rw"
+        text: "오른쪽 윙(RW)"
+        visible_if: "role != 'RW'"
+        effects:
+          position_change: "RW"
+          flag_set: "position_changed_year1"
+          message: "오른쪽 윙으로 뛰기로 결정했다."
+
+      - id: "choose_cf"
+        text: "중앙 공격수(CF)"
+        visible_if: "role != 'CF'"
+        effects:
+          position_change: "CF"
+          flag_set: "position_changed_year1"
+          message: "중앙 공격수로 뛰기로 결정했다."
+
+      # Attacking midfielder options (for forwards who want to drop back)
+      - id: "choose_am"
+        text: "공격형 미드필더(AM)로 도전한다"
+        effects:
+          position_change: "AM"
+          flag_set: "position_changed_year1"
+          flag_set: "fw_to_mid_transition"
+          message: "공격형 미드필더로 전향하기로 했다!"
+
+      - id: "choose_lm"
+        text: "왼쪽 미드필더(LM)로 도전한다"
+        effects:
+          position_change: "LM"
+          flag_set: "position_changed_year1"
+          flag_set: "fw_to_mid_transition"
+          message: "왼쪽 미드필더로 전향하기로 했다!"
+
+      - id: "choose_rm"
+        text: "오른쪽 미드필더(RM)로 도전한다"
+        effects:
+          position_change: "RM"
+          flag_set: "position_changed_year1"
+          flag_set: "fw_to_mid_transition"
+          message: "오른쪽 미드필더로 전향하기로 했다!"
+
+      - id: "stay_same"
+        text: "현재 포지션을 유지한다"
+        effects:
+          flag_set: "position_kept_year1"
+          relationship: { coach: -1 }
+          message: "현재 포지션을 고수하기로 했다."
+
+  # ═══════════════════════════════════════════════════════════════════════
+  # Midfielder Position Change Event
+  # ═══════════════════════════════════════════════════════════════════════
+
+  - id: pos_change_mid_year1
+    title: "포지션 전환 제안"
+    title_en: "Position Change Offer"
+    category: "team"
+    trigger:
+      type: "seasonal"
+      condition: "year == 1 && week >= 45 && week <= 48"
+      probability: 1.0
+    pre_conditions:
+      - "role_category == 'MID'"  # AM, CM, DM, LM, RM
+      - "!flag:position_changed_year1"
+
+    description: |
+      코치님이 전술판을 보여주며 말했다.
+      "네 능력치를 보니 다른 미드필더 역할도 잘 소화할 것 같아."
+
+    choices:
+      - id: "accept_am"
+        text: "공격형 미드필더(AM)로 전향한다"
+        visible_if: "recommend_AM && role != 'AM'"
+        effects:
+          position_change: "AM"
+          relationship: { coach: 3 }
+          flag_set: "position_changed_year1"
+          message: "창조적인 플레이메이커가 되기로 했다!"
+
+      - id: "accept_cm"
+        text: "중앙 미드필더(CM)로 전향한다"
+        visible_if: "recommend_CM && role != 'CM'"
+        effects:
+          position_change: "CM"
+          relationship: { coach: 3 }
+          flag_set: "position_changed_year1"
+          message: "경기를 조율하는 중원의 사령관이 되기로 했다!"
+
+      - id: "accept_dm"
+        text: "수비형 미드필더(DM)로 전향한다"
+        visible_if: "recommend_DM && role != 'DM'"
+        effects:
+          position_change: "DM"
+          relationship: { coach: 3 }
+          flag_set: "position_changed_year1"
+          message: "수비의 첫 번째 벽이 되기로 했다!"
+
+      - id: "decline"
+        text: "정중히 거절한다"
+        effects:
+          flag_set: "coach_recommendation_declined"
+        next_event: "pos_change_mid_custom"
+
+  # ─────────────────────────────────────────────────────────────
+  # Custom Midfielder Selection
+  # ─────────────────────────────────────────────────────────────
+
+  - id: pos_change_mid_custom
+    title: "원하는 포지션 선택"
+    title_en: "Choose Your Position"
+    category: "team"
+
+    description: |
+      "그래, 네가 편한 곳에서 뛰는 게 최고지."
+
+    choices:
+      - id: "choose_am"
+        text: "공격형 미드필더(AM)"
+        visible_if: "role != 'AM'"
+        effects:
+          position_change: "AM"
+          flag_set: "position_changed_year1"
+
+      - id: "choose_cm"
+        text: "중앙 미드필더(CM)"
+        visible_if: "role != 'CM'"
+        effects:
+          position_change: "CM"
+          flag_set: "position_changed_year1"
+
+      - id: "choose_dm"
+        text: "수비형 미드필더(DM)"
+        visible_if: "role != 'DM'"
+        effects:
+          position_change: "DM"
+          flag_set: "position_changed_year1"
+
+      - id: "choose_lm"
+        text: "왼쪽 미드필더(LM)"
+        visible_if: "role != 'LM'"
+        effects:
+          position_change: "LM"
+          flag_set: "position_changed_year1"
+
+      - id: "choose_rm"
+        text: "오른쪽 미드필더(RM)"
+        visible_if: "role != 'RM'"
+        effects:
+          position_change: "RM"
+          flag_set: "position_changed_year1"
+
+      # Option to move forward
+      - id: "choose_st"
+        text: "스트라이커(ST)로 도전한다"
+        effects:
+          position_change: "ST"
+          flag_set: "position_changed_year1"
+          flag_set: "mid_to_fw_transition"
+          message: "공격수로 전향하는 모험을 선택했다!"
+
+      # Option to move back
+      - id: "choose_cb"
+        text: "센터백(CB)으로 도전한다"
+        visible_if: "Tackling >= 50"
+        effects:
+          position_change: "CB"
+          flag_set: "position_changed_year1"
+          flag_set: "mid_to_def_transition"
+          message: "수비수로 전향하는 결정을 내렸다!"
+
+      - id: "stay_same"
+        text: "현재 포지션을 유지한다"
+        effects:
+          flag_set: "position_kept_year1"
+
+  # ═══════════════════════════════════════════════════════════════════════
+  # Defender Position Change Event
+  # ═══════════════════════════════════════════════════════════════════════
+
+  - id: pos_change_def_year1
+    title: "포지션 전환 제안"
+    title_en: "Position Change Offer"
+    category: "team"
+    trigger:
+      type: "seasonal"
+      condition: "year == 1 && week >= 45 && week <= 48"
+      probability: 1.0
+    pre_conditions:
+      - "role_category == 'DEF'"  # CB, LB, RB, SW
+      - "!flag:position_changed_year1"
+
+    description: |
+      코치님이 수비 훈련 후 조언을 해주었다.
+      "네 스타일을 보니 다른 수비 포지션도 가능할 것 같은데?"
+
+    choices:
+      - id: "accept_cb"
+        text: "센터백(CB)으로 전향한다"
+        visible_if: "recommend_CB && role != 'CB'"
+        effects:
+          position_change: "CB"
+          relationship: { coach: 3 }
+          flag_set: "position_changed_year1"
+          message: "수비의 중심이 되기로 했다!"
+
+      - id: "accept_lb"
+        text: "왼쪽 풀백(LB)으로 전향한다"
+        visible_if: "recommend_LB && role != 'LB'"
+        effects:
+          position_change: "LB"
+          relationship: { coach: 3 }
+          flag_set: "position_changed_year1"
+          message: "왼쪽 측면 수비를 맡기로 했다!"
+
+      - id: "accept_rb"
+        text: "오른쪽 풀백(RB)으로 전향한다"
+        visible_if: "recommend_RB && role != 'RB'"
+        effects:
+          position_change: "RB"
+          relationship: { coach: 3 }
+          flag_set: "position_changed_year1"
+          message: "오른쪽 측면 수비를 맡기로 했다!"
+
+      - id: "decline"
+        text: "정중히 거절한다"
+        effects:
+          flag_set: "coach_recommendation_declined"
+        next_event: "pos_change_def_custom"
+
+  # ─────────────────────────────────────────────────────────────
+  # Warning for Position Transitions
+  # ─────────────────────────────────────────────────────────────
+
+  - id: pos_transition_warning
+    title: "코치의 조언"
+    title_en: "Coach's Advice"
+    category: "team"
+    trigger:
+      type: "after_event"
+      probability: 1.0
+    pre_conditions:
+      - "flag:fw_to_mid_transition || flag:mid_to_def_transition || flag:mid_to_fw_transition"
+
+    description: |
+      코치님이 따로 불러 조언을 해주었다.
+      "포지션을 바꾸는 건 큰 도전이야. 기존 능력치는 그대로지만,
+      새 포지션에 필요한 능력을 키우는 데 집중해야 할 거야."
+
+    choices:
+      - id: "accept_training"
+        text: "특별 훈련을 받겠다"
+        effects:
+          special_training: "position_adaptation"
+          relationship: { coach: 2 }
+          message: "포지션 적응 특별 훈련이 시작되었다!"
+
+      - id: "self_train"
+        text: "스스로 적응하겠다"
+        effects:
+          mental: 2
+          message: "스스로의 힘으로 적응하기로 했다."
+
+  # ═══════════════════════════════════════════════════════════════════════
+  # Year 2/3 Advanced Position Events
+  # ═══════════════════════════════════════════════════════════════════════
+
+  - id: pos_advanced_year3
+    title: "최종 포지션 확정"
+    title_en: "Final Position Decision"
+    category: "team"
+    trigger:
+      type: "seasonal"
+      condition: "year == 3 && week >= 1 && week <= 4"
+      probability: 1.0
+    pre_conditions:
+      - "!flag:final_position_set"
+
+    description: |
+      3학년이 되었다. 주장 완장을 받으며 코치님이 말했다.
+      "이제 네 포지션을 확정할 시간이야. 프로 스카우트들도 주목하고 있어."
+
+    choices:
+      - id: "confirm_current"
+        text: "현재 포지션을 고수한다"
+        effects:
+          flag_set: "final_position_set"
+          scout_points: 5
+          message: "최종 포지션이 확정되었다!"
+
+      - id: "last_change"
+        text: "마지막으로 한 번 더 바꾼다"
+        effects:
+          flag_set: "final_position_change"
+        next_event: "pos_final_selection"
+
+# ═══════════════════════════════════════════════════════════════════════
+# Hook Definitions for Engine Integration
+# ═══════════════════════════════════════════════════════════════════════
+
+hooks:
+  on_position_change:
+    # Called when position_change effect is triggered
+    pass_vars: [old_position, new_position, year, week]
+    update_role: true  # Update player.role in engine
+    preserve_stats: true  # Keep all stats unchanged
+
+  on_special_training:
+    # Called when special_training effect is triggered
+    pass_vars: [training_type, position]
+    duration_weeks: 4
+    stat_focus:
+      position_adaptation:
+        # Focus on weak areas for new position
+        primary: [Positioning, Vision, Decision]
+        secondary: [WorkRate, Teamwork]
+
+ui:
+  position_colors:
+    FW: "#FF6B6B"  # Red
+    MID: "#4ECDC4" # Teal
+    DEF: "#95E77E" # Green
+    GK: "#FFD93D"  # Yellow
+
+  position_icons:
+    ST: "⚡"
+    LW: "🏃"
+    RW: "🏃"
+    CF: "🎯"
+    AM: "🎨"
+    CM: "⚙️"
+    DM: "🛡️"
+    LM: "↔️"
+    RM: "↔️"
+    CB: "🗿"
+    LB: "⬅️"
+    RB: "➡️"
+    SW: "♟️"
+    GK: "🧤"

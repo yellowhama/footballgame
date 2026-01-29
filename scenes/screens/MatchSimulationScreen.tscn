@@ -1,0 +1,162 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmatchsimscreen"]
+
+[ext_resource type="Script" path="res://scripts/screens/MatchSimulationScreen.gd" id="1_script"]
+
+[node name="MatchSimulationScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+theme_override_constants/separation = 16
+
+[node name="BackButton" type="Button" parent="VBox/Header"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "< Back"
+
+[node name="TitleLabel" type="Label" parent="VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Match Simulation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MatchInfo" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 120)
+
+[node name="MatchInfoVBox" type="VBoxContainer" parent="VBox/MatchInfo"]
+layout_mode = 2
+alignment = 1
+
+[node name="TeamsRow" type="HBoxContainer" parent="VBox/MatchInfo/MatchInfoVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="HomeTeam" type="Label" parent="VBox/MatchInfo/MatchInfoVBox/TeamsRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+text = "Home Team"
+horizontal_alignment = 2
+
+[node name="VSLabel" type="Label" parent="VBox/MatchInfo/MatchInfoVBox/TeamsRow"]
+layout_mode = 2
+text = " vs "
+horizontal_alignment = 1
+
+[node name="AwayTeam" type="Label" parent="VBox/MatchInfo/MatchInfoVBox/TeamsRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+text = "Away Team"
+horizontal_alignment = 0
+
+[node name="ScoreRow" type="HBoxContainer" parent="VBox/MatchInfo/MatchInfoVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="HomeScore" type="Label" parent="VBox/MatchInfo/MatchInfoVBox/ScoreRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "0"
+horizontal_alignment = 2
+theme_override_font_sizes/font_size = 32
+
+[node name="ScoreSep" type="Label" parent="VBox/MatchInfo/MatchInfoVBox/ScoreRow"]
+layout_mode = 2
+text = " - "
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 32
+
+[node name="AwayScore" type="Label" parent="VBox/MatchInfo/MatchInfoVBox/ScoreRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "0"
+horizontal_alignment = 0
+theme_override_font_sizes/font_size = 32
+
+[node name="TimeLabel" type="Label" parent="VBox/MatchInfo/MatchInfoVBox"]
+layout_mode = 2
+text = "00:00"
+horizontal_alignment = 1
+
+[node name="MatchViewContainer" type="PanelContainer" parent="VBox"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EventLog" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EventScroll" type="ScrollContainer" parent="VBox/EventLog"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EventList" type="VBoxContainer" parent="VBox/EventLog/EventScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Controls" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 80)
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="AttackButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 60)
+text = "Attack"
+
+[node name="BalancedButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 60)
+text = "Balanced"
+
+[node name="DefendButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 60)
+text = "Defend"
+
+[node name="SubButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 60)
+text = "Sub"
+
+[node name="Spacer" type="Control" parent="VBox/Controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 60)
+text = "Play"
+
+[node name="PauseButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 60)
+text = "Pause"
+
+[node name="SpeedButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 60)
+text = "1x"
+
+[node name="SkipButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 60)
+text = "Skip"

@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3h8qk5m2pxa"]
+
+[ext_resource type="PackedScene" uid="uid://dh7v3qnm5k2xl" path="res://scenes/match_pipeline/horizontal/HorizontalMatchViewer.tscn" id="1_viewer"]
+[ext_resource type="Script" uid="uid://0tpcqw4db75q" path="res://scenes/match_pipeline/horizontal/HorizontalMatchViewerTestController.gd" id="2_controller"]
+
+[node name="HorizontalMatchViewerTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_controller")
+
+[node name="HorizontalMatchViewer" parent="." instance=ExtResource("1_viewer")]
+layout_mode = 1
+
+[node name="UI" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+
+[node name="TitleLabel" type="Label" parent="UI"]
+layout_mode = 2
+text = "Horizontal Match Viewer Test"
+
+[node name="CameraModeLabel" type="Label" parent="UI"]
+layout_mode = 2
+text = "Camera: Follow"
+
+[node name="FollowButton" type="Button" parent="UI"]
+layout_mode = 2
+text = "Camera: Follow"
+
+[node name="FullPitchButton" type="Button" parent="UI"]
+layout_mode = 2
+text = "Camera: Full Pitch"
+
+[node name="TacticalButton" type="Button" parent="UI"]
+layout_mode = 2
+text = "Camera: Tactical"
+
+[node name="ShakeButton" type="Button" parent="UI"]
+layout_mode = 2
+text = "Camera Shake"
+
+[node name="GoalEffectButton" type="Button" parent="UI"]
+layout_mode = 2
+text = "Goal Effect"
+
+[node name="RandomMoveButton" type="Button" parent="UI"]
+layout_mode = 2
+text = "Random Move"
+
+[node name="HSeparator" type="HSeparator" parent="UI"]
+layout_mode = 2
+
+[node name="TeamLabel" type="Label" parent="UI"]
+layout_mode = 2
+text = "Home: home / Away: away"
+
+[node name="ChangeTeamButton" type="Button" parent="UI"]
+layout_mode = 2
+text = "Change Teams"

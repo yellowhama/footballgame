@@ -1,0 +1,17 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: event
+---
+{
+  "etype": "foul",
+  "t": 892.3,
+  "minute": 15,
+  "team": "AWAY",
+  "player_id": "A5",
+  "pos": {
+    "x": 25.0,
+    "y": 40.0
+  },
+  "opponent_id": "H6",
+  "card": "yellow"
+}

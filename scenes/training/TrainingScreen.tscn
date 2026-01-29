@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/training/TrainingScreen.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/training/services/training_calc.gd" id="2"]
+
+[node name="TrainingScreen" type="Control"]
+script = ExtResource("1")
+
+[node name="Services" type="Node" parent="."]
+
+[node name="TrainingCalc" type="Node" parent="Services"]
+script = ExtResource("2")

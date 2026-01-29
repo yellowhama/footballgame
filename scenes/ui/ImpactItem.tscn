@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyq8vhj3m7x8l"]
+
+[ext_resource type="Script" path="res://scripts/ui/ImpactItem.gd" id="1_impact_item"]
+
+[node name="ImpactItem" type="HBoxContainer"]
+custom_minimum_size = Vector2(400, 40)
+script = ExtResource("1_impact_item")
+
+[node name="Icon" type="TextureRect"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LabelMedium"
+text = "강태양 호감도 +20 (60 → 80)"
+vertical_alignment = 1

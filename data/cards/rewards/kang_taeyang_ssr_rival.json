@@ -1,0 +1,13 @@
+{
+  "character_id": "reward_kang_taeyang_ssr_rival",
+  "character_name": "강태양 - 진정한 라이벌",
+  "rarity": "SSR",
+  "character_type": "teammate",
+  "position": "FW",
+  "technical_bonus": 0.15,
+  "physical_bonus": 0.0,
+  "mental_bonus": 0.10,
+  "events": ["rival_awakening_event"],
+  "description": "라이벌 루트 분기점 2 - A 선택 보상. 정정당당한 경쟁을 통해 얻은 진정한 라이벌의 인정.",
+  "acquisition_condition": "rival_branch2_A"
+}

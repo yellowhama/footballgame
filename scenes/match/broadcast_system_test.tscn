@@ -1,0 +1,125 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvp7q8yak4m2n"]
+
+[ext_resource type="Script" path="res://scripts/match/BroadcastSystemTest.gd" id="1_test_script"]
+[ext_resource type="Script" path="res://scripts/match/FootballCineManager.gd" id="2_cine_manager"]
+[ext_resource type="PackedScene" path="res://scenes/match/broadcast_ui_panel.tscn" id="3_ui_panel"]
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 1
+background_color = Color(0.2, 0.25, 0.3, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="BroadcastSystemTest" type="Node3D"]
+script = ExtResource("1_test_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 10, 0)
+shadow_enabled = true
+
+[node name="FootballCineManager" type="Node" parent="."]
+script = ExtResource("2_cine_manager")
+enable_camera_transitions = true
+transition_duration = 0.4
+
+[node name="Cameras" type="Node3D" parent="."]
+
+[node name="Cine_Main" type="Camera3D" parent="Cameras"]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 15, 25)
+
+[node name="Cine_Ball" type="Camera3D" parent="Cameras"]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 8, 12)
+
+[node name="Cine_Side" type="Camera3D" parent="Cameras"]
+transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, 30, 10, 0)
+
+[node name="Cine_Top" type="Camera3D" parent="Cameras"]
+transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0, 35, 5)
+
+[node name="TestObjects" type="Node3D" parent="."]
+
+[node name="FieldPlane" type="CSGBox3D" parent="TestObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+size = Vector3(105, 0.2, 68)
+material_override = StandardMaterial3D.new()
+
+[node name="Ball" type="CSGSphere3D" parent="TestObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+radius = 0.4
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TransitionOverlay" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="BroadcastUIPanel" parent="UI" instance=ExtResource("3_ui_panel")]
+
+[node name="DebugPanel" type="PanelContainer" parent="UI"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 416.0
+offset_bottom = 216.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/DebugPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DebugPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="UI/DebugPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "🎬 Broadcast System Test"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/DebugPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Controls" type="VBoxContainer" parent="UI/DebugPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="SimulateButton" type="Button" parent="UI/DebugPanel/MarginContainer/VBoxContainer/Controls"]
+layout_mode = 2
+text = "1️⃣ Simulate Match"
+
+[node name="GenerateButton" type="Button" parent="UI/DebugPanel/MarginContainer/VBoxContainer/Controls"]
+layout_mode = 2
+text = "2️⃣ Generate Timeline"
+
+[node name="LoadButton" type="Button" parent="UI/DebugPanel/MarginContainer/VBoxContainer/Controls"]
+layout_mode = 2
+text = "3️⃣ Load Timeline"
+
+[node name="EditTestButton" type="Button" parent="UI/DebugPanel/MarginContainer/VBoxContainer/Controls"]
+layout_mode = 2
+text = "✂️ Test Editing Features"
+
+[node name="ExportButton" type="Button" parent="UI/DebugPanel/MarginContainer/VBoxContainer/Controls"]
+layout_mode = 2
+text = "💾 Export Timeline JSON"
+
+[node name="StatusLabel" type="Label" parent="UI/DebugPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Ready to test..."
+autowrap_mode = 3
+
+[connection signal="cine_ball" from="FootballCineManager" to="Cameras/Cine_Ball" method="@export"]
+[connection signal="cine_main" from="FootballCineManager" to="Cameras/Cine_Main" method="@export"]
+[connection signal="cine_side" from="FootballCineManager" to="Cameras/Cine_Side" method="@export"]
+[connection signal="cine_top" from="FootballCineManager" to="Cameras/Cine_Top" method="@export"]
+[connection signal="transition_overlay" from="FootballCineManager" to="UI/TransitionOverlay" method="@export"]
+[connection signal="cine_manager" from="UI/BroadcastUIPanel" to="FootballCineManager" method="@export"]

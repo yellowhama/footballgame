@@ -1,0 +1,103 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: corner_replay
+---
+{
+  "coord_contract_version": 2,
+  "coord_system": "meters_v2",
+  "schema": {
+    "name": "of_replay",
+    "version": 1
+  },
+  "match_info": {
+    "id": "corner-to-goal",
+    "seed": 777,
+    "pitch": {
+      "length_m": 105.0,
+      "width_m": 68.0
+    },
+    "goal": {
+      "center_y_m": 34.0,
+      "width_m": 7.32,
+      "depth_m": 2.44
+    },
+    "areas": {
+      "penalty_depth_m": 16.5,
+      "penalty_width_m": 40.32,
+      "six_depth_m": 5.5,
+      "six_width_m": 18.32,
+      "penalty_spot_from_line_m": 11.0,
+      "arc_radius_m": 9.15
+    },
+    "periods": [
+      {
+        "i": 1,
+        "start_t": 0.0,
+        "end_t": 2700.0,
+        "home_attacks_right": true
+      },
+      {
+        "i": 2,
+        "start_t": 2700.0,
+        "end_t": 5400.0,
+        "home_attacks_right": false
+      }
+    ]
+  },
+  "events": [
+    {
+      "etype": "set_piece",
+      "t": 1205.3,
+      "minute": 20,
+      "team": "HOME",
+      "player_id": "H8",
+      "pos": {
+        "x": 105.0,
+        "y": 0.0
+      },
+      "kind": "corner",
+      "ball": {
+        "from": {
+          "x": 105.0,
+          "y": 0.0
+        },
+        "to": {
+          "x": 99.0,
+          "y": 32.0
+        },
+        "speed_mps": 22.0,
+        "curve": "inside"
+      }
+    },
+    {
+      "etype": "shot",
+      "t": 1208.1,
+      "minute": 20,
+      "team": "HOME",
+      "player_id": "H4",
+      "pos": {
+        "x": 99.0,
+        "y": 32.0
+      },
+      "target": {
+        "x": 105.0,
+        "y": 36.8
+      },
+      "xg": 0.45,
+      "on_target": true,
+      "ball": {
+        "from": {
+          "x": 99.0,
+          "y": 32.0
+        },
+        "to": {
+          "x": 105.0,
+          "y": 36.8
+        },
+        "speed_mps": 18.0,
+        "curve": "none"
+      },
+      "outcome": "goal"
+    }
+  ]
+}

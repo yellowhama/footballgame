@@ -1,0 +1,179 @@
+[gd_scene load_steps=2 format=3 uid="uid://deck_builder_screen"]
+
+[ext_resource type="Script" path="res://scripts/screens/DeckBuilderScreen.gd" id="1_script"]
+
+[node name="DeckBuilderScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.051, 0.067, 0.09, 1)
+
+[node name="Header" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = -16.0
+offset_bottom = 52.0
+theme_override_constants/separation = 12
+
+[node name="BackButton" type="Button" parent="Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "← 뒤로"
+
+[node name="TitleLabel" type="Label" parent="Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.902, 0.929, 0.953, 1)
+theme_override_font_sizes/font_size = 18
+text = "덱 편성"
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DeckNameEdit" type="LineEdit" parent="Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 36)
+layout_mode = 2
+placeholder_text = "덱 이름..."
+
+[node name="SaveButton" type="Button" parent="Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "💾 저장"
+
+[node name="MainContent" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 60.0
+offset_right = -16.0
+offset_bottom = -16.0
+split_offset = 280
+
+[node name="DeckPanel" type="PanelContainer" parent="MainContent"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="DeckPanelBG" type="ColorRect" parent="MainContent/DeckPanel"]
+layout_mode = 2
+color = Color(0.086, 0.106, 0.133, 1)
+
+[node name="DeckMargin" type="MarginContainer" parent="MainContent/DeckPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="DeckLayout" type="VBoxContainer" parent="MainContent/DeckPanel/DeckMargin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="DeckTitle" type="Label" parent="MainContent/DeckPanel/DeckMargin/DeckLayout"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.902, 0.929, 0.953, 1)
+theme_override_font_sizes/font_size = 16
+text = "현재 덱"
+
+[node name="SlotsContainer" type="VBoxContainer" parent="MainContent/DeckPanel/DeckMargin/DeckLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="BonusContainer" type="VBoxContainer" parent="MainContent/DeckPanel/DeckMargin/DeckLayout"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="BonusLabel" type="Label" parent="MainContent/DeckPanel/DeckMargin/DeckLayout/BonusContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.545, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 13
+text = "총 보너스: +0%"
+
+[node name="SynergyLabel" type="Label" parent="MainContent/DeckPanel/DeckMargin/DeckLayout/BonusContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.545, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 13
+text = "시너지: 없음"
+
+[node name="InventoryPanel" type="PanelContainer" parent="MainContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InventoryPanelBG" type="ColorRect" parent="MainContent/InventoryPanel"]
+layout_mode = 2
+color = Color(0.129, 0.149, 0.169, 1)
+
+[node name="InventoryMargin" type="MarginContainer" parent="MainContent/InventoryPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="InventoryLayout" type="VBoxContainer" parent="MainContent/InventoryPanel/InventoryMargin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="InventoryHeader" type="HBoxContainer" parent="MainContent/InventoryPanel/InventoryMargin/InventoryLayout"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="InventoryTitle" type="Label" parent="MainContent/InventoryPanel/InventoryMargin/InventoryLayout/InventoryHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.902, 0.929, 0.953, 1)
+theme_override_font_sizes/font_size = 16
+text = "보유 카드"
+
+[node name="Spacer" type="Control" parent="MainContent/InventoryPanel/InventoryMargin/InventoryLayout/InventoryHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FilterContainer" type="HBoxContainer" parent="MainContent/InventoryPanel/InventoryMargin/InventoryLayout/InventoryHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainContent/InventoryPanel/InventoryMargin/InventoryLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InventoryGrid" type="GridContainer" parent="MainContent/InventoryPanel/InventoryMargin/InventoryLayout/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 4
+
+[node name="HelpLabel" type="Label" parent="MainContent/InventoryPanel/InventoryMargin/InventoryLayout"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.545, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 11
+text = "카드를 클릭하여 덱에 추가 | 슬롯을 클릭하여 제거"
+horizontal_alignment = 1

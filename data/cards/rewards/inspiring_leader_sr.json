@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_inspiring_leader_sr",
+  "character_name": "영감을 주는 리더",
+  "rarity": "SR",
+  "character_type": "trait",
+  "position": "ALL",
+  "technical_bonus": 0.05,
+  "physical_bonus": 0.0,
+  "mental_bonus": 0.15,
+  "events": [],
+  "description": "주장 루트 분기점 1 - A 선택 보상. 팀원들에게 영감을 주는 진정한 리더.",
+  "acquisition_condition": "captain_branch1_A",
+  "special_effect": "팀 사기 +25%, 팀 전체 Mental +5%"
+}

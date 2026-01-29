@@ -1,0 +1,33 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: event
+---
+{
+  "etype": "dribble",
+  "t": 145.2,
+  "minute": 2,
+  "team": "HOME",
+  "player_id": "H9",
+  "pos": {
+    "x": 55.0,
+    "y": 35.0
+  },
+  "path": [
+    {
+      "x": 56.0,
+      "y": 36.0
+    },
+    {
+      "x": 58.0,
+      "y": 37.0
+    }
+  ],
+  "end_pos": {
+    "x": 60.0,
+    "y": 38.0
+  },
+  "beats": [
+    "A3"
+  ],
+  "outcome": "kept"
+}

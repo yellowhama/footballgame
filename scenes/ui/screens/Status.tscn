@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=3 uid="uid://status_screen_v1"]
+
+[ext_resource type="Script" path="res://scripts/ui/screens/Status.gd" id="1_status_script"]
+[ext_resource type="Script" path="res://scripts/components/HexagonChart.gd" id="2_hex_script"]
+
+[node name="Status" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_status_script")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 300
+
+[node name="SquadList" type="Control" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="Header" type="PanelContainer" parent="HSplitContainer/SquadList"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/SquadList/Header"]
+layout_mode = 2
+text = "Squad List"
+horizontal_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="HSplitContainer/SquadList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="HSplitContainer/SquadList/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="PlayerDetail" type="ScrollContainer" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="HSplitContainer/PlayerDetail"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="ProfileHeader" type="HBoxContainer" parent="HSplitContainer/PlayerDetail/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="HSplitContainer/PlayerDetail/VBox/ProfileHeader"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Player Name"
+
+[node name="VSeparator" type="VSeparator" parent="HSplitContainer/PlayerDetail/VBox/ProfileHeader"]
+layout_mode = 2
+
+[node name="PosLabel" type="Label" parent="HSplitContainer/PlayerDetail/VBox/ProfileHeader"]
+layout_mode = 2
+text = "POS"
+
+[node name="VSeparator2" type="VSeparator" parent="HSplitContainer/PlayerDetail/VBox/ProfileHeader"]
+layout_mode = 2
+
+[node name="OvrLabel" type="Label" parent="HSplitContainer/PlayerDetail/VBox/ProfileHeader"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "99"
+
+[node name="HexagonContainer" type="CenterContainer" parent="HSplitContainer/PlayerDetail/VBox"]
+layout_mode = 2
+
+[node name="HexagonChart" type="Control" parent="HSplitContainer/PlayerDetail/VBox/HexagonContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+script = ExtResource("2_hex_script")
+chart_size = 140.0
+
+[node name="AttributeGrid" type="GridContainer" parent="HSplitContainer/PlayerDetail/VBox"]
+layout_mode = 2
+columns = 3

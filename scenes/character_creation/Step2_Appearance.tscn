@@ -1,0 +1,126 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj3kq8m2v5wxp"]
+
+[ext_resource type="Script" path="res://scripts/character_creation/Step2_Appearance.gd" id="1_script"]
+
+[node name="Step2_Appearance" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "캐릭터 외형 설정"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 28
+
+[node name="PreviewSection" type="PanelContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 250)
+
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer/VBoxContainer/PreviewSection"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HairSection" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HairStyleLabel" type="Label" parent="ScrollContainer/VBoxContainer/HairSection"]
+layout_mode = 2
+text = "헤어스타일"
+theme_override_font_sizes/font_size = 20
+
+[node name="HairStyleGrid" type="GridContainer" parent="ScrollContainer/VBoxContainer/HairSection"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 4
+
+[node name="HairColorLabel" type="Label" parent="ScrollContainer/VBoxContainer/HairSection"]
+layout_mode = 2
+text = "헤어 색상"
+theme_override_font_sizes/font_size = 20
+
+[node name="HairColorGrid" type="GridContainer" parent="ScrollContainer/VBoxContainer/HairSection"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 5
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SkinSection" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SkinToneLabel" type="Label" parent="ScrollContainer/VBoxContainer/SkinSection"]
+layout_mode = 2
+text = "피부색"
+theme_override_font_sizes/font_size = 20
+
+[node name="SkinToneGrid" type="GridContainer" parent="ScrollContainer/VBoxContainer/SkinSection"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 5
+
+[node name="HSeparator3" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="UniformSection" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TorsoColorLabel" type="Label" parent="ScrollContainer/VBoxContainer/UniformSection"]
+layout_mode = 2
+text = "유니폼 몸통 색상"
+theme_override_font_sizes/font_size = 20
+
+[node name="TorsoColorGrid" type="GridContainer" parent="ScrollContainer/VBoxContainer/UniformSection"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 6
+
+[node name="SleeveColorLabel" type="Label" parent="ScrollContainer/VBoxContainer/UniformSection"]
+layout_mode = 2
+text = "유니폼 소매 색상"
+theme_override_font_sizes/font_size = 20
+
+[node name="SleeveColorGrid" type="GridContainer" parent="ScrollContainer/VBoxContainer/UniformSection"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 6
+
+[node name="HSeparator4" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RandomSection" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RandomButton" type="Button" parent="ScrollContainer/VBoxContainer/RandomSection"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 50)
+text = "랜덤 외형"

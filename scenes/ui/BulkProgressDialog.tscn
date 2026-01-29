@@ -1,0 +1,151 @@
+[gd_scene load_steps=2 format=3 uid="uid://bulk_progress_dialog"]
+
+[ext_resource type="Script" path="res://scripts/ui/BulkProgressDialog.gd" id="1_script"]
+
+[node name="BulkProgressDialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="BackgroundDim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(420, 350)
+layout_mode = 2
+
+[node name="PanelBG" type="ColorRect" parent="CenterContainer/Panel"]
+layout_mode = 2
+color = Color(0.08, 0.1, 0.14, 1)
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="MarginTop" type="Control" parent="CenterContainer/Panel/VBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "4주 고속 진행"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+
+[node name="CurrentWeekLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+text = "현재: 1학년 4월 2주"
+horizontal_alignment = 1
+
+[node name="TargetWeekLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 16
+text = "목표: 1학년 5월 2주"
+horizontal_alignment = 1
+
+[node name="WarningLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.3, 1)
+theme_override_font_sizes/font_size = 12
+text = "중요 이벤트 발생 시 자동 중단됩니다"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CenterContainer/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 25)
+value = 0.0
+show_percentage = false
+
+[node name="ProgressLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = ""
+horizontal_alignment = 1
+
+[node name="ResultsContainer" type="VBoxContainer" parent="CenterContainer/Panel/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ResultsTitle" type="Label" parent="CenterContainer/Panel/VBox/ResultsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 14
+text = "진행 결과"
+horizontal_alignment = 1
+
+[node name="StatChangesLabel" type="Label" parent="CenterContainer/Panel/VBox/ResultsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 14
+text = ""
+horizontal_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="CenterContainer/Panel/VBox/ResultsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 12
+text = ""
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CancelButton" type="Button" parent="CenterContainer/Panel/VBox/ButtonsHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 45)
+theme_override_font_sizes/font_size = 16
+text = "취소"
+
+[node name="StartButton" type="Button" parent="CenterContainer/Panel/VBox/ButtonsHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 45)
+theme_override_font_sizes/font_size = 16
+text = "진행"
+
+[node name="MarginBottom" type="Control" parent="CenterContainer/Panel/VBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2

@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_master_tactician_ssr",
+  "character_name": "전술 마스터",
+  "rarity": "SSR",
+  "character_type": "trait",
+  "position": "ALL",
+  "technical_bonus": 0.15,
+  "physical_bonus": 0.0,
+  "mental_bonus": 0.20,
+  "events": [],
+  "description": "멘토 루트 분기점 2 - A 선택 보상. 감독의 모든 전술을 완벽히 습득한 전술 마스터.",
+  "acquisition_condition": "mentor_branch2_A",
+  "special_effect": "전술 효과 +30%, Vision +5, 포지션 변경 페널티 무시"
+}

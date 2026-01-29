@@ -1,0 +1,28 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: event
+---
+{
+  "etype": "set_piece",
+  "t": 895.0,
+  "minute": 15,
+  "team": "HOME",
+  "player_id": "H8",
+  "pos": {
+    "x": 25.0,
+    "y": 40.0
+  },
+  "kind": "free_kick",
+  "ball": {
+    "from": {
+      "x": 25.0,
+      "y": 40.0
+    },
+    "to": {
+      "x": 35.0,
+      "y": 30.0
+    },
+    "speed_mps": 18.0,
+    "curve": "outside"
+  }
+}

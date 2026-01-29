@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_dual_ace_sr_tactical",
+  "character_name": "듀얼 에이스",
+  "rarity": "SR",
+  "character_type": "tactical",
+  "position": "FW",
+  "technical_bonus": 0.10,
+  "physical_bonus": 0.05,
+  "mental_bonus": 0.05,
+  "events": [],
+  "description": "라이벌 루트 분기점 2 - B 선택 보상. 강태양과 함께 주전이 되는 길을 선택한 자의 전술 카드.",
+  "acquisition_condition": "rival_branch2_B",
+  "special_effect": "강태양 카드와 동시 등장 시 추가 보너스 +20%"
+}

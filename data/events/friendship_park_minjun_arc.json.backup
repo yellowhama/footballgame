@@ -1,0 +1,343 @@
+{
+  "route_id": "friendship",
+  "character_id": "park_minjun",
+  "arc_title": "박민준 Fall-Rise 아크",
+  "events": [
+    {
+      "event_id": "friendship_week45_injury_sign",
+      "week": 45,
+      "title": "부상 징조",
+      "type": "fall_start",
+      "description": "박민준이 무릎 통증을 호소하기 시작한다.",
+      "dialogue": [
+        {
+          "speaker": "park_minjun",
+          "text": "요즘 무릎이 좀 이상해..."
+        },
+        {
+          "speaker": "player",
+          "text": "병원 가봐야 하는 거 아냐?"
+        },
+        {
+          "speaker": "park_minjun",
+          "text": "아니야, 괜찮아. 그냥 피로인 것 같아."
+        },
+        {
+          "speaker": "narrator",
+          "text": "박민준은 무시하고 계속 훈련한다."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": ["friendship_injury_warning"],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "friendship_week50_injury",
+      "week": 50,
+      "title": "부상 발생",
+      "type": "fall_middle",
+      "condition": {
+        "flags": ["friendship_injury_warning"]
+      },
+      "description": "경기 중 박민준이 무릎 부상을 당한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "경기 중 박민준이 방향을 틀다가 무릎을 잡고 쓰러진다."
+        },
+        {
+          "speaker": "park_minjun",
+          "text": "아악! 무릎...!"
+        },
+        {
+          "speaker": "medical_staff",
+          "text": "움직이지 마세요! 들것 준비!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "응급 검사 결과: 반월상 연골 손상 의심"
+        },
+        {
+          "speaker": "medical_staff",
+          "text": "최소 4주 결장입니다. 정밀 검사가 필요합니다."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": ["friendship_injured", "friendship_4week_absence"],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "friendship_week55_retirement_crisis",
+      "week": 55,
+      "title": "LOW POINT - 은퇴 위기",
+      "type": "low_point",
+      "condition": {
+        "flags": ["friendship_injured"]
+      },
+      "description": "정밀 검사 결과 수술이 필요하고, 박민준 아버지가 은퇴를 종용한다.",
+      "dialogue": [
+        {
+          "speaker": "doctor",
+          "text": "수술이 필요합니다. 회복에 최소 6개월."
+        },
+        {
+          "speaker": "park_father",
+          "text": "민준아... 그만둬라. 아버지처럼 되고 싶어?"
+        },
+        {
+          "speaker": "narrator",
+          "text": "(박민준 아버지도 과거 부상으로 은퇴한 축구선수였다)"
+        },
+        {
+          "speaker": "park_minjun",
+          "text": "(침묵) ...생각 좀 할게요, 아버지."
+        },
+        {
+          "speaker": "player",
+          "text": "민준아..."
+        },
+        {
+          "speaker": "park_minjun",
+          "text": "(억지로 웃으며) ...괜찮아. 시간 좀 주면."
+        }
+      ],
+      "effects": {
+        "affection_change": -25,
+        "flags": ["friendship_retirement_crisis", "friendship_low_point_week55"],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "friendship_week60_decision",
+      "week": 60,
+      "title": "결단의 시간",
+      "type": "critical_choice",
+      "condition": {
+        "flags": ["friendship_retirement_crisis"]
+      },
+      "description": "박민준이 축구를 그만두겠다고 선언한다. 주인공의 선택이 그의 운명을 결정한다.",
+      "dialogue": [
+        {
+          "speaker": "park_minjun",
+          "text": "...미안해. 나 축구 그만둘 것 같아."
+        },
+        {
+          "speaker": "player",
+          "text": "뭐?! 무슨 소리야!"
+        },
+        {
+          "speaker": "park_minjun",
+          "text": "아버지 말이 맞아. 부상 재발하면... 평생 못 걸을 수도 있대."
+        },
+        {
+          "speaker": "player",
+          "text": "하지만..."
+        },
+        {
+          "speaker": "park_minjun",
+          "text": "고마웠어. 지금까지..."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": [],
+        "stats": {}
+      },
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "절대 안 돼! 같이 프로 가기로 했잖아!",
+          "description": "강하게 설득한다. (미니게임 발생)",
+          "effects": {
+            "affection_change": 0,
+            "flags": ["friendship_persuade_path"],
+            "next_event": "friendship_week60_persuade_minigame"
+          }
+        },
+        {
+          "choice_id": "B",
+          "text": "네 선택을 존중할게. 하지만 기다릴게.",
+          "description": "자율 결정을 존중한다. (확률 이벤트)",
+          "effects": {
+            "affection_change": 0,
+            "flags": ["friendship_respect_path"],
+            "next_event": "friendship_week65_self_decision"
+          }
+        },
+        {
+          "choice_id": "C",
+          "text": "내가 도울게. 경제적으로든 뭐든.",
+          "description": "지원을 제안한다. (조건: CA 100+)",
+          "effects": {
+            "affection_change": 0,
+            "flags": ["friendship_support_path"],
+            "next_event": "friendship_week65_financial_support"
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "friendship_week60_persuade_minigame",
+      "week": 60,
+      "title": "설득 미니게임",
+      "type": "minigame",
+      "condition": {
+        "flags": ["friendship_persuade_path"]
+      },
+      "description": "박민준을 설득하는 대화 미니게임. 5개 선택지 연속 성공 필요.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "박민준을 설득하려면 올바른 말을 골라야 한다."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": [],
+        "stats": {}
+      },
+      "choices": [],
+      "minigame": {
+        "type": "dialogue_sequence",
+        "success_threshold": 5,
+        "questions": [
+          {
+            "text": "아버지 걱정하시는 거 이해해. 하지만...",
+            "correct_answer": "A",
+            "options": [
+              {"id": "A", "text": "너는 아버지가 아니야. 네 꿈을 살아."},
+              {"id": "B", "text": "부상 재발 안 할 수도 있잖아?"},
+              {"id": "C", "text": "축구 말고 다른 꿈은 없어?"}
+            ]
+          },
+          {
+            "text": "6개월이면 복귀할 수 있어. 그 정도는...",
+            "correct_answer": "B",
+            "options": [
+              {"id": "A", "text": "참고 기다려."},
+              {"id": "B", "text": "내가 같이 훈련해줄게."},
+              {"id": "C", "text": "짧은 시간이야."}
+            ]
+          },
+          {
+            "text": "넌 언제나 말했잖아. 프로 선수가...",
+            "correct_answer": "A",
+            "options": [
+              {"id": "A", "text": "되는 게 꿈이라고."},
+              {"id": "B", "text": "되고 싶다고."},
+              {"id": "C", "text": "돼야 한다고."}
+            ]
+          },
+          {
+            "text": "난 믿어. 네가...",
+            "correct_answer": "C",
+            "options": [
+              {"id": "A", "text": "할 수 있다고."},
+              {"id": "B", "text": "강하다고."},
+              {"id": "C", "text": "포기하지 않는 사람이라고."}
+            ]
+          },
+          {
+            "text": "우리 약속했잖아. 같이...",
+            "correct_answer": "B",
+            "options": [
+              {"id": "A", "text": "우승하자고."},
+              {"id": "B", "text": "프로 가자고."},
+              {"id": "C", "text": "꿈을 이루자고."}
+            ]
+          }
+        ],
+        "on_success": {
+          "affection_change": 40,
+          "flags": ["friendship_persuade_success", "friendship_recovered_max"],
+          "next_event": "friendship_week65_recovery_success"
+        },
+        "on_failure": {
+          "affection_change": -20,
+          "flags": ["friendship_persuade_failed", "friendship_1year_hiatus"],
+          "next_event": "friendship_week105_return"
+        }
+      }
+    },
+    {
+      "event_id": "friendship_week65_recovery_success",
+      "week": 65,
+      "title": "재기의 결단 (설득 성공)",
+      "type": "rise_start",
+      "condition": {
+        "flags": ["friendship_persuade_success"]
+      },
+      "description": "박민준이 주인공 덕분에 용기를 내어 수술을 결심한다.",
+      "dialogue": [
+        {
+          "speaker": "park_minjun",
+          "text": "...너 때문에 용기 냈어!"
+        },
+        {
+          "speaker": "player",
+          "text": "민준아...!"
+        },
+        {
+          "speaker": "park_minjun",
+          "text": "수술 받고 돌아올게. 기다려줘."
+        },
+        {
+          "speaker": "narrator",
+          "text": "수술 성공. Week 80 복귀 예정."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": ["friendship_surgery_success", "friendship_week80_return"],
+        "special_training_unlocked": "best_friend_power",
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "friendship_week100_full_recovery",
+      "week": 100,
+      "title": "완전 복귀",
+      "type": "resolution",
+      "condition": {
+        "flags": ["friendship_surgery_success"]
+      },
+      "description": "박민준이 완전히 복귀하여 첫 풀타임 경기를 뛴다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "박민준이 첫 풀타임 경기에 출전한다."
+        },
+        {
+          "speaker": "park_minjun",
+          "text": "이제야... 돌아온 것 같아."
+        },
+        {
+          "speaker": "player",
+          "text": "패스 갈게!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "주인공과 박민준의 어시스트 콤비 플레이!"
+        },
+        {
+          "speaker": "park_minjun",
+          "text": "(골 후) 고마워... 진짜로."
+        }
+      ],
+      "effects": {
+        "affection_change": 5,
+        "flags": ["friendship_full_recovery_achieved"],
+        "stats": {}
+      },
+      "choices": []
+    }
+  ]
+}

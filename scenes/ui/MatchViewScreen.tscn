@@ -1,0 +1,148 @@
+[gd_scene load_steps=2 format=3 uid="uid://byv8h3mxq2n7j"]
+
+[ext_resource type="Script" path="res://scripts/ui/MatchViewScreen.gd" id="1_match_view"]
+
+[node name="MatchViewScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_match_view")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ModeToggle" type="HBoxContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_constants/separation = 10
+
+[node name="FullButton" type="Button" parent="HUD/ModeToggle"]
+layout_mode = 2
+size_flags_horizontal = 0
+toggle_mode = true
+button_pressed = true
+text = "Full Match"
+
+[node name="HighlightButton" type="Button" parent="HUD/ModeToggle"]
+layout_mode = 2
+size_flags_horizontal = 0
+toggle_mode = true
+text = "Highlight"
+
+[node name="KeyMomentButton" type="Button" parent="HUD/ModeToggle"]
+layout_mode = 2
+size_flags_horizontal = 0
+toggle_mode = true
+text = "Key Moment"
+
+[node name="ClipNav" type="PanelContainer" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/ClipNav"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ClipNav/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="InfoLabel" type="Label" parent="HUD/ClipNav/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Clip 1/5: Shot (0.30)"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/ClipNav/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PrevButton" type="Button" parent="HUD/ClipNav/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "← Prev"
+
+[node name="NextButton" type="Button" parent="HUD/ClipNav/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Next →"
+
+[node name="Settings" type="VBoxContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -250.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 100.0
+grow_horizontal = 0
+
+[node name="AutopauseCheckbox" type="CheckBox" parent="HUD/Settings"]
+visible = false
+layout_mode = 2
+text = "Autopause on my turn"
+
+[node name="AutopauseNotification" type="PanelContainer" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -60.0
+offset_right = 150.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/AutopauseNotification"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/AutopauseNotification/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="HUD/AutopauseNotification/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "⚡ Your Turn!"
+horizontal_alignment = 1
+
+[node name="DescLabel" type="Label" parent="HUD/AutopauseNotification/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Make a decision..."
+horizontal_alignment = 1

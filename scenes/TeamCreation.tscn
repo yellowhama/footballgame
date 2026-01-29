@@ -1,0 +1,260 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj8k5r2xvhp4m"]
+
+[ext_resource type="Script" path="res://scripts/screens/TeamCreationController.gd" id="1_script"]
+
+[node name="TeamCreation" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.07, 0.09, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="MainContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 24
+
+[node name="Header" type="HBoxContainer" parent="ScrollContainer/MainContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="ScrollContainer/MainContainer/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "← 뒤로"
+
+[node name="TitleLabel" type="Label" parent="ScrollContainer/MainContainer/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "구단 창단 신청서"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="ScrollContainer/MainContainer/Header"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/MainContainer"]
+layout_mode = 2
+
+[node name="EmblemSection" type="VBoxContainer" parent="ScrollContainer/MainContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="EmblemTitle" type="Label" parent="ScrollContainer/MainContainer/EmblemSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "엠블럼 선택"
+horizontal_alignment = 1
+
+[node name="EmblemSelector" type="HBoxContainer" parent="ScrollContainer/MainContainer/EmblemSection"]
+layout_mode = 2
+alignment = 1
+
+[node name="EmblemPrevButton" type="Button" parent="ScrollContainer/MainContainer/EmblemSection/EmblemSelector"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = "◀"
+
+[node name="EmblemDisplay" type="TextureRect" parent="ScrollContainer/MainContainer/EmblemSection/EmblemSelector"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EmblemNextButton" type="Button" parent="ScrollContainer/MainContainer/EmblemSection/EmblemSelector"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = "▶"
+
+[node name="EmblemLabel" type="Label" parent="ScrollContainer/MainContainer/EmblemSection"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "1 / 43"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/MainContainer"]
+layout_mode = 2
+
+[node name="InfoSection" type="VBoxContainer" parent="ScrollContainer/MainContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TeamNameContainer" type="VBoxContainer" parent="ScrollContainer/MainContainer/InfoSection"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TeamNameLabel" type="Label" parent="ScrollContainer/MainContainer/InfoSection/TeamNameContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "팀 이름 (2~20자)"
+
+[node name="TeamNameInput" type="LineEdit" parent="ScrollContainer/MainContainer/InfoSection/TeamNameContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+placeholder_text = "Dream FC"
+max_length = 20
+
+[node name="ShortNameContainer" type="HBoxContainer" parent="ScrollContainer/MainContainer/InfoSection"]
+layout_mode = 2
+
+[node name="ShortNameVBox" type="VBoxContainer" parent="ScrollContainer/MainContainer/InfoSection/ShortNameContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="ShortNameLabel" type="Label" parent="ScrollContainer/MainContainer/InfoSection/ShortNameContainer/ShortNameVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "약어 (3자)"
+
+[node name="ShortNameInput" type="LineEdit" parent="ScrollContainer/MainContainer/InfoSection/ShortNameContainer/ShortNameVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+placeholder_text = "DRM"
+max_length = 3
+
+[node name="ShortNameHint" type="Label" parent="ScrollContainer/MainContainer/InfoSection/ShortNameContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+text = "← 스코어보드에 표시됨"
+
+[node name="NameErrorLabel" type="Label" parent="ScrollContainer/MainContainer/InfoSection"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+text = ""
+
+[node name="HSeparator3" type="HSeparator" parent="ScrollContainer/MainContainer"]
+layout_mode = 2
+
+[node name="UniformSection" type="VBoxContainer" parent="ScrollContainer/MainContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="UniformTitle" type="Label" parent="ScrollContainer/MainContainer/UniformSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "유니폼 설정"
+horizontal_alignment = 1
+
+[node name="UniformTabs" type="HBoxContainer" parent="ScrollContainer/MainContainer/UniformSection"]
+layout_mode = 2
+alignment = 1
+
+[node name="UniformTabHome" type="Button" parent="ScrollContainer/MainContainer/UniformSection/UniformTabs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+text = "홈"
+
+[node name="UniformTabAway" type="Button" parent="ScrollContainer/MainContainer/UniformSection/UniformTabs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+toggle_mode = true
+text = "원정"
+
+[node name="UniformContent" type="HBoxContainer" parent="ScrollContainer/MainContainer/UniformSection"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="PreviewContainer" type="VBoxContainer" parent="ScrollContainer/MainContainer/UniformSection/UniformContent"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="PreviewFrame" type="Panel" parent="ScrollContainer/MainContainer/UniformSection/UniformContent/PreviewContainer"]
+custom_minimum_size = Vector2(120, 150)
+layout_mode = 2
+
+[node name="CharacterPreview" type="Node2D" parent="ScrollContainer/MainContainer/UniformSection/UniformContent/PreviewContainer/PreviewFrame"]
+unique_name_in_owner = true
+position = Vector2(60, 75)
+
+[node name="ColorSelectors" type="VBoxContainer" parent="ScrollContainer/MainContainer/UniformSection/UniformContent"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PrimaryColorSection" type="VBoxContainer" parent="ScrollContainer/MainContainer/UniformSection/UniformContent/ColorSelectors"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PrimaryColorLabel" type="Label" parent="ScrollContainer/MainContainer/UniformSection/UniformContent/ColorSelectors/PrimaryColorSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "주색상 (상의)"
+
+[node name="PrimaryColorContainer" type="HBoxContainer" parent="ScrollContainer/MainContainer/UniformSection/UniformContent/ColorSelectors/PrimaryColorSection"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SecondaryColorSection" type="VBoxContainer" parent="ScrollContainer/MainContainer/UniformSection/UniformContent/ColorSelectors"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SecondaryColorLabel" type="Label" parent="ScrollContainer/MainContainer/UniformSection/UniformContent/ColorSelectors/SecondaryColorSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "보조색상 (바지/소매)"
+
+[node name="SecondaryColorContainer" type="HBoxContainer" parent="ScrollContainer/MainContainer/UniformSection/UniformContent/ColorSelectors/SecondaryColorSection"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HSeparator4" type="HSeparator" parent="ScrollContainer/MainContainer"]
+layout_mode = 2
+
+[node name="Footer" type="VBoxContainer" parent="ScrollContainer/MainContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="ValidationLabel" type="Label" parent="ScrollContainer/MainContainer/Footer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+text = ""
+horizontal_alignment = 1
+
+[node name="CreateButton" type="Button" parent="ScrollContainer/MainContainer/Footer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "창단하기 ▶"

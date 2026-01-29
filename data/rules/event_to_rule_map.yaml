@@ -1,0 +1,417 @@
+# EventType → RuleId Coverage Matrix
+# IFAB Laws of the Game 2025/26 기준
+# "왜 이 판정?" UI를 위한 이벤트-규칙 매핑
+
+# =============================================================================
+# 매핑 테이블 (EventType × Law)
+# =============================================================================
+event_rule_mapping:
+  # -------------------------------------------------------------------------
+  # Match Flow Events
+  # -------------------------------------------------------------------------
+  KickOff:
+    rule_id: "LAW_08_START_RESTART"
+    law_number: 8
+    ifab_ref: "Law 8 – The Start and Restart of Play"
+    why_key_points:
+      - "킥오프 조건: own half, 상대팀 9.15m 이상, 공 센터"
+      - "킥오프 후 공이 차여서 움직이면 인플레이"
+    explain_template: "kick_off"
+
+  HalfTime:
+    rule_id: "LAW_07_DURATION"
+    law_number: 7
+    ifab_ref: "Law 7 – The Duration of the Match"
+    why_key_points:
+      - "전반 종료"
+      - "추가 시간 포함"
+    explain_template: "half_time"
+
+  FullTime:
+    rule_id: "LAW_07_DURATION"
+    law_number: 7
+    ifab_ref: "Law 7 – The Duration of the Match"
+    why_key_points:
+      - "경기 종료"
+      - "추가 시간 포함"
+    explain_template: "full_time"
+
+  # -------------------------------------------------------------------------
+  # Offside (Law 11)
+  # -------------------------------------------------------------------------
+  Offside:
+    rule_id: "LAW_11_OFFSIDE"
+    law_number: 11
+    ifab_ref: "Law 11 – Offside"
+    why_key_points:
+      - "위치: 공과 최종 수비 라인보다 앞"
+      - "관여: 플레이 관여 / 상대방 방해 / 이익 획득"
+      - "예외 3개: 골킥, 스로인, 코너킥"
+      - "deliberate play vs deflection/save"
+    explain_template: "offside"
+    requires_details: true
+    detail_fields:
+      - "margin_m"
+      - "offside_line_m"
+      - "passer_track_id"
+      - "involvement_type"
+      - "restart_exception"
+      - "deflection_context"
+
+  # -------------------------------------------------------------------------
+  # Fouls and Misconduct (Law 12)
+  # -------------------------------------------------------------------------
+  Foul:
+    rule_id: "LAW_12_FOULS_MISCONDUCT"
+    law_number: 12
+    ifab_ref: "Law 12 – Fouls and Misconduct"
+    why_key_points:
+      - "파울 유형: 직접 FK / 간접 FK"
+      - "심각도: careless / reckless / excessive force"
+    explain_template: "foul"
+    requires_details: true
+    detail_fields:
+      - "severity"
+      - "foul_type"
+      - "in_penalty_area"
+
+  YellowCard:
+    rule_id: "LAW_12_FOULS_MISCONDUCT"
+    law_number: 12
+    ifab_ref: "Law 12 – Fouls and Misconduct"
+    why_key_points:
+      - "경고 사유: 반복 위반, 지연, 무모한 플레이, 비신사적 행위 등"
+    explain_template: "yellow_card"
+    requires_details: true
+    detail_fields:
+      - "card_reason"
+
+  RedCard:
+    rule_id: "LAW_12_FOULS_MISCONDUCT"
+    law_number: 12
+    ifab_ref: "Law 12 – Fouls and Misconduct"
+    why_key_points:
+      - "퇴장 사유: 과격 플레이, 폭력, DOGSO, 누적 경고 등"
+    explain_template: "red_card"
+    requires_details: true
+    detail_fields:
+      - "card_reason"
+      - "is_dogso"
+      - "is_second_yellow"
+
+  # -------------------------------------------------------------------------
+  # Restarts (Law 13-17)
+  # -------------------------------------------------------------------------
+  ThrowIn:
+    rule_id: "LAW_15_THROW_IN"
+    law_number: 15
+    ifab_ref: "Law 15 – The Throw-In"
+    secondary_rule: "LAW_09_BALL_IN_OUT"
+    why_key_points:
+      - "터치라인 완전 아웃"
+      - "마지막 터치: 상대팀"
+      - "오프사이드 예외 적용"
+    explain_template: "throw_in"
+    requires_details: true
+    detail_fields:
+      - "last_touch_team"
+      - "exit_position"
+
+  GoalKick:
+    rule_id: "LAW_16_GOAL_KICK"
+    law_number: 16
+    ifab_ref: "Law 16 – The Goal Kick"
+    secondary_rule: "LAW_09_BALL_IN_OUT"
+    why_key_points:
+      - "골라인 완전 아웃 (골 아님)"
+      - "마지막 터치: 공격팀"
+      - "오프사이드 예외 적용"
+    explain_template: "goal_kick"
+    requires_details: true
+    detail_fields:
+      - "last_touch_team"
+      - "exit_position"
+
+  Corner:
+    rule_id: "LAW_17_CORNER_KICK"
+    law_number: 17
+    ifab_ref: "Law 17 – The Corner Kick"
+    secondary_rule: "LAW_09_BALL_IN_OUT"
+    why_key_points:
+      - "골라인 완전 아웃 (골 아님)"
+      - "마지막 터치: 수비팀"
+      - "오프사이드 예외 적용"
+    explain_template: "corner_kick"
+    requires_details: true
+    detail_fields:
+      - "last_touch_team"
+      - "exit_position"
+
+  Freekick:
+    rule_id: "LAW_13_FREE_KICK"
+    law_number: 13
+    ifab_ref: "Law 13 – Free Kicks"
+    why_key_points:
+      - "직접 프리킥 vs 간접 프리킥"
+      - "위치: 파울 발생 지점"
+      - "거리: 9.15m"
+    explain_template: "free_kick"
+    requires_details: true
+    detail_fields:
+      - "is_direct"
+      - "foul_type"
+      - "position"
+
+  Penalty:
+    rule_id: "LAW_14_PENALTY"
+    law_number: 14
+    ifab_ref: "Law 14 – The Penalty Kick"
+    secondary_rule: "LAW_12_FOULS_MISCONDUCT"
+    why_key_points:
+      - "페널티 에어리어 내 직접 FK 파울"
+      - "페널티 마크에서 킥"
+    explain_template: "penalty"
+    requires_details: true
+    detail_fields:
+      - "foul_type"
+      - "fouled_player_track_id"
+
+  # -------------------------------------------------------------------------
+  # Goal Events (Law 10)
+  # -------------------------------------------------------------------------
+  Goal:
+    rule_id: "LAW_10_GOAL"
+    law_number: 10
+    ifab_ref: "Law 10 – Determining the Outcome of a Match"
+    why_key_points:
+      - "공 전체가 골라인 완전 통과"
+      - "골대 사이, 크로스바 아래"
+      - "직전 반칙 없음"
+    explain_template: "goal"
+    requires_details: false
+
+  OwnGoal:
+    rule_id: "LAW_10_GOAL"
+    law_number: 10
+    ifab_ref: "Law 10 – Determining the Outcome of a Match"
+    why_key_points:
+      - "자책골: 공이 자신의 골라인을 완전히 통과"
+    explain_template: "own_goal"
+    requires_details: false
+
+  # -------------------------------------------------------------------------
+  # Shot Events (Law 10 보조)
+  # -------------------------------------------------------------------------
+  Shot:
+    rule_id: "LAW_10_GOAL"
+    law_number: 10
+    ifab_ref: "Law 10 – Determining the Outcome of a Match"
+    why_key_points:
+      - "슈팅 시도"
+    explain_template: null
+    requires_details: false
+
+  ShotOnTarget:
+    rule_id: "LAW_10_GOAL"
+    law_number: 10
+    ifab_ref: "Law 10 – Determining the Outcome of a Match"
+    why_key_points:
+      - "유효 슈팅 (골대 안쪽으로)"
+    explain_template: null
+    requires_details: false
+
+  ShotOffTarget:
+    rule_id: "LAW_10_GOAL"
+    law_number: 10
+    ifab_ref: "Law 10 – Determining the Outcome of a Match"
+    why_key_points:
+      - "슈팅 빗나감"
+    explain_template: null
+    requires_details: false
+
+  ShotBlocked:
+    rule_id: "LAW_10_GOAL"
+    law_number: 10
+    ifab_ref: "Law 10 – Determining the Outcome of a Match"
+    why_key_points:
+      - "슈팅 블락됨"
+    explain_template: null
+    requires_details: false
+
+  Save:
+    rule_id: "LAW_10_GOAL"
+    law_number: 10
+    ifab_ref: "Law 10 – Determining the Outcome of a Match"
+    why_key_points:
+      - "골키퍼 세이브"
+    explain_template: null
+    requires_details: false
+
+  PostHit:
+    rule_id: "LAW_10_GOAL"
+    law_number: 10
+    ifab_ref: "Law 10 – Determining the Outcome of a Match"
+    why_key_points:
+      - "골포스트 맞음 - 골 아님"
+    explain_template: "post_hit"
+    requires_details: false
+
+  BarHit:
+    rule_id: "LAW_10_GOAL"
+    law_number: 10
+    ifab_ref: "Law 10 – Determining the Outcome of a Match"
+    why_key_points:
+      - "크로스바 맞음 - 골 아님"
+    explain_template: "bar_hit"
+    requires_details: false
+
+  # -------------------------------------------------------------------------
+  # Other Events (No specific rule mapping)
+  # -------------------------------------------------------------------------
+  Pass:
+    rule_id: null
+    why_key_points: []
+    explain_template: null
+    requires_details: false
+
+  Tackle:
+    rule_id: null
+    why_key_points: []
+    explain_template: null
+    requires_details: false
+
+  Dribble:
+    rule_id: null
+    why_key_points: []
+    explain_template: null
+    requires_details: false
+
+  KeyChance:
+    rule_id: null
+    why_key_points: []
+    explain_template: null
+    requires_details: false
+
+  Substitution:
+    rule_id: "LAW_03_PLAYERS"
+    law_number: 3
+    ifab_ref: "Law 3 – The Players"
+    why_key_points:
+      - "교체 규칙"
+    explain_template: null
+    requires_details: false
+
+  Injury:
+    rule_id: null
+    why_key_points: []
+    explain_template: null
+    requires_details: false
+
+  VarReview:
+    rule_id: null
+    why_key_points:
+      - "VAR 리뷰"
+    explain_template: "var_review"
+    requires_details: true
+    detail_fields:
+      - "reviewed_event_type"
+      - "outcome"
+
+# =============================================================================
+# "왜?" 버튼 표시 여부 결정
+# =============================================================================
+why_button_config:
+  # "왜?" 버튼을 표시할 이벤트 타입
+  show_why_button:
+    - Offside
+    - Foul
+    - YellowCard
+    - RedCard
+    - ThrowIn
+    - GoalKick
+    - Corner
+    - Freekick
+    - Penalty
+    - Goal
+    - OwnGoal
+    - PostHit
+    - BarHit
+    - VarReview
+
+  # "왜?" 버튼을 표시하지 않을 이벤트 타입
+  hide_why_button:
+    - KickOff
+    - HalfTime
+    - FullTime
+    - Shot
+    - ShotOnTarget
+    - ShotOffTarget
+    - ShotBlocked
+    - Save
+    - Pass
+    - Tackle
+    - Dribble
+    - KeyChance
+    - Substitution
+    - Injury
+
+# =============================================================================
+# 기계 검증용 체크리스트 (IFAB Compliance)
+# =============================================================================
+verification_checklist:
+  # Law 8 - Kick-off
+  LAW_08:
+    - id: "CHK-08-1"
+      description: "킥오프 시 모든 선수 own half"
+      check_type: "position"
+    - id: "CHK-08-2"
+      description: "킥오프 시 상대팀 센터서클(9.15m) 밖"
+      check_type: "position"
+    - id: "CHK-08-3"
+      description: "킥오프 공 센터스팟 위치"
+      check_type: "ball_position"
+
+  # Law 9 - Ball in/out
+  LAW_09:
+    - id: "CHK-09-1"
+      description: "아웃 판정은 공 전체가 라인을 넘었을 때만"
+      check_type: "ball_position"
+    - id: "CHK-09-2"
+      description: "라인에 걸쳐 있으면 인플레이"
+      check_type: "ball_position"
+
+  # Law 10 - Goal
+  LAW_10:
+    - id: "CHK-10-1"
+      description: "골 판정은 공 전체가 골라인을 넘었을 때만"
+      check_type: "ball_position"
+    - id: "CHK-10-2"
+      description: "오프사이드/파울 이벤트 후 골 불가"
+      check_type: "event_sequence"
+
+  # Law 11 - Offside
+  LAW_11:
+    - id: "EXC-11-1"
+      description: "throw-in/goal kick/corner에서 offside 이벤트 0"
+      check_type: "offside_exception"
+    - id: "EXC-11-2"
+      description: "GK throw는 last contact 기준"
+      check_type: "reference_point"
+    - id: "EXC-11-3"
+      description: "deliberate play는 offside reset, deflection/save는 reset 아님"
+      check_type: "deflection_context"
+
+  # Law 13-17 - Restarts
+  LAW_13_17:
+    - id: "CHK-13-1"
+      description: "touchline out → ThrowIn (마지막 터치 상대팀)"
+      check_type: "restart_type"
+    - id: "CHK-16-1"
+      description: "goal line out (공격팀 터치) → GoalKick"
+      check_type: "restart_type"
+    - id: "CHK-17-1"
+      description: "goal line out (수비팀 터치) → Corner"
+      check_type: "restart_type"
+    - id: "CHK-14-1"
+      description: "penalty area 내 direct FK 파울 → Penalty"
+      check_type: "restart_type"

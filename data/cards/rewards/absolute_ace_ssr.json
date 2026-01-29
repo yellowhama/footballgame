@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_absolute_ace_ssr",
+  "character_name": "절대 에이스",
+  "rarity": "SSR",
+  "character_type": "special",
+  "position": "FW",
+  "technical_bonus": 0.20,
+  "physical_bonus": 0.10,
+  "mental_bonus": 0.15,
+  "events": [],
+  "description": "라이벌 루트 분기점 3 - A 선택 보상. 강태양을 넘어선 유일무이한 에이스의 증표.",
+  "acquisition_condition": "rival_branch3_A",
+  "special_effect": "All Stats +20%, CA 상한 +15"
+}

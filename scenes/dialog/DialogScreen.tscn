@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/dialog/DialogScreen.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/dialog/services/dialog_runtime.gd" id="2"]
+
+[node name="DialogScreen" type="Control"]
+script = ExtResource("1")
+
+[node name="Services" type="Node" parent="."]
+
+[node name="DialogRuntime" type="Node" parent="Services"]
+script = ExtResource("2")

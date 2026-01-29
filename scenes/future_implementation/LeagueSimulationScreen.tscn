@@ -1,0 +1,302 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqxv8k2j4x8y1"]
+
+[ext_resource type="Script" path="res://scripts/screens/LeagueSimulationScreen.gd" id="1_0x8y1"]
+
+[node name="LeagueSimulationScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_0x8y1")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="Header" type="Panel" parent="MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeaderContainer" type="HBoxContainer" parent="MainContainer/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = -10.0
+
+[node name="BackButton" type="Button" parent="MainContainer/Header/HeaderContainer"]
+layout_mode = 2
+text = "이전"
+flat = true
+
+[node name="Spacer" type="Control" parent="MainContainer/Header/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="MainContainer/Header/HeaderContainer"]
+layout_mode = 2
+text = "🏆 리그 시뮬레이션"
+theme_override_font_sizes/font_size = 24
+
+[node name="Spacer2" type="Control" parent="MainContainer/Header/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SeasonInfo" type="Label" parent="MainContainer/Header/HeaderContainer"]
+layout_mode = 2
+text = "시즌 1 - 1주차"
+
+[node name="TabContainer" type="TabContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeagueTable" type="VBoxContainer" parent="MainContainer/TabContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TableHeader" type="Panel" parent="MainContainer/TabContainer/LeagueTable"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeaderRow" type="HBoxContainer" parent="MainContainer/TabContainer/LeagueTable/TableHeader"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = -10.0
+offset_bottom = -5.0
+
+[node name="PosLabel" type="Label" parent="MainContainer/TabContainer/LeagueTable/TableHeader/HeaderRow"]
+layout_mode = 2
+text = "#"
+horizontal_alignment = 1
+
+[node name="TeamLabel" type="Label" parent="MainContainer/TabContainer/LeagueTable/TableHeader/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "팀명"
+
+[node name="PtsLabel" type="Label" parent="MainContainer/TabContainer/LeagueTable/TableHeader/HeaderRow"]
+layout_mode = 2
+text = "Pts"
+horizontal_alignment = 1
+
+[node name="WLabel" type="Label" parent="MainContainer/TabContainer/LeagueTable/TableHeader/HeaderRow"]
+layout_mode = 2
+text = "W"
+horizontal_alignment = 1
+
+[node name="DLabel" type="Label" parent="MainContainer/TabContainer/LeagueTable/TableHeader/HeaderRow"]
+layout_mode = 2
+text = "D"
+horizontal_alignment = 1
+
+[node name="LLabel" type="Label" parent="MainContainer/TabContainer/LeagueTable/TableHeader/HeaderRow"]
+layout_mode = 2
+text = "L"
+horizontal_alignment = 1
+
+[node name="GFLabel" type="Label" parent="MainContainer/TabContainer/LeagueTable/TableHeader/HeaderRow"]
+layout_mode = 2
+text = "GF"
+horizontal_alignment = 1
+
+[node name="GALabel" type="Label" parent="MainContainer/TabContainer/LeagueTable/TableHeader/HeaderRow"]
+layout_mode = 2
+text = "GA"
+horizontal_alignment = 1
+
+[node name="GDLabel" type="Label" parent="MainContainer/TabContainer/LeagueTable/TableHeader/HeaderRow"]
+layout_mode = 2
+text = "GD"
+horizontal_alignment = 1
+
+[node name="TableScroll" type="ScrollContainer" parent="MainContainer/TabContainer/LeagueTable"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TableContent" type="VBoxContainer" parent="MainContainer/TabContainer/LeagueTable/TableScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Fixtures" type="VBoxContainer" parent="MainContainer/TabContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FixturesHeader" type="Panel" parent="MainContainer/TabContainer/Fixtures"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FixturesTitle" type="Label" parent="MainContainer/TabContainer/Fixtures/FixturesHeader"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 30.0
+text = "📅 이번 주 경기 일정"
+horizontal_alignment = 1
+
+[node name="FixturesScroll" type="ScrollContainer" parent="MainContainer/TabContainer/Fixtures"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FixturesContent" type="VBoxContainer" parent="MainContainer/TabContainer/Fixtures/FixturesScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Teams" type="VBoxContainer" parent="MainContainer/TabContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TeamsHeader" type="Panel" parent="MainContainer/TabContainer/Teams"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TeamsTitle" type="Label" parent="MainContainer/TabContainer/Teams/TeamsHeader"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 30.0
+text = "👥 팀 정보 (16팀)"
+horizontal_alignment = 1
+
+[node name="TeamsScroll" type="ScrollContainer" parent="MainContainer/TabContainer/Teams"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TeamsContent" type="VBoxContainer" parent="MainContainer/TabContainer/Teams/TeamsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Simulation" type="VBoxContainer" parent="MainContainer/TabContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SimulationHeader" type="Panel" parent="MainContainer/TabContainer/Simulation"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SimulationTitle" type="Label" parent="MainContainer/TabContainer/Simulation/SimulationHeader"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 30.0
+text = "⚽ 시뮬레이션 제어"
+horizontal_alignment = 1
+
+[node name="SimulationControls" type="VBoxContainer" parent="MainContainer/TabContainer/Simulation"]
+layout_mode = 2
+size_flags_vertical = 3
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="ControlButtons" type="HBoxContainer" parent="MainContainer/TabContainer/Simulation/SimulationControls"]
+layout_mode = 2
+
+[node name="SimulateWeekButton" type="Button" parent="MainContainer/TabContainer/Simulation/SimulationControls/ControlButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "📅 1주 진행"
+
+[node name="SimulateMonthButton" type="Button" parent="MainContainer/TabContainer/Simulation/SimulationControls/ControlButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "📆 1개월 진행"
+
+[node name="SimulateSeasonButton" type="Button" parent="MainContainer/TabContainer/Simulation/SimulationControls/ControlButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🏆 시즌 완료"
+
+[node name="StatusPanel" type="Panel" parent="MainContainer/TabContainer/Simulation/SimulationControls"]
+layout_mode = 2
+offset_top = 20.0
+
+[node name="StatusContainer" type="VBoxContainer" parent="MainContainer/TabContainer/Simulation/SimulationControls/StatusPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="StatusTitle" type="Label" parent="MainContainer/TabContainer/Simulation/SimulationControls/StatusPanel/StatusContainer"]
+layout_mode = 2
+text = "📊 시뮬레이션 상태"
+theme_override_font_sizes/font_size = 16
+
+[node name="StatusInfo" type="VBoxContainer" parent="MainContainer/TabContainer/Simulation/SimulationControls/StatusPanel/StatusContainer"]
+layout_mode = 2
+offset_top = 10.0
+
+[node name="WeekInfo" type="Label" parent="MainContainer/TabContainer/Simulation/SimulationControls/StatusPanel/StatusContainer/StatusInfo"]
+layout_mode = 2
+text = "현재 주차: 1주차"
+
+[node name="SeasonInfo" type="Label" parent="MainContainer/TabContainer/Simulation/SimulationControls/StatusPanel/StatusContainer/StatusInfo"]
+layout_mode = 2
+text = "시즌: 1시즌"
+
+[node name="TeamsInfo" type="Label" parent="MainContainer/TabContainer/Simulation/SimulationControls/StatusPanel/StatusContainer/StatusInfo"]
+layout_mode = 2
+text = "참가 팀: 16팀"
+
+[node name="PlayersInfo" type="Label" parent="MainContainer/TabContainer/Simulation/SimulationControls/StatusPanel/StatusContainer/StatusInfo"]
+layout_mode = 2
+text = "총 선수: 288명"
+
+[node name="Footer" type="Panel" parent="MainContainer"]
+layout_mode = 2
+
+[node name="FooterContainer" type="HBoxContainer" parent="MainContainer/Footer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = -10.0
+
+[node name="InfoLabel" type="Label" parent="MainContainer/Footer/FooterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "💡 open-football 엔진으로 16팀 288명 선수의 리그를 시뮬레이션합니다"
+
+[node name="RefreshButton" type="Button" parent="MainContainer/Footer/FooterContainer"]
+layout_mode = 2
+text = "🔄 새로고침"
+

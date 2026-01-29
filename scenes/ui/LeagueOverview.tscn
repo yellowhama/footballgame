@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://d9k8p4jwl6m9"]
+
+[ext_resource type="Script" path="res://scripts/ui/LeagueOverview.gd" id="1"]
+
+[node name="LeagueOverview" type="Control"]
+script = ExtResource("1")
+layout_mode = 3
+
+[node name="ControlPanel" type="HBoxContainer" parent="."]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1920.0
+offset_bottom = 60.0
+
+[node name="TitleLabel" type="Label" parent="ControlPanel"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1500.0
+offset_bottom = 60.0
+size_flags_horizontal = 3
+text = "리그 개요"
+theme_override_font_sizes/font_size = 24
+
+[node name="RefreshButton" type="Button" parent="ControlPanel"]
+offset_left = 1510.0
+offset_top = 0.0
+offset_right = 1920.0
+offset_bottom = 60.0
+custom_minimum_size = Vector2(410, 50)
+text = "새로고침"
+tooltip_text = "경기 정보 갱신"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = 20.0
+offset_top = 70.0
+offset_right = 1900.0
+offset_bottom = 1080.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MatchesContainer" type="VBoxContainer" parent="ScrollContainer"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1880.0
+offset_bottom = 1000.0
+theme_override_constants/separation = 10

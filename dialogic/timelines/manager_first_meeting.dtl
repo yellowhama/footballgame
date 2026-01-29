@@ -1,0 +1,18 @@
+박감독: 안녕하세요! 저는 이 팀의 감독, 박감독입니다.
+박감독 (normal): 앞으로 3년간 함께 전국대회를 목표로 하겠습니다!
+박감독: 당신의 꿈은 무엇인가요?
+- 전국대회 우승하기!
+	set {manager_relationship} += 10
+	set {determination} += 5
+	박감독 (smile): 좋은 목표입니다! 함께 열심히 해봅시다.
+- 프로선수가 되고 싶어요.
+	set {manager_relationship} += 5
+	set {ambition} += 10
+	박감독 (serious): 프로는 쉽지 않은 길이지만, 도와드리겠습니다.
+- 잘 모르겠어요...
+	set {manager_relationship} += 3
+	set {anxiety} += 2
+	박감독 (understanding): 괜찮습니다. 천천히 찾아가면 됩니다.
+
+박감독: 그럼 첫 번째 훈련을 시작해볼까요?
+=> EventBus.emit("story_completed", {"timeline": "manager_first_meeting", "trigger_quest": "complete_first_training"})

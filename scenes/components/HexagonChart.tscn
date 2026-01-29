@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://hexagon_chart_component"]
+
+[ext_resource type="Script" path="res://scenes/components/HexagonChart.gd" id="1_hexagon"]
+
+[node name="HexagonChart" type="Control"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 300.0
+script = ExtResource("1_hexagon")
+attribute_names = PackedStringArray("기술", "피지컬", "멘탈", "수비", "공격", "스피드")
+attribute_values = PackedFloat32Array(70, 65, 80, 55, 75, 85)
+radius = 100.0

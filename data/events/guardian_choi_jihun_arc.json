@@ -1,0 +1,512 @@
+{
+  "route_id": "guardian",
+  "character_id": "choi_jihun",
+  "arc_title": "최지훈 Fall-Rise 아크",
+  "events": [
+    {
+      "event_id": "guardian_week8_midnight_training",
+      "week": 8,
+      "title": "심야 훈련 목격",
+      "type": "setup",
+      "description": "밤 늦게 훈련장에서 혼자 훈련하는 최지훈을 목격한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "밤 11시, 잠이 오지 않아 산책을 나선 주인공."
+        },
+        {
+          "speaker": "narrator",
+          "text": "훈련장에서 불빛이 보인다."
+        },
+        {
+          "speaker": "player",
+          "text": "이 시간에 누가 훈련을...?"
+        },
+        {
+          "speaker": "narrator",
+          "text": "최지훈이 땀범벅이 되어 다이빙 훈련을 반복하고 있다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "자세히 보니... 눈가에 눈물이 맺혀 있다."
+        },
+        {
+          "speaker": "player",
+          "text": "지훈아..."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": [
+          "guardian_midnight_training_witnessed"
+        ],
+        "stats": {}
+      },
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "같이 훈련하자",
+          "description": "말없이 함께 훈련한다. 무언의 교감.",
+          "effects": {
+            "affection_change": 20,
+            "flags": [
+              "guardian_silent_bond"
+            ],
+            "stats": {}
+          }
+        },
+        {
+          "choice_id": "B",
+          "text": "무슨 일 있어?",
+          "description": "직접적으로 묻는다. (조건: Empathy 10+)",
+          "effects": {
+            "affection_change": 30,
+            "flags": [
+              "guardian_trauma_confessed_early"
+            ],
+            "stats": {}
+          }
+        },
+        {
+          "choice_id": "C",
+          "text": "혼자 있고 싶구나",
+          "description": "조용히 돌아간다. 배려.",
+          "effects": {
+            "affection_change": 5,
+            "flags": [
+              "guardian_respectful_distance"
+            ],
+            "stats": {}
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "guardian_week18_trauma_confession",
+      "week": 18,
+      "title": "트라우마 고백",
+      "type": "backstory",
+      "condition": {
+        "flags": [
+          "guardian_trauma_confessed_early"
+        ]
+      },
+      "description": "최지훈이 1년 전 결승전 실수 트라우마를 고백한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "Week 30의 대화 이후, 최지훈이 조금씩 마음을 열기 시작했다."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "...저기."
+        },
+        {
+          "speaker": "player",
+          "text": "응? 무슨 일이야?"
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "내가... 왜 저렇게 훈련하는지 알고 싶어?"
+        },
+        {
+          "speaker": "player",
+          "text": "말해줄 수 있으면 듣고 싶어."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "1년 전... 중학교 3학년 때 결승전이 있었어."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "2-2 동점, 추가시간. 상대 FW가 1:1로 들어왔어."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "난... 얼어붙었어. 몸이 안 움직였어."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "그대로 골을 허용했지. 우리 팀은 졌고."
+        },
+        {
+          "speaker": "player",
+          "text": "지훈아..."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "그 후로... 공이 무서워. 1:1 상황만 오면 몸이 굳어."
+        },
+        {
+          "speaker": "player",
+          "text": "(속으로) 그래서 매일 밤 훈련하는 거구나..."
+        }
+      ],
+      "effects": {
+        "affection_change": 30,
+        "flags": [
+          "guardian_trauma_known"
+        ],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "guardian_week50_trauma_recurrence",
+      "week": 50,
+      "title": "트라우마 재발",
+      "type": "fall_start",
+      "condition": {
+        "flags": [
+          "guardian_midnight_training_witnessed"
+        ]
+      },
+      "description": "중요 경기에서 트라우마가 재발하여 실점한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "유스 리그 4강전. 2-1로 이기고 있다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "추가시간, 상대 FW가 돌파해 최지훈과 1:1!"
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "(속으로) 안 돼... 또... 또 그때가..."
+        },
+        {
+          "speaker": "narrator",
+          "text": "최지훈이 순간 얼어붙는다!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "골!!! 2-2 동점!"
+        },
+        {
+          "speaker": "referee",
+          "text": "경기 종료!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "승부차기 끝에 팀이 패배했다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "경기 후, 최지훈이 탈의실에서 혼자 웅크리고 있다."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "........."
+        }
+      ],
+      "effects": {
+        "affection_change": -10,
+        "flags": [
+          "guardian_trauma_recurred",
+          "guardian_guilt"
+        ],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "guardian_week60_benched",
+      "week": 60,
+      "title": "벤치 강등",
+      "type": "fall_middle",
+      "condition": {
+        "flags": [
+          "guardian_trauma_recurred"
+        ]
+      },
+      "description": "코치가 최지훈을 2군 GK로 강등시킨다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "다음 주 경기 명단 발표."
+        },
+        {
+          "speaker": "coach_kim",
+          "text": "주전 GK는... 김현우로 교체한다."
+        },
+        {
+          "speaker": "teammate_1",
+          "text": "네? 지훈이가 아니고요?"
+        },
+        {
+          "speaker": "coach_kim",
+          "text": "지훈아, 당분간 2군에서 컨디션 회복해라."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "...알겠습니다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "최지훈의 표정이 더욱 어두워졌다."
+        },
+        {
+          "speaker": "player",
+          "text": "(속으로) 지훈이가 많이 힘들어하는 것 같아..."
+        }
+      ],
+      "effects": {
+        "affection_change": -10,
+        "flags": [
+          "guardian_benched",
+          "guardian_confidence_lost"
+        ],
+        "stats": {}
+      },
+      "choices": []
+    },
+    {
+      "event_id": "guardian_week68_position_change_consideration",
+      "week": 68,
+      "title": "LOW POINT - 포기 선언",
+      "type": "low_point",
+      "condition": {
+        "flags": [
+          "guardian_benched"
+        ]
+      },
+      "description": "최지훈이 GK를 그만두고 포지션 변경을 고민한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "훈련 후, 최지훈이 주인공을 불렀다."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "...너한테만 먼저 말할게."
+        },
+        {
+          "speaker": "player",
+          "text": "뭔데? 무슨 일이야?"
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "...GK 그만둘까 봐."
+        },
+        {
+          "speaker": "player",
+          "text": "뭐?! 지훈아, 갑자기 왜?"
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "난 이제... GK 못 하겠어. 공이 무서워."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "차라리 DF로 전향하는 게 나을 것 같아."
+        },
+        {
+          "speaker": "player",
+          "text": "지훈아..."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "어떻게 생각해? 솔직히 말해줘."
+        }
+      ],
+      "effects": {
+        "affection_change": 0,
+        "flags": [
+          "guardian_low_point_week70",
+          "guardian_position_crisis"
+        ],
+        "stats": {}
+      },
+      "choices": [
+        {
+          "choice_id": "A",
+          "text": "GK 말고 다른 건 생각 마",
+          "description": "강하게 말린다. 하지만 근본 해결은 안 됨.",
+          "effects": {
+            "affection_change": 10,
+            "flags": [
+              "guardian_forced_persistence"
+            ],
+            "next_event": "guardian_week75_resolution"
+          }
+        },
+        {
+          "choice_id": "B",
+          "text": "내가 막아줄게. 너는 GK해",
+          "description": "DF로서 최지훈을 수호하겠다고 약속한다.",
+          "effects": {
+            "affection_change": 40,
+            "flags": [
+              "guardian_promise_made",
+              "guardian_duo_bond"
+            ],
+            "next_event": "guardian_week75_resolution"
+          }
+        },
+        {
+          "choice_id": "C",
+          "text": "네가 선택해. 난 응원할게",
+          "description": "자율 존중. 최지훈이 스스로 결정하도록.",
+          "effects": {
+            "affection_change": 15,
+            "flags": [
+              "guardian_self_decision"
+            ],
+            "next_event": "guardian_week75_resolution"
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "guardian_week75_resolution",
+      "week": 75,
+      "title": "극복의 시작",
+      "type": "rise_start",
+      "condition": {
+        "flags": [
+          "guardian_position_crisis"
+        ]
+      },
+      "description": "최지훈이 결단을 내리고 극복을 시작한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "일주일 후, 최지훈이 결정을 내렸다."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "[주인공]... 결정했어."
+        },
+        {
+          "speaker": "player",
+          "text": "응, 말해봐."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "GK를 계속할게. ...네 말을 믿어보기로 했어."
+        },
+        {
+          "speaker": "player",
+          "text": "지훈아!"
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "대신... 같이 훈련해줘. 혼자서는 못 할 것 같아."
+        },
+        {
+          "speaker": "player",
+          "text": "당연하지! 같이 하자!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "주인공과 최지훈의 듀얼 훈련이 시작되었다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "매일 새벽 5시, '수호자 콤비' 특별 훈련."
+        }
+      ],
+      "effects": {
+        "affection_change": 20,
+        "flags": [
+          "guardian_dual_training_start",
+          "guardian_recovery_path"
+        ],
+        "stats": {
+          "physical.Positioning": 5
+        },
+        "unlocks": [
+          "dawn_training_system"
+        ]
+      },
+      "choices": []
+    },
+    {
+      "event_id": "guardian_week150_trauma_overcome",
+      "week": 150,
+      "title": "트라우마 극복",
+      "type": "resolution",
+      "condition": {
+        "flags": [
+          "guardian_recovery_path"
+        ]
+      },
+      "description": "동일한 1:1 상황에서 최지훈이 슈퍼세이브를 성공한다.",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "유스 리그 결승전. 3-2로 이기고 있다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "추가시간, 상대 FW가 돌파! 최지훈과 1:1!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "관중석이 숨죽인다. Week 50과 똑같은 상황!"
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "(속으로) ...이번엔 다르다. 난 혼자가 아니야."
+        },
+        {
+          "speaker": "player",
+          "text": "(DF 위치에서) 지훈아! 넌 할 수 있어!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "상대 FW 슈팅!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "최지훈, 몸을 날린다!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "슈퍼세이브!!! 공을 쳐냈다!"
+        },
+        {
+          "speaker": "referee",
+          "text": "경기 종료!!!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "팀이 우승했다! 최지훈이 무릎을 꿇고 주먹을 쥔다."
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "...이겼어. 드디어... 나 자신을 이겼어."
+        },
+        {
+          "speaker": "narrator",
+          "text": "최지훈의 눈가에 눈물이 흐른다."
+        },
+        {
+          "speaker": "player",
+          "text": "(달려가서) 지훈아! 해냈어!"
+        },
+        {
+          "speaker": "choi_jihun",
+          "text": "(처음으로 환하게 웃으며) ...고마워. 네가 있어서 가능했어."
+        }
+      ],
+      "effects": {
+        "affection_change": 40,
+        "flags": [
+          "guardian_trauma_overcome",
+          "guardian_arc_resolved"
+        ],
+        "stats": {
+          "mental.Composure": 20,
+          "mental.Bravery": 15
+        },
+        "unlocks": [
+          "special_guardian_training",
+          "duo_defensive_tactics"
+        ]
+      },
+      "choices": []
+    }
+  ]
+}

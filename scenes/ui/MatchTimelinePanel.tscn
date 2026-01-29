@@ -1,0 +1,240 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Theme" path="res://themes/ui_theme.tres" id="1_theme"]
+[ext_resource type="Script" path="res://scripts/ui/timeline/MatchTimelinePanel.gd" id="2_script"]
+[ext_resource type="PackedScene" path="res://scenes/ui/timeline/MatchTimelineControls.tscn" id="3_controls"]
+[ext_resource type="PackedScene" path="res://scenes/ui/timeline/TimelineField2D.tscn" id="4_field"]
+
+[node name="MatchTimelinePanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_theme")
+script = ExtResource("2_script")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+color = Color(0, 0, 0, 0.65)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.1
+anchor_top = 0.05
+anchor_right = 0.9
+anchor_bottom = 0.95
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 0)
+
+[node name="Header" type="HBoxContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+
+[node name="TitleLabel" type="Label" parent="Panel/Margin/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "Match Timeline"
+
+[node name="ScoreLabel" type="Label" parent="Panel/Margin/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 1
+horizontal_alignment = 2
+text = "0 : 0"
+
+[node name="DevToggleButton" type="Button" parent="Panel/Margin/VBox/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "DEV"
+toggle_mode = true
+
+[node name="CloseButton" type="Button" parent="Panel/Margin/VBox/Header"]
+layout_mode = 2
+text = "X"
+
+[node name="FieldContainer" type="PanelContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 400)
+
+[node name="FieldMargin" type="MarginContainer" parent="Panel/Margin/VBox/FieldContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="FieldVBox" type="VBoxContainer" parent="Panel/Margin/VBox/FieldContainer/FieldMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FieldRow" type="HBoxContainer" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TimelineField" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/FieldRow" instance=ExtResource("4_field")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 320)
+
+[node name="MiniMapPanel" type="PanelContainer" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/FieldRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 320)
+
+[node name="MiniMapMargin" type="MarginContainer" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/FieldRow/MiniMapPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="MiniMapHolder" type="Control" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/FieldRow/MiniMapPanel/MiniMapMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 320)
+
+[node name="EventPanel" type="PanelContainer" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/FieldRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 1
+custom_minimum_size = Vector2(260, 0)
+
+[node name="EventMargin" type="MarginContainer" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/FieldRow/EventPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="EventVBox" type="VBoxContainer" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/FieldRow/EventPanel/EventMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EventHeader" type="HBoxContainer" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/FieldRow/EventPanel/EventMargin/EventVBox"]
+layout_mode = 2
+
+[node name="EventTitle" type="Label" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/FieldRow/EventPanel/EventMargin/EventVBox/EventHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "Events"
+
+[node name="WhyButton" type="Button" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/FieldRow/EventPanel/EventMargin/EventVBox/EventHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+visible = false
+text = "Why?"
+tooltip_text = "Show rule explanation for this event"
+
+[node name="EventSummary" type="Label" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/FieldRow/EventPanel/EventMargin/EventVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+visible = false
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 14
+text = ""
+
+[node name="EventList" type="ItemList" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/FieldRow/EventPanel/EventMargin/EventVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DevPanel" type="PanelContainer" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+visible = false
+
+[node name="DevMargin" type="MarginContainer" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/DevPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="DevVBox" type="VBoxContainer" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/DevPanel/DevMargin"]
+layout_mode = 2
+
+[node name="DevTitle" type="Label" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/DevPanel/DevMargin/DevVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Dev Snapshot"
+
+[node name="DevText" type="RichTextLabel" parent="Panel/Margin/VBox/FieldContainer/FieldMargin/FieldVBox/DevPanel/DevMargin/DevVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_active = false
+text = "Waiting for timeline data..."
+
+[node name="StatusLabel" type="Label" parent="Panel/Margin/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 32)
+text = "Timeline not loaded"
+
+[node name="MatchTimelineControls" parent="Panel/Margin/VBox" instance=ExtResource("3_controls")]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 140)
+
+[node name="WhyPopup" type="PopupPanel" parent="."]
+unique_name_in_owner = true
+title = "Rule Explanation"
+initial_position = 2
+size = Vector2i(420, 320)
+visible = false
+wrap_controls = true
+exclusive = false
+
+[node name="WhyPopupMargin" type="MarginContainer" parent="WhyPopup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="WhyPopupVBox" type="VBoxContainer" parent="WhyPopup/WhyPopupMargin"]
+layout_mode = 2
+
+[node name="WhyPopupText" type="RichTextLabel" parent="WhyPopup/WhyPopupMargin/WhyPopupVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Loading rule explanation..."
+scroll_active = true
+
+[node name="WhyPopupCloseBtn" type="Button" parent="WhyPopup/WhyPopupMargin/WhyPopupVBox"]
+layout_mode = 2
+text = "Close"

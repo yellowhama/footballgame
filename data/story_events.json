@@ -1,0 +1,268 @@
+{
+  "main_story_events": {
+    "year1": {
+      "entrance_ceremony": {
+        "week": 1,
+        "type": "fixed",
+        "priority": "high",
+        "characters": ["coach_park", "jung_sooyeon", "kim_jimin"],
+        "location": "school_gate",
+        "bgm": "hopeful",
+        "branches": {
+          "confident": {
+            "effects": {"leadership": 5, "determination": 3},
+            "next": "first_practice_confident"
+          },
+          "nervous": {
+            "effects": {"concentration": 5, "composure": 3},
+            "next": "first_practice_nervous"
+          }
+        }
+      },
+      "first_practice": {
+        "week": 1,
+        "type": "fixed",
+        "characters": ["coach_park", "team"],
+        "location": "training_field",
+        "skill_check": {"dribbling": 50, "passing": 50},
+        "success_effects": {"confidence": 10, "team_respect": 5},
+        "failure_effects": {"determination": 5}
+      },
+      "rival_introduction": {
+        "week": 3,
+        "type": "fixed",
+        "characters": ["lee_minho"],
+        "location": "training_field",
+        "trigger": "ca > 100",
+        "dialogue_options": 3,
+        "relationship_impact": {"lee_minho": [-20, 0, 10]}
+      },
+      "first_tournament": {
+        "week": 13,
+        "type": "fixed",
+        "characters": ["coach_park", "jung_sooyeon", "team"],
+        "location": "stadium",
+        "performance_based": true,
+        "ca_requirement": 110,
+        "victory_effects": {"morale": 20, "confidence": 15},
+        "defeat_effects": {"determination": 10}
+      },
+      "midterm_crisis": {
+        "week": 26,
+        "type": "fixed",
+        "characters": ["shin_dongwook"],
+        "location": "classroom",
+        "academic_check": true,
+        "balance_choice": ["focus_study", "focus_football", "balance_both"],
+        "effects": {
+          "focus_study": {"training_penalty": -20, "academic": 10},
+          "focus_football": {"academic_penalty": -10, "training": 10},
+          "balance_both": {"concentration": 5, "decisions": 5}
+        }
+      },
+      "summer_camp": {
+        "week": 39,
+        "type": "fixed",
+        "characters": ["coach_park", "team", "alex_kim"],
+        "location": "camp_field",
+        "training_intensive": true,
+        "special_training_choices": ["technique", "physical", "mental"],
+        "camp_events": ["night_talk", "team_bonding", "secret_training"]
+      }
+    },
+    "year2": {
+      "new_role": {
+        "week": 53,
+        "type": "fixed",
+        "characters": ["coach_park", "jung_sooyeon"],
+        "location": "club_room",
+        "leadership_opportunity": true,
+        "choices": ["accept_responsibility", "focus_on_play", "support_captain"]
+      },
+      "injury_crisis": {
+        "week": 78,
+        "type": "conditional",
+        "trigger": "fatigue > 80 || injury_flag",
+        "characters": ["coach_park", "manager_lee", "yoon_seunghoon"],
+        "recovery_arc": true,
+        "mental_growth": true
+      },
+      "scout_attention": {
+        "week": 91,
+        "type": "conditional",
+        "trigger": "ca > 130",
+        "characters": ["oh_jaehyun", "coach_park"],
+        "pressure_increase": true,
+        "media_attention": true,
+        "choices": ["embrace_pressure", "stay_humble", "avoid_attention"]
+      },
+      "national_qualifier": {
+        "week": 104,
+        "type": "fixed",
+        "characters": ["team", "lee_minho"],
+        "rival_showdown": true,
+        "ca_requirement": 140,
+        "high_stakes": true
+      }
+    },
+    "year3": {
+      "captain_decision": {
+        "week": 105,
+        "type": "fixed",
+        "characters": ["coach_park", "team"],
+        "leadership_test": true,
+        "becomes_captain": "leadership > 80 && team_respect > 70",
+        "responsibility_weight": true
+      },
+      "mentor_junior": {
+        "week": 117,
+        "type": "fixed",
+        "characters": ["new_junior"],
+        "mentor_role": true,
+        "pass_knowledge": true,
+        "legacy_building": true
+      },
+      "final_tournament": {
+        "week": 143,
+        "type": "fixed",
+        "characters": ["all"],
+        "climax": true,
+        "ca_requirement": 150,
+        "multiple_endings": true,
+        "determines_future": true
+      },
+      "contract": {
+        "week": 156,
+        "type": "fixed",
+        "characters": ["all"],
+        "epilogue": true,
+        "career_paths": ["pro_contract", "university", "overseas", "coaching"],
+        "legacy_impact": true
+      }
+    }
+  },
+  "random_events": {
+    "relationship_events": {
+      "teammate_conflict": {
+        "trigger": "random && relationship < 30",
+        "characters": ["random_teammate"],
+        "resolution_choices": ["confront", "mediate", "avoid"],
+        "relationship_change": [10, 5, -5]
+      },
+      "rival_respect": {
+        "trigger": "matches_played > 5 && rival_relationship > -10",
+        "characters": ["lee_minho"],
+        "mutual_growth": true,
+        "transforms_rivalry": true
+      },
+      "friendship_test": {
+        "trigger": "friend_relationship > 60",
+        "characters": ["kim_jimin"],
+        "loyalty_choice": true,
+        "strengthens_bond": true
+      }
+    },
+    "training_events": {
+      "breakthrough_moment": {
+        "trigger": "training_consistency > 10",
+        "skill_boost": "random",
+        "confidence_gain": 10,
+        "unlocks_ability": "possible"
+      },
+      "technique_discovery": {
+        "trigger": "specific_training > 20",
+        "new_move": true,
+        "signature_style": true
+      },
+      "position_experiment": {
+        "trigger": "versatility > 60",
+        "new_position_option": true,
+        "tactical_understanding": 5
+      }
+    },
+    "personal_events": {
+      "family_pressure": {
+        "trigger": "academic < 50",
+        "family_meeting": true,
+        "choices": ["promise_improvement", "explain_passion", "rebel"],
+        "affects_morale": true
+      },
+      "love_interest": {
+        "trigger": "week > 26 && random",
+        "characters": ["manager_lee"],
+        "romantic_subplot": true,
+        "affects_concentration": true
+      },
+      "future_anxiety": {
+        "trigger": "year == 3 && week > 130",
+        "career_contemplation": true,
+        "mentor_advice": true,
+        "clarifies_goals": true
+      }
+    }
+  },
+  "branch_conditions": {
+    "performance_based": {
+      "tournament_victory": "ca > requirement && match_rating > 7.0",
+      "scout_interest": "ca > 130 && consistency > 70",
+      "team_leadership": "leadership > 70 && team_respect > 60"
+    },
+    "relationship_based": {
+      "rival_reconciliation": "rival_relationship > 0",
+      "romance_development": "love_interest_relationship > 70",
+      "mentor_bond": "mentor_relationship > 80"
+    },
+    "skill_based": {
+      "tactical_genius": "tactics > 80 && decisions > 75",
+      "physical_monster": "strength > 85 && stamina > 85",
+      "technical_master": "technique > 90 && first_touch > 85"
+    }
+  },
+  "endings": {
+    "pro_superstar": {
+      "requirements": {
+        "ca": 160,
+        "tournament_wins": 3,
+        "scout_interest": true
+      },
+      "description": "J1 리그 톱 클럽과 프로 계약",
+      "legacy": "creates_strong_mentor"
+    },
+    "overseas_dream": {
+      "requirements": {
+        "ca": 150,
+        "international_experience": true,
+        "language_study": true
+      },
+      "description": "유럽 클럽 유스팀 입단",
+      "legacy": "creates_international_mentor"
+    },
+    "university_ace": {
+      "requirements": {
+        "ca": 140,
+        "academic": 60,
+        "balance_achieved": true
+      },
+      "description": "명문대 축구부 특기생 입학",
+      "legacy": "creates_balanced_mentor"
+    },
+    "future_coach": {
+      "requirements": {
+        "ca": 130,
+        "leadership": 90,
+        "tactical_understanding": 85
+      },
+      "description": "지도자의 길을 선택",
+      "legacy": "creates_tactical_mentor"
+    },
+    "hidden_legend": {
+      "requirements": {
+        "ca": 180,
+        "all_achievements": true,
+        "perfect_season": true
+      },
+      "description": "전설이 되다",
+      "legacy": "creates_legendary_mentor"
+    }
+  }
+}

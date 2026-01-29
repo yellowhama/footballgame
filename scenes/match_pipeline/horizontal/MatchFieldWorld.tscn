@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c9matchfieldworld"]
+
+[ext_resource type="Script" path="res://scripts/match_pipeline/horizontal/FieldBackgroundManager.gd" id="1_background"]
+[ext_resource type="Script" path="res://scripts/match_pipeline/horizontal/FieldLineDrawer.gd" id="2_lines"]
+[ext_resource type="Script" path="res://scripts/match_pipeline/horizontal/MatchCamera.gd" id="3_camera"]
+[ext_resource type="Texture2D" path="res://assets/socceralia/ball-idle.png" id="4_ball"]
+
+[node name="MatchFieldWorld" type="Node2D"]
+
+[node name="FieldBackground" type="Node2D" parent="."]
+z_index = -10
+script = ExtResource("1_background")
+
+[node name="FieldLines" type="Node2D" parent="."]
+z_index = -5
+script = ExtResource("2_lines")
+
+[node name="PlayersContainer" type="Node2D" parent="."]
+z_index = 0
+
+[node name="Ball" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(525, 340)
+texture = ExtResource("4_ball")
+texture_filter = 0
+
+[node name="MatchCamera" type="Camera2D" parent="."]
+position = Vector2(525, 340)
+zoom = Vector2(2, 2)
+script = ExtResource("3_camera")

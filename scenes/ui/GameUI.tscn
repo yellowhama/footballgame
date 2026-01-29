@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://game_ui_v1"]
+
+[ext_resource type="Script" path="res://scripts/ui/GameUI.gd" id="1_game_ui"]
+[ext_resource type="PackedScene" uid="uid://bottom_nav_v1" path="res://scenes/ui/components/BottomNav.tscn" id="2_bottom_nav"]
+[ext_resource type="PackedScene" uid="uid://top_bar_v1" path="res://scenes/ui/components/TopBar.tscn" id="3_top_bar"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_game_ui")
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.12, 1)
+
+[node name="ScreenLayer" type="CanvasLayer" parent="."]
+
+[node name="ScreenContainer" type="Control" parent="ScreenLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+layer = 50
+
+[node name="TopBar" parent="HUDLayer" instance=ExtResource("3_top_bar")]
+
+[node name="BottomNav" parent="HUDLayer" instance=ExtResource("2_bottom_nav")]
+
+[node name="PopupLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="ToastContainer" type="VBoxContainer" parent="PopupLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 60.0
+offset_bottom = 200.0
+grow_horizontal = 2
+mouse_filter = 2

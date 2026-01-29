@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8x7q2j5w4n3"]
+
+[ext_resource type="Script" path="res://scripts/ui/components/SPUMPreviewSprite.gd" id="1_Preview"]
+
+[node name="SPUMPreviewSprite" type="Node2D"]
+script = ExtResource("1_Preview")
+
+[node name="Back" type="Sprite2D" parent="."]
+z_index = -1
+
+[node name="FootL" type="Sprite2D" parent="."]
+z_index = -1
+
+[node name="FootR" type="Sprite2D" parent="."]
+z_index = -1
+
+[node name="Body" type="Sprite2D" parent="."]
+
+[node name="Head" type="Sprite2D" parent="."]
+
+[node name="ArmL" type="Sprite2D" parent="."]
+z_index = 1
+
+[node name="ArmR" type="Sprite2D" parent="."]
+z_index = -1
+
+[node name="Eyes" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+
+[node name="Pant" type="Sprite2D" parent="."]
+position = Vector2(0, 4)
+
+[node name="Cloth" type="Sprite2D" parent="."]
+
+[node name="Armor" type="Sprite2D" parent="."]
+
+[node name="FaceHair" type="Sprite2D" parent="."]
+
+[node name="Hair" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+
+[node name="Helmet" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+
+[node name="WeaponL" type="Sprite2D" parent="."]
+position = Vector2(-10, 0)
+z_index = -1
+
+[node name="WeaponR" type="Sprite2D" parent="."]
+position = Vector2(10, 0)

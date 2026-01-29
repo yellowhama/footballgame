@@ -1,0 +1,557 @@
+{
+  "leagues": [
+    {
+      "league_id": 1,
+      "name": "1부 리그",
+      "ca_range": [
+        160,
+        170
+      ],
+      "team_pool_size": 8,
+      "teams": [
+        {
+          "team_id": 174,
+          "club_name": "Man Town",
+          "avg_ca": 168.3,
+          "manager_id": 1,
+          "formation": "T451"
+        },
+        {
+          "team_id": 217,
+          "club_name": "Pares SG",
+          "avg_ca": 161.4,
+          "manager_id": 4,
+          "formation": "T433"
+        },
+        {
+          "team_id": 229,
+          "club_name": "R. Mavrid",
+          "avg_ca": 164.8,
+          "manager_id": 1,
+          "formation": "T4141"
+        },
+        {
+          "team_id": 146,
+          "club_name": "Inter",
+          "avg_ca": 160.6,
+          "manager_id": 4,
+          "formation": "T352"
+        },
+        {
+          "team_id": 170,
+          "club_name": "Liverton",
+          "avg_ca": 167.2,
+          "manager_id": 2,
+          "formation": "T451"
+        }
+      ]
+    },
+    {
+      "league_id": 2,
+      "name": "2부 리그",
+      "ca_range": [
+        150,
+        160
+      ],
+      "team_pool_size": 8,
+      "teams": [
+        {
+          "team_id": 300,
+          "club_name": "Tottenham",
+          "avg_ca": 158.5,
+          "manager_id": 4,
+          "formation": "T451"
+        },
+        {
+          "team_id": 22,
+          "club_name": "Arsenal",
+          "avg_ca": 150.8,
+          "manager_id": 4,
+          "formation": "T433"
+        },
+        {
+          "team_id": 160,
+          "club_name": "Lazio",
+          "avg_ca": 152.7,
+          "manager_id": 4,
+          "formation": "T352"
+        },
+        {
+          "team_id": 50,
+          "club_name": "Borussia Dortmund",
+          "avg_ca": 155.1,
+          "manager_id": 4,
+          "formation": "T352"
+        },
+        {
+          "team_id": 177,
+          "club_name": "Man Utd",
+          "avg_ca": 155.3,
+          "manager_id": 4,
+          "formation": "T433"
+        }
+      ]
+    },
+    {
+      "league_id": 3,
+      "name": "3부 리그",
+      "ca_range": [
+        140,
+        150
+      ],
+      "team_pool_size": 24,
+      "teams": [
+        {
+          "team_id": 25,
+          "club_name": "Aston Villa",
+          "avg_ca": 140.4,
+          "manager_id": 1,
+          "formation": "T352"
+        },
+        {
+          "team_id": 27,
+          "club_name": "Atalanta",
+          "avg_ca": 146.0,
+          "manager_id": 2,
+          "formation": "T4141"
+        },
+        {
+          "team_id": 166,
+          "club_name": "Leicester",
+          "avg_ca": 148.9,
+          "manager_id": 2,
+          "formation": "T442"
+        },
+        {
+          "team_id": 326,
+          "club_name": "Villarreal",
+          "avg_ca": 147.5,
+          "manager_id": 4,
+          "formation": "T4231"
+        },
+        {
+          "team_id": 206,
+          "club_name": "OM",
+          "avg_ca": 141.7,
+          "manager_id": 1,
+          "formation": "T442"
+        }
+      ]
+    },
+    {
+      "league_id": 4,
+      "name": "4부 리그",
+      "ca_range": [
+        130,
+        140
+      ],
+      "team_pool_size": 46,
+      "teams": [
+        {
+          "team_id": 337,
+          "club_name": "West Brom",
+          "avg_ca": 131.3,
+          "manager_id": 4,
+          "formation": "T442"
+        },
+        {
+          "team_id": 1,
+          "club_name": "1. FC KÃÂÃÂ¶ln",
+          "avg_ca": 134.7,
+          "manager_id": 4,
+          "formation": "T451"
+        },
+        {
+          "team_id": 285,
+          "club_name": "Sporting",
+          "avg_ca": 136.0,
+          "manager_id": 2,
+          "formation": "T4231"
+        },
+        {
+          "team_id": 48,
+          "club_name": "Bordeaux",
+          "avg_ca": 132.5,
+          "manager_id": 1,
+          "formation": "T4231"
+        },
+        {
+          "team_id": 143,
+          "club_name": "Huesca",
+          "avg_ca": 132.1,
+          "manager_id": 2,
+          "formation": "T433"
+        }
+      ]
+    },
+    {
+      "league_id": 5,
+      "name": "5부 리그",
+      "ca_range": [
+        120,
+        130
+      ],
+      "team_pool_size": 36,
+      "teams": [
+        {
+          "team_id": 334,
+          "club_name": "Vitesse",
+          "avg_ca": 122.9,
+          "manager_id": 2,
+          "formation": "T433"
+        },
+        {
+          "team_id": 12,
+          "club_name": "AS Saint-Etienne",
+          "avg_ca": 129.7,
+          "manager_id": 4,
+          "formation": "T451"
+        },
+        {
+          "team_id": 208,
+          "club_name": "Orlando Town",
+          "avg_ca": 122.1,
+          "manager_id": 4,
+          "formation": "T4141"
+        },
+        {
+          "team_id": 328,
+          "club_name": "Vit. GuimarÃÂÃÂ£es",
+          "avg_ca": 125.3,
+          "manager_id": 1,
+          "formation": "T451"
+        },
+        {
+          "team_id": 85,
+          "club_name": "Dijon FCO",
+          "avg_ca": 125.0,
+          "manager_id": 1,
+          "formation": "T4231"
+        }
+      ]
+    },
+    {
+      "league_id": 6,
+      "name": "6부 리그",
+      "ca_range": [
+        110,
+        120
+      ],
+      "team_pool_size": 40,
+      "teams": [
+        {
+          "team_id": 291,
+          "club_name": "Suwon",
+          "avg_ca": 115.0,
+          "manager_id": 4,
+          "formation": "T451"
+        },
+        {
+          "team_id": 211,
+          "club_name": "PEC Zwolle",
+          "avg_ca": 118.5,
+          "manager_id": 4,
+          "formation": "T4231"
+        },
+        {
+          "team_id": 310,
+          "club_name": "VVV-Venlo",
+          "avg_ca": 117.9,
+          "manager_id": 1,
+          "formation": "T4231"
+        },
+        {
+          "team_id": 222,
+          "club_name": "Philadelphia",
+          "avg_ca": 117.2,
+          "manager_id": 1,
+          "formation": "T4141"
+        },
+        {
+          "team_id": 142,
+          "club_name": "Houston",
+          "avg_ca": 118.7,
+          "manager_id": 1,
+          "formation": "T433"
+        }
+      ]
+    },
+    {
+      "league_id": 7,
+      "name": "7부 리그",
+      "ca_range": [
+        100,
+        110
+      ],
+      "team_pool_size": 16,
+      "teams": [
+        {
+          "team_id": 126,
+          "club_name": "Fulham B",
+          "avg_ca": 102.4,
+          "manager_id": 4,
+          "formation": "T4231"
+        },
+        {
+          "team_id": 128,
+          "club_name": "Gangwon",
+          "avg_ca": 108.5,
+          "manager_id": 2,
+          "formation": "T4231"
+        },
+        {
+          "team_id": 161,
+          "club_name": "Lazio B",
+          "avg_ca": 108.7,
+          "manager_id": 4,
+          "formation": "T433"
+        },
+        {
+          "team_id": 35,
+          "club_name": "Bartolona B",
+          "avg_ca": 106.9,
+          "manager_id": 1,
+          "formation": "T4141"
+        },
+        {
+          "team_id": 83,
+          "club_name": "Daegu",
+          "avg_ca": 101.2,
+          "manager_id": 1,
+          "formation": "T4141"
+        }
+      ]
+    },
+    {
+      "league_id": 8,
+      "name": "8부 리그",
+      "ca_range": [
+        90,
+        100
+      ],
+      "team_pool_size": 28,
+      "teams": [
+        {
+          "team_id": 318,
+          "club_name": "Verona B",
+          "avg_ca": 95.2,
+          "manager_id": 1,
+          "formation": "T451"
+        },
+        {
+          "team_id": 97,
+          "club_name": "FC Emmen B",
+          "avg_ca": 91.2,
+          "manager_id": 4,
+          "formation": "T4141"
+        },
+        {
+          "team_id": 325,
+          "club_name": "Vigo B",
+          "avg_ca": 97.3,
+          "manager_id": 1,
+          "formation": "T352"
+        },
+        {
+          "team_id": 60,
+          "club_name": "Brighton B",
+          "avg_ca": 91.8,
+          "manager_id": 4,
+          "formation": "T433"
+        },
+        {
+          "team_id": 4,
+          "club_name": "A. Bilbao B",
+          "avg_ca": 91.5,
+          "manager_id": 4,
+          "formation": "T433"
+        }
+      ]
+    },
+    {
+      "league_id": 9,
+      "name": "9부 리그",
+      "ca_range": [
+        80,
+        90
+      ],
+      "team_pool_size": 34,
+      "teams": [
+        {
+          "team_id": 349,
+          "club_name": "sc Heerenveen B",
+          "avg_ca": 86.1,
+          "manager_id": 4,
+          "formation": "T442"
+        },
+        {
+          "team_id": 311,
+          "club_name": "VVV-Venlo B",
+          "avg_ca": 84.7,
+          "manager_id": 2,
+          "formation": "T442"
+        },
+        {
+          "team_id": 115,
+          "club_name": "FamalicÃÂÃÂ£o B",
+          "avg_ca": 84.8,
+          "manager_id": 1,
+          "formation": "T4141"
+        },
+        {
+          "team_id": 51,
+          "club_name": "Borussia Dortmund B",
+          "avg_ca": 88.4,
+          "manager_id": 2,
+          "formation": "T4231"
+        },
+        {
+          "team_id": 235,
+          "club_name": "RKC B",
+          "avg_ca": 81.7,
+          "manager_id": 4,
+          "formation": "T352"
+        }
+      ]
+    },
+    {
+      "league_id": 10,
+      "name": "10부 리그",
+      "ca_range": [
+        70,
+        80
+      ],
+      "team_pool_size": 65,
+      "teams": [
+        {
+          "team_id": 216,
+          "club_name": "PSV Youth",
+          "avg_ca": 73.9,
+          "manager_id": 4,
+          "formation": "T442"
+        },
+        {
+          "team_id": 265,
+          "club_name": "Schalke 04 B",
+          "avg_ca": 79.0,
+          "manager_id": 2,
+          "formation": "T433"
+        },
+        {
+          "team_id": 119,
+          "club_name": "Feyenoord Youth",
+          "avg_ca": 73.6,
+          "manager_id": 1,
+          "formation": "T4231"
+        },
+        {
+          "team_id": 110,
+          "club_name": "FC Utrecht B",
+          "avg_ca": 78.5,
+          "manager_id": 4,
+          "formation": "T4231"
+        },
+        {
+          "team_id": 312,
+          "club_name": "VVV-Venlo Youth",
+          "avg_ca": 71.4,
+          "manager_id": 1,
+          "formation": "T4231"
+        }
+      ]
+    },
+    {
+      "league_id": 11,
+      "name": "11부 리그",
+      "ca_range": [
+        60,
+        70
+      ],
+      "team_pool_size": 28,
+      "teams": [
+        {
+          "team_id": 13,
+          "club_name": "AS Saint-Etienne B",
+          "avg_ca": 68.4,
+          "manager_id": 3,
+          "formation": "T4141"
+        },
+        {
+          "team_id": 224,
+          "club_name": "Pohang B",
+          "avg_ca": 67.5,
+          "manager_id": 5,
+          "formation": "T4231"
+        },
+        {
+          "team_id": 201,
+          "club_name": "NÃÂÃÂ®mes B",
+          "avg_ca": 66.8,
+          "manager_id": 5,
+          "formation": "T4141"
+        },
+        {
+          "team_id": 213,
+          "club_name": "PEC Zwolle Youth",
+          "avg_ca": 68.1,
+          "manager_id": 5,
+          "formation": "T442"
+        },
+        {
+          "team_id": 176,
+          "club_name": "Man Town Youth",
+          "avg_ca": 66.8,
+          "manager_id": 5,
+          "formation": "T352"
+        }
+      ]
+    },
+    {
+      "league_id": 12,
+      "name": "12부 리그",
+      "ca_range": [
+        40,
+        60
+      ],
+      "team_pool_size": 17,
+      "teams": [
+        {
+          "team_id": 319,
+          "club_name": "Verona Youth",
+          "avg_ca": 57.1,
+          "manager_id": 5,
+          "formation": "T433"
+        },
+        {
+          "team_id": 342,
+          "club_name": "West Ham Youth",
+          "avg_ca": 52.3,
+          "manager_id": 6,
+          "formation": "T451"
+        },
+        {
+          "team_id": 278,
+          "club_name": "Southampton Youth",
+          "avg_ca": 59.0,
+          "manager_id": 6,
+          "formation": "T451"
+        },
+        {
+          "team_id": 305,
+          "club_name": "Udinese Youth",
+          "avg_ca": 50.6,
+          "manager_id": 6,
+          "formation": "T442"
+        },
+        {
+          "team_id": 165,
+          "club_name": "Leeds Youth",
+          "avg_ca": 52.8,
+          "manager_id": 6,
+          "formation": "T4231"
+        }
+      ]
+    }
+  ],
+  "description": "12부제 리그 시스템 (1부가 최상위)"
+}

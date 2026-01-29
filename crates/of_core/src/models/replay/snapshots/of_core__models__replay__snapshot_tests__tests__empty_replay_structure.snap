@@ -1,0 +1,47 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: structure
+---
+{
+  "schema": {
+    "name": "of_replay",
+    "version": 1
+  },
+  "build": null,
+  "match_info": {
+    "id": "empty-match",
+    "seed": 0,
+    "pitch": {
+      "length_m": 105.0,
+      "width_m": 68.0
+    },
+    "goal": {
+      "center_y_m": 34.0,
+      "width_m": 7.32,
+      "depth_m": 2.44
+    },
+    "areas": {
+      "penalty_depth_m": 16.5,
+      "penalty_width_m": 40.32,
+      "six_depth_m": 5.5,
+      "six_width_m": 18.32,
+      "penalty_spot_from_line_m": 11.0,
+      "arc_radius_m": 9.15
+    },
+    "periods": [
+      {
+        "i": 1,
+        "start_t": 0.0,
+        "end_t": 2700.0,
+        "home_attacks_right": true
+      },
+      {
+        "i": 2,
+        "start_t": 2700.0,
+        "end_t": 5400.0,
+        "home_attacks_right": false
+      }
+    ]
+  },
+  "event_count": 0
+}

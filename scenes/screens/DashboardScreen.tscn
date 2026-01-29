@@ -1,0 +1,134 @@
+[gd_scene load_steps=2 format=3 uid="uid://dashboard_screen"]
+
+[ext_resource type="Script" path="res://scripts/screens/DashboardScreen.gd" id="1_script"]
+
+[node name="DashboardScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.051, 0.067, 0.09, 1)
+
+[node name="Header" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 64.0
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.902, 0.929, 0.953, 1)
+theme_override_font_sizes/font_size = 24
+text = "대시보드"
+vertical_alignment = 1
+
+[node name="WeekLabel" type="Label" parent="Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.545, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 16
+text = "1년차 1주차"
+vertical_alignment = 1
+
+[node name="Content" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 80.0
+offset_right = -16.0
+offset_bottom = -100.0
+
+[node name="WidgetsGrid" type="GridContainer" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="NextMatchWidget" type="PanelContainer" parent="Content/WidgetsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 180)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerStatusWidget" type="PanelContainer" parent="Content/WidgetsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 180)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TeamStatsWidget" type="PanelContainer" parent="Content/WidgetsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 180)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuickActionsWidget" type="PanelContainer" parent="Content/WidgetsGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 180)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Footer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -90.0
+
+[node name="FooterBG" type="ColorRect" parent="Footer"]
+layout_mode = 2
+color = Color(0.086, 0.106, 0.133, 1)
+
+[node name="QuickButtons" type="HBoxContainer" parent="Footer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 24
+
+[node name="TrainingButton" type="Button" parent="Footer/QuickButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "💪 훈련"
+
+[node name="MatchButton" type="Button" parent="Footer/QuickButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "⚽ 경기"
+
+[node name="GachaButton" type="Button" parent="Footer/QuickButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🎲 가챠"
+
+[node name="TacticsButton" type="Button" parent="Footer/QuickButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "📋 전술"

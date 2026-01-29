@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_ultimate_defender_ssr",
+  "character_name": "궁극의 수비수",
+  "rarity": "SSR",
+  "character_type": "trait",
+  "position": "DF",
+  "technical_bonus": 0.10,
+  "physical_bonus": 0.20,
+  "mental_bonus": 0.15,
+  "events": [],
+  "description": "수호신 루트 분기점 3 - A 선택 보상. 완벽한 수비 기술을 터득한 궁극의 수비수.",
+  "acquisition_condition": "guardian_branch3_A",
+  "special_effect": "Defensive +25%, 무실점 경기 보상 +50%, CA 상한 +15"
+}

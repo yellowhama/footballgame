@@ -1,0 +1,14 @@
+{
+  "character_id": "reward_tactical_understanding_sr",
+  "character_name": "전술 이해도",
+  "rarity": "SR",
+  "character_type": "trait",
+  "position": "ALL",
+  "technical_bonus": 0.10,
+  "physical_bonus": 0.0,
+  "mental_bonus": 0.15,
+  "events": [],
+  "description": "멘토 루트 분기점 1 - B 선택 보상. 감독의 전술을 완벽히 이해한 선수.",
+  "acquisition_condition": "mentor_branch1_B",
+  "special_effect": "Mental +15%, 포지션 적응력 +30%"
+}

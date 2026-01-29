@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "comment": "SSOT for Potagon animation rules, football action mapping, and presentation logic",
+
+  "potagon_sheet": {
+    "cell_w": 24,
+    "cell_h": 24,
+    "cols": 8,
+    "rows": 6,
+    "frame_indexing": "left_to_right_top_to_bottom_0_based",
+    "animations": {
+      "idle": { "range": [0, 1], "frames": 2, "loop": true },
+      "kick": { "range": [2, 3], "frames": 2, "loop": false },
+      "attack": { "range": [4, 5], "frames": 2, "loop": false },
+      "damage": { "range": [6, 7], "frames": 2, "loop": false },
+      "walk": { "range": [8, 11], "frames": 4, "loop": true },
+      "run": { "range": [12, 15], "frames": 4, "loop": true },
+      "push": { "range": [16, 19], "frames": 4, "loop": true },
+      "pull": { "range": [20, 23], "frames": 4, "loop": true },
+      "jump": { "range": [24, 31], "frames": 8, "loop": false },
+      "win": { "range": [32, 35], "frames": 4, "loop": true },
+      "die": { "range": [36, 39], "frames": 4, "loop": false },
+      "sit": { "range": [40, 41], "frames": 2, "loop": false }
+    }
+  },
+
+  "presentation": {
+    "priority_order": [
+      "fall/die",
+      "get_up/recover",
+      "gk_save",
+      "shoot/pass/cross/header",
+      "tackle/block",
+      "damage",
+      "celebrate",
+      "locomotion"
+    ],
+    "hold_s": {
+      "kick": 0.25,
+      "attack": 0.2,
+      "push": 0.35,
+      "damage": 0.45,
+      "die": 0.8,
+      "sit": 0.4,
+      "win": 1.0,
+      "jump": 0.7
+    },
+    "locomotion_thresholds_mps": {
+      "idle_lt": 0.1,
+      "walk_lt": 3.0,
+      "run_lt": 6.0,
+      "sprint_ge": 6.0
+    },
+    "loop_rules": {
+      "comment": "SSOT: 6 animations loop, 6 do not",
+      "loop_true": ["idle", "walk", "run", "push", "pull", "win"],
+      "loop_false": ["kick", "attack", "damage", "jump", "die", "sit"]
+    }
+  },
+
+  "football_action_mapping": {
+    "comment": "Engine action strings -> Potagon animation names",
+    "idle": "idle",
+    "walk": "walk",
+    "run": "run",
+    "sprint": "run",
+    "dribble": "run",
+    "pass": "kick",
+    "pass_short": "kick",
+    "pass_long": "kick",
+    "cross": "kick",
+    "shoot": "kick",
+    "tackle_stand": "attack",
+    "tackle_slide": "attack",
+    "block": "push",
+    "gk_dive_l": "push",
+    "gk_dive_r": "push",
+    "gk_catch_high": "push",
+    "gk_catch_low": "push",
+    "gk_punch": "push",
+    "gk_pickup": "pull",
+    "gk_goal_kick": "kick",
+    "header": "jump",
+    "fall": "die",
+    "get_up": "sit",
+    "recover": "sit",
+    "celebrate_1": "win",
+    "celebrate_2": "win",
+    "disappointed": "damage"
+  },
+
+  "sequence_overrides": {
+    "comment": "Multi-step animation sequences for complex football actions",
+    "tackle_slide": {
+      "when": {
+        "event_any": ["tackle_slide", "foul"],
+        "victim_falls": true
+      },
+      "steps": [
+        { "anim": "run", "hold_s": 0.1, "note": "진입 속도" },
+        { "anim": "attack", "hold_s": 0.2, "note": "접촉 순간" },
+        { "anim": "die", "hold_s": 0.8, "note": "넘어짐 고정 (loop=false, may extend until get_up)" }
+      ],
+      "purpose": "슬라이딩: 진입 + 접촉 + 넘어짐 3단 시퀀스"
+    },
+    "header": {
+      "when": {
+        "event_any": ["header"]
+      },
+      "steps": [
+        { "anim": "jump", "hold_s": 0.25, "note": "도약" },
+        { "anim": "kick", "hold_s": 0.1, "note": "공 접촉 순간 강조" },
+        { "anim": "jump", "hold_s": 0.35, "note": "착지" }
+      ],
+      "purpose": "헤딩: 도약 중 접촉 프레임 삽입"
+    },
+    "shoot_volley": {
+      "when": {
+        "event_any": ["shoot_volley", "volley_shot"]
+      },
+      "steps": [
+        { "anim": "jump", "hold_s": 0.15, "note": "공중으로 도약" },
+        { "anim": "kick", "hold_s": 0.20, "note": "발리 슛 모션" },
+        { "anim": "idle", "hold_s": 0.10, "note": "착지 후 복귀" }
+      ],
+      "purpose": "발리슛: 도약 + 슛 + 착지"
+    },
+    "bicycle_kick": {
+      "when": {
+        "event_any": ["bicycle_kick", "overhead_kick"]
+      },
+      "steps": [
+        { "anim": "jump", "hold_s": 0.20, "note": "백플립 도약" },
+        { "anim": "die", "hold_s": 0.30, "note": "백플립 모션 (die 대용)" },
+        { "anim": "kick", "hold_s": 0.15, "note": "공중에서 슛" },
+        { "anim": "idle", "hold_s": 0.15, "note": "착지 복귀" }
+      ],
+      "purpose": "바이시클킥: 백플립 + 슛 + 착지"
+    },
+    "long_throw": {
+      "when": {
+        "event_any": ["long_throw", "throw_in_long"]
+      },
+      "steps": [
+        { "anim": "pull", "hold_s": 0.25, "note": "뒤로 공 당기기" },
+        { "anim": "push", "hold_s": 0.20, "note": "앞으로 던지기" },
+        { "anim": "idle", "hold_s": 0.10, "note": "복귀" }
+      ],
+      "purpose": "롱스로: 준비 + 던지기 + 복귀"
+    },
+    "penalty_kick": {
+      "when": {
+        "event_any": ["penalty_kick", "penalty"]
+      },
+      "steps": [
+        { "anim": "walk", "hold_s": 0.50, "note": "도움닫기" },
+        { "anim": "kick", "hold_s": 0.25, "note": "슛" },
+        { "anim": "idle", "hold_s": 0.15, "note": "복귀" }
+      ],
+      "purpose": "페널티킥: 도움닫기 + 슛 + 복귀"
+    },
+    "corner_kick": {
+      "when": {
+        "event_any": ["corner_kick", "corner"]
+      },
+      "steps": [
+        { "anim": "run", "hold_s": 0.15, "note": "짧은 도움닫기" },
+        { "anim": "kick", "hold_s": 0.25, "note": "크로스" },
+        { "anim": "idle", "hold_s": 0.10, "note": "복귀" }
+      ],
+      "purpose": "코너킥: 도움닫기 + 크로스 + 복귀"
+    },
+    "free_kick": {
+      "when": {
+        "event_any": ["free_kick", "direct_free_kick"]
+      },
+      "steps": [
+        { "anim": "walk", "hold_s": 0.30, "note": "집중 도움닫기" },
+        { "anim": "kick", "hold_s": 0.30, "note": "강슛" },
+        { "anim": "idle", "hold_s": 0.15, "note": "복귀" }
+      ],
+      "purpose": "프리킥: 도움닫기 + 슛 + 복귀"
+    }
+  },
+
+  "adapter_requirements": {
+    "live_packed_states_to_action": true,
+    "note": "PositionSnapshotAdapter.from_live_step_packed() MUST fill StandardSnapshot.players[*].action using snapshot.states",
+    "source_file": "godot_extension/src/position_snapshot_adapter.rs"
+  },
+
+  "ssot_enforcement": {
+    "comment": "Validation rules for SSOT compliance",
+    "rules": [
+      "Loop values MUST match potagon_sheet.animations[*].loop",
+      "Hold times MUST come from presentation.hold_s, NOT hardcoded in GDScript",
+      "Action mapping MUST use football_action_mapping, NOT inline match statements",
+      "Godot Inspector MUST NOT override loop/fps/frame_count from manifest",
+      "Sequence overrides MUST be implemented in Viewer layer, NOT Translator"
+    ]
+  }
+}

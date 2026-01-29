@@ -1,0 +1,163 @@
+[gd_scene load_steps=2 format=3 uid="uid://coach_interaction_001"]
+
+[ext_resource type="Script" path="res://scripts/ui/coach_interaction_screen.gd" id="1"]
+
+[node name="CoachInteractionScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.15, 0.1, 0.05, 1)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+
+[node name="Title" type="Label" parent="VBox"]
+layout_mode = 2
+text = "👨‍🏫 코치진"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+
+[node name="Spacer1" type="Control" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="CoachListContainer" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ListTitle" type="Label" parent="VBox/CoachListContainer"]
+layout_mode = 2
+text = "📋 코치 목록"
+theme_override_font_sizes/font_size = 18
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBox/CoachListContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 150)
+
+[node name="CoachList" type="VBoxContainer" parent="VBox/CoachListContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="CoachInfoContainer" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="InfoTitle" type="Label" parent="VBox/CoachInfoContainer"]
+layout_mode = 2
+text = "👤 코치 정보"
+theme_override_font_sizes/font_size = 18
+
+[node name="CoachName" type="Label" parent="VBox/CoachInfoContainer"]
+layout_mode = 2
+text = "감독님"
+theme_override_font_sizes/font_size = 20
+
+[node name="CoachSpecialty" type="Label" parent="VBox/CoachInfoContainer"]
+layout_mode = 2
+text = "전문분야: 전체 지도"
+theme_override_font_sizes/font_size = 16
+
+[node name="RelationshipContainer" type="HBoxContainer" parent="VBox/CoachInfoContainer"]
+layout_mode = 2
+
+[node name="RelationshipLabel" type="Label" parent="VBox/CoachInfoContainer/RelationshipContainer"]
+layout_mode = 2
+text = "관계도: 50%"
+custom_minimum_size = Vector2(100, 0)
+
+[node name="RelationshipBar" type="ProgressBar" parent="VBox/CoachInfoContainer/RelationshipContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+value = 50.0
+
+[node name="Spacer3" type="Control" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="AdviceContainer" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AdviceTitle" type="Label" parent="VBox/AdviceContainer"]
+layout_mode = 2
+text = "💬 조언"
+theme_override_font_sizes/font_size = 18
+
+[node name="AdviceText" type="Label" parent="VBox/AdviceContainer"]
+layout_mode = 2
+text = "조언 내용이 여기에 표시됩니다."
+autowrap_mode = 3
+custom_minimum_size = Vector2(0, 80)
+
+[node name="EffectsText" type="Label" parent="VBox/AdviceContainer"]
+layout_mode = 2
+text = "효과가 여기에 표시됩니다."
+autowrap_mode = 3
+custom_minimum_size = Vector2(0, 80)
+
+[node name="Spacer4" type="Control" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="TacticsContainer" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="TacticsTitle" type="Label" parent="VBox/TacticsContainer"]
+layout_mode = 2
+text = "⚽ 전술 설정"
+theme_override_font_sizes/font_size = 18
+
+[node name="CurrentTacticsLabel" type="Label" parent="VBox/TacticsContainer"]
+layout_mode = 2
+text = "현재 전술: 4-4-2"
+theme_override_font_sizes/font_size = 16
+
+[node name="TacticsOptionButton" type="OptionButton" parent="VBox/TacticsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 44)
+
+[node name="Spacer5" type="Control" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="RequestAdviceButton" type="Button" parent="VBox/ButtonsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 44)
+text = "조언 요청"
+theme_override_font_sizes/font_size = 16
+
+[node name="ButtonSpacer1" type="Control" parent="VBox/ButtonsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(20, 0)
+
+[node name="ApplyAdviceButton" type="Button" parent="VBox/ButtonsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 44)
+text = "조언 적용"
+disabled = true
+theme_override_font_sizes/font_size = 16
+
+[node name="ButtonSpacer2" type="Control" parent="VBox/ButtonsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(20, 0)
+
+[node name="BackButton" type="Button" parent="VBox/ButtonsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 44)
+text = "돌아가기"
+theme_override_font_sizes/font_size = 16

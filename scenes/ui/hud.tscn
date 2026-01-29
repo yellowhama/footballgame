@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://hud_screen_001"]
+
+[ext_resource type="Script" path="res://scripts/ui/HUDController.gd" id="1_hud_controller"]
+
+[node name="hud" type="CanvasLayer"]
+script = ExtResource("1_hud_controller")
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = 60.0
+
+[node name="WeekLabel" type="Label" parent="TopBar"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Week 1"
+
+[node name="Spacer" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConditionBar" type="ProgressBar" parent="TopBar"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+value = 100.0
+
+[node name="ConditionLabel" type="Label" parent="TopBar"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "100%"
+
+[node name="BottomBar" type="HBoxContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -70.0
+offset_right = -20.0
+offset_bottom = -10.0
+alignment = 1
+theme_override_constants/separation = 30
+
+[node name="HomeButton" type="Button" parent="BottomBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 50)
+text = "홈"
+
+[node name="TrainingButton" type="Button" parent="BottomBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 50)
+text = "훈련"
+
+[node name="MatchButton" type="Button" parent="BottomBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 50)
+text = "경기"
+
+[node name="TacticsButton" type="Button" parent="BottomBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 50)
+text = "전술"
+
+[node name="MenuButton" type="Button" parent="BottomBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 50)
+text = "메뉴"

@@ -1,0 +1,247 @@
+extends Node
+
+# OpenFootball 서버 클라이언트
+# open-football 엔진을 통째로 사용하는 HTTP API 클라이언트
+
+class_name OpenFootballClient
+
+signal simulation_completed(result: Dictionary)
+signal league_updated(standings: Array)
+signal player_updated(stats: Dictionary)
+signal connection_failed(error: String)
+
+const SERVER_URL = "http://127.0.0.1:3030"
+const TIMEOUT = 10.0
+
+var http_request: HTTPRequest
+
+func _ready():
+	http_request = HTTPRequest.new()
+	http_request.timeout = TIMEOUT
+	add_child(http_request)
+
+	# 서버 연결 확인
+	check_server_health()
+
+# 서버 헬스 체크
+func check_server_health() -> void:
+	print("[OpenFootballClient] 서버 연결 확인 중...")
+
+	var request = http_request.request(SERVER_URL + "/")
+	if request != OK:
+		connection_failed.emit("서버 연결 실패")
+		return
+
+	await http_request.request_completed
+	print("[OpenFootballClient] ✅ Open-Football 서버 연결 성공!")
+
+# 시뮬레이션 실행 (일 단위)
+func simulate_days(days: int = 1) -> Dictionary:
+	print("[OpenFootballClient] %d일 시뮬레이션 요청" % days)
+
+	var headers = ["Content-Type: application/json"]
+	var body = JSON.stringify({
+		"action": "simulate",
+		"days": days
+	})
+
+	var request = http_request.request(
+		SERVER_URL + "/simulate",
+		headers,
+		HTTPClient.METHOD_POST,
+		body
+	)
+
+	if request != OK:
+		return {"error": "Request failed"}
+
+	var response = await http_request.request_completed
+	var result = _parse_response(response)
+
+	if result.has("success") and result.success:
+		simulation_completed.emit(result)
+
+		# 리그 순위 업데이트
+		if result.has("league_table"):
+			league_updated.emit(result.league_table)
+
+		# 선수 정보 업데이트
+		if result.has("player_stats"):
+			player_updated.emit(result.player_stats)
+
+	return result
+
+# 주간 시뮬레이션
+func simulate_week() -> Dictionary:
+	return await simulate_days(7)
+
+# 리그 순위표 가져오기
+func get_league_standings() -> Array:
+	print("[OpenFootballClient] 리그 순위표 요청")
+
+	var request = http_request.request(SERVER_URL + "/league")
+	if request != OK:
+		return []
+
+	var response = await http_request.request_completed
+	var result = _parse_response(response)
+
+	if result is Array:
+		league_updated.emit(result)
+		return result
+
+	return []
+
+# 선수 정보 가져오기
+func get_player_info() -> Dictionary:
+	print("[OpenFootballClient] 선수 정보 요청")
+
+	var request = http_request.request(SERVER_URL + "/player")
+	if request != OK:
+		return {}
+
+	var response = await http_request.request_completed
+	var result = _parse_response(response)
+
+	if result is Dictionary:
+		player_updated.emit(result)
+		return result
+
+	return {}
+
+# 세계 정보 가져오기
+func get_world_info() -> Dictionary:
+	print("[OpenFootballClient] 세계 정보 요청")
+
+	var request = http_request.request(SERVER_URL + "/world/info")
+	if request != OK:
+		return {}
+
+	var response = await http_request.request_completed
+	return _parse_response(response)
+
+# 훈련 후 시뮬레이션 (통합)
+func train_and_simulate(training_plan: Dictionary) -> Dictionary:
+	print("[OpenFootballClient] 훈련 및 시뮬레이션 요청")
+
+	# 1. 훈련 적용 (서버에서 처리)
+	# 2. 하루 시뮬레이션
+	# 3. 결과 반환
+
+	var headers = ["Content-Type: application/json"]
+	var body = JSON.stringify({
+		"action": "train_and_simulate",
+		"training": training_plan,
+		"days": 1
+	})
+
+	var request = http_request.request(
+		SERVER_URL + "/simulate",
+		headers,
+		HTTPClient.METHOD_POST,
+		body
+	)
+
+	if request != OK:
+		return {"error": "Request failed"}
+
+	var response = await http_request.request_completed
+	return _parse_response(response)
+
+# 응답 파싱
+func _parse_response(response: Array) -> Variant:
+	var response_code = response[1]
+	var body = response[3]
+
+	if response_code != 200:
+		print("[OpenFootballClient] ❌ 서버 오류: %d" % response_code)
+		return {"error": "Server error", "code": response_code}
+
+	var json_string = body.get_string_from_utf8()
+	var json = JSON.new()
+	var parse_result = json.parse(json_string)
+
+	if parse_result != OK:
+		print("[OpenFootballClient] ❌ JSON 파싱 실패")
+		return {"error": "JSON parse error"}
+
+	return json.data
+
+# 매치 결과를 우리 게임 형식으로 변환
+func convert_match_result(open_football_result: Dictionary) -> Dictionary:
+	# open-football 매치 결과를 Princess Maker 스타일로 변환
+	return {
+		"home_score": open_football_result.get("home_goals", 0),
+		"away_score": open_football_result.get("away_goals", 0),
+		"events": _convert_match_events(open_football_result.get("events", [])),
+		"player_performance": _extract_player_performance(open_football_result)
+	}
+
+func _convert_match_events(events: Array) -> Array:
+	var converted = []
+	for event in events:
+		converted.append({
+			"minute": event.get("minute", 0),
+			"type": event.get("type", ""),
+			"player": event.get("player_name", ""),
+			"description": event.get("description", "")
+		})
+	return converted
+
+func _extract_player_performance(match_result: Dictionary) -> Dictionary:
+	# 우리 선수의 경기 성과 추출
+	return {
+		"rating": match_result.get("player_rating", 6.5),
+		"goals": match_result.get("player_goals", 0),
+		"assists": match_result.get("player_assists", 0),
+		"xp_gained": match_result.get("player_xp", 100)
+	}
+
+# 테스트 함수
+func test_connection() -> void:
+	print("\n=== Open-Football Server 테스트 ===")
+
+	# 1. 서버 상태 확인
+	await check_server_health()
+
+	# 2. 세계 정보
+	var world = await get_world_info()
+	print("세계 정보: ", world)
+
+	# 3. 리그 순위
+	var standings = await get_league_standings()
+	print("리그 순위 (상위 5팀):")
+	for i in min(5, standings.size()):
+		var team = standings[i]
+		print("  %d. %s - %d점" % [team.position, team.team_name, team.points])
+
+	# 4. 7일 시뮬레이션
+	print("\n7일 시뮬레이션 실행...")
+	var result = await simulate_week()
+	print("시뮬레이션 완료: ", result.date)
+	print("경기 수: ", result.matches_today)
+
+	print("\n=== 테스트 완료 ===")
+
+# 디버그 정보 출력
+func print_debug_info() -> void:
+	var info = await get_world_info()
+	print("\n[Open-Football 엔진 상태]")
+	print("- 날짜: ", info.get("date", "Unknown"))
+	print("- 대륙 수: ", info.get("continents", 0))
+	print("- 국가 수: ", info.get("countries", 0))
+	print("- 리그 수: ", info.get("leagues", 0))
+
+	var standings = await get_league_standings()
+	if standings.size() > 0:
+		print("\n[한국 고등학교 리그]")
+		print("총 %d팀 참가" % standings.size())
+
+		var leader = standings[0]
+		print("1위: %s (%d승 %d무 %d패, %d점)" % [
+			leader.team_name,
+			leader.won,
+			leader.drawn,
+			leader.lost,
+			leader.points
+		])

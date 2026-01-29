@@ -1,0 +1,107 @@
+{
+  "defaults": {
+    "animation": "idle",
+    "camera_mode": "track_ball",
+    "duration": 1.5
+  },
+  "events": {
+    "pass": {
+      "animation": "pass",
+      "duration": 2.5,
+      "camera_mode": "track_pass"
+    },
+    "tackle": {
+      "animation": "tackle",
+      "duration": 2.0,
+      "camera_mode": "track_players"
+    },
+    "foul": {
+      "animation": "fall",
+      "duration": 2.5,
+      "camera_mode": "track_players",
+      "effects": [
+        "whistle",
+        "card"
+      ]
+    },
+    "yellow_card": {
+      "animation": "idle",
+      "duration": 2.0,
+      "camera_mode": "track_referee",
+      "effects": [
+        "card_show"
+      ]
+    },
+    "red_card": {
+      "animation": "fall",
+      "duration": 2.5,
+      "camera_mode": "track_referee",
+      "effects": [
+        "card_show",
+        "crowd_gasp"
+      ]
+    },
+    "shot": {
+      "animation": "shot",
+      "duration": 2.0,
+      "camera_mode": "track_ball"
+    },
+    "save": {
+      "animation": "goalkeeper_save",
+      "duration": 2.2,
+      "camera_mode": "track_goal"
+    },
+    "corner_kick": {
+      "animation": "corner_kick",
+      "duration": 2.5,
+      "camera_mode": "track_corner",
+      "effects": [
+        "corner_flag"
+      ]
+    },
+    "throw_in": {
+      "animation": "throw_in",
+      "duration": 2.0,
+      "camera_mode": "track_touchline"
+    },
+    "kick_off": {
+      "animation": "kickoff",
+      "duration": 2.0,
+      "camera_mode": "wide"
+    },
+    "goal_kick": {
+      "animation": "goal_kick",
+      "duration": 2.0,
+      "camera_mode": "track_goal"
+    },
+    "penalty": {
+      "animation": "penalty",
+      "duration": 3.0,
+      "camera_mode": "track_penalty",
+      "effects": [
+        "crowd_hold_breath"
+      ]
+    },
+    "handball": {
+      "animation": "fall",
+      "duration": 2.0,
+      "camera_mode": "track_referee",
+      "effects": [
+        "whistle"
+      ]
+    },
+    "injury": {
+      "animation": "fall",
+      "duration": 4.0,
+      "camera_mode": "track_players",
+      "effects": [
+        "medical_staff"
+      ]
+    },
+    "kickoff": {
+      "animation": "kickoff",
+      "duration": 2.0,
+      "camera_mode": "wide"
+    }
+  }
+}

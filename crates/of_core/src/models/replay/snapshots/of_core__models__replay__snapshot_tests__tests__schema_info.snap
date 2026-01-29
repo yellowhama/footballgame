@@ -1,0 +1,8 @@
+---
+source: src/models/replay/snapshot_tests.rs
+expression: replay.schema
+---
+{
+  "name": "of_replay",
+  "version": 1
+}

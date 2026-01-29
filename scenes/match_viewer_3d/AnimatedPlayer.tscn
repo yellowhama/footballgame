@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/match_viewer_3d/player_controller.gd" id="1_controller"]
+# FBX model with animations: Soccer Idle, Soccer Running, Soccer Pass, Soccer Kick, Goalkeeper Catch
+[ext_resource type="PackedScene" path="res://assets/models/player/SoccerWomanA.fbx" id="2_model"]
+
+[node name="AnimatedPlayer" type="Node3D"]
+script = ExtResource("1_controller")
+
+[node name="ModelRoot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="PlayerModel" parent="ModelRoot" instance=ExtResource("2_model")]

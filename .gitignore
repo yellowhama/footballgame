@@ -1,0 +1,22 @@
+# Godot
+.godot/
+.import/
+*.import
+.mono/
+export_presets.cfg
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Rust
+target/
+**/target/
+Cargo.lock.bak
+
+# Logs / temp
+*.log
+*.tmp
+

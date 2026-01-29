@@ -1,0 +1,51 @@
+[package]
+name = "football_rust"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+default = []
+# Embed player cache (400KB) for zero-file-IO loading
+# Build with: cargo build --release --features embedded_players
+embedded_players = ["cache_builder/embedded_players", "of_core/embedded_players"]
+
+[dependencies]
+# Godot 4.4 GDExtension binding - minimal features for faster build
+godot = { version = "0.3.5", default-features = false, features = ["api-4-4"] }
+
+# Our match engine
+of_core = { path = "../crates/of_core" }
+cache_builder = { path = "../crates/cache_builder" }
+
+# JSON handling
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+bincode = "2.0.0-rc.3"
+
+# Time handling for timestamps
+chrono = { version = "0.4", features = ["serde"] }
+
+# Logging for debugging
+log = "0.4"
+
+# Base64 encoding for save/load
+base64 = "0.21"
+
+# Lazy static initialization
+once_cell = "1.19"
+
+# Cache handling dependencies
+lz4_flex = "0.11"
+rmp-serde = "1.3"
+sha2 = "0.10"
+
+[build-dependencies]
+# Build-time information embedding (using chrono for safe timestamp)
+chrono = { version = "0.4", features = ["serde"] }
+
+# Note: profile settings moved to workspace root Cargo.toml
+# godot_extension previously used lto="off", codegen-units=16 for faster builds
+# but workspace profiles take precedence

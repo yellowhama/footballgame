@@ -1,0 +1,138 @@
+[gd_scene load_steps=2 format=3 uid="uid://shop_screen"]
+
+[ext_resource type="Script" path="res://scenes/ui/ShopScreen.gd" id="1"]
+
+[node name="ShopScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="ShopContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20
+margin_top = 20
+margin_right = -20
+margin_bottom = -20
+
+[node name="Header" type="HBoxContainer" parent="ShopContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackButton" type="Button" parent="ShopContainer/Header"]
+layout_mode = 2
+text = "이전"
+custom_minimum_size = Vector2(120, 60)
+theme_override_font_sizes/font_size = 24
+
+[node name="Title" type="Label" parent="ShopContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "코치 카드 상점"
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+
+[node name="CurrencyPanel" type="HBoxContainer" parent="ShopContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="GemsIcon" type="TextureRect" parent="ShopContainer/CurrencyPanel"]
+layout_mode = 2
+custom_minimum_size = Vector2(32, 32)
+
+[node name="GemsLabel" type="Label" parent="ShopContainer/CurrencyPanel"]
+layout_mode = 2
+text = "3000"
+theme_override_font_sizes/font_size = 24
+
+[node name="TicketsIcon" type="TextureRect" parent="ShopContainer/CurrencyPanel"]
+layout_mode = 2
+custom_minimum_size = Vector2(32, 32)
+margin_left = 40
+
+[node name="TicketsLabel" type="Label" parent="ShopContainer/CurrencyPanel"]
+layout_mode = 2
+text = "10"
+theme_override_font_sizes/font_size = 24
+
+[node name="BannerDisplay" type="Panel" parent="ShopContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 400)
+
+[node name="BannerImage" type="TextureRect" parent="ShopContainer/BannerDisplay"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch_mode = 6
+
+[node name="BannerInfo" type="VBoxContainer" parent="ShopContainer/BannerDisplay"]
+anchor_left = 0.05
+anchor_top = 0.7
+anchor_right = 0.95
+anchor_bottom = 0.95
+
+[node name="BannerName" type="Label" parent="ShopContainer/BannerDisplay/BannerInfo"]
+layout_mode = 2
+text = "스탠다드 배너"
+theme_override_font_sizes/font_size = 28
+
+[node name="PickupInfo" type="Label" parent="ShopContainer/BannerDisplay/BannerInfo"]
+layout_mode = 2
+text = "픽업: 매니저 카드 확률 UP!"
+theme_override_font_sizes/font_size = 20
+
+[node name="DrawButtons" type="HBoxContainer" parent="ShopContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SingleDraw" type="Button" parent="ShopContainer/DrawButtons"]
+layout_mode = 2
+text = "단일 뽑기\n150 젬"
+custom_minimum_size = Vector2(180, 100)
+theme_override_font_sizes/font_size = 20
+
+[node name="MultiDraw" type="Button" parent="ShopContainer/DrawButtons"]
+layout_mode = 2
+text = "10연 뽑기\n1500 젬"
+custom_minimum_size = Vector2(180, 100)
+theme_override_font_sizes/font_size = 20
+
+[node name="TicketDraw" type="Button" parent="ShopContainer/DrawButtons"]
+layout_mode = 2
+text = "티켓 뽑기\n1 티켓"
+custom_minimum_size = Vector2(180, 100)
+theme_override_font_sizes/font_size = 20
+
+[node name="BottomButtons" type="HBoxContainer" parent="ShopContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="DeckButton" type="Button" parent="ShopContainer/BottomButtons"]
+layout_mode = 2
+text = "덱 관리"
+custom_minimum_size = Vector2(140, 70)
+theme_override_font_sizes/font_size = 20
+
+[node name="InventoryButton" type="Button" parent="ShopContainer/BottomButtons"]
+layout_mode = 2
+text = "카드 보관함"
+custom_minimum_size = Vector2(140, 70)
+theme_override_font_sizes/font_size = 20
+
+[node name="HistoryButton" type="Button" parent="ShopContainer/BottomButtons"]
+layout_mode = 2
+text = "뽑기 기록"
+custom_minimum_size = Vector2(140, 70)
+theme_override_font_sizes/font_size = 20
+
+[connection signal="pressed" from="ShopContainer/Header/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ShopContainer/DrawButtons/SingleDraw" to="." method="_on_single_draw_pressed"]
+[connection signal="pressed" from="ShopContainer/DrawButtons/MultiDraw" to="." method="_on_multi_draw_pressed"]
+[connection signal="pressed" from="ShopContainer/DrawButtons/TicketDraw" to="." method="_on_ticket_draw_pressed"]
+[connection signal="pressed" from="ShopContainer/BottomButtons/DeckButton" to="." method="_on_deck_button_pressed"]
+[connection signal="pressed" from="ShopContainer/BottomButtons/InventoryButton" to="." method="_on_inventory_button_pressed"]

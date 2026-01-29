@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource path="res://themes/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/ShopPanel.gd" type="Script" id=2]
+[ext_resource path="res://scripts/QuickBar.gd" type="Script" id=3]
+
+[node name="ShopPanel" type="Control"]
+theme = ExtResource("1")
+script = ExtResource("2")
+layout_mode = 3
+
+[node name="Header" type="HBoxContainer" parent="."]
+offset_top = 0.0
+offset_right = 1080.0
+offset_bottom = 96.0
+alignment = 1
+
+[node name="BtnBack" type="Button" parent="Header"]
+custom_minimum_size = Vector2(88,48)
+text = ""
+
+[node name="LblTitle" type="Label" parent="Header"]
+size_flags_horizontal = 3
+text = "ShopPanel"
+
+[node name="BtnSettings" type="Button" parent="Header"]
+custom_minimum_size = Vector2(88,48)
+text = ""
+
+
+[node name="LblCoin" type="Label" parent="."]
+offset_top = 120.0
+offset_right = 360.0
+offset_bottom = 160.0
+text = "0"
+[node name="LblGem" type="Label" parent="."]
+offset_left = 360.0
+offset_top = 120.0
+offset_right = 720.0
+offset_bottom = 160.0
+text = "0"
+[node name="LblTP" type="Label" parent="."]
+offset_left = 720.0
+offset_top = 120.0
+offset_right = 1080.0
+offset_bottom = 160.0
+text = "0"
+[node name="ListShop" type="ItemList" parent="."]
+offset_top = 180.0
+offset_right = 1080.0
+offset_bottom = 780.0
+[node name="ListInventory" type="ItemList" parent="."]
+offset_top = 800.0
+offset_right = 1080.0
+offset_bottom = 1280.0
+
+
+[node name="QuickBar" type="Control" parent="."]
+script = ExtResource("3")
+anchors_preset = 12

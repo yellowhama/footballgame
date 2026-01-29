@@ -1,0 +1,34 @@
+{
+  "technical": {
+    "training_type": "Technical",
+    "stamina_cost": 15,
+    "base_improvement": 0.05,
+    "optimal_age_min": 18,
+    "optimal_age_max": 25,
+    "decline_factor": 0.02
+  },
+  "physical": {
+    "training_type": "Physical",
+    "stamina_cost": 25,
+    "base_improvement": 0.08,
+    "optimal_age_min": 20,
+    "optimal_age_max": 28,
+    "decline_factor": 0.03
+  },
+  "tactical": {
+    "training_type": "Tactical",
+    "stamina_cost": 10,
+    "base_improvement": 0.04,
+    "optimal_age_min": 22,
+    "optimal_age_max": 32,
+    "decline_factor": 0.01
+  },
+  "mental": {
+    "training_type": "Mental",
+    "stamina_cost": 8,
+    "base_improvement": 0.03,
+    "optimal_age_min": 24,
+    "optimal_age_max": 35,
+    "decline_factor": 0.01
+  }
+}

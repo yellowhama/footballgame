@@ -1,0 +1,227 @@
+{
+  "academic_calendar": {
+    "year1": {
+      "spring_term": {
+        "weeks": [1, 13],
+        "events": ["entrance_ceremony", "club_recruitment", "first_midterm"],
+        "training_modifier": 1.0
+      },
+      "summer_term": {
+        "weeks": [14, 26],
+        "events": ["prefectural_prelims", "summer_tournament", "final_exam"],
+        "training_modifier": 1.1
+      },
+      "summer_break": {
+        "weeks": [27, 34],
+        "events": ["summer_camp", "friendly_matches", "special_training"],
+        "training_modifier": 1.3
+      },
+      "fall_term": {
+        "weeks": [35, 47],
+        "events": ["autumn_tournament", "cultural_festival", "second_midterm"],
+        "training_modifier": 1.0
+      },
+      "winter_term": {
+        "weeks": [48, 52],
+        "events": ["winter_cup", "year_end_ceremony", "new_year"],
+        "training_modifier": 0.9
+      }
+    },
+    "year2": {
+      "spring_term": {
+        "weeks": [53, 65],
+        "events": ["new_semester", "captain_election", "spring_tournament"],
+        "training_modifier": 1.0
+      },
+      "summer_term": {
+        "weeks": [66, 78],
+        "events": ["inter_high_prelims", "inter_high_tournament", "summer_exam"],
+        "training_modifier": 1.2
+      },
+      "summer_break": {
+        "weeks": [79, 86],
+        "events": ["intensive_camp", "regional_tournament", "scout_visits"],
+        "training_modifier": 1.4
+      },
+      "fall_term": {
+        "weeks": [87, 99],
+        "events": ["national_prelims", "school_trip", "autumn_exam"],
+        "training_modifier": 1.1
+      },
+      "winter_term": {
+        "weeks": [100, 104],
+        "events": ["national_tournament", "christmas", "year2_end"],
+        "training_modifier": 1.0
+      }
+    },
+    "year3": {
+      "spring_term": {
+        "weeks": [105, 117],
+        "events": ["final_year_start", "leadership_role", "last_spring"],
+        "training_modifier": 1.1
+      },
+      "summer_term": {
+        "weeks": [118, 130],
+        "events": ["final_inter_high", "college_prep", "last_summer"],
+        "training_modifier": 1.3
+      },
+      "summer_break": {
+        "weeks": [131, 138],
+        "events": ["final_camp", "pro_tryouts", "career_decision"],
+        "training_modifier": 1.5
+      },
+      "fall_term": {
+        "weeks": [139, 151],
+        "events": ["final_tournament", "university_exams", "farewell_matches"],
+        "training_modifier": 1.2
+      },
+      "winter_term": {
+        "weeks": [152, 156],
+        "events": ["contract_prep", "final_ceremony", "new_beginning"],
+        "training_modifier": 0.8
+      }
+    }
+  },
+  "tournament_schedule": {
+    "prefectural_tournaments": {
+      "spring_cup": {"weeks": [10, 12], "level": "prefectural", "importance": "low"},
+      "summer_prelims": {"weeks": [20, 24], "level": "prefectural", "importance": "high"},
+      "autumn_cup": {"weeks": [40, 42], "level": "prefectural", "importance": "medium"},
+      "winter_cup": {"weeks": [48, 50], "level": "prefectural", "importance": "medium"}
+    },
+    "regional_tournaments": {
+      "inter_high_prelims": {"weeks": [68, 72], "level": "regional", "importance": "high"},
+      "regional_championship": {"weeks": [82, 84], "level": "regional", "importance": "high"},
+      "selection_tournament": {"weeks": [94, 96], "level": "regional", "importance": "medium"}
+    },
+    "national_tournaments": {
+      "inter_high": {"weeks": [74, 78], "level": "national", "importance": "very_high"},
+      "national_championship": {"weeks": [100, 104], "level": "national", "importance": "very_high"},
+      "all_japan": {"weeks": [143, 147], "level": "national", "importance": "critical"}
+    }
+  },
+  "training_cycles": {
+    "pre_season": {
+      "duration": 4,
+      "focus": ["physical", "team_building"],
+      "intensity": 0.8,
+      "recovery_priority": true
+    },
+    "in_season": {
+      "duration": 12,
+      "focus": ["tactical", "match_preparation"],
+      "intensity": 1.0,
+      "match_focus": true
+    },
+    "peak_season": {
+      "duration": 8,
+      "focus": ["performance", "mental"],
+      "intensity": 1.2,
+      "competition_mode": true
+    },
+    "off_season": {
+      "duration": 4,
+      "focus": ["recovery", "individual_skills"],
+      "intensity": 0.6,
+      "development_priority": true
+    }
+  },
+  "special_periods": {
+    "exam_periods": {
+      "midterm": {"weeks": [13, 39, 65, 91, 117, 143], "training_reduction": 0.5},
+      "final": {"weeks": [26, 52, 78, 104, 130, 156], "training_reduction": 0.4}
+    },
+    "holidays": {
+      "golden_week": {"weeks": [5, 57, 109], "training_optional": true},
+      "obon": {"weeks": [33, 85, 137], "family_time": true},
+      "new_year": {"weeks": [52, 104, 156], "rest_period": true}
+    },
+    "school_events": {
+      "sports_day": {"weeks": [7, 59, 111], "team_participation": true},
+      "cultural_festival": {"weeks": [41, 93, 145], "balance_required": true},
+      "school_trip": {"weeks": [null, 88, null], "absence_from_training": true}
+    }
+  },
+  "milestone_weeks": {
+    "character_development": {
+      "10": "first_tournament_experience",
+      "26": "half_year_evaluation",
+      "52": "first_year_complete",
+      "78": "mid_journey_point",
+      "104": "second_year_complete",
+      "130": "final_summer",
+      "143": "last_tournament",
+      "156": "contract"
+    },
+    "relationship_checkpoints": {
+      "20": "initial_bonds_formed",
+      "40": "team_dynamics_established",
+      "60": "deep_friendships",
+      "80": "trusted_teammate",
+      "100": "brotherhood_achieved",
+      "120": "mentor_role",
+      "140": "leaving_legacy",
+      "156": "eternal_bonds"
+    },
+    "skill_evaluations": {
+      "13": "initial_assessment",
+      "39": "first_year_progress",
+      "65": "second_year_baseline",
+      "91": "peak_development",
+      "117": "final_year_status",
+      "143": "maximum_potential",
+      "156": "final_evaluation"
+    }
+  },
+  "seasonal_modifiers": {
+    "spring": {
+      "months": ["April", "May", "June"],
+      "weather": "mild",
+      "motivation": 1.1,
+      "injury_risk": 0.9
+    },
+    "summer": {
+      "months": ["July", "August", "September"],
+      "weather": "hot",
+      "motivation": 1.0,
+      "fatigue_rate": 1.2,
+      "hydration_important": true
+    },
+    "autumn": {
+      "months": ["October", "November", "December"],
+      "weather": "cool",
+      "motivation": 1.2,
+      "optimal_conditions": true
+    },
+    "winter": {
+      "months": ["January", "February", "March"],
+      "weather": "cold",
+      "motivation": 0.9,
+      "injury_risk": 1.1,
+      "indoor_training": true
+    }
+  },
+  "progression_gates": {
+    "year1_requirements": {
+      "minimum_ca": 115,
+      "tournament_participation": 2,
+      "team_integration": true
+    },
+    "year2_requirements": {
+      "minimum_ca": 130,
+      "leadership_shown": true,
+      "tournament_wins": 1
+    },
+    "year3_requirements": {
+      "minimum_ca": 145,
+      "team_contribution": "significant",
+      "future_path_clarity": true
+    },
+    "exceptional_path": {
+      "early_national": {"ca": 140, "by_week": 52},
+      "youth_national": {"ca": 150, "by_week": 78},
+      "pro_interest": {"ca": 160, "by_week": 104},
+      "legendary_status": {"ca": 180, "perfect_record": true}
+    }
+  }
+}

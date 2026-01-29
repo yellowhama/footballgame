@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource path="res://themes/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/NotifyPanel.gd" type="Script" id=2]
+[ext_resource path="res://scripts/QuickBar.gd" type="Script" id=3]
+
+[node name="NotifyPanel" type="Control"]
+theme = ExtResource("1")
+script = ExtResource("2")
+layout_mode = 3
+
+[node name="Header" type="HBoxContainer" parent="."]
+offset_top = 0.0
+offset_right = 1080.0
+offset_bottom = 96.0
+alignment = 1
+
+[node name="BtnBack" type="Button" parent="Header"]
+custom_minimum_size = Vector2(88,48)
+text = ""
+
+[node name="LblTitle" type="Label" parent="Header"]
+size_flags_horizontal = 3
+text = "NotifyPanel"
+
+[node name="BtnSettings" type="Button" parent="Header"]
+custom_minimum_size = Vector2(88,48)
+text = ""
+
+
+[node name="LblUnread" type="Label" parent="."]
+offset_top = 120.0
+offset_right = 1080.0
+offset_bottom = 160.0
+text = "Unread: 0"
+[node name="ListNotifications" type="ItemList" parent="."]
+offset_top = 180.0
+offset_right = 1080.0
+offset_bottom = 880.0
+[node name="ListUpcoming" type="ItemList" parent="."]
+offset_top = 900.0
+offset_right = 1080.0
+offset_bottom = 1280.0
+
+
+[node name="QuickBar" type="Control" parent="."]
+script = ExtResource("3")
+anchors_preset = 12

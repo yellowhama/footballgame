@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://dh7v3qnm5k2xl"]
+
+[ext_resource type="Script" path="res://scripts/match_pipeline/horizontal/HorizontalMatchViewer.gd" id="1_viewer"]
+[ext_resource type="Script" path="res://scripts/match_pipeline/horizontal/FieldLineDrawer.gd" id="2_lines"]
+[ext_resource type="Script" path="res://scripts/match_pipeline/horizontal/MatchCamera.gd" id="3_camera"]
+[ext_resource type="Texture2D" path="res://assets/socceralia/ball-idle.png" id="4_ball"]
+[ext_resource type="Texture2D" path="res://assets/socceralia/ball_shadow.png" id="5_shadow"]
+[ext_resource type="Script" path="res://scripts/match_pipeline/horizontal/FieldBackgroundManager.gd" id="6_background"]
+[ext_resource type="Script" path="res://scripts/match_pipeline/horizontal/EventOverlay.gd" id="7_overlay"]
+[ext_resource type="Script" path="res://scripts/match_pipeline/horizontal/ScorePanel.gd" id="8_score"]
+[ext_resource type="PackedScene" path="res://scenes/match_pipeline/horizontal/MatchFieldWorld.tscn" id="9_fieldworld"]
+
+[node name="HorizontalMatchViewer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_viewer")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+custom_minimum_size = Vector2(1080, 700)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1050, 680)
+render_target_update_mode = 4
+
+[node name="MatchFieldWorld" parent="SubViewportContainer/SubViewport" instance=ExtResource("9_fieldworld")]
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="ScorePanel" type="Control" parent="HUDLayer"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+script = ExtResource("8_score")
+
+[node name="TransitionHUD" type="Label" parent="HUDLayer"]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 420.0
+offset_bottom = 86.0
+text = "TRANSITION: 3000ms"
+theme_override_colors/font_color = Color(1, 0.95, 0.2, 1)
+
+[node name="EventOverlay" type="CanvasLayer" parent="."]
+layer = 100
+script = ExtResource("7_overlay")

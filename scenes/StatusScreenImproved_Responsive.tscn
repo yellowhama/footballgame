@@ -1,0 +1,560 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctt0prwfhtivh"]
+
+[ext_resource type="Script" uid="uid://c61aqoxr00un6" path="res://scripts/screens/StatusScreenImproved_Responsive.gd" id="1"]
+[ext_resource type="Script" uid="uid://btfuvd7pxrv20" path="res://scripts/components/HexagonChart.gd" id="2"]
+[ext_resource type="Theme" uid="uid://dv8rowrpphj8g" path="res://themes/MobileTheme.tres" id="3"]
+
+[node name="StatusScreenImprovedResponsive" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("3")
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.07, 0.07, 0.1, 1)
+
+[node name="MobilePortraitLayout" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Header" type="Panel" parent="MobilePortraitLayout"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 0
+anchor_right = 1.0
+offset_bottom = 100.0
+
+[node name="HBox" type="HBoxContainer" parent="MobilePortraitLayout/Header"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BackButton" type="Button" parent="MobilePortraitLayout/Header/HBox"]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "이전"
+
+[node name="Title" type="Label" parent="MobilePortraitLayout/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "선수 능력치"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoButton" type="Button" parent="MobilePortraitLayout/Header/HBox"]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "ℹ️"
+
+[node name="TabContainer" type="TabContainer" parent="MobilePortraitLayout"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 100.0
+current_tab = 0
+
+[node name="Overview" type="ScrollContainer" parent="MobilePortraitLayout/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/TabContainer/Overview"]
+custom_minimum_size = Vector2(720, 1200)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="HexagonChart" type="Control" parent="MobilePortraitLayout/TabContainer/Overview/VBox"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2")
+chart_size = 180.0
+
+[node name="OVRPanel" type="Panel" parent="MobilePortraitLayout/TabContainer/Overview/VBox"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/TabContainer/Overview/VBox/OVRPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="MobilePortraitLayout/TabContainer/Overview/VBox/OVRPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "종합 능력치 (OVR)"
+
+[node name="OVRValue" type="Label" parent="MobilePortraitLayout/TabContainer/Overview/VBox/OVRPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "65"
+
+[node name="ConditionPanel" type="Panel" parent="MobilePortraitLayout/TabContainer/Overview/VBox"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/TabContainer/Overview/VBox/ConditionPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="MobilePortraitLayout/TabContainer/Overview/VBox/ConditionPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "컨디션 & 상태"
+
+[node name="Grid" type="GridContainer" parent="MobilePortraitLayout/TabContainer/Overview/VBox/ConditionPanel/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="ConditionLabel" type="Label" parent="MobilePortraitLayout/TabContainer/Overview/VBox/ConditionPanel/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "컨디션"
+
+[node name="ConditionValue" type="Label" parent="MobilePortraitLayout/TabContainer/Overview/VBox/ConditionPanel/VBox/Grid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "😄 최상 (5/5)"
+
+[node name="FatigueLabel" type="Label" parent="MobilePortraitLayout/TabContainer/Overview/VBox/ConditionPanel/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "피로도"
+
+[node name="FatigueBar" type="ProgressBar" parent="MobilePortraitLayout/TabContainer/Overview/VBox/ConditionPanel/VBox/Grid"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+value = 30.0
+
+[node name="Attributes" type="ScrollContainer" parent="MobilePortraitLayout/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBox" type="VBoxContainer" parent="MobilePortraitLayout/TabContainer/Attributes"]
+custom_minimum_size = Vector2(720, 3000)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="MobilePortraitLayout/TabContainer/Attributes/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "전체 능력치 (42개 항목)"
+horizontal_alignment = 1
+
+[node name="TechnicalSection" type="VBoxContainer" parent="MobilePortraitLayout/TabContainer/Attributes/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TechnicalTitle" type="Label" parent="MobilePortraitLayout/TabContainer/Attributes/VBox/TechnicalSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "🎯 기술 능력치 (14개)"
+
+[node name="TechnicalGrid" type="GridContainer" parent="MobilePortraitLayout/TabContainer/Attributes/VBox/TechnicalSection"]
+layout_mode = 2
+theme_override_constants/v_separation = 10
+
+[node name="TabletHybridLayout" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Header" type="Panel" parent="TabletHybridLayout"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 0
+anchor_right = 1.0
+offset_bottom = 100.0
+
+[node name="HBox" type="HBoxContainer" parent="TabletHybridLayout/Header"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BackButton" type="Button" parent="TabletHybridLayout/Header/HBox"]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "이전"
+
+[node name="Title" type="Label" parent="TabletHybridLayout/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "선수 능력치"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoButton" type="Button" parent="TabletHybridLayout/Header/HBox"]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "ℹ️"
+
+[node name="TabContainer" type="TabContainer" parent="TabletHybridLayout"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 100.0
+current_tab = 0
+
+[node name="Overview" type="ScrollContainer" parent="TabletHybridLayout/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/TabContainer/Overview"]
+custom_minimum_size = Vector2(1024, 1000)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="HexagonChart" type="Control" parent="TabletHybridLayout/TabContainer/Overview/VBox"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2")
+chart_size = 220.0
+
+[node name="OVRPanel" type="Panel" parent="TabletHybridLayout/TabContainer/Overview/VBox"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/TabContainer/Overview/VBox/OVRPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="TabletHybridLayout/TabContainer/Overview/VBox/OVRPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "종합 능력치 (OVR)"
+
+[node name="HBox" type="HBoxContainer" parent="TabletHybridLayout/TabContainer/Overview/VBox/OVRPanel/VBox"]
+layout_mode = 2
+
+[node name="OVRValue" type="Label" parent="TabletHybridLayout/TabContainer/Overview/VBox/OVRPanel/VBox/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "65"
+
+[node name="VSeparator" type="VSeparator" parent="TabletHybridLayout/TabContainer/Overview/VBox/OVRPanel/VBox/HBox"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Details" type="VBoxContainer" parent="TabletHybridLayout/TabContainer/Overview/VBox/OVRPanel/VBox/HBox"]
+layout_mode = 2
+
+[node name="Potential" type="Label" parent="TabletHybridLayout/TabContainer/Overview/VBox/OVRPanel/VBox/HBox/Details"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 20
+text = "잠재력: 85"
+
+[node name="Growth" type="Label" parent="TabletHybridLayout/TabContainer/Overview/VBox/OVRPanel/VBox/HBox/Details"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "성장률: +12 (이번 학기)"
+
+[node name="ConditionPanel" type="Panel" parent="TabletHybridLayout/TabContainer/Overview/VBox"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/TabContainer/Overview/VBox/ConditionPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="TabletHybridLayout/TabContainer/Overview/VBox/ConditionPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "컨디션 & 상태"
+
+[node name="Grid" type="GridContainer" parent="TabletHybridLayout/TabContainer/Overview/VBox/ConditionPanel/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="ConditionLabel" type="Label" parent="TabletHybridLayout/TabContainer/Overview/VBox/ConditionPanel/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "컨디션"
+
+[node name="ConditionValue" type="HBoxContainer" parent="TabletHybridLayout/TabContainer/Overview/VBox/ConditionPanel/VBox/Grid"]
+layout_mode = 2
+
+[node name="Emoji" type="Label" parent="TabletHybridLayout/TabContainer/Overview/VBox/ConditionPanel/VBox/Grid/ConditionValue"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "😄"
+
+[node name="Text" type="Label" parent="TabletHybridLayout/TabContainer/Overview/VBox/ConditionPanel/VBox/Grid/ConditionValue"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = " 최상 (5/5)"
+
+[node name="FatigueLabel" type="Label" parent="TabletHybridLayout/TabContainer/Overview/VBox/ConditionPanel/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "피로도"
+
+[node name="FatigueBar" type="ProgressBar" parent="TabletHybridLayout/TabContainer/Overview/VBox/ConditionPanel/VBox/Grid"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+value = 30.0
+
+[node name="Attributes" type="ScrollContainer" parent="TabletHybridLayout/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBox" type="VBoxContainer" parent="TabletHybridLayout/TabContainer/Attributes"]
+custom_minimum_size = Vector2(1024, 2000)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="TabletHybridLayout/TabContainer/Attributes/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "전체 능력치 (42개 항목)"
+horizontal_alignment = 1
+
+[node name="TechnicalSection" type="VBoxContainer" parent="TabletHybridLayout/TabContainer/Attributes/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TechnicalTitle" type="Label" parent="TabletHybridLayout/TabContainer/Attributes/VBox/TechnicalSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "🎯 기술 능력치 (14개)"
+
+[node name="TechnicalGrid" type="GridContainer" parent="TabletHybridLayout/TabContainer/Attributes/VBox/TechnicalSection"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="DesktopLandscapeLayout" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Header" type="Panel" parent="DesktopLandscapeLayout"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 0
+anchor_right = 1.0
+offset_bottom = 100.0
+
+[node name="HBox" type="HBoxContainer" parent="DesktopLandscapeLayout/Header"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BackButton" type="Button" parent="DesktopLandscapeLayout/Header/HBox"]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "이전"
+
+[node name="Title" type="Label" parent="DesktopLandscapeLayout/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "선수 능력치"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoButton" type="Button" parent="DesktopLandscapeLayout/Header/HBox"]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "ℹ️"
+
+[node name="TabContainer" type="TabContainer" parent="DesktopLandscapeLayout"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 100.0
+current_tab = 0
+
+[node name="Overview" type="ScrollContainer" parent="DesktopLandscapeLayout/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HBox" type="HBoxContainer" parent="DesktopLandscapeLayout/TabContainer/Overview"]
+custom_minimum_size = Vector2(1920, 800)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="LeftPanel" type="VBoxContainer" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="HexagonChart" type="Control" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/LeftPanel"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2")
+chart_size = 220.0
+
+[node name="RightPanel" type="VBoxContainer" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="OVRPanel" type="Panel" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/OVRPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/OVRPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "종합 능력치 (OVR)"
+
+[node name="HBox" type="HBoxContainer" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/OVRPanel/VBox"]
+layout_mode = 2
+
+[node name="OVRValue" type="Label" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/OVRPanel/VBox/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "65"
+
+[node name="VSeparator" type="VSeparator" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/OVRPanel/VBox/HBox"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Details" type="VBoxContainer" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/OVRPanel/VBox/HBox"]
+layout_mode = 2
+
+[node name="Potential" type="Label" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/OVRPanel/VBox/HBox/Details"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 24
+text = "잠재력: 85"
+
+[node name="Growth" type="Label" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/OVRPanel/VBox/HBox/Details"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+theme_override_font_sizes/font_size = 24
+text = "성장률: +12 (이번 학기)"
+
+[node name="ConditionPanel" type="Panel" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/ConditionPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/ConditionPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "컨디션 & 상태"
+
+[node name="Grid" type="GridContainer" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/ConditionPanel/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 25
+columns = 2
+
+[node name="ConditionLabel" type="Label" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/ConditionPanel/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "컨디션"
+
+[node name="ConditionValue" type="HBoxContainer" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/ConditionPanel/VBox/Grid"]
+layout_mode = 2
+
+[node name="Emoji" type="Label" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/ConditionPanel/VBox/Grid/ConditionValue"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "😄"
+
+[node name="Text" type="Label" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/ConditionPanel/VBox/Grid/ConditionValue"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+theme_override_font_sizes/font_size = 24
+text = " 최상 (5/5)"
+
+[node name="FatigueLabel" type="Label" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/ConditionPanel/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "피로도"
+
+[node name="FatigueBar" type="ProgressBar" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/ConditionPanel/VBox/Grid"]
+custom_minimum_size = Vector2(400, 35)
+layout_mode = 2
+value = 30.0
+
+[node name="InjuryLabel" type="Label" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/ConditionPanel/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "부상"
+
+[node name="InjuryValue" type="Label" parent="DesktopLandscapeLayout/TabContainer/Overview/HBox/RightPanel/ConditionPanel/VBox/Grid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+theme_override_font_sizes/font_size = 24
+text = "없음"
+
+[node name="Attributes" type="ScrollContainer" parent="DesktopLandscapeLayout/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBox" type="VBoxContainer" parent="DesktopLandscapeLayout/TabContainer/Attributes"]
+custom_minimum_size = Vector2(1920, 1600)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="DesktopLandscapeLayout/TabContainer/Attributes/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "전체 능력치 (42개 항목)"
+horizontal_alignment = 1
+
+[node name="TechnicalSection" type="VBoxContainer" parent="DesktopLandscapeLayout/TabContainer/Attributes/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TechnicalTitle" type="Label" parent="DesktopLandscapeLayout/TabContainer/Attributes/VBox/TechnicalSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "🎯 기술 능력치 (14개)"
+
+[node name="TechnicalGrid" type="GridContainer" parent="DesktopLandscapeLayout/TabContainer/Attributes/VBox/TechnicalSection"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 3
